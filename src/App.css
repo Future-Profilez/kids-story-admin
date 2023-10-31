@@ -1,38 +1,89 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Quicksand:wght@500;600;700&display=swap');
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+body{font-family: 'Poppins', sans-serif;color: #fff;}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+#body-pd{
   display: flex;
-  flex-direction: column;
+  background-color: #000518;
+  padding: 16px;height: 100%;min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+}
+.header {
+  width: 100%;
+  height: 3rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
+  padding: 0 1rem;
+  background-color: #000518;
+  z-index: 999;
+  transition: 0.5s;
+}
+.header_toggle {
+  color: #4723d9;
+  font-size: 1.5rem;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+
+.main-sidebar {
+  position: fixed;
+  top: 0;
+  left:-310px;
+  width: 302px;
+  height: calc(100vh - 32px); 
+  transition: 0.5s;
+  z-index: 2;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+
+.show {
+  left: 0;
+}
+ 
+
+.new-story { padding: 24px 0 40px; text-align: center; }
+
+.btn{color: #FFF; font-size: 16px; font-style: normal; font-weight: 500; line-height: 24px; display: inline-block; padding: 15px 20px;border: none;    min-width: 286px;text-align: center;}
+.blue-gradient-btn { border-radius: 50px; background: linear-gradient(94deg, #4B69E2 -2.08%, #9054D9 99.58%); box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.25) inset, 0px -4px 4px 0px rgba(255, 255, 255, 0.15) inset, 0px 4px 8px 0px rgba(103, 84, 217, 0.20) inset, 0px -4px 16px 0px rgba(188, 133, 255, 0.20) inset; }
+.new-story .btn{min-width: 246px;padding: 7px 20px;}
+
+.menu { display: block; width: 100%; padding: 50px 28px; border-top: 1px solid rgba(255,255,255,.1); } 
+.menu h3 { color: #999; font-size: 14px; font-style: normal; font-weight: 400; line-height: normal; margin: 0 0 26px; }
+.menu ul{padding: 0;list-style: none;margin: 0;}
+.menu ul li + li { margin-top: 40px; }
+.menu ul li a{color: #FFF; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 600; line-height: normal;display: flex;    align-items: center;}
+.menu ul li a svg{margin-right: 8px;;}
+
+/* right */
+.content-wrapper { border-radius: 8px; min-height: 100%;width: 100%;}
+.content {border-radius: 8px; width: 100%; height: 100%; padding: 38px 90px;background-repeat: no-repeat;background-color: rgba(8, 15, 41, 0.80);   background-size: cover; }
+.generat-story{background-image: url(../public/assets/images/kids-bg-full.jpg);background-blend-mode: overlay;background-position:center;}
+.content-center{display: flex;flex-wrap: wrap;}
+.generate-block { margin: auto; display: block; max-width: 843px;text-align: center;    width: 100%; }
+.generate-block h2{ font-family: Quicksand; font-size: 30px; font-style: normal; font-weight: 700; line-height: normal;background: linear-gradient(92deg, #5376FF -3.68%, #A04DFF 118.81%);  background-clip: text;-webkit-background-clip: text;-webkit-text-fill-color: transparent;font-family: 'Quicksand', sans-serif;    margin: 0 0 38px;   }
+.generate-block h1{ margin: 0 0 32px;color: #FFF; text-align: center;font-family: Poppins; font-size: 50px; font-style: normal; font-weight: 600; line-height: 68px;}
+
+
+
+
+@media screen and (min-width: 768px) { 
+  div#body-pd {
+    margin: 0;
+    padding-left: 302px;
   }
-  to {
-    transform: rotate(360deg);
+  .header { 
+    display: none;
+  }  
+  .main-sidebar {
+    left: 0;
   }
+  .content-wrapper, .content { min-height: 100%;border-radius: 20px; }
+
 }

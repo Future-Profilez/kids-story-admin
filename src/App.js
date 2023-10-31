@@ -1,6 +1,7 @@
 import './App.css';
-import {BrowserRouter as Router ,Route,Routes} from "react-router-dom"
+import {BrowserRouter as Router ,Route,Routes} from "react-router-dom";
 import Home from './pages/home/Home';
+import './style/Bootstrap.css'
 
 function App() {
   return (

@@ -1,9 +1,9 @@
 import { Component } from 'react';
-import Api  from './Api';
+import Url from './Api';
 class Story extends Component {
     render() {
         return (
-            <div >
+            <div>
                 <></>
             </div>
         )

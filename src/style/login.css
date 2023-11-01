@@ -1,0 +1,125 @@
+.login {
+  border-radius: 30px;
+  background: #000518;
+}
+
+.login h1 {
+  font-family: Quicksand;
+  font-size: 30px;
+  text-align: center;
+  font-style: normal;
+  margin: 70px 5px 50px 1px;
+  font-weight: 700;
+  line-height: normal;
+  background: linear-gradient(92deg, #5376ff -3.68%, #a04dff 118.81%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.login img {
+  width: 704px;
+  height: 992px;
+  flex-shrink: 0;
+  border-radius: 20px;
+}
+
+.title_container p {
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 29px;
+    margin-top: 122px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 68px; /* 170% */
+    text-transform: capitalize;
+}
+
+/* .title_container {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100px; 
+  } */
+
+
+.title_container .line {
+  width: 104px;
+  height: 2px;
+  flex-shrink: 0;
+  align-items: center;
+  margin-left: 221px;
+  border-radius: 30px;
+  background: #9054d9;
+}
+.sign-in_btn {
+  display: inline-flex;
+  padding: 15px 123px;
+  align-items: center;
+  margin-left: 124px;
+  margin-top: 39px;
+  gap: 13px;
+  border-radius: 50px;
+  background: var(--1, linear-gradient(94deg, #4b69e2 -2.08%, #9054d9 99.58%));
+  box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.25) inset,
+    0px -4px 4px 0px rgba(255, 255, 255, 0.15) inset,
+    0px 4px 34px 0px rgba(77, 94, 255, 0.2) inset,
+    0px -4px 10px 0px rgba(160, 77, 255, 0.2) inset;
+  filter: blur(0.10000000149011612px);
+}
+
+.sign-in_btn span {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.input_container input {
+  width: 564px;
+  height: 60px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background-color: #080f2c;
+  color: #fff;
+}
+
+.input_container {
+  position: relative;
+}
+
+.input_field.password {
+  padding-right: 30px;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  top: 70%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.input_container .input_label {
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Poppins;
+  margin-top: 20px;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 15px; /* 100% */
+  text-transform: capitalize;
+}
+
+input#email_field .input_field{
+    width: 564px;
+    height: 60px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background-color: #080f2c;
+    color: #fff;
+}

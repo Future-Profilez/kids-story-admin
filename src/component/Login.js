@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Image } from "react-bootstrap";
 import image from "../image/login.png";
-import "../style/login.css";
 import { useNavigate } from "react-router-dom";
+import "../style/login.css"
 
 function Login() {
     const navigate = useNavigate();
@@ -28,6 +28,7 @@ function Login() {
 
     const handleForms = (e) => {
         e.preventDefault();
+        navigate('/home')
     };
 
     return (
@@ -54,8 +55,8 @@ function Login() {
                                     name="email"
                                     onChange={handleInputs}
                                     value={Regs.email}
-                                    type="email"
-                                    className="input_field "
+                                    type="text"
+                                    className="input_field"
                                     id="email_field"
                                 />
                             </div>

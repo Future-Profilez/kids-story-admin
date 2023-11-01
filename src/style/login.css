@@ -1,5 +1,5 @@
 .login {
-  border-radius: 30px;
+  border-radius: 10px;
   background: #000518;
 }
 
@@ -53,6 +53,7 @@
   border-radius: 30px;
   background: #9054d9;
 }
+
 .sign-in_btn {
   display: inline-flex;
   padding: 15px 123px;
@@ -115,11 +116,4 @@
   text-transform: capitalize;
 }
 
-input#email_field .input_field{
-    width: 564px;
-    height: 60px;
-    flex-shrink: 0;
-    border-radius: 10px;
-    background-color: #080f2c;
-    color: #fff;
-}
+

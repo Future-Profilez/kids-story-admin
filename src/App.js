@@ -1,23 +1,24 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
+import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
 import "./style/bootstrap.css";
 import './App.css';
-import { useSelector } from "react-redux";
+import Homepage from "./pages/home/Homepage";
 import Login from "./component/Login";
-import Page from "./pages/home/page";
+import Header from "./component/Header";
+import Storylist from "./pages/story/Storylist";
+import Storycard from "./pages/story/Storycard";
 
 function App() {
- // const isUserLoggedIn = useSelector(login);
-
   return (
     //id="body-pd"
-    <div className="App">
+    <div  className="App">
       <Router>
+      {/* <Header/> */}
         <Routes>
-          {/* {isUserLoggedIn ? ( */}
-            <Route path="/home" element={<Page/> } />
-          {/* ) : ( */}
-            <Route path="/" element={<Login />} />
-          {/* )} */}
+          <Route path="/home" element={<Homepage />}></Route>
+          <Route path="/" element={<Login />}></Route>
+          <Route path="/story" element={<Storylist/>}></Route>
+          <Route path="list" element={<Storycard/>}></Route>
         </Routes>
       </Router>
     </div>

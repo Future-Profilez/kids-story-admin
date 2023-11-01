@@ -1,0 +1,121 @@
+.input_container input {
+  width: 400px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background-color: #080f2c;
+  color: #fff;
+}
+
+.modal-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  width: 830px;
+  height: 409px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: #131c3e;
+  pointer-events: auto;
+  background-clip: padding-box;
+}
+
+.story h2 {
+  text-align: center;
+  font-family: Quicksand;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  background: linear-gradient(92deg, #5376ff -3.68%, #a04dff 118.81%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+section {
+  width: 1122px;
+  height: 992px;
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: #080f29;
+}
+.top-line {
+  margin-top: 47px;
+  margin-bottom: 35px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.story-list h2 {
+  text-align: left;
+  /* margin-left: -36px; */
+  color: #fff;
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 150%;
+  width: 942px;
+}
+.story-list p {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 150%; /* 22.5px */
+}
+
+.story-list img {
+  width: 901px;
+  height: 250px;
+  flex-shrink: 0;
+}
+
+.story {
+  margin: 55px;
+}
+.btn-list {
+  gap: 13px;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-list button {
+  width: 286px;
+  padding: 15px 69px 15px 65px;
+
+  gap: 13px;
+  border-radius: 50px;
+  background: var(--1, linear-gradient(94deg, #4b69e2 -2.08%, #9054d9 99.58%));
+  box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.25) inset,
+    0px -4px 4px 0px rgba(255, 255, 255, 0.15) inset,
+    0px 4px 34px 0px rgba(77, 94, 255, 0.2) inset,
+    0px -4px 10px 0px rgba(160, 77, 255, 0.2) inset;
+  filter: blur(0.10000000149011612px);
+}
+
+.btn-list span {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+section {
+  position: absolute;
+}
+
+.story-title {
+  color: #fff;
+  text-align: left;
+  font-family: Quicksand;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}

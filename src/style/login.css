@@ -25,15 +25,15 @@
 }
 
 .title_container p {
-    color: #FFF;
-    text-align: center;
-    font-family: Poppins;
-    font-size: 29px;
-    margin-top: 122px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 68px; /* 170% */
-    text-transform: capitalize;
+  color: #fff;
+  text-align: center;
+  font-family: Poppins;
+  font-size: 29px;
+  margin-top: 122px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 68px; /* 170% */
+  text-transform: capitalize;
 }
 
 /* .title_container {
@@ -42,7 +42,6 @@
     align-items: center; 
     height: 100px; 
   } */
-
 
 .title_container .line {
   width: 104px;
@@ -87,8 +86,8 @@
   background-color: #080f2c;
   color: #fff;
 }
-
 .input_container {
+  display: inline;
   position: relative;
 }
 
@@ -115,5 +114,3 @@
   line-height: 15px; /* 100% */
   text-transform: capitalize;
 }
-
-

@@ -33,14 +33,7 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-section {
-  width: 1122px;
-  height: 992px;
-  flex-shrink: 0;
-  border-radius: 20px;
-  background: #080f29;
-}
+ 
 .top-line {
   margin-top: 47px;
   margin-bottom: 35px;

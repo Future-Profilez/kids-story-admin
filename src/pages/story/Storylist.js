@@ -4,10 +4,14 @@ import "../../style/story.css"
 import AuthLayout from "../../component/AuthLayout";
 function Storylist() {
     return (
-        <AuthLayout>
 
-            <section >
-                <div className="container">
+        <>
+        
+        <AuthLayout>
+        </AuthLayout>
+            <div className="content-wrapper">
+                    {/* start content */}
+                    <div className="content ">
                     <div className="row">
                         <div className="col-md-12">
                             <div className="story">
@@ -34,11 +38,12 @@ function Storylist() {
                         </div>
                     </div>
                 </div>
-            </section>
-        </AuthLayout>
+            </div>
+        </>
+
 
 
     );
 }
-
+ 
 export default Storylist;

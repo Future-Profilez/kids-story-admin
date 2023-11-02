@@ -3,7 +3,7 @@ import { Image } from "react-bootstrap";
 import image from "../image/login.png";
 import { useNavigate } from "react-router-dom";
 import "../style/login.css"
-
+ 
 function Login() {
     const navigate = useNavigate();
 
@@ -33,6 +33,7 @@ function Login() {
 
     return (
         <>
+       
             <div className="login">
                 <div className="container">
                     <div className="row">

@@ -2,116 +2,27 @@
 .login {
   border-radius: 10px;
   background: #000518;
+  padding: 16px; width: 100%; display: flex; flex-wrap: wrap;
 }
+.login .background-img { width: 44%; display: flex; align-items: center; justify-content: center; }
+.login .background-img .img-fluid { position: relative; width: 100%; min-height: calc(100vh - 32px); max-height: calc(100vh - 32px); object-fit: cover; border-radius: 20px; }
+.login .login-form { width: 56%; padding: 69px 78px 0; display: flex; flex-direction: column;}
 
-.login h1 {
-  font-family: Quicksand;
-  font-size: 30px;
-  text-align: center;
-  font-style: normal;
-  margin: 70px 5px 50px 1px;
-  font-weight: 700;
-  line-height: normal;
-  background: linear-gradient(92deg, #5376ff -3.68%, #a04dff 118.81%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+.login h1 {background: linear-gradient(92deg, #5376FF -3.68%, #A04DFF 118.81%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: Quicksand; text-align: center; font-size: 30px; font-style: normal; font-weight: 700; line-height: normal; margin: 0 0 35%;;}
 
-.login img {
-  width: 704px;
-  height: 992px;
-  flex-shrink: 0;
-  border-radius: 20px;
-}
+.form_middle{max-width: 564px;width: 100%;margin: auto;}
+.login h3{color: #FFF; text-align: center; font-family: Poppins; font-size: 40px; font-style: normal; font-weight: 600; line-height: 50px;text-transform: capitalize;position: relative;padding-bottom: 39px;margin: 0 0 40px;}
 
-.title_container p {
-  color: #fff;
-  text-align: center;
-  font-family: Poppins;
-  font-size: 29px;
-  margin-top: 122px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 68px; /* 170% */
-  text-transform: capitalize;
-}
+.login h3:after{border-radius: 30px; background: #9054D9; width: 104px; height: 2px; content: ""; position: absolute; left: 0; right: 0; margin: auto; bottom: 0;}
+.input_container{margin-bottom: 30px;position: relative;}
+.input_container .form-control{border-radius: 10px; background: #080F2C;color: #FFF; font-family: Poppins; font-size: 15px; font-style: normal; font-weight: 700; line-height: 15px;  text-transform: lowercase;height: 60px;padding: 10px 27px;border: none;outline: none;box-shadow: none;}
 
-/* .title_container {
-    display: flex;
-    justify-content: center; 
-    align-items: center; 
-    height: 100px; 
-  } */
+.passwaord-icon{position: relative;}
+.password-toggle-icon { position: absolute; right: 24px; bottom: 17px; }
+.input_container ::-ms-input-placeholder { color: #a1a1a1; } 
+.input_container ::placeholder { color: #a1a1a1;}
 
-.title_container .line {
-  width: 104px;
-  height: 2px;
-  flex-shrink: 0;
-  align-items: center;
-  margin-left: 221px;
-  border-radius: 30px;
-  background: #9054d9;
-}
+.input_container .input_label {color: rgba(255, 255, 255, .8) ; font-family: Poppins; font-size: 15px; font-style: normal; font-weight: 500; line-height: 15px; text-transform: capitalize; margin: 0 0 7px;}
 
-.sign-in_btn {
-  display: inline-flex;
-  padding: 15px 123px;
-  align-items: center;
-  margin-left: 124px;
-  margin-top: 39px;
-  gap: 13px;
-  border-radius: 50px;
-  background: var(--1, linear-gradient(94deg, #4b69e2 -2.08%, #9054d9 99.58%));
-  box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.25) inset,
-    0px -4px 4px 0px rgba(255, 255, 255, 0.15) inset,
-    0px 4px 34px 0px rgba(77, 94, 255, 0.2) inset,
-    0px -4px 10px 0px rgba(160, 77, 255, 0.2) inset;
-  filter: blur(0.10000000149011612px);
-}
 
-.sign-in_btn span {
-  color: #fff;
-  font-family: Poppins;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
 
-.input_container input {
-  width: 564px;
-  height: 60px;
-  flex-shrink: 0;
-  border-radius: 10px;
-  background-color: #080f2c;
-  color: #fff;
-}
-.input_container {
-  display: inline;
-  position: relative;
-}
-
-.input_field.password {
-  padding-right: 30px;
-}
-
-.password-toggle-icon {
-  position: absolute;
-  top: 70%;
-  right: 10px;
-  transform: translateY(-50%);
-  cursor: pointer;
-  z-index: 2;
-}
-
-.input_container .input_label {
-  color: rgba(255, 255, 255, 0.8);
-  font-family: Poppins;
-  margin-top: 20px;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 15px; /* 100% */
-  text-transform: capitalize;
-}

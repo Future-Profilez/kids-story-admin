@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Image } from "react-bootstrap";
 import image from "../image/login.png";
 import { useNavigate } from "react-router-dom";
-import "../style/login.css"
- 
+import "../style/login.css";
+
 function Login() {
     const navigate = useNavigate();
 
@@ -33,7 +33,13 @@ function Login() {
 
     return (
         <>
-       
+
+            <style jsx>
+                {`div#body-pd {
+    padding: 0;
+}`}
+            </style>
+
             <div className="login">
                 <div className="container">
                     <div className="row">

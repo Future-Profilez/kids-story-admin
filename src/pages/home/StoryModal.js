@@ -1,6 +1,6 @@
 import React from "react";
 import { Modal, Button } from "react-bootstrap";
-
+import "../../style/model.css"
 function StoryModal({ show, handleClose }) {
     return (
         <Modal show={show} onHide={handleClose}>

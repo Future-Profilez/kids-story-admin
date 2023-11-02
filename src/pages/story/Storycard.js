@@ -25,39 +25,38 @@ function Storycard() {
                                 <h6>Manage Stories</h6>
                             </div>
                             <div className="story-gender">
-                                <p
-                                    onClick={() => handleOptionClick("boy")}
-                                    className={selectedOption === "boy" ? "selected" : ""}
-                                >
-                                    Boy
-                                </p>
-                                <p
-                                    onClick={() => handleOptionClick("girl")}
-                                    className={selectedOption === "girl" ? "selected" : ""}
-                                >
-                                    Girl
-                                </p>
-                            </div>
+    <p
+        onClick={() => handleOptionClick("boy")}
+        className={selectedOption === "boy" ? "selected" : ""}
+    >
+        Boy
+    </p>
+    <p
+        onClick={() => handleOptionClick("girl")}
+        className={selectedOption === "girl" ? "selected" : ""}
+    >
+        Girl
+    </p>
+</div>
+
 
                             <div className="story-search">
                                 <div class="search-container">
-                                    <input type="search" placeholder="Search" />
+                                    <input type="search" placeholder="" />
                                     <button>
                                         Search
                                     </button>
                                 </div>
-
                                 <div className="story-sort">
                                     <h1>SortBy: </h1>
                                     <select className="select">
                                         <option type="data" className="custom-option">Newest to oldest</option>
-                                        <option type="data" className="custom-option">Newest to oldest</option>
+                                        <option type="data" className="custom-option"> oldest</option>
                                         <option type="data" className="custom-option">Newest to oldest</option>
                                         <option type="data" className="custom-option">Newest to oldest</option>
                                         <option type="data" className="custom-option">Newest to oldest</option>
                                     </select>
                                 </div>
-
                                 <div className="story-sort">
                                     <h1>Category: </h1>
                                     <select className="select">

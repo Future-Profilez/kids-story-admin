@@ -1,0 +1,13 @@
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    width: 830px;
+    height: 409px;
+    flex-shrink: 0;
+    border-radius: 20px;
+    background: #131c3e;
+    pointer-events: auto;
+    background-clip: padding-box;
+  }

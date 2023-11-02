@@ -33,13 +33,16 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
- 
+
 .top-line {
-  margin-top: 47px;
+  margin-top: 20px;
   margin-bottom: 35px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
-
+.bootom-line {
+  margin-bottom: 35px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
 .story-list h2 {
   text-align: left;
   /* margin-left: -36px; */
@@ -79,7 +82,6 @@
 .btn-list button {
   width: 286px;
   padding: 15px 69px 15px 65px;
-
   gap: 13px;
   border-radius: 50px;
   background: var(--1, linear-gradient(94deg, #4b69e2 -2.08%, #9054d9 99.58%));
@@ -99,10 +101,6 @@
   line-height: normal;
 }
 
-section {
-  position: absolute;
-}
-
 .story-title {
   color: #fff;
   text-align: left;
@@ -113,12 +111,30 @@ section {
   line-height: normal;
 }
 
+.story-card {
+  margin-top: 64px;
+}
+
+.row {
+  margin: -40px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-md-3 {
+  padding: 7px;
+  flex-basis: calc(25% - 27px);
+}
+
+
 .card {
   width: 245.5px;
   height: 316px;
   border-radius: 20px;
   background: #000518;
 }
+
+
 .card .card-img-top {
   width: 245px;
   height: 162px;
@@ -163,16 +179,14 @@ section {
 }
 
 .card-data h3 {
-  padding: 9px 13px;
   display: inline-flex;
-  padding: 9px 13px;
+  padding: 5px 9px;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  gap: 10px;
   border-radius: 30px;
   background: rgba(255, 255, 255, 0.2);
 }
+
 .card h3 span {
   color: #fff;
   font-weight: bold;
@@ -180,37 +194,42 @@ section {
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: 150%; /* 18px */
+  line-height: 150%;
+  text-align: center;
 }
 
 .card-data {
   display: flex;
+  justify-content: center;
   margin-top: -7px;
   gap: 96px;
 }
 
-.input-button {
-  display: inline-flex;
+.story-search {
+  margin-top: 20px;
+  display: flex;
+}
+
+.search-container {
+  display: flex;
   align-items: center;
-  gap: 13px;
-  background: #131c3e;
-  border: none;
-  border-radius: 50px;
-  padding: 7px 30px;
+}
+
+.search-container input {
   width: 300px;
   height: 44px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  background: #131c3e;
   color: white;
-}
-
-.input-button input {
-  background: transparent;
   border: none;
-  width: 100%;
-  color: white;
-  outline: none;
+  margin-bottom: 10px;
 }
 
-.input-button button {
+.search-container button {
+  margin-left: -121px;
+  margin-top: -11px;
+  border: none;
   display: inline-flex;
   padding: 7px 30px;
   align-items: center;
@@ -221,5 +240,81 @@ section {
     0px -4px 4px 0px rgba(255, 255, 255, 0.15) inset,
     0px 4px 8px 0px rgba(103, 84, 217, 0.2) inset,
     0px -4px 16px 0px rgba(188, 133, 255, 0.2) inset;
+  color: white;
+  cursor: pointer;
 }
 
+.story-sort {
+  display: flex;
+  margin-left: 38px;
+  justify-content: center;
+}
+
+
+.story-sort h1 {
+  color: #b3b3b3;
+  font-family: Poppins;
+  margin: 12px;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.story-sort .select {
+  width: 195px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  background: #131c3e;
+  color: #fff;
+}
+
+.story-sort .select .custom-option {
+  font-family: Poppins;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 500;
+  border-radius: 50px;
+  background: #131c3e;
+  line-height: normal;
+}
+
+.story-sort .select .custom-option:hover {
+  background: #131c3e;
+  border-radius: 50px;
+}
+
+.story-gender {
+  display: flex;
+  gap: 20px;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+.story-gender p {
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.story-gender p.selected {
+  color: rgba(160, 77, 255, 0.5);
+  margin-top: 1px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.story-gender p:not(.selected) {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.story-title {
+  color: #fff;
+  font-family: Quicksand;
+  font-size: 24px;
+  font-style: normal;
+  margin-bottom: 20px;
+  font-weight: 700;
+  line-height: normal;
+}

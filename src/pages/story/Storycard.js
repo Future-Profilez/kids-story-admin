@@ -21,6 +21,8 @@ function Storycard() {
 
     return (
         <AuthLayout>
+
+            
             <div className="content-wrapper">
                 <div className="content">
                     <div className="row">

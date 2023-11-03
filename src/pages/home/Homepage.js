@@ -4,7 +4,6 @@ import StoryModal from "./StoryModal";
 import AuthLayout from "../../component/AuthLayout";
 function Homepage() {
     const [show, setShow] = useState(false);
-
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     return (
@@ -26,12 +25,10 @@ function Homepage() {
                             </div>
                         </div>
                     </div>
-                    {/* start content*/}
+                    {/* start content */}
                     <StoryModal show={show} handleClose={handleClose} />
                 </div>
             </AuthLayout>
-
-
 
         </>
     );

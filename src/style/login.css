@@ -1,16 +1,11 @@
-
-.login {
-  border-radius: 10px;
-  background: #000518;
-  padding: 16px; width: 100%; display: flex; flex-wrap: wrap;
-}
+.login {border-radius: 10px;background: #000518;padding: 16px; width: 100%; display: flex; flex-wrap: wrap;}
 .login .background-img { width: 44%; display: flex; align-items: center; justify-content: center; }
 .login .background-img .img-fluid { position: relative; width: 100%; min-height: calc(100vh - 32px); max-height: calc(100vh - 32px); object-fit: cover; border-radius: 20px; }
-.login .login-form { width: 56%; padding: 69px 78px 0; display: flex; flex-direction: column;}
+.login .login-form { width: 56%; padding: 69px 78px 0; display: flex; flex-direction: column;position: relative;}
 
-.login h1 {background: linear-gradient(92deg, #5376FF -3.68%, #A04DFF 118.81%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: Quicksand; text-align: center; font-size: 30px; font-style: normal; font-weight: 700; line-height: normal; margin: 0 0 35%;;}
+.login h1 {background: linear-gradient(92deg, #5376FF -3.68%, #A04DFF 118.81%); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-family: Quicksand; text-align: center; font-size: 30px; font-style: normal; font-weight: 700; line-height: normal; margin: 0; position: absolute; left: 0; right: 0; top: 69px;}
 
-.form_middle{max-width: 564px;width: 100%;margin: auto;}
+.form_middle{max-width: 564px;width: 100%;margin: auto;padding: 40px 0;}
 .login h3{color: #FFF; text-align: center; font-family: Poppins; font-size: 40px; font-style: normal; font-weight: 600; line-height: 50px;text-transform: capitalize;position: relative;padding-bottom: 39px;margin: 0 0 40px;}
 
 .login h3:after{border-radius: 30px; background: #9054D9; width: 104px; height: 2px; content: ""; position: absolute; left: 0; right: 0; margin: auto; bottom: 0;}

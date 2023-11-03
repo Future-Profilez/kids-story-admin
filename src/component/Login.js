@@ -44,12 +44,12 @@ function Login() {
                 <div className="background-img">
                 <Image src={image} className="img-fluid" alt="Responsive image" />
                 </div>
-                <div className="login-form">                    
+                <div className="login-form">  
+                    <h1>StoryScape!</h1>                  
                     <div className="form_middle">
-                    <h1>StoryScape!</h1>
+                         
                         <div className="title_container">
                                 <h3>Login to your Account</h3>
-                                <div className="line"></div>
                             </div>                           
                             <div className="input_container">
                                 <label className="input_label form-contol" htmlFor="email_field">

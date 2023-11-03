@@ -216,7 +216,7 @@ function StoryModal({ show, handleClose }) {
                                         className="input_field"
                                         id=" "
                                     />
-                                    <input type="submit" value="Generate" name="Generate" onClick={handleGenerateClick} />
+                                    <button type="submit"  name="Generate" onClick={handleGenerateClick} > </button>
                                 </div>
                             </div>
                             <div className="progresbar-block" >

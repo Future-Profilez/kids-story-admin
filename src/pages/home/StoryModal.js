@@ -14,6 +14,9 @@ function StoryModal({ show, handleClose }) {
             }
 
         }
+        const handleGenerateClick = () => {
+            setShowSuccess(true);
+        };
 
     };
     return (
@@ -213,7 +216,7 @@ function StoryModal({ show, handleClose }) {
                                         className="input_field"
                                         id=" "
                                     />
-                                    <input type="submit" value="Generate" name="Generate" />
+                                    <input type="submit" value="Generate" name="Generate" onClick={handleGenerateClick} />
                                 </div>
                             </div>
                             <div className="progresbar-block" >

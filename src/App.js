@@ -8,6 +8,7 @@ import Header from "./component/Header";
 import Storylist from "./pages/story/Storylist";
 import Storycard from "./pages/story/Storycard";
 import Profile from "./pages/profile/Profile";
+import Subscription from "./pages/profile/Subscription";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/story" element={<Storylist />}></Route>
           <Route path="/list" element={<Storycard />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
+          <Route path="/subscription" element={<Subscription />}></Route>
         </Routes>
       </Router>
     </div>

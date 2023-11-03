@@ -60,7 +60,7 @@
 
 /* Story Card  */
 
-.story-title {
+.story-title h6 {
   color: #fff;
   font-family: Quicksand;
   font-size: 24px;
@@ -70,10 +70,31 @@
   line-height: normal;
 }
 
-.story-gender {
-  display: flex;
-  gap: 20px;
-  border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+button#noanim-tab-example-tab-boy[aria-selected="true"],
+button#noanim-tab-example-tab-girl[aria-selected="true"] {
+  padding: 9px;
+  background: none;
+  border-color: none;
+  color: rgba(160, 77, 255, 0.5);
+  border-bottom: 1px solid rgba(160, 77, 255, 3.5);
+  font-family: Quicksand;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+button#noanim-tab-example-tab-boy[aria-selected="false"],
+button#noanim-tab-example-tab-girl[aria-selected="false"] {
+  padding: 9px;
+  background: none;
+  border-color: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: Quicksand;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
 }
 
 .story-gender p {
@@ -312,4 +333,119 @@
   .custom-option {
     text-align: center;
   }
+}
+
+button#noanim-tab-example-tab-profile[aria-selected="true"],
+button#noanim-tab-example-tab-password[aria-selected="true"] {
+  padding: 9px;
+  background: none;
+  border-color: none;
+  color: rgba(160, 77, 255, 0.5);
+  border-bottom: 1px solid rgba(160, 77, 255, 3.5);
+  font-family: Quicksand;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+.profile-manage.nav-tabs .nav-link.active {
+  color: none;
+  background-color:none;
+  border-color: none;
+}
+.profile-manage .nav-tabs .nav-link:focus,
+.profile-manage .nav-tabs .nav-link:hover,
+.profile-manage .nav-tabs .nav-link :active {
+  isolation: isolate;
+  border-color: none;
+}
+
+.profile-manage .nav-tabs .nav-link {
+  margin-bottom: none;
+  border: none;
+  border-top-left-radius: none;
+  border-top-right-radius: none;
+}
+.profile-manage .nav-tabs {
+  color: rgba(255, 255, 255, 0.8);
+}
+button#noanim-tab-example-tab-profile[aria-selected="false"],
+button#noanim-tab-example-tab-password[aria-selected="false"] {
+  padding: 9px;
+  background: none;
+  border-color: none;
+  color: rgba(255, 255, 255, 0.5);
+  font-family: Quicksand;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.password .input label {
+  color: #b3b3b3;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  margin-bottom: 10px;
+}
+
+.password input {
+  margin-bottom: 44px;
+  color: white;
+  outline: none;
+  width: 985px;
+
+  height: 58px;
+  border-radius: 50px;
+  background: #0c1229;
+}
+
+.password-old {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+}
+
+.password-old .container-input label {
+  color: #b3b3b3;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  margin-bottom: 5px;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.password-old .container-input input {
+  width: 469px;
+  height: 58px;
+  color: #fff;
+  flex-shrink: 0;
+  outline: none;
+  border-radius: 50px;
+  background: #0c1229;
+}
+
+.text-submit span {
+  color: #fff;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.text-submit {
+  display: table;
+  padding: 15px 90px;
+  margin: auto;
+  border-radius: 50px;
+  background: linear-gradient(94deg, #4b69e2 -2.08%, #9054d9 99.58%);
+  box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.25) inset,
+    0px -4px 4px 0px rgba(255, 255, 255, 0.15) inset,
+    0px 4px 8px 0px rgba(103, 84, 217, 0.2) inset,
+    0px -4px 16px 0px rgba(188, 133, 255, 0.2) inset;
 }

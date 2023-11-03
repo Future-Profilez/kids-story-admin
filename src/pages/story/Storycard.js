@@ -22,7 +22,7 @@ function Storycard() {
                             <div className="story-title">
                                 <h6>Manage Stories</h6>
                             </div>
-                            <div className="story-gender">
+                            {/* <div className="story-gender">
                                 <p
                                     onClick={() => handleOptionClick("boy")}
                                     className={selectedOption === "boy" ? "selected" : ""}
@@ -35,7 +35,8 @@ function Storycard() {
                                 >
                                     Girl
                                 </p>
-                            </div>
+                            </div> */}
+
 
 
                             <div className="story-search">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AuthLayout from "../../component/AuthLayout";
 import data from "../../image/login.png"
+import Heading from "../../component/Heading";
 
 function Storycard() {
     const [selectedOption, setSelectedOption] = useState("boy");
@@ -17,27 +18,24 @@ function Storycard() {
                 <div className="content">
                     <div className="row">
                         <div className="col-md-12">
-                            <div className="story">
-                                <h2> StoryScape!</h2>
-                                <div className="top-line"></div>
-                            </div>
+                            <Heading />
                             <div className="story-title">
                                 <h6>Manage Stories</h6>
                             </div>
                             <div className="story-gender">
-    <p
-        onClick={() => handleOptionClick("boy")}
-        className={selectedOption === "boy" ? "selected" : ""}
-    >
-        Boy
-    </p>
-    <p
-        onClick={() => handleOptionClick("girl")}
-        className={selectedOption === "girl" ? "selected" : ""}
-    >
-        Girl
-    </p>
-</div>
+                                <p
+                                    onClick={() => handleOptionClick("boy")}
+                                    className={selectedOption === "boy" ? "selected" : ""}
+                                >
+                                    Boy
+                                </p>
+                                <p
+                                    onClick={() => handleOptionClick("girl")}
+                                    className={selectedOption === "girl" ? "selected" : ""}
+                                >
+                                    Girl
+                                </p>
+                            </div>
 
 
                             <div className="story-search">

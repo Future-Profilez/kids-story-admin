@@ -1,25 +1,9 @@
-.story h2 {
-  text-align: center;
-  font-family: Quicksand;
-  font-size: 24px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  background: linear-gradient(92deg, #5376ff -3.68%, #a04dff 118.81%);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Stry Lsit  */
+
+.story-list {
+  margin-bottom: 33px;
 }
 
-.top-line {
-  margin-top: 20px;
-  margin-bottom: 35px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
-.bootom-line {
-  margin-bottom: 35px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-}
 .story-list h2 {
   text-align: left;
   color: #fff;
@@ -45,9 +29,6 @@
   flex-shrink: 0;
 }
 
-.story {
-  margin: 55px;
-}
 .btn-list {
   gap: 13px;
   margin: 20px;
@@ -75,6 +56,96 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+
+/* Story Card  */
+
+.story-title {
+  color: #fff;
+  font-family: Quicksand;
+  font-size: 24px;
+  font-style: normal;
+  margin-bottom: 20px;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.story-gender {
+  display: flex;
+  gap: 20px;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.1);
+}
+
+.story-gender p {
+  font-family: Poppins;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  cursor: pointer;
+  position: relative;
+}
+
+.story-gender p:not(.selected) {
+  padding: 9px;
+  margin: -1px;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.story-gender p.selected {
+  padding: 9px;
+  margin: -1px;
+  color: rgba(160, 77, 255, 0.5);
+  border-bottom: 1px solid rgba(160, 77, 255, 0.5);
+}
+
+.bootom-line {
+  margin-bottom: 35px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.story-search {
+  margin-bottom: 65px;
+  margin-top: 20px;
+  display: flex;
+}
+
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-container input {
+  width: 300px;
+  height: 44px;
+  flex-shrink: 0;
+  border-radius: 50px;
+  background: #131c3e;
+  color: white;
+  border: none;
+  margin-bottom: 10px;
+}
+.search-container input:focus {
+  border: none;
+  outline: none;
+}
+
+.search-container button {
+  margin-left: -121px;
+  margin-top: -11px;
+  border: none;
+  display: inline-flex;
+  padding: 7px 30px;
+  align-items: center;
+  gap: 13px;
+  border-radius: 50px;
+  background: linear-gradient(94deg, #4b69e2 -2.08%, #9054d9 99.58%);
+  box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.25) inset,
+    0px -4px 4px 0px rgba(255, 255, 255, 0.15) inset,
+    0px 4px 8px 0px rgba(103, 84, 217, 0.2) inset,
+    0px -4px 16px 0px rgba(188, 133, 255, 0.2) inset;
+  color: white;
+  cursor: pointer;
 }
 
 .row {
@@ -165,50 +236,6 @@
   gap: 96px;
 }
 
-.story-search {
-  margin-bottom: 65px;
-  margin-top: 20px;
-  display: flex;
-}
-
-.search-container {
-  display: flex;
-  align-items: center;
-}
-
-.search-container input {
-  width: 300px;
-  height: 44px;
-  flex-shrink: 0;
-  border-radius: 50px;
-  background: #131c3e;
-  color: white;
-  border: none;
-  margin-bottom: 10px;
-}
-.search-container input:focus {
-  border: none;
-  outline: none;
-}
-
-.search-container button {
-  margin-left: -121px;
-  margin-top: -11px;
-  border: none;
-  display: inline-flex;
-  padding: 7px 30px;
-  align-items: center;
-  gap: 13px;
-  border-radius: 50px;
-  background: linear-gradient(94deg, #4b69e2 -2.08%, #9054d9 99.58%);
-  box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.25) inset,
-    0px -4px 4px 0px rgba(255, 255, 255, 0.15) inset,
-    0px 4px 8px 0px rgba(103, 84, 217, 0.2) inset,
-    0px -4px 16px 0px rgba(188, 133, 255, 0.2) inset;
-  color: white;
-  cursor: pointer;
-}
-
 .story-sort {
   display: flex;
   margin-left: 38px;
@@ -225,7 +252,6 @@
   line-height: normal;
 }
 
-
 .story-sort .select {
   width: 195px;
   height: 44px;
@@ -235,7 +261,7 @@
   text-align: center;
 }
 
-.story-sort  .select {
+.story-sort .select {
   width: 195px;
   height: 44px;
   border-radius: 50px;
@@ -254,7 +280,7 @@
   line-height: normal;
 }
 
-.story-sort  .select .custom-option {
+.story-sort .select .custom-option {
   font-family: Poppins;
   font-size: 13px;
   font-style: normal;
@@ -264,46 +290,10 @@
   line-height: normal;
 }
 
-
 .story-sort .select .custom-option :focus {
   outline: none;
   background: #131c3e;
   border-radius: 50px;
-}
-
-.story-gender {
-  display: flex;
-  gap: 20px;
-  border-bottom: 3px solid rgba(255, 255, 255, 0.1);
-}
-
-.story-gender p {
-  font-family: Poppins;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-  cursor: pointer;
-  position: relative;
-}
-
-.story-gender p.selected {
-  color: rgba(160, 77, 255, 0.5);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.8);
-}
-
-.story-gender p:not(.selected) {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.story-title {
-  color: #fff;
-  font-family: Quicksand;
-  font-size: 24px;
-  font-style: normal;
-  margin-bottom: 20px;
-  font-weight: 700;
-  line-height: normal;
 }
 
 @media (max-width: 768px) {
@@ -315,7 +305,7 @@
     margin-bottom: 10px;
   }
 
-   .select {
+  .select {
     width: 100%;
   }
 

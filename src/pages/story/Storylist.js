@@ -18,7 +18,7 @@ const dispatch =useDispatch();
                     <div className="content">
                     <div className="row">
                         <div className="col-md-12">
-                       <Heading/>
+                         <Heading/>
                                 <div className="story-list">
                                     <h2>Chapter 1: The Pirate's Legacy</h2>
                                     <p>Once upon a time, in a coastal village, there lived a young boy named Oliver. He had always dreamed of becoming a pirate, just like his father, Captain Benjamin Blackheart. Every night, Oliver would listen to his father's thrilling tales of treasure hunts, faraway lands, and the hunt for the forbidden cursed treasure.</p>

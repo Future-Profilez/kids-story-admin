@@ -16,50 +16,19 @@
   justify-content: center;
   align-items: center;
 }
-
- 
-
 .btn-list button { margin: 0 22px;}
 
 /* Story Card  */
 
-.story-title h6 {
-  color: #fff;
-  font-family: Quicksand;
-  font-size: 24px;
-  font-style: normal;
-  margin-bottom: 20px;
-  font-weight: 700;
-  line-height: normal;
-}
+.story-title h6 {color: #FFF; text-align: left;  font-family: Quicksand; font-size: 24px; font-style: normal; font-weight: 700; line-height: normal;margin: 0 0 20px;}
 
-button#noanim-tab-example-tab-boy[aria-selected="true"],
-button#noanim-tab-example-tab-girl[aria-selected="true"] {
-  padding: 9px;
-  background: none;
-  border-color: none;
-  color: rgba(160, 77, 255, 0.5);
-  border-bottom: 1px solid rgba(160, 77, 255, 3.5);
-  font-family: Quicksand;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
+.profile-manage .nav-tabs button { padding: 17px 18px;background: transparent;font-family: Poppins; font-size: 18px; font-style: normal; font-weight: 600; line-height: normal;color: rgba(255, 255, 255, 0.5); border: none;  border-bottom: 1px solid transparent;}
 
-button#noanim-tab-example-tab-boy[aria-selected="false"],
-button#noanim-tab-example-tab-girl[aria-selected="false"] {
-  padding: 9px;
-  background: none;
-  border-color: none;
-  color: rgba(255, 255, 255, 0.5);
-  font-family: Quicksand;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
+.profile-manage .nav-tabs button.active, .profile-manage .nav-tabs button:hover,.profile-manage .nav-tabs button:focus {background: var(--1, linear-gradient(94deg, #4B69E2 -2.08%, #9054D9 99.58%)); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; border: none; border-bottom: 1px solid #fff; }
 
+ 
+ 
+.profile-manage .nav-tabs {margin: 0 0 30px;border-bottom: 1px solid rgba(255, 255, 255, 0.1);}
 .story-gender p {
   font-family: Poppins;
   font-size: 18px;
@@ -87,12 +56,7 @@ button#noanim-tab-example-tab-girl[aria-selected="false"] {
   margin-bottom: 35px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
-
-.story-search {
-  margin-bottom: 65px;
-  margin-top: 20px;
-  display: flex;
-}
+ 
 
 .search-container {
   display: flex;
@@ -133,116 +97,45 @@ button#noanim-tab-example-tab-girl[aria-selected="false"] {
 }
 
  
-.story-card .card {
-  width: 245.5px;
-  height: 316px;
+.story-card .card { 
   border-radius: 20px;
   background: #000518;
 }
-
+.story-card .card-body { padding: 15px; }
 .card .card-img-top {
-  width: 245px;
+  width: 100%;
   height: 162px;
   border-radius: 20px;
+  object-fit: cover;
 }
 
-.card .card-title {
-  color: #fff;
-  font-family: Poppins;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 150%; /* 27px */
-}
+.story-card .card .card-title {
+  color: #FFF;  font-family: Poppins; font-size: 18px; font-style: normal; font-weight: 600; line-height: 27px;    margin: 0px 0 5px;}
 
-.card .card-text {
-  color: #b3b3b3;
-  font-family: Poppins;
-  width: 213px;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%; /* 19.5px */
-}
+.card .card-text {color: #B3B3B3;   font-family: Poppins; font-size: 13px; font-style: normal; font-weight: 400; line-height: 19.5px;    margin: 0 0 13px;}
 
 .card .card-link {
   display: flex;
 }
 
-.card-data h6 {
-  font-family: Poppins;
-  font-size: 13px;
-  margin-bottom: 10px;
-  text-align: left;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%; /* 19.5px */
-  background: var(--1, linear-gradient(94deg, #4b69e2 -2.08%, #9054d9 99.58%));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+.card-data h6 { background: var(--1, linear-gradient(94deg, #4B69E2 -2.08%, #9054D9 99.58%)); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;font-family: Poppins; font-size: 13px; font-style: normal; font-weight: 400; line-height: 19.5px;}
 
-.card-data h3 {
-  display: inline-flex;
-  padding: 5px 9px;
-  justify-content: center;
-  align-items: center;
-  border-radius: 30px;
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.card h3 span {
-  color: #fff;
-  font-weight: bold;
-  font-family: Poppins;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-  text-align: center;
-}
-
+.card-data h3 {  display: inline-flex; border-radius: 30px; background: rgba(255, 255, 255, 0.20);display: inline-flex; padding: 9px 13px; justify-content: center; align-items: center; color: #FFF; font-family: Poppins; font-size: 12px; font-style: normal; font-weight: 400; line-height:  18px; margin: 0;min-width: 68px;height: 26px;} 
 .card-data {
-  display: flex;
-  justify-content: center;
-  margin-top: -7px;
-  gap: 96px;
+  display: flex; align-items: center; justify-content: space-between;
 }
 
 .story-sort {
-  display: flex;
-  margin-left: 38px;
-  justify-content: center;
+  display: flex; 
+  justify-content: center;align-items: center;width: 50%; max-width: 250px;
 }
-
-.story-sort h1 {
-  color: #b3b3b3;
-  font-family: Poppins;
-  margin: 12px;
-  font-size: 13px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
+.story-sort + .story-sort{margin-left: 20px;max-width: 270px;}
+.story-sort h1 { color: #B3B3B3; font-family: Poppins; font-size: 13px; font-style: normal; font-weight: 500; line-height: normal;margin: 0 10px 0 0;}
 
 .story-sort .select {
-  width: 195px;
-  height: 44px;
-  border-radius: 50px;
-  background: #131c3e;
-  color: #fff;
-  text-align: center;
-}
+  border-radius: 50px; background: #131C3E;width: 195px; height: 44px;color: #FFF; font-family: Poppins; font-size: 13px; font-style: normal; font-weight: 500; line-height: normal;padding: 5px 16px;border: none; outline: none;    width: calc(100% - 55px);}
 
-.story-sort .select {
-  width: 195px;
-  height: 44px;
-  border-radius: 50px;
-  background: #131c3e;
-  color: #fff;
-  text-align: center;
-}
+.story-sort + .story-sort .select {width: calc(100% - 75px);}
 
 .story-sort .select .custom-option {
   font-family: Poppins;
@@ -288,53 +181,8 @@ button#noanim-tab-example-tab-girl[aria-selected="false"] {
   }
 }
 
-button#noanim-tab-example-tab-profile[aria-selected="true"],
-button#noanim-tab-example-tab-password[aria-selected="true"] {
-  padding: 9px;
-  background: none;
-  border-color: none;
-  color: rgba(160, 77, 255, 0.5);
-  border-bottom: 1px solid rgba(160, 77, 255, 3.5);
-  font-family: Quicksand;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-.profile-manage.nav-tabs .nav-link.active {
-  color: none;
-  background-color:none;
-  border-color: none;
-}
-.profile-manage .nav-tabs .nav-link:focus,
-.profile-manage .nav-tabs .nav-link:hover,
-.profile-manage .nav-tabs .nav-link :active {
-  isolation: isolate;
-  border-color: none;
-}
-
-.profile-manage .nav-tabs .nav-link {
-  margin-bottom: none;
-  border: none;
-  border-top-left-radius: none;
-  border-top-right-radius: none;
-}
-.profile-manage .nav-tabs {
-  color: rgba(255, 255, 255, 0.8);
-}
-button#noanim-tab-example-tab-profile[aria-selected="false"],
-button#noanim-tab-example-tab-password[aria-selected="false"] {
-  padding: 9px;
-  background: none;
-  border-color: none;
-  color: rgba(255, 255, 255, 0.5);
-  font-family: Quicksand;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-}
-
+ 
+ 
 .password .input label {
   color: #b3b3b3;
   font-family: Poppins;
@@ -402,3 +250,21 @@ button#noanim-tab-example-tab-password[aria-selected="false"] {
     0px 4px 8px 0px rgba(103, 84, 217, 0.2) inset,
     0px -4px 16px 0px rgba(188, 133, 255, 0.2) inset;
 }
+
+
+/* new */
+.filter-search { display: flex; justify-content: space-between; align-items: center; margin: 0 0 20px; }
+.search { display: flex; width: 40%; }
+.search input[type="search"]{max-width: 245px; height: 44px;border-radius: 50px; background: #131C3E;border: none;padding: 5px 15px;color: #fff;outline: none;font-size: 14px;width: calc(100% - 110px);}
+.search button{ height: 44px;border: none;padding: 5px 10px;outline: none;border-radius: 50px; background: linear-gradient(94deg, #4B69E2 -2.08%, #9054D9 99.58%); box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.25) inset, 0px -4px 4px 0px rgba(255, 255, 255, 0.15) inset, 0px 4px 8px 0px rgba(103, 84, 217, 0.20) inset, 0px -4px 16px 0px rgba(188, 133, 255, 0.20) inset;color: #FFF; font-family: Poppins; font-size: 13px; font-style: normal; font-weight: 500; line-height: normal;margin-left: 3px;min-width: 106px;}
+
+.dropdwon-filter { display: flex; width: 60%;    justify-content: end;    padding-left: 20px; }
+
+/* profile */
+.update-field { padding-top: 10px; } 
+.update-field label { color: #B3B3B3; text-align: center; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal; margin: 0 0 10px; } 
+.update-field .input_field { width: 100%; border-radius: 50px; background: #0C1229; border: none; height: 58px; color: #fff; font-size: 14px; padding: 5px 18px; outline: none;} 
+.update-field div[class*="col-"] { margin: 0 0 30px; }
+
+
+

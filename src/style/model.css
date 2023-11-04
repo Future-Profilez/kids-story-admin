@@ -198,7 +198,7 @@ div#step4 .body-popup-title:after {
     display: none;
 }
 
-.email-field input[type="email"] {
+.email-field input[type="text"] {
     border-radius: 50px;
     background: #0B1024;
     height: 58px;

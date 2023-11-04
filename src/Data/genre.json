@@ -1,0 +1,27 @@
+[
+    {
+      "id": "Genre1",
+      "name": "Space"
+    },
+    {
+      "id": "Genre2",
+      "name": "Adventure"
+    },
+    {
+      "id": "Genre3",
+      "name": "Animals"
+    },
+    {
+      "id": "Genre4",
+      "name": "Fairy Tales"
+    },
+    {
+      "id": "Genre5",
+      "name": "Superhero"
+    },
+    {
+      "id": "Genre6",
+      "name": "Pirates"
+    }
+  ]
+  

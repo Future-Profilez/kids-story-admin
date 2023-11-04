@@ -3,11 +3,14 @@ import Story from "../../image/story-thubnail.png"
 import "../../style/story.css"
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
+import { useDispatch, useSelector } from "react-redux";
+import { getUser, selectuser } from "../../redux/UserSlice";
 function Storylist() {
+const dispatch =useDispatch();
+    const record =useSelector(selectuser);
+    console.log(record);
     return (
-
         <>
-        
         <AuthLayout>
         </AuthLayout>
             <div className="content-wrapper">

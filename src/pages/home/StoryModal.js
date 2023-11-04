@@ -14,11 +14,25 @@ function StoryModal({ show, handleClose }) {
             }
 
         }
-        const handleGenerateClick = () => {
-            setShowSuccess(true);
-        };
+
 
     };
+
+    const handleGenerateClick = () => {
+        setShowSuccess(true);
+    };
+
+
+
+
+    const [userPrompt, setUserPrompt] = useState('');
+    const [age, setAge] = useState('child');
+    const [gender, setGender] = useState('boy');
+    const [genre, setGenre] = useState('adventure');
+    const [storyData, setStoryData] = useState(null);
+
+
+
     return (
         <Modal show={show} onHide={handleClose} id="generat-story">
             <div className={`step${currentStep}`}>
@@ -208,7 +222,7 @@ function StoryModal({ show, handleClose }) {
                             <div className="button-list-form">
                                 <div className="email-field">
                                     <input
-                                        placeholder="Email"
+                                        placeholder="Enter Prompt"
                                         name="email"
                                         // onChange={handleInputs}
                                         // value={Regs.email}
@@ -216,7 +230,7 @@ function StoryModal({ show, handleClose }) {
                                         className="input_field"
                                         id=" "
                                     />
-                                    <button type="submit"  name="Generate" onClick={handleGenerateClick} > </button>
+                                    <button type="submit" name="Generate" onClick={handleGenerateClick} > Generate </button>
                                 </div>
                             </div>
                             <div className="progresbar-block" >

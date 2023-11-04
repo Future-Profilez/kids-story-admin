@@ -1,10 +1,9 @@
 
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import "./style/bootstrap.css";
+import "./style/Bootstrap.css";
 import './App.css';
 import Homepage from "./pages/home/Homepage";
 import Login from "./component/Login";
-import Header from "./component/Header";
 import Storylist from "./pages/story/Storylist";
 import Storycard from "./pages/story/Storycard";
 import Profile from "./pages/profile/Profile";

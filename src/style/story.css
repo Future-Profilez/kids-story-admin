@@ -4,59 +4,22 @@
   margin-bottom: 33px;
 }
 
-.story-list h2 {
-  text-align: left;
-  color: #fff;
-  font-family: Poppins;
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: 150%;
-  width: 942px;
-}
-.story-list p {
-  color: #fff;
-  font-family: Poppins;
-  font-size: 15px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 150%;
-}
+.story-list h2 {color: #FFF; font-family: Poppins; font-size: 18px; font-style: normal; font-weight: 600; line-height: 27px;    margin: 0 0 20px;}
 
-.story-list img {
-  width: 901px;
-  height: 250px;
-  flex-shrink: 0;
-}
+.story-list p {color: #FFF; font-family: Poppins; font-size: 15px; font-style: normal; font-weight: 400; line-height: 22.5px;margin: 0 0 25px;}
 
-.btn-list {
-  gap: 13px;
-  margin: 20px;
+.thubnail{ height: 250px;display: flex;align-items: center;justify-content: center;background: rgba(255, 255, 255, 0.1);margin: 0 0 20px;}
+
+.btn-list { 
+  padding: 10px 0 0;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
-.btn-list button {
-  width: 286px;
-  padding: 15px 69px 15px 65px;
-  gap: 13px;
-  border-radius: 50px;
-  background: var(--1, linear-gradient(94deg, #4b69e2 -2.08%, #9054d9 99.58%));
-  box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.25) inset,
-    0px -4px 4px 0px rgba(255, 255, 255, 0.15) inset,
-    0px 4px 34px 0px rgba(77, 94, 255, 0.2) inset,
-    0px -4px 10px 0px rgba(160, 77, 255, 0.2) inset;
-  filter: blur(0.10000000149011612px);
-}
+ 
 
-.btn-list span {
-  color: #fff;
-  font-family: Poppins;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: normal;
-}
+.btn-list button { margin: 0 22px;}
 
 /* Story Card  */
 
@@ -148,17 +111,7 @@
   cursor: pointer;
 }
 
-.row {
-  margin: -40px;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.col-md-3 {
-  padding: 7px;
-  flex-basis: calc(25% - 27px);
-}
-
+ 
 .story-card .card {
   width: 245.5px;
   height: 316px;

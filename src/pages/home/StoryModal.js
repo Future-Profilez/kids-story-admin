@@ -69,11 +69,12 @@ function StoryModal({ show, handleClose }) {
                         setStoryData(parsedStory);
                         const respersent = dispatch(adduser(parsedStory));
                         console.log("respersent", respersent);
-                        Navigate("/story")
+                        // Navigate("/story")
                     } catch (error) {
                         console.error("Error parsing story response:", error);
                     } finally {
                         setLoading(false);
+
                     }
                 })
                 .catch((error) => {

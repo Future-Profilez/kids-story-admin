@@ -1,0 +1,224 @@
+.subscription {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 20px;
+    align-items: center;
+}
+
+.subscription h2 {
+    color: #FFF;
+    padding-top: 20px;
+    text-align: center;
+    font-family: Quicksand;
+    font-size: 24px;
+    font-style: normal;
+    margin-right: 20px;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.subscription .sub-button a {
+    display: flex;
+    padding: 13px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 70px;
+    background: #000518;
+}
+
+.subscription .sub-button a p {
+    text-align: right;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    padding-top: 13px;
+    font-weight: 500;
+    line-height: normal;
+}
+
+
+
+
+.sub-button {
+    margin-left: 144px;
+    display: flex;
+    padding: 13px 20px;
+    justify-content: center;
+    align-items: center;
+    /* gap: 41px; */
+}
+
+.subscription-data {
+    width: 328px;
+    margin: 6px;
+    height: 200px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: #131C3E;
+    color: #B3B3B3;
+}
+
+.subscription-data p {
+    color: #B3B3B3;
+    font-family: Quicksand;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.sub-dot {
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #444E73;
+}
+
+.sub-dot svg {
+    margin: 5px;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    color: #444E73;
+}
+
+.row {
+    margin: -17px;
+}
+
+.sub-data {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+}
+
+.bottom-line {
+    margin-left: -11px;
+    width: 328px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.subscription-detila p svg {
+    margin: 4px;
+    padding: 1px;
+}
+
+.subscription-detila p {
+    color: #FFF;
+    font-family: Quicksand;
+    font-size: 15px;
+    margin-bottom: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+
+}
+
+.subscription-detila p span {
+    color: #B3B3B3;
+    font-family: Quicksand;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.subscription-detila {
+    margin-bottom: 13px;
+    margin-top: 6px;
+}
+
+.modal-title {
+    padding: 21px;
+    color: #FFF;
+    margin-top: -56px;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.form-group label {
+    color: #B3B3B3;
+    text-align: center;
+    margin: 5px;
+    font-family: Poppins;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+
+
+.form-data {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-data .form-group input[type="text"] {
+    border-radius: 50px;
+    width: 495px;
+    margin: 5px;
+    background: #0B1024;
+    height: 58px;
+    border: none;
+    padding: 5px 32px;
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 100%;
+}
+
+.form-group input[type="text"] {
+    border-radius: 50px;
+    width: 495px;
+    margin: 5px;
+    background: #0B1024;
+    height: 58px;
+    border: none;
+    padding: 5px 32px;
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    width: 100%;
+}
+
+.form-group .data {
+    margin: 20px;
+}
+
+.button {
+    display: table;
+    margin: auto;
+    margin-top: 12px;
+    padding: 15px 60px;
+    border-radius: 50px;
+    background: linear-gradient(94deg, #4B69E2 -2.08%, #9054D9 99.58%);
+    box-shadow: 0px 4px 4px 0px rgba(255, 255, 255, 0.25) inset, 0px -4px 4px 0px rgba(255, 255, 255, 0.15) inset, 0px 4px 8px 0px rgba(103, 84, 217, 0.20) inset, 0px -4px 16px 0px rgba(188, 133, 255, 0.20) inset;
+}
+
+.button span{
+    color: #FFF;
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+}
+
+.form-data .form-group input ::placeholder{
+    color: white;
+}

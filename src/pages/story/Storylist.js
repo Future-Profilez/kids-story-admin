@@ -12,10 +12,10 @@ const dispatch =useDispatch();
     return (
         <>
         <AuthLayout>
-        </AuthLayout>
-            <div className="content-wrapper">
+
+        <div className="content-wrapper">
                     {/* start content */}
-                    <div className="content ">
+                    <div className="content">
                     <div className="row">
                         <div className="col-md-12">
                        <Heading/>
@@ -48,6 +48,8 @@ const dispatch =useDispatch();
                     </div>
                 </div>
             </div>
+        </AuthLayout>
+            
         </>
 
 

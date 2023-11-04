@@ -10,7 +10,7 @@ import Profile from "./pages/profile/Profile";
 import Subscription from "./pages/profile/Subscription";
 
 function App() {
-  
+
   return (
     <div id="body-pd" className="App">
       <Router>

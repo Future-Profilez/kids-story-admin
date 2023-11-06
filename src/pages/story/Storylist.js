@@ -5,10 +5,15 @@ import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import { useDispatch, useSelector } from "react-redux";
 import { getUser, selectuser } from "../../redux/UserSlice";
+import { useState } from "react";
+import ImagePrompt from "./ImagePrompt";
+
 function Storylist() {
     const dispatch = useDispatch();
     const record = useSelector(selectuser);
-    console.log(record);
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     return (
         <>
             <AuthLayout>
@@ -29,7 +34,7 @@ function Storylist() {
                                     <h2>Chapter 2: The Pirate's Legacy</h2>
                                     <p>Once upon a time, in a coastal village, there lived a young boy named Oliver. He had always dreamed of becoming a pirate, just like his father, Captain Benjamin Blackheart. Every night, Oliver would listen to his father's thrilling tales of treasure hunts, faraway lands, and the hunt for the forbidden cursed treasure.</p>
                                     <div className="thubnail">
-                                        <Image src={Story} alt="story" />
+                                        <Image src={Story} alt="story" onClick={handleShow} />
                                     </div>
 
                                 </div>
@@ -45,6 +50,7 @@ function Storylist() {
                             </div>
                         </div>
                     </div>
+                    <ImagePrompt show={show} handleClose={handleClose} />
                 </div>
             </AuthLayout>
 

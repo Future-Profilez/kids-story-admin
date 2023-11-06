@@ -1,0 +1,49 @@
+.static {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .static-one {
+    display: flex;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: #000518;
+    width: 334px;
+    height: 90px;
+    justify-content: space-between;
+  }
+  
+  .static-svg {
+    padding: 10px;
+    border-radius: 5px;
+    background: #080f29;
+  }
+  
+  .static-par h6 {
+    color: rgba(255, 255, 255, 0.5);
+    margin: 0px;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  .static-par p {
+    color: #fff;
+    font-family: Poppins;
+    text-align: center;
+    font-size: 26px;
+    font-style: normal;
+    font-weight: 600;
+  }
+  
+
+  .Static-image img {
+    padding: 17px;
+    width: 900px;
+    height: 462px;
+    border-radius: 10px;
+}

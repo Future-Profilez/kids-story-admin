@@ -8,6 +8,8 @@ import Storylist from "./pages/story/Storylist";
 import Storycard from "./pages/story/Storycard";
 import Profile from "./pages/profile/Profile";
 import Subscription from "./pages/profile/Subscription";
+import Schedule from "./pages/story/Schedule";
+import Static from "./pages/story/Static";
 
 function App() {
 
@@ -17,10 +19,12 @@ function App() {
         <Routes>
           <Route path="/home" element={<Homepage />}></Route>
           <Route path="/" element={<Login />}></Route>
-          <Route path="/list" element={<Storycard />}></Route>
-          <Route path="/story" element={<Storylist />}></Route>
+          <Route path="/card" element={<Storycard />}></Route>
+          <Route path="/list" element={<Storylist />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/subscription" element={<Subscription />}></Route>
+          <Route path="/schedule" element={<Schedule />}></Route>
+          <Route path="/static" element={<Static />}></Route>
         </Routes>
       </Router>
     </div>

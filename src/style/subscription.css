@@ -1,90 +1,17 @@
-.subscription {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 20px;
-    align-items: center;
-}
+.sub-button.text-end { margin: 0 0 20px; }
+ 
+.subscription-data {   border-radius: 10px; border: 1px solid rgba(255, 255, 255, 0.10); background: #131C3E;}
 
-.subscription h2 {
-    color: #FFF;
-    padding-top: 20px;
-    text-align: center;
-    font-family: Quicksand;
-    font-size: 24px;
-    font-style: normal;
-    margin-right: 20px;
-    font-weight: 700;
-    line-height: normal;
-}
+.sub-data { display: flex; justify-content: space-between; padding: 20px; align-items: center; }
 
-.subscription .sub-button a {
-    display: flex;
-    padding: 13px 20px;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    border-radius: 70px;
-    background: #000518;
-}
+.subscription-data h4{color: #B3B3B3;  font-family: Quicksand; font-size: 13px; font-style: normal; font-weight: 500; line-height: normal;margin: 0 0 10px;}    
+.subscription-data p { color: #FFF; text-align: center; font-family: Quicksand; font-size: 20px; font-style: normal; font-weight: 700; line-height: normal;margin: 0;}
+.sub-dot { border-radius: 5px; border: 1px solid #444E73;width: 30px;height: 30px;display: flex; align-items: center; justify-content: center;}
 
-.subscription .sub-button a p {
-    text-align: right;
-    font-family: Poppins;
-    font-size: 16px;
-    font-style: normal;
-    padding-top: 13px;
-    font-weight: 500;
-    line-height: normal;
-}
-
-
-
-
-.sub-button {
-    margin-left: 144px;
-    display: flex;
-    padding: 13px 20px;
-    justify-content: center;
-    align-items: center;
-    /* gap: 41px; */
-}
-
-.subscription-data {
-    width: 328px;
-    margin: 6px;
-    height: 200px;
-    border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.10);
-    background: #131C3E;
-    color: #B3B3B3;
-}
-
-.subscription-data p {
-    color: #B3B3B3;
-    font-family: Quicksand;
-    font-size: 13px;
-    font-style: normal;
-    font-weight: 500;
-    line-height: normal;
-}
-
-.sub-dot {
-    width: 30px;
-    height: 30px;
-    border-radius: 5px;
-    border: 1px solid #444E73;
-}
-
-.sub-dot svg {
-    margin: 5px;
-    align-items: center;
+.sub-dot svg { 
     width: 20px;
-    height: 20px;
-    color: #444E73;
+    height: 20px; 
 }
-
-
 
 .sub-data {
     display: flex;
@@ -92,60 +19,30 @@
     padding-top: 15px;
 }
 
-.bottom-line {
-    margin-left: -11px;
-    width: 328px;
+.bottom-line {  
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.subscription-detila p svg {
-    margin: 4px;
-    padding: 1px;
-}
 
-.subscription-detila p {
-    color: #FFF;
-    font-family: Quicksand;
-    font-size: 15px;
-    margin-bottom: 12px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
+.subscription-detail { padding: 20px; }
+.subscription-detail ul{padding: 0;list-style: none;margin: 0;}
 
 
-}
+.subscription-detail ul li{color: #FFF; text-align: left; font-family: Quicksand; font-size: 15px; font-style: normal; font-weight: 700; line-height: normal; padding-left: 28px; position: relative; }
 
-.subscription-detila p span {
-    color: #B3B3B3;
-    font-family: Quicksand;
-    font-size: 15px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
+.subscription-detail ul li ~ li{margin: 15px 0 0;}
 
-.subscription-detila {
-    margin-bottom: 13px;
-    margin-top: 6px;
-}
+.subscription-detail ul li svg { position: absolute; left: 0; top: 5px; } 
+.subscription-detail ul li  span{color: #B3B3B3;}
 
-.modal-title {
-    padding: 21px;
-    color: #FFF;
-    margin-top: -56px;
-    text-align: center;
-    font-family: Poppins;
-    font-size: 28px;
-    font-style: normal;
-    font-weight: 600;
-    line-height: normal;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.10);
-}
 
+
+#subscription-header .modal-title {padding: 0 0 27px; color: #FFF; text-align: center; font-family: Poppins; font-size: 28px; font-style: normal; font-weight: 600; line-height: normal; border-bottom: 1px solid rgba(255, 255, 255, 0.10); max-width: calc(100% - 74px); width: 100%;}
+#generat-story div#subscription-header.modal-header { padding-bottom: 32px; }
 .form-group label {
     color: #B3B3B3;
     text-align: center;
-    margin: 5px;
+    margin: 0;
     font-family: Poppins;
     font-size: 16px;
     font-style: normal;
@@ -154,7 +51,7 @@
 }
 
 
-
+.form-group { margin: 0 0 30px; }
 .form-data {
     display: flex;
     justify-content: space-between;

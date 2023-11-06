@@ -82,8 +82,9 @@ a {
   margin-bottom: 40px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-
-
+.dark-background-btn {background: #000518;border-radius: 70px; padding: 13px 20px;    min-width: 246px;}
+.dark-background-btn svg {margin-right: 5px;}
+.dark-background-btn span{background: var(--1, linear-gradient(94deg, #4B69E2 -2.08%, #9054D9 99.58%));background-clip: text;  -webkit-background-clip: text;-webkit-text-fill-color: transparent;}
 
 @media screen and (min-width: 768px) { 
   div#body-pd {

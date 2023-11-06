@@ -266,7 +266,7 @@ function StoryModal({ show, handleClose }) {
             </Modal.Footer> */}
             </Modal>
 
-                    <Storylist data={storyData} />
+                    {/* <Storylist data={storyData} /> */}
         </>
 
     );

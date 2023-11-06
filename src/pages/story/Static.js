@@ -17,7 +17,6 @@ function Static() {
                                 <div className="story-title">
                                     <h6>Statistics </h6>
                                 </div>
-                                <div className="static">
                                     <div className="row">
                                         <div className="col-md-4">
                                             <div className="static-one">
@@ -140,8 +139,8 @@ function Static() {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
+                                    
                                 <div className="Static-image">
                                     <Image src={data} alt="Not Responseive" />
                                 </div>

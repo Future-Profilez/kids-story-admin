@@ -72,76 +72,76 @@ function Storycard() {
 
 
                                         </div>
-                                        <div className="story-card"> 
-                                            <div className="row">
-                                                <div className="col-md-6 col-lg-3">
-                                                    <div className="card">
-                                                        <img className="card-img-top" src={data} alt="Card cap" />
-                                                        <div className="card-body">
-                                                            <h5 className="card-title">Card title</h5>
-                                                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                            <div className="card-data">
-                                                                <h6>Card link</h6>
-                                                                <h3>
-                                                                    <span>
-                                                                        3 yrs
-                                                                    </span>
-                                                                </h3>
+                                        <div className="story-card">
+                                                <div className="row">
+                                                    <div className="col-md-3">
+                                                        <div className="card">
+                                                            <img className="card-img-top" src={data} alt="Card cap" />
+                                                            <div className="card-body">
+                                                                <h5 className="card-title">Card title</h5>
+                                                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                                <div className="card-data">
+                                                                    <h6>Card link</h6>
+                                                                    <h3>
+                                                                        <span>
+                                                                            3 yrs
+                                                                        </span>
+                                                                    </h3>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-md-6 col-lg-3">
-                                                    <div className="card">
-                                                        <img className="card-img-top" src={data} alt="Card cap" />
-                                                        <div className="card-body">
-                                                            <h5 className="card-title">Card title</h5>
-                                                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                            <div className="card-data">
-                                                                <h6>Card link</h6>
-                                                                <h3>
-                                                                    <span>
-                                                                        3 yrs
-                                                                    </span>
-                                                                </h3>
+                                                    <div className="col-md-3">
+                                                        <div className="card">
+                                                            <img className="card-img-top" src={data} alt="Card cap" />
+                                                            <div className="card-body">
+                                                                <h5 className="card-title">Card title</h5>
+                                                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                                <div className="card-data">
+                                                                    <h6>Card link</h6>
+                                                                    <h3>
+                                                                        <span>
+                                                                            3 yrs
+                                                                        </span>
+                                                                    </h3>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-md-6 col-lg-3">
-                                                    <div className="card">
-                                                        <img className="card-img-top" src={data} alt="Card cap" />
-                                                        <div className="card-body">
-                                                            <h5 className="card-title">Card title</h5>
-                                                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                            <div className="card-data">
-                                                                <h6>Card link</h6>
-                                                                <h3>
-                                                                    <span>
-                                                                        3 yrs
-                                                                    </span>
-                                                                </h3>
+                                                    <div className="col-md-3">
+                                                        <div className="card">
+                                                            <img className="card-img-top" src={data} alt="Card cap" />
+                                                            <div className="card-body">
+                                                                <h5 className="card-title">Card title</h5>
+                                                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                                <div className="card-data">
+                                                                    <h6>Card link</h6>
+                                                                    <h3>
+                                                                        <span>
+                                                                            3 yrs
+                                                                        </span>
+                                                                    </h3>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-md-6 col-lg-3">
-                                                    <div className="card">
-                                                        <img className="card-img-top" src={data} alt="Card cap" />
-                                                        <div className="card-body">
-                                                            <h5 className="card-title">Card title</h5>
-                                                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                            <div className="card-data">
-                                                                <h6>Card link</h6>
-                                                                <h3>
-                                                                    <span>
-                                                                        3 yrs
-                                                                    </span>
-                                                                </h3>
+                                                    <div className="col-md-3">
+                                                        <div className="card">
+                                                            <img className="card-img-top" src={data} alt="Card cap" />
+                                                            <div className="card-body">
+                                                                <h5 className="card-title">Card title</h5>
+                                                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                                <div className="card-data">
+                                                                    <h6>Card link</h6>
+                                                                    <h3>
+                                                                        <span>
+                                                                            3 yrs
+                                                                        </span>
+                                                                    </h3>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
 
 
                                             </div> 
@@ -179,76 +179,76 @@ function Storycard() {
                                             </div>
 
                                         </div>
-                                        <div className="story-card"> 
-                                            <div className="row">
-                                                <div className="col-md-6 col-lg-3">
-                                                    <div className="card">
-                                                        <img className="card-img-top" src={data} alt="Card cap" />
-                                                        <div className="card-body">
-                                                            <h5 className="card-title">Card title</h5>
-                                                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                            <div className="card-data">
-                                                                <h6>Card link</h6>
-                                                                <h3>
-                                                                    <span>
-                                                                        3 yrs
-                                                                    </span>
-                                                                </h3>
+                                        <div className="story-card">
+                                                <div className="row">
+                                                    <div className="col-md-3">
+                                                        <div className="card">
+                                                            <img className="card-img-top" src={data} alt="Card cap" />
+                                                            <div className="card-body">
+                                                                <h5 className="card-title">Card title</h5>
+                                                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                                <div className="card-data">
+                                                                    <h6>Card link</h6>
+                                                                    <h3>
+                                                                        <span>
+                                                                            3 yrs
+                                                                        </span>
+                                                                    </h3>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-md-6 col-lg-3">
-                                                    <div className="card">
-                                                        <img className="card-img-top" src={data} alt="Card cap" />
-                                                        <div className="card-body">
-                                                            <h5 className="card-title">Card title</h5>
-                                                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                            <div className="card-data">
-                                                                <h6>Card link</h6>
-                                                                <h3>
-                                                                    <span>
-                                                                        3 yrs
-                                                                    </span>
-                                                                </h3>
+                                                    <div className="col-md-3">
+                                                        <div className="card">
+                                                            <img className="card-img-top" src={data} alt="Card cap" />
+                                                            <div className="card-body">
+                                                                <h5 className="card-title">Card title</h5>
+                                                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                                <div className="card-data">
+                                                                    <h6>Card link</h6>
+                                                                    <h3>
+                                                                        <span>
+                                                                            3 yrs
+                                                                        </span>
+                                                                    </h3>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-md-6 col-lg-3">
-                                                    <div className="card">
-                                                        <img className="card-img-top" src={data} alt="Card cap" />
-                                                        <div className="card-body">
-                                                            <h5 className="card-title">Card title</h5>
-                                                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                            <div className="card-data">
-                                                                <h6>Card link</h6>
-                                                                <h3>
-                                                                    <span>
-                                                                        3 yrs
-                                                                    </span>
-                                                                </h3>
+                                                    <div className="col-md-3">
+                                                        <div className="card">
+                                                            <img className="card-img-top" src={data} alt="Card cap" />
+                                                            <div className="card-body">
+                                                                <h5 className="card-title">Card title</h5>
+                                                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                                <div className="card-data">
+                                                                    <h6>Card link</h6>
+                                                                    <h3>
+                                                                        <span>
+                                                                            3 yrs
+                                                                        </span>
+                                                                    </h3>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                                <div className="col-md-6 col-lg-3">
-                                                    <div className="card">
-                                                        <img className="card-img-top" src={data} alt="Card cap" />
-                                                        <div className="card-body">
-                                                            <h5 className="card-title">Card title</h5>
-                                                            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                                                            <div className="card-data">
-                                                                <h6>Card link</h6>
-                                                                <h3>
-                                                                    <span>
-                                                                        3 yrs
-                                                                    </span>
-                                                                </h3>
+                                                    <div className="col-md-3">
+                                                        <div className="card">
+                                                            <img className="card-img-top" src={data} alt="Card cap" />
+                                                            <div className="card-body">
+                                                                <h5 className="card-title">Card title</h5>
+                                                                <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                                <div className="card-data">
+                                                                    <h6>Card link</h6>
+                                                                    <h3>
+                                                                        <span>
+                                                                            3 yrs
+                                                                        </span>
+                                                                    </h3>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
 
 
                                             </div> 

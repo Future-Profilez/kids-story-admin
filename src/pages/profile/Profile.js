@@ -30,7 +30,7 @@ function Profile() {
                                     <h6>Setting</h6>
                                 </div>
 
-                            </div>
+                           
                             <div className="profile-manage">
                                 <Tabs
                                     defaultActiveKey="home"
@@ -40,9 +40,10 @@ function Profile() {
                                     id="noanim-tab-example"
                                     className="mb-3"
                                 >
-                                    <Tab eventKey="profile" title="profile">
-                                        <div className="password">
-                                            <div className="input">
+                                    <Tab eventKey="profile" title="Profile">
+                                        <div className="update-field">
+                                        <div className="row">
+                                            <div className="col-md-12">
                                                 <label className="input_label" htmlFor="password_field">
                                                     Full Name
                                                 </label>
@@ -58,8 +59,8 @@ function Profile() {
                                                     />
                                                 </div>
                                             </div>
-                                            <div className="password-old">
-                                                <div className="container-input">
+                                         
+                                                <div className="col-md-6">
                                                     <label className="input_label" htmlFor="password_field">
                                                         Email
                                                     </label>
@@ -76,7 +77,7 @@ function Profile() {
                                                     </div>
                                                 </div>
 
-                                                <div className="container-input">
+                                                <div className="col-md-6">
                                                     <label className="input_label" htmlFor="password_field">
                                                         Phone
                                                     </label>
@@ -93,16 +94,19 @@ function Profile() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button className="text-submit">
-                                                <span>
-                                                    Submit
-                                                </span>
-                                            </button>
+                                            <div className="text-center">
+                                                <button className="btn blue-gradient-btn">
+                                                    <span>
+                                                        Submit
+                                                    </span>
+                                                </button>
+                                            </div>
                                         </div>
                                     </Tab>
-                                    <Tab eventKey="password" title="password">
-                                        <div className="password">
-                                            <div className="input">
+                                    <Tab eventKey="password" title="Password">
+                                        <div className="update-field">
+                                        <div className="row">
+                                            <div className="col-md-12">
                                                 <label className="input_label" htmlFor="password_field">
                                                     Current  Password
                                                 </label>
@@ -118,8 +122,8 @@ function Profile() {
                                                     />
                                                 </div>
                                             </div>
-                                            <div className="password-old">
-                                                <div className="container-input">
+                                           
+                                                <div className="col-md-6">
                                                     <label className="input_label" htmlFor="password_field">
                                                         Password
                                                     </label>
@@ -136,7 +140,7 @@ function Profile() {
                                                     </div>
                                                 </div>
 
-                                                <div className="container-input">
+                                                <div className="col-md-6">
                                                     <label className="input_label" htmlFor="password_field">
                                                         Confirm   Password
                                                     </label>
@@ -153,16 +157,19 @@ function Profile() {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <button className="text-submit">
+                                            <div className="text-center">
+                                                <button className="btn blue-gradient-btn">
                                                 <span>
                                                     Submit
                                                 </span>
                                             </button>
+                                            </div>
                                         </div>
                                     </Tab>
 
                                 </Tabs>
                             </div>
+                        </div>
                         </div>
                     </div>
                 </div>

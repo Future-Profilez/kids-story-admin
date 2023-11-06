@@ -1,6 +1,6 @@
 
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import "./style/Bootstrap.css";
+import "./style/bootstrap.css";
 import './App.css';
 import Homepage from "./pages/home/Homepage";
 import Login from "./component/Login";
@@ -17,8 +17,8 @@ function App() {
         <Routes>
           <Route path="/home" element={<Homepage />}></Route>
           <Route path="/" element={<Login />}></Route>
-          <Route path="/story" element={<Storylist />}></Route>
           <Route path="/list" element={<Storycard />}></Route>
+          <Route path="/story" element={<Storylist />}></Route>
           <Route path="/profile" element={<Profile />}></Route>
           <Route path="/subscription" element={<Subscription />}></Route>
         </Routes>

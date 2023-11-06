@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import "../../style/model.css"
+import Ai  from "../../api/Ai"
 import data from '../../Data/genre.json'
 import agegroup from "../../Data/Age.json"
-import Ai from "../../Api/Ai";
 import Storylist from "../story/Storylist";
 import { useDispatch } from "react-redux";
 import { adduser, selectuser } from "../../redux/UserSlice";
@@ -60,6 +60,7 @@ function StoryModal({ show, handleClose }) {
                 ],
             };
 
+            
             Ai.post("/completions", requestData)
                 .then((res) => {
                     console.log("res", res);

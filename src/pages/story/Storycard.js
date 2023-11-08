@@ -76,7 +76,6 @@ function Storycard() {
                                                 </div>
                                             </div>
 
-
                                         </div>
                                         <div className="story-card">
                                             <div className="row">
@@ -99,7 +98,6 @@ function Storycard() {
                                                         </Link>
                                                     </div>
                                                 </div>
-
                                                 <div className="col-md-3">
                                                     <div className="card">
                                                         <Link to="" onClick={handleShow}>
@@ -159,9 +157,6 @@ function Storycard() {
                                                         </Link>
                                                     </div>
                                                 </div>
-
-
-
                                             </div>
                                         </div>
                                     </Tab>
@@ -178,7 +173,7 @@ function Storycard() {
                                                     <h1>SortBy: </h1>
                                                     <select className="select">
                                                         <option type="data" className="custom-option">Newest to oldest</option>
-                                                        <option type="data" className="custom-option"> oldest</option>
+                                                        <option type="data" className="custom-option">Oldest</option>
                                                         <option type="data" className="custom-option">Newest to oldest</option>
                                                         <option type="data" className="custom-option">Newest to oldest</option>
                                                         <option type="data" className="custom-option">Newest to oldest</option>

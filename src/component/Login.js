@@ -4,7 +4,7 @@ import image from "../image/login.png";
 import { useNavigate } from "react-router-dom";
 import "../style/login.css";
 import { Toaster, toast } from 'react-hot-toast';
-import Story from "../api/Story";
+import Story  from "../Api/Story"
 
 function Login() {
     const navigate = useNavigate();

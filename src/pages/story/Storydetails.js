@@ -5,25 +5,26 @@ import story from "../../image/card.png";
 function Storydetails({ show, handleClose }) {
     return (
         <>
-            <Modal show={show} onHide={handleClose} id="generat-story">
+            <Modal show={show} onHide={handleClose} id="reschedule-popup">
                 <Modal.Body>
-                    <div className="first-details mt-3" style={{ background: "#101733" }}>
+                    <div className="reschedule-story">
                         <div className="row">
                             <div className="col-md-6">
                                 <Image src={Data} alt="aaa" />
                             </div>
                             <div className="col-md-6">
                                 <div className="heading d-flex justify-content-between">
+                                    <div className="closebtn" onClick={handleClose}>
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                                                <circle cx="21" cy="21" r="21" fill="#0B1024" />
+                                                <path d="M15.4 28L14 26.6L19.6 21L14 15.4L15.4 14L21 19.6L26.6 14L28 15.4L22.4 21L28 26.6L26.6 28L21 22.4L15.4 28Z" fill="white" />
+                                            </svg>
+                                        </div>
                                     <div className="heading-graph">
-                                        <h6>Fairy Tales</h6>
+                                        <h6><span>Fairy Tales</span> </h6>
                                         <p>Pirate Story</p>
                                     </div>
-                                    <div onClick={handleClose}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
-                                            <circle cx="21" cy="21" r="21" fill="#0B1024" />
-                                            <path d="M15.4 28L14 26.6L19.6 21L14 15.4L15.4 14L21 19.6L26.6 14L28 15.4L22.4 21L28 26.6L26.6 28L21 22.4L15.4 28Z" fill="white" />
-                                        </svg>
-                                    </div>
+                                    
                                 </div>
                                 <div className="add-line">
                                 </div>

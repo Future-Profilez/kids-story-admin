@@ -12,8 +12,12 @@ import Schedule from "./pages/story/Schedule";
 import Static from "./pages/story/Static";
 
 function App() {
-const data =process.env.REACT_APP_URL
-console.log("dasta",data)
+//   const BASE_URL = process.env.REACT_APP_BASE_URL
+// const apiKey = process.env.REACT_APP_KEY
+// console.log("Base", BASE_URL)
+// console.log("Base", apiKey)
+// const data =process.env.REACT_APP_URL
+// console.log("dasta",data)
   return (
     <div id="body-pd" className="App">
       <Router>

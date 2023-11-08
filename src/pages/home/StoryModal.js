@@ -38,7 +38,7 @@ function StoryModal({ show, handleClose }) {
     const [genre, setGenre] = useState('');
     const [storyData, setStoryData] = useState(null);
     const [loading, setLoading] = useState(false)
-    const Navigate = useNavigate()
+    const navigate = useNavigate()
     console.log("userTitle", userTitle)
     console.log("age", age);
     console.log("gender", gender)
@@ -49,7 +49,7 @@ function StoryModal({ show, handleClose }) {
     const generateStory = () => {
         if (userTitle && age && gender && genre) {
             setLoading(true);
-            const prompt = `Title: ${userTitle}\nAs an ${age}-year-old ${gender}, I would like to read a ${genre} story. ${userTitle}. Please provide five chapters with subtitles, content, and image prompt, ensuring that the fifth chapter always conveys the moral of the story. Format it in JSON.`;
+            const prompt = `Title: ${userTitle}\nAs an age : ${age}year ,gender :${gender}, I would like to read a ${genre} story. ${userTitle}. Please provide five chapters with subtitles, content, and image prompt, ensuring that the fifth chapter always conveys the moral of the story. Format it in JSON.`;
             const requestData = {
                 model: 'gpt-4',
                 messages: [
@@ -68,8 +68,10 @@ function StoryModal({ show, handleClose }) {
                     const storyResponse = res.data.choices[0].message.content;
                     try {
                         const parsedStory = JSON.parse(storyResponse);
+                        console.log("storyResponse", storyResponse);
                         setStoryData(parsedStory);
-                        dispatch(adduser(parsedStory));
+                        const datata = dispatch(adduser(parsedStory));
+                        console.log("datata", datata);
                     } catch (error) {
                         console.error("Error parsing story response:", error);
                     } finally {
@@ -86,7 +88,6 @@ function StoryModal({ show, handleClose }) {
     useEffect(() => {
         setLoading(false);
     }, [userTitle, age, gender, genre]);
-    console.log("set0", storyData)
     return (
         <>
             <>

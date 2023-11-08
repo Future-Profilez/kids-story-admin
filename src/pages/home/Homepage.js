@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import StoryModal from "./StoryModal";
 import AuthLayout from "../../component/AuthLayout";
+import { Toaster } from 'react-hot-toast';
+
 function Homepage() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -27,6 +29,11 @@ function Homepage() {
                     </div>
                     {/* start content */}
                     <StoryModal show={show} handleClose={handleClose} />
+
+                    <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
                 </div>
             </AuthLayout>
 

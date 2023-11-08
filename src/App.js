@@ -12,7 +12,8 @@ import Schedule from "./pages/story/Schedule";
 import Static from "./pages/story/Static";
 
 function App() {
-
+const data =process.env.REACT_APP_URL
+console.log("dasta",data)
   return (
     <div id="body-pd" className="App">
       <Router>

@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import "../../style/model.css"
 import Ai from "../../api/Ai"
 import data from '../../Data/genre.json'
 import agegroup from "../../Data/Age.json"
-import Storylist from "../story/Storylist";
 import { useDispatch } from "react-redux";
 import { adduser, selectuser } from "../../redux/UserSlice";
 import { useNavigate } from "react-router-dom";

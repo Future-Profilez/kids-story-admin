@@ -4,6 +4,7 @@ import image from "../image/login.png";
 import { useNavigate } from "react-router-dom";
 import "../style/login.css";
 import { Toaster, toast } from 'react-hot-toast';
+import Story from "../api/Story";
 
 function Login() {
     const navigate = useNavigate();
@@ -11,7 +12,7 @@ function Login() {
 
     const [Regs, setRegs] = useState({
         password: "",
-        username: "",
+        email: "",
     });
 
     const handleInputs = (e) => {
@@ -29,10 +30,20 @@ function Login() {
 
     console.log("Regs", Regs)
 
-    const handleForms = (e) => {
-        e.preventDefault();
-        navigate('/home')
-    };
+
+
+    async function handleForms(e) {
+        const main = new Story();
+        const response = main.Login(Regs);
+        try {
+            const res = await response;
+            console.log("res", res)
+            navigate('/home')
+        }
+        catch (error) {
+            console.log("error", error)
+        }
+    }
 
     return (
         <>

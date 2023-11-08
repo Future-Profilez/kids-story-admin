@@ -1,9 +1,9 @@
 import { Component } from 'react';
-import Ai from './Ai';
+import Api from './Api';
 class Story extends Component {
 
-    async ChatAi() {
-        return Ai.post("completions")
+    async Login(data) {
+        return Api.post("/login", data)
     }
     render() {
         return (

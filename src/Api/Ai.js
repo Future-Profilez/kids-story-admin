@@ -7,7 +7,7 @@ const Ai = axios.create({
     baseURL: BASE_URL,
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': `${apiKey}`,
+        'Authorization': `Bearer${apiKey}`,
 
     }
 });

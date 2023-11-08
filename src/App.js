@@ -1,5 +1,4 @@
-
-import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./style/bootstrap.css";
 import './App.css';
 import Homepage from "./pages/home/Homepage";
@@ -10,26 +9,28 @@ import Profile from "./pages/profile/Profile";
 import Subscription from "./pages/profile/Subscription";
 import Schedule from "./pages/story/Schedule";
 import Static from "./pages/story/Static";
+import PrivateRouter from "./component/PrivateRouter";
+import { useSelector } from 'react-redux';
+import { login, selectuser } from './redux/UserSlice';
 
 function App() {
-//   const BASE_URL = process.env.REACT_APP_BASE_URL
-// const apiKey = process.env.REACT_APP_KEY
-// console.log("Base", BASE_URL)
-// console.log("Base", apiKey)
-// const data =process.env.REACT_APP_URL
-// console.log("dasta",data)
+  const user = useSelector(login);
+console.log("User data:", user);
+
   return (
     <div id="body-pd" className="App">
       <Router>
         <Routes>
-          <Route path="/home" element={<Homepage />}></Route>
-          <Route path="/" element={<Login />}></Route>
-          <Route path="/card" element={<Storycard />}></Route>
-          <Route path="/list" element={<Storylist />}></Route>
-          <Route path="/profile" element={<Profile />}></Route>
-          <Route path="/subscription" element={<Subscription />}></Route>
-          <Route path="/schedule" element={<Schedule />}></Route>
-          <Route path="/static" element={<Static />}></Route>
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<PrivateRouter>
+            <Homepage />
+          </PrivateRouter>} />
+          <Route path="/card" element={<Storycard />} />
+          <Route path="/list" element={<Storylist />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/subscription" element={<Subscription />} />
+          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/static" element={<Static />} />
         </Routes>
       </Router>
     </div>

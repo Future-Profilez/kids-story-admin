@@ -3,45 +3,51 @@ import { Image } from "react-bootstrap";
 import image from "../image/login.png";
 import { useNavigate } from "react-router-dom";
 import "../style/login.css";
+import { useDispatch } from 'react-redux';
 import { Toaster, toast } from 'react-hot-toast';
 import Story from "../api/Story";
+import { login } from "../redux/UserSlice";
 
 function Login() {
     const navigate = useNavigate();
-
+    const dispatch = useDispatch();
 
     const [Regs, setRegs] = useState({
         password: "",
         email: "",
     });
 
+    const [showPassword, setShowPassword] = useState(false);
+
     const handleInputs = (e) => {
         const value = e.target.value;
         const name = e.target.name;
         setRegs((prevState) => ({ ...prevState, [name]: value }));
-        console.table(Regs);
+        console.table(Regs)
     };
 
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };
 
-    const [showPassword, setShowPassword] = useState(false);
-
-    console.log("Regs", Regs)
-
-
-
     async function handleForms(e) {
-        const main = new Story();
-        const response = main.Login(Regs);
         try {
-            const res = await response;
-            console.log("res", res)
-            navigate('/home')
-        }
-        catch (error) {
-            console.log("error", error)
+            const main = new Story();
+            const response = await main.Login(Regs);
+            console.log("res", response)
+            if (response.data.status === "true") {
+                setRegs(response.data.data);
+                const res =dispatch(login(response))
+                console.log("res",res)
+                toast.success(response.data.message);
+                navigate("/home")
+            } else {
+                toast.error(response.data.message)
+            }
+
+        } catch (error) {
+            console.log("error", error);
+            toast.error("An error occurred. Please try again.");
         }
     }
 
@@ -72,7 +78,7 @@ function Login() {
                                 name="email"
                                 onChange={handleInputs}
                                 value={Regs.email}
-                                type="text"
+                                type="email"
                                 className="input_field form-control"
                                 id="email_field"
                             />
@@ -133,55 +139,3 @@ export default Login;
 
 
 
-
-// async function handleForms(e) {
-//     const main = new Singup();
-//     const resp = main.Loginshow(Regs);
-//     try {
-//         const res = await resp;
-//         console.log("res", res);
-//     //     if(res.data){
-//     //         if(res.data.status==="1"){
-
-//     //             console.log("logged in user", res.data);
-//     //            console.log(res.data.msg);
-//     //            toast.success(res.data.msg);
-//     //            navigate('/join');
-//     //            if (res.data.user) {
-//     //                setLoginUser(res.data.user);
-//     //                localStorage.setItem("token", res.data.token);
-//     //        }
-//     //         }
-//     //         else if(res.data ){
-
-//     //         }
-//     // }
-//     //     else{
-//     //         toast.error(res.data.msg);
-//     //     }
-//         if(res.data){
-//             if(res.data.user.role ===1 ){
-//                 console.log("logged in user", res.data);
-//                            console.log(res.data.msg);
-//                            toast.success(res.data.msg);
-//                            navigate('/join');
-//                            if (res.data.user) {
-//                                setLoginUser(res.data.user);
-//                                localStorage.setItem("token", res.data.token);
-//             }
-//         }
-//         else  if(res.data.user.role ===0 ){
-//             console.log("logged in user", res.data);
-//                        console.log(res.data.msg);
-//                        toast.success(res.data.msg);
-//                        navigate('/products');
-//                        if (res.data.user) {
-//                            setLoginUser(res.data.user);
-//                            localStorage.setItem("token", res.data.token);
-//         }
-//     }
-// }
-//      } catch (err) {
-//         console.log("login err", err);
-//     }
-// }

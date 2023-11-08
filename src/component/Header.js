@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { logout, selectuser } from "../redux/UserSlice";
 
 function Header() {
-    const user = useSelector(selectuser);
+    const user = useSelector(logout);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const handleLogout = (e) => {

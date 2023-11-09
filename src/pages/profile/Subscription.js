@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Story from "../../api/Story";
 function Subscription() {
 
+    const navigate = useNavigate()
     const handleShow = () => {
         setShow(true);
     };
@@ -15,23 +16,27 @@ function Subscription() {
 
     const [content, setContent] = useState([])
 
+    const [loading, setLoading] = useState(true);
+
     useEffect(() => {
-        try {
-            const main = new Story();
-            const response = main.Subscriptionlist();
-            response.then((res) => {
-                setContent(res.data.data);
-            }).catch((error) => {
-                console.log("error", error)
-            })
-        } catch (error) {
-            console.log("error", error)
-        }
-    })
+        const fetchData = async () => {
+            try {
+                const main = new Story();
+                const response = await main.Subscriptionlist();
+                setContent(response.data.data);
+                setLoading(false);
+            } catch (error) {
+                console.log("error", error);
+                setLoading(false);
+            }
+        };
+
+        fetchData();
+    }, []);
 
     return (
         <>
-       
+
             <AuthLayout>
                 <div className="content-wrapper">
                     <div className="content">
@@ -79,87 +84,65 @@ function Subscription() {
                                 </div>
 
                                 <div className="row">
-                                    {content && content.map((item, index) => (
-                                        <div className="col-md-4" key={index}>
-                                            <div className="subscription-data">
-                                                <div className="sub-data">
-                                                    <div className="sub-parg">
-                                                        <h4>{item.package_name} </h4>
-                                                        <p>{item.price}/{item.story_period_type || "Week"}</p>
+
+                                    {loading ? (
+                                        content && content.map((item, index) => (
+                                            <div className="col-md-4" key={index}>
+                                                <div className="subscription-data">
+                                                    <div className="sub-data">
+                                                        <div className="sub-parg">
+                                                            <h4>{item.package_name} </h4>
+                                                            <p>{item.price}/{item.story_period_type || "Week"}</p>
+                                                        </div>
+                                                        <Link to="" className="sub-dot">
+                                                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                <path d="M3.33398 9.99996C3.33398 10.221 3.42178 10.4329 3.57806 10.5892C3.73434 10.7455 3.9463 10.8333 4.16732 10.8333C4.38833 10.8333 4.60029 10.7455 4.75657 10.5892C4.91285 10.4329 5.00065 10.221 5.00065 9.99996C5.00065 9.77895 4.91285 9.56698 4.75657 9.4107C4.60029 9.25442 4.38833 9.16663 4.16732 9.16663C3.9463 9.16663 3.73434 9.25442 3.57806 9.4107C3.42178 9.56698 3.33398 9.77895 3.33398 9.99996ZM9.16732 9.99996C9.16732 10.221 9.25512 10.4329 9.4114 10.5892C9.56768 10.7455 9.77964 10.8333 10.0007 10.8333C10.2217 10.8333 10.4336 10.7455 10.5899 10.5892C10.7462 10.4329 10.834 10.221 10.834 9.99996C10.834 9.77895 10.7462 9.56698 10.5899 9.4107C10.4336 9.25442 10.2217 9.16663 10.0007 9.16663C9.77964 9.16663 9.56768 9.25442 9.4114 9.4107C9.25512 9.56698 9.16732 9.77895 9.16732 9.99996ZM15.0007 9.99996C15.0007 10.221 15.0884 10.4329 15.2447 10.5892C15.401 10.7455 15.613 10.8333 15.834 10.8333C16.055 10.8333 16.267 10.7455 16.4232 10.5892C16.5795 10.4329 16.6673 10.221 16.6673 9.99996C16.6673 9.77895 16.5795 9.56698 16.4232 9.4107C16.267 9.25442 16.055 9.16663 15.834 9.16663C15.613 9.16663 15.401 9.25442 15.2447 9.4107C15.0884 9.56698 15.0007 9.77895 15.0007 9.99996Z" stroke="#444E73" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
+                                                            </svg>
+
+                                                        </Link>
                                                     </div>
-                                                    <Link to="" className="sub-dot">
-                                                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M3.33398 9.99996C3.33398 10.221 3.42178 10.4329 3.57806 10.5892C3.73434 10.7455 3.9463 10.8333 4.16732 10.8333C4.38833 10.8333 4.60029 10.7455 4.75657 10.5892C4.91285 10.4329 5.00065 10.221 5.00065 9.99996C5.00065 9.77895 4.91285 9.56698 4.75657 9.4107C4.60029 9.25442 4.38833 9.16663 4.16732 9.16663C3.9463 9.16663 3.73434 9.25442 3.57806 9.4107C3.42178 9.56698 3.33398 9.77895 3.33398 9.99996ZM9.16732 9.99996C9.16732 10.221 9.25512 10.4329 9.4114 10.5892C9.56768 10.7455 9.77964 10.8333 10.0007 10.8333C10.2217 10.8333 10.4336 10.7455 10.5899 10.5892C10.7462 10.4329 10.834 10.221 10.834 9.99996C10.834 9.77895 10.7462 9.56698 10.5899 9.4107C10.4336 9.25442 10.2217 9.16663 10.0007 9.16663C9.77964 9.16663 9.56768 9.25442 9.4114 9.4107C9.25512 9.56698 9.16732 9.77895 9.16732 9.99996ZM15.0007 9.99996C15.0007 10.221 15.0884 10.4329 15.2447 10.5892C15.401 10.7455 15.613 10.8333 15.834 10.8333C16.055 10.8333 16.267 10.7455 16.4232 10.5892C16.5795 10.4329 16.6673 10.221 16.6673 9.99996C16.6673 9.77895 16.5795 9.56698 16.4232 9.4107C16.267 9.25442 16.055 9.16663 15.834 9.16663C15.613 9.16663 15.401 9.25442 15.2447 9.4107C15.0884 9.56698 15.0007 9.77895 15.0007 9.99996Z" stroke="#444E73" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round" />
-                                                        </svg>
+                                                    <div className="bottom-line"></div>
+                                                    <div className="subscription-detail">
+                                                        <ul>
+                                                            <li>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="13" viewBox="0 0 17 13" fill="none">
+                                                                    <path d="M5.7 12.025L0 6.325L1.425 4.9L5.7 9.175L14.875 0L16.3 1.425L5.7 12.025Z" fill="white" />
+                                                                </svg> {item.story_per_day} story <span> per day  </span>
+                                                            </li>
+                                                            <li>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="13" viewBox="0 0 17 13" fill="none">
+                                                                    <path d="M5.7 12.025L0 6.325L1.425 4.9L5.7 9.175L14.875 0L16.3 1.425L5.7 12.025Z" fill="white" />
+                                                                </svg>{item.access_profiles} Kids  <span> Profile  </span>
+                                                            </li>
+                                                            <li>
+                                                                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="13" viewBox="0 0 17 13" fill="none">
+                                                                    <path d="M5.7 12.025L0 6.325L1.425 4.9L5.7 9.175L14.875 0L16.3 1.425L5.7 12.025Z" fill="white" />
+                                                                </svg>{item.story_expire_days} Story deleted in <span> 7 Days </span>
+                                                            </li>
+                                                        </ul>
 
-                                                    </Link>
+                                                    </div>
                                                 </div>
-                                                <div className="bottom-line"></div>
-                                                <div className="subscription-detail">
-                                                    <ul>
-                                                        <li>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="13" viewBox="0 0 17 13" fill="none">
-                                                                <path d="M5.7 12.025L0 6.325L1.425 4.9L5.7 9.175L14.875 0L16.3 1.425L5.7 12.025Z" fill="white" />
-                                                            </svg> {item.story_per_day} story <span> per day  </span>
-                                                        </li>
-                                                        <li>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="13" viewBox="0 0 17 13" fill="none">
-                                                                <path d="M5.7 12.025L0 6.325L1.425 4.9L5.7 9.175L14.875 0L16.3 1.425L5.7 12.025Z" fill="white" />
-                                                            </svg>{item.access_profiles} Kids  <span> Profile  </span>
-                                                        </li>
-                                                        <li>
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="13" viewBox="0 0 17 13" fill="none">
-                                                                <path d="M5.7 12.025L0 6.325L1.425 4.9L5.7 9.175L14.875 0L16.3 1.425L5.7 12.025Z" fill="white" />
-                                                            </svg>{item.story_expire_days} Story deleted in <span> 7 Days </span>
-                                                        </li>
-                                                    </ul>
+                                            </div>
+                                        ))
 
-                                                </div>
+                                    ) : (
+                                        <div className="story-step-form">
+                                            <div className="body-popup-title">
+                                                <svg width="115" height="116" viewBox="0 0 115 116" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M105.438 13.9374C90.2517 14.0025 78.9628 16.0936 70.7938 19.7076C64.6979 22.4029 62.3125 24.4424 62.3125 31.3513V103.781C71.6495 95.3583 79.9354 92.9999 112.625 92.9999V13.9374H105.438ZM12 13.9374C27.1858 14.0025 38.4747 16.0936 46.6438 19.7076C52.7397 22.4029 55.125 24.4424 55.125 31.3513V103.781C45.788 95.3583 37.5021 92.9999 4.8125 92.9999V13.9374H12Z" fill="url(#paint0_linear_109_238)" />
+                                                    <defs>
+                                                        <linearGradient id="paint0_linear_109_238" x1="1.14541" y1="30.2726" x2="117.174" y2="39.3206" gradientUnits="userSpaceOnUse">
+                                                            <stop stop-color="#4B69E2" />
+                                                            <stop offset="1" stop-color="#9054D9" />
+                                                        </linearGradient>
+                                                    </defs>
+                                                </svg>
+                                                <h3>Please wait! while your story is being generated </h3>
                                             </div>
                                         </div>
-                                    ))}
 
-
-
-
-                                    {/* <div className="col-md-4">
-                                    <div className="subscription-data">
-                                            <div className="sub-data">
-                                                <div className="sub-parg">
-                                                    <h4>Starter</h4>
-                                                    <p>0.99/Week</p>
-                                                </div>
-                                                <Link to=""  className="sub-dot">
-                                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M3.33398 9.99996C3.33398 10.221 3.42178 10.4329 3.57806 10.5892C3.73434 10.7455 3.9463 10.8333 4.16732 10.8333C4.38833 10.8333 4.60029 10.7455 4.75657 10.5892C4.91285 10.4329 5.00065 10.221 5.00065 9.99996C5.00065 9.77895 4.91285 9.56698 4.75657 9.4107C4.60029 9.25442 4.38833 9.16663 4.16732 9.16663C3.9463 9.16663 3.73434 9.25442 3.57806 9.4107C3.42178 9.56698 3.33398 9.77895 3.33398 9.99996ZM9.16732 9.99996C9.16732 10.221 9.25512 10.4329 9.4114 10.5892C9.56768 10.7455 9.77964 10.8333 10.0007 10.8333C10.2217 10.8333 10.4336 10.7455 10.5899 10.5892C10.7462 10.4329 10.834 10.221 10.834 9.99996C10.834 9.77895 10.7462 9.56698 10.5899 9.4107C10.4336 9.25442 10.2217 9.16663 10.0007 9.16663C9.77964 9.16663 9.56768 9.25442 9.4114 9.4107C9.25512 9.56698 9.16732 9.77895 9.16732 9.99996ZM15.0007 9.99996C15.0007 10.221 15.0884 10.4329 15.2447 10.5892C15.401 10.7455 15.613 10.8333 15.834 10.8333C16.055 10.8333 16.267 10.7455 16.4232 10.5892C16.5795 10.4329 16.6673 10.221 16.6673 9.99996C16.6673 9.77895 16.5795 9.56698 16.4232 9.4107C16.267 9.25442 16.055 9.16663 15.834 9.16663C15.613 9.16663 15.401 9.25442 15.2447 9.4107C15.0884 9.56698 15.0007 9.77895 15.0007 9.99996Z" stroke="#444E73" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
-                                                    </svg>
-
-                                                </Link>
-                                            </div>
-                                            <div className="bottom-line"></div>
-                                            <div className="subscription-detail">
-                                                <ul>
-                                                    <li>
-                                                      <svg xmlns="http://www.w3.org/2000/svg" width="17" height="13" viewBox="0 0 17 13" fill="none">
-                                                        <path d="M5.7 12.025L0 6.325L1.425 4.9L5.7 9.175L14.875 0L16.3 1.425L5.7 12.025Z" fill="white" />
-                                                    </svg>1 story <span> per day  </span>
-                                                    </li>
-                                                    <li>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="13" viewBox="0 0 17 13" fill="none">
-                                                            <path d="M5.7 12.025L0 6.325L1.425 4.9L5.7 9.175L14.875 0L16.3 1.425L5.7 12.025Z" fill="white" />
-                                                        </svg>8 Kids  <span> Profile  </span>
-                                                    </li>
-                                                    <li>
-                                                        <svg xmlns="http://www.w3.org/2000/svg" width="17" height="13" viewBox="0 0 17 13" fill="none">
-                                                            <path d="M5.7 12.025L0 6.325L1.425 4.9L5.7 9.175L14.875 0L16.3 1.425L5.7 12.025Z" fill="white" />
-                                                        </svg>1 Story deleted in <span> 30 Days </span>
-                                                    </li>
-                                                </ul>
-                                                
-                                            </div>
-                                        </div>
-                                    </div> */}
-
+                                    )}
                                 </div>
                             </div>
                         </div>

@@ -1,3 +1,4 @@
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./style/bootstrap.css";
 import './App.css';
@@ -15,7 +16,6 @@ import { login, selectuser } from './redux/UserSlice';
 
 function App() {
   const user = useSelector(login);
-console.log("User data:", user);
 
   return (
     <div id="body-pd" className="App">

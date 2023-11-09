@@ -37,8 +37,10 @@ function Login() {
             const response = await main.Login(Regs);
             console.log("res", response)
             if (response.data.status === "true") {
-                const res =dispatch(login(response))
-                console.log("res",res)
+                const res = dispatch(login(response.data.data))
+                console.log("login", res);
+                // const token = dispatch(token(response.data.token));
+                // console.log("token", token);
                 toast.success(response.data.message);
                 navigate("/home")
             } else {

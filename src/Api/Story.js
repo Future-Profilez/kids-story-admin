@@ -18,6 +18,10 @@ class Story extends Component {
     async Subscription(data){
         return Api.post("/create-subscription", data)
     }
+
+    async Subscriptionlist(){
+        return Api.get("/get-subscription-list")
+    }
     render() {
         return (
             <div>

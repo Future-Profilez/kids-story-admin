@@ -1,16 +1,21 @@
-import { Navigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectUser } from '../redux/UserSlice';
-import Login from './Login';
+import React, { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import {  Route } from "react-router-dom";
 
-const PrivateRouter = () => {
-  const { isUserLoggedIn, isLoading } = useSelector(selectUser);
 
-  if (isLoading) {
-    return null; 
-  }
 
-  return isUserLoggedIn ? <Login /> : <Navigate to="/home" replace />;
+const PrivateRouter = ({ path, exact, children }) => {
+  const Navigate = useNavigate();
+  const user = useSelector((state) => state.users);
+  const isUserLoggedIn = user.isUserLoggedIn;
+  return isUserLoggedIn ? (
+    <Route path={path} exact={exact}>
+      {children}
+    </Route>
+  ) : (
+    <Navigate to="/login" />
+  );
 };
 
 export default PrivateRouter;

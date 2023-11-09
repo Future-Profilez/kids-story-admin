@@ -4,24 +4,21 @@ const UserSlice = createSlice({
     name: "users",
     initialState: {
         isUserLoggedIn: false,
-        isLoading: true,
         users: null,
     },
     reducers: {
+    
         login: (state, action) => {
-            const { email, password } = action.payload.data;
-            state.users = {
-                email,
-                password
-            };
+            state.users = action.payload;
             state.isUserLoggedIn = true;
         },
 
-
+        
         logout: (state) => {
             state.users = null;
             state.isUserLoggedIn = false;
         },
+        
         // getuser: (state, action) => {
         //     state.users = action.payload.map(user => {
         //         return {
@@ -53,7 +50,7 @@ const UserSlice = createSlice({
 
 })
 
-export const { login, logout, adduser, getuser } = UserSlice.actions;
+export const { login, logout, adduser, getuser,token } = UserSlice.actions;
 
 export const selectUser = (state) => state.users.users;
 export default UserSlice.reducer;

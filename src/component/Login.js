@@ -31,17 +31,16 @@ function Login() {
     };
 
     async function handleForms(e) {
+        e.preventDefault();
         try {
             const main = new Story();
             const response = await main.Login(Regs);
             console.log("res", response)
             if (response.data.status === "true") {
-                setRegs(response.data.data);
                 const res =dispatch(login(response))
                 console.log("res",res)
                 toast.success(response.data.message);
                 navigate("/home")
-                
             } else {
                 toast.error(response.data.message)
             }

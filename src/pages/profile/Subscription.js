@@ -4,13 +4,16 @@ import Heading from "../../component/Heading";
 import "../../style/subscription.css";
 import Subscriptionadd from "./Subscriptionadd";
 import { useState } from "react";
+import Story from "../../api/Story";
 function Subscription() {
+
     const handleShow = () => {
-        console.log("Button clicked");
         setShow(true);
     };
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
+
+   
     return (
         <>
             <AuthLayout>

@@ -1,10 +1,10 @@
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectuser } from '../redux/UserSlice';
+import { selectUser } from '../redux/UserSlice';
 import Login from './Login';
 
 const PrivateRouter = () => {
-  const { isUserLoggedIn, isLoading } = useSelector(selectuser);
+  const { isUserLoggedIn, isLoading } = useSelector(selectUser);
 
   if (isLoading) {
     return null; 

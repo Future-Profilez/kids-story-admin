@@ -22,9 +22,7 @@ console.log("User data:", user);
       <Router>
         <Routes>
           <Route path="/" element={<Login />} />
-          <Route path="/home" element={<PrivateRouter>
-            <Homepage />
-          </PrivateRouter>} />
+          <Route path="/home" element={<Homepage />} />
           <Route path="/card" element={<Storycard />} />
           <Route path="/list" element={<Storylist />} />
           <Route path="/profile" element={<Profile />} />

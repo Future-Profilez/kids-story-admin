@@ -4,25 +4,27 @@ import StoryModal from "./StoryModal";
 import AuthLayout from "../../component/AuthLayout";
 import { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from "react-redux";
-import { getuser, login, selectuser } from "../../redux/UserSlice";
+import { getuser, selectUser } from "../../redux/UserSlice";
 
 function Homepage() {
-    const dispatch = useDispatch();
-    const user = useSelector(login);
-    console.log("data", user)
+    // const dispatch = useDispatch();
+    // const user = useSelector(selectUser);
+
+    // console.log("data", user)
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
 
-    
-    useEffect(() => {
-        dispatch(getuser()); 
-      }, [dispatch]);
+
+    // useEffect(() => {
+    //     dispatch(getuser());
+    // }, [dispatch]);
+
+
     return (
         <>
-
-        {user ?    <AuthLayout>
+            <AuthLayout>
                 <div className="content-wrapper">
                     {/* start content */}
                     <div className="content content-center generat-story">
@@ -39,7 +41,7 @@ function Homepage() {
                             </div>
                         </div>
                     </div>
-                  
+
                     {/* end content */}
                     <StoryModal show={show} handleClose={handleClose} />
                     <Toaster
@@ -47,12 +49,7 @@ function Homepage() {
                         reverseOrder={false}
                     />
                 </div>
-            </AuthLayout> :<> 
-            
-            <p>Loadinf</p>
-            
-            </> }
-         
+            </AuthLayout>
         </>
     );
 }

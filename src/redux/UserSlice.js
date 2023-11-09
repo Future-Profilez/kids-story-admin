@@ -8,27 +8,30 @@ const UserSlice = createSlice({
         users: null,
     },
     reducers: {
-
         login: (state, action) => {
-            state.users = action.payload.data;
+            const { email, password } = action.payload.data;
+            state.users = {
+                email,
+                password
+            };
             state.isUserLoggedIn = true;
-
         },
+
 
         logout: (state) => {
             state.users = null;
             state.isUserLoggedIn = false;
         },
-        getuser: (state, action) => {
-            state.users = action.payload.users.data.data.map(user=>{
-                return{
-                    email :user.email
-                
-                }
-            })
-           
-        },
-        
+        // getuser: (state, action) => {
+        //     state.users = action.payload.map(user => {
+        //         return {
+        //             email: user.email
+
+        //         }
+        //     })
+
+        // },
+
 
         getData: (state, action) => {
             state.users = action.payload.story.map(user => {
@@ -50,7 +53,7 @@ const UserSlice = createSlice({
 
 })
 
-export const { login, logout, adduser,getuser } = UserSlice.actions;
+export const { login, logout, adduser, getuser } = UserSlice.actions;
 
-export const selectuser = (state) => state.users.users;
+export const selectUser = (state) => state.users.users;
 export default UserSlice.reducer;

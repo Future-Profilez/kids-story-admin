@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import Story from "../../api/Story";
 function Subscription() {
 
-   const navigate = useNavigate()
     const handleShow = () => {
         setShow(true);
     };

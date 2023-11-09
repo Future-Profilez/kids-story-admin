@@ -41,6 +41,7 @@ function Login() {
                 console.log("res",res)
                 toast.success(response.data.message);
                 navigate("/home")
+                
             } else {
                 toast.error(response.data.message)
             }

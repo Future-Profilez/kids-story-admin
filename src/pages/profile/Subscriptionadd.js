@@ -1,16 +1,19 @@
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import Story from "../../api/Story";
+import { Toaster, toast } from 'react-hot-toast';
+
 
 function Subscriptionadd({ show, handleClose }) {
 
   const initialRegs = {
     package_name: "",
     price: "",
-    story_time_period: "",
+    story_time_period: "1",
     story_per_day: "",
     access_profiles: "",
     story_expire_days: "",
+    story_period_type: "day"
   };
 
   const [Regs, setRegs] = useState(initialRegs);
@@ -25,28 +28,27 @@ function Subscriptionadd({ show, handleClose }) {
   async function handleForms(e) {
     e.preventDefault();
     try {
+      console.log("Submitting data:", Regs);
+
       const main = new Story();
-      console.log("main", main);
       const response = await main.Subscription(Regs);
-      console.log("res", response);
-      // if (response.data.status === "true") {
-      //     toast.success(response.data.message);
-      //     setRegs(initialRegs);
-      //     navigate("/")
-      // }else{
-      //     toast.error(response.data.message)
-      // }
+      console.log("API Response:", response);
+      toast.success(response.data.message);
+      handleClose();
     } catch (error) {
-      console.log("error", error);
-      //   toast.error("An error occurred. Please try again.");
+      console.error("API Error:", error);
     }
   }
 
 
   return (
     <>
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+      />
       <Modal show={show} onHide={handleClose} id="generat-story">
-        <Modal.Header closeButtonv id="subscription-header">
+        <Modal.Header closeButton id="subscription-header">
           <Modal.Title className="modal-title">When do you want to publish this story?</Modal.Title>
           <div className="add-line"></div>
         </Modal.Header>
@@ -57,22 +59,22 @@ function Subscriptionadd({ show, handleClose }) {
                 <label for="exampleInputEmail1">Package Name</label>
                 <input type="text" className="form-control" placeholder="" name="package_name" value={Regs.package_name} onChange={handleInputs} />
               </div>
-              <div className="form-group" >                  
-                  <label for="exampleInputPassword1">Price</label>
-                  <div className="row">
-                    <div className="form-group  col-md-8">
-                      <input type="text" className="form-control" placeholder="" name="price" value={Regs.price} onChange={handleInputs} />
-                    </div>
-                      <div className="form-group  col-md-4">
-                        <select  className="form-control" >
-                          <option type="data" className="custom-option">Days </option>
-                          <option type="data" className="custom-option">Week </option>
-                          <option type="data" className="custom-option">Month</option>
-                          <option type="data" className="custom-option">Year</option>
-                        </select>
-                    </div>
+              <div className="form-group" >
+                <label for="exampleInputPassword1">Price</label>
+                <div className="row">
+                  <div className="form-group  col-md-8">
+                    <input type="text" className="form-control" placeholder="" name="price" value={Regs.price} onChange={handleInputs} />
+                  </div>
+                  <div className="form-group  col-md-4">
+                    <select className="form-control" name="story_period_type" value={Regs.story_period_type} onChange={handleInputs} >
+                      <option value="day" className="custom-option">Day </option>
+                      <option value="week" className="custom-option">Week </option>
+                      <option value="month" className="custom-option">Month</option>
+                      <option value="year" className="custom-option">Year</option>
+                    </select>
                   </div>
                 </div>
+              </div>
 
               <div className="form-group">
                 <label for="exampleInputPassword1">How Many Stories per day?</label>
@@ -84,7 +86,7 @@ function Subscriptionadd({ show, handleClose }) {
               </div>
               <div className="form-group">
                 <label for="exampleInputPassword1">How many days later story will expire ? </label>
-                <input type="text" className="form-control" placeholder="" name="story_time_period" value={Regs.story_time_period} onChange={handleInputs} />
+                <input type="text" className="form-control" placeholder="" name="story_expire_days" value={Regs.story_expire_days} onChange={handleInputs} />
               </div>
 
               <div className="text-center">

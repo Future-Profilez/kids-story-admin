@@ -86,6 +86,30 @@ a {
 .dark-background-btn svg {margin-right: 5px;}
 .dark-background-btn span{background: var(--1, linear-gradient(94deg, #4B69E2 -2.08%, #9054D9 99.58%));background-clip: text;  -webkit-background-clip: text;-webkit-text-fill-color: transparent;}
 
+.date-field-story { position: relative; margin: 0 0 40px;}
+
+.date-field-story span{position: absolute; top: 12px; left: 0; height: 33px; display: inline-flex; width: 76px; align-items: center; justify-content: center; border-right: 1px solid rgba(255,255,255,.1);}
+.date-field-story input.form-control { border-radius: 50px; background: #0C1229; height: 58px; border: none; color: #fff; padding: 8px 20px; padding-left: 95px; font-size: 16px;}
+.date-field-story input.form-control::placeholder {color: rgba(255,255,255,.5);}
+.date-field-story input.form-control::-ms-input-placeholder {color: rgba(255,255,255,.5);}
+
+div#reschedule-popup{max-width: 830px;}
+div#reschedule-popup .modal-content{border-radius: 20px; background: #131C3E;}
+.reschedule-story{border-radius: 20px; background: #101733;margin: 0 -30px 30px;padding: 20px 20px 20px 20px;position: relative;}
+#reschedule-popup .modal-body{padding: 0 30px 30px;}
+.reschedule-story .row { margin: 0 -10px; align-items: center;}
+.reschedule-story .row div[class*="col"] { padding: 0 10px; }
+.reschedule-story .row div[class*="col"]:first-child { width: 48%; }
+.reschedule-story .row div[class*="col"]:last-child { width: 52%; }
+.reschedule-story img{max-width: 100%;}
+.closebtn{position: absolute;right: 20px;top: 20px;}
+
+.heading-graph h6{border-radius: 40px;  background: rgba(0, 5, 24, 0.70);margin: 0 0 20px;padding: 5px 20px;}
+
+.heading-graph h6 span{background: var(--1, linear-gradient(94deg, #4B69E2 -2.08%, #9054D9 99.58%)); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;font-size: 13px;font-weight: 400;}
+.heading-graph p{color: #FFF;font-family: Poppins; font-size: 18px; font-style: normal; font-weight: 600; line-height: 27px;    margin: 0 0 18px;}
+
+
 @media screen and (min-width: 768px) { 
   div#body-pd {
     margin: 0;

@@ -56,7 +56,7 @@ function Subscription() {
                                         <div className="col-md-4">
                                             <h6>Manage Subscription</h6>
                                         </div>
-                                        <div className="col-md-8">
+                                        {/* <div className="col-md-8">
                                             <div className="sub-button text-end" >
                                                 <Link to="#" onClick={handleShow} className="btn dark-background-btn">
                                                     <svg
@@ -87,7 +87,7 @@ function Subscription() {
                                                 </Link>
                                             </div>
 
-                                        </div>
+                                        </div> */}
                                     </div>
                                 </div>
 

@@ -4,8 +4,22 @@ import "../../style/story.css"
 import "../../style/Static.css"
 import data from "../../image/graph.png"
 import { Image } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import Story from "../../api/Story";
 
 function Static() {
+    const[Contnet , setContent]= useState([])
+
+    useEffect(()=>{
+        const main =new Story();
+        const response = main.Static();
+        response.then((res)=>{
+console.log("res",res)
+setContent(res.data)
+        }).catch((error)=>{
+            console.log("erorr",error)
+        })
+    },[])
     return (
         <>
             <AuthLayout>
@@ -16,6 +30,7 @@ function Static() {
                                 <Heading />
                                 <div className="story-title">
                                     <h6>Statistics </h6>
+
                                 </div>
                                     <div className="row">
                                         <div className="col-md-4">
@@ -38,7 +53,7 @@ function Static() {
                                                 </div>
                                                 <div className="static-par">
                                                     <h6>Total Stories </h6>
-                                                    <p>150 </p>
+                                                    <p>{Contnet.stories ||"1200"} </p>
                                                 </div>
                                                 <div className="static-data">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="82" height="88" viewBox="0 0 82 88" fill="none">
@@ -72,7 +87,7 @@ function Static() {
                                                 </div>
                                                 <div className="static-par">
                                                     <h6>Total Users</h6>
-                                                    <p>1500</p>
+                                                    <p>{Contnet.user||"1500"}</p>
                                                 </div>
                                                 <div className="static-data">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="65" height="64" viewBox="0 0 65 64" fill="none">
@@ -113,7 +128,7 @@ function Static() {
                                                 </div>
                                                 <div className="static-par">
                                                     <h6>Total Subscribers  </h6>
-                                                    <p>1280</p>
+                                                    <p>{Contnet.totalSubscription ||"1280"}</p>
                                                 </div>
                                                 <div className="static-data">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="79" height="87" viewBox="0 0 79 87" fill="none">

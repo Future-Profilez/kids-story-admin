@@ -33,10 +33,12 @@ class Story extends Component {
     async Static(){
         return Api.get("/statistics")
     }
+    
+    async StoryCard(type){
+        return Api.get(`/story-list/${type}`,)
+    }
 
 
-
-    //http://127.0.0.1:8000/api/admin/reschedule-story/6e179c7e-bd07-452b-9da8-9d58dd3014ee 
     render() {
         return (
             <div>

@@ -9,11 +9,14 @@ import Storydetails from "./Storydetails";
 
 function Storycard() {
     const [selectedOption, setSelectedOption] = useState("boy");
+    const [loading, setLoading] = useState(false);
+    const [loading2, setLoading2] = useState(false);
 
     const handleTabClick = (option) => {
         setSelectedOption(option);
     };
 
+    const type = selectedOption;
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -24,6 +27,48 @@ function Storycard() {
     // const response =JSON.parse(data);
 
     // console.log("response",response)
+
+
+    // const fetching = (pg) => {
+    //     if (loading2) {
+    //       return;
+    //     }
+    //     setLoading2(true);
+    //     const query = `${filters && filters.state ? `&state=${filters.state}` : ''}
+    //       ${filters?.city?.name ? `&city=${filters.city?.name}` : '' || ''}  
+    //       ${filters?.age_group ? `&age_group=${filters.age_group}` : '' || ''}
+    //       ${filters?.academy ? `&academy=${filters.academy}` : '' || ''}
+    //       ${filters?.search ? `&search=${filters.search}` : '' || ''}`;
+    //     const main = new Listings();
+    //     const response = main.LeagueList(query, pg);
+    //     response
+    //       .then((res) => {
+    //         setLoading(false);
+    //         setLoading2(false);
+    //         const newdata = res?.data?.leagues || [];
+    //         setContent((prevData) => {
+    //           if (pg === 1) {
+    //             return newdata;
+    //           } else {
+    //             return [...prevData, ...newdata];
+    //           }
+    //         });
+    //         setPage(res.data.current_page);
+    //         setHasMore(res.data.current_page < res.data.last_page);
+    //       })
+    //       .catch((error) => {
+    //         console.error("Error status:", error?.response?.status);
+    //         console.error("Error data:", error?.response?.data);
+    //         setHasMore(false);
+    //         setLoading(false);
+    //         setLoading2(false);
+    //       });
+    //   };
+    
+    //   useEffect(() => {
+    //     fetching(1);
+    //     setHasMore(true);
+    //   }, [filters]);
 
     return (
         <AuthLayout>

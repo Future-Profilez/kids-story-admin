@@ -4,7 +4,7 @@ import Story from "../../api/Story";
 import { Toaster, toast } from 'react-hot-toast';
 
 
-function Subscriptionadd({ show, handleClose }) {
+function Subscriptionadd({ show, handleClose, onSubscriptionAdded }) {
 
   const initialRegs = {
     package_name: "",
@@ -24,21 +24,24 @@ function Subscriptionadd({ show, handleClose }) {
     setRegs((prevState) => ({ ...prevState, [name]: value }));
     console.table(Regs);
   };
-
   async function handleForms(e) {
     e.preventDefault();
     try {
-      console.log("Submitting data:", Regs);
+        console.log("Submitting data:", Regs);
 
-      const main = new Story();
-      const response = await main.Subscription(Regs);
-      console.log("API Response:", response);
-      toast.success(response.data.message);
-      handleClose();
+        const main = new Story();
+        const response = await main.Subscription(Regs);
+        console.log("API Response:", response);
+        toast.success(response.data.message);
+
+        if (onSubscriptionAdded) {
+            onSubscriptionAdded(response.data.data); 
+        }
     } catch (error) {
-      console.error("API Error:", error);
+        console.error("API Error:", error);
     }
-  }
+}
+
 
 
   return (

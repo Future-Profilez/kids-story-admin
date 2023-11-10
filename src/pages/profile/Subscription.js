@@ -7,33 +7,39 @@ import { useEffect, useState } from "react";
 import Story from "../../api/Story";
 function Subscription() {
 
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const handleShow = () => {
         setShow(true);
     };
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
 
-    const [content, setContent] = useState([])
-
+    const [content, setContent] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const fetchData = async () => {
+        try {
+            const main = new Story();
+            const response = await main.Subscriptionlist();
+            setContent(response.data.data);
+            setLoading(false);
+        } catch (error) {
+            console.log("error", error);
+            setLoading(false);
+        }
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const main = new Story();
-                const response = await main.Subscriptionlist();
-                setContent(response.data.data);
-                setLoading(false);
-            } catch (error) {
-                console.log("error", error);
-                setLoading(false);
-            }
-        };
-
         fetchData();
-    }, []);
+    }, []); 
 
+    const handleSubscriptionAdded = async (newSubscription) => {
+       
+        console.log("Subscription added:", newSubscription);
+       
+        fetchData();
+        handleClose();
+    };
     return (
         <>
 
@@ -146,7 +152,7 @@ function Subscription() {
                         </div>
                     </div>
                 </div>
-                <Subscriptionadd show={show} handleClose={handleClose} />
+                <Subscriptionadd show={show} handleClose={handleClose}  onSubscriptionAdded={handleSubscriptionAdded}/>
 
             </AuthLayout>
         </>

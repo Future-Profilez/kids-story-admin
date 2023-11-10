@@ -14,6 +14,9 @@ function StoryModal({ show, handleClose }) {
     const [showSuccess, setShowSuccess] = useState(false);
     const [selectedUser, setSelectedUser] = useState('');
 
+    const[Boys,setBoys]=useState("DummyBoy")
+    const[girl,setGirls]=useState("DummyGirl")
+
     const handleOptionSelect = (nextStep, user) => {
         if (nextStep >= 1 && nextStep <= 4) {
             setCurrentStep(nextStep);
@@ -49,7 +52,7 @@ function StoryModal({ show, handleClose }) {
     const generateStory = () => {
         if (userTitle && age && gender && genre) {
             setLoading(true);
-            const prompt = `Title: ${userTitle}\nAs an age : ${age}year ,gender :${gender}, I would like to read a ${genre} story. ${userTitle}. Please provide five chapters with subtitles, content, and image prompt, ensuring that the fifth chapter always conveys the moral of the story. Format it in JSON.`;
+            const prompt = `Title: ${userTitle}\nAs an  boyname: ${Boys}  girlname:${girl} age : ${age}year ,gender :${gender}, I would like to read a ${genre} story. ${userTitle}. Please provide five chapters with subtitles, content, and image prompt, ensuring that the fifth chapter always conveys the moral of the story. Format it in JSON.`;
             const requestData = {
                 model: 'gpt-4',
                 messages: [

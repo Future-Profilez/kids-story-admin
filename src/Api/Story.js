@@ -22,6 +22,11 @@ class Story extends Component {
     async Subscriptionlist(){
         return Api.get("/get-subscription-list")
     }
+
+    async Scheduledate(data){
+        return Api.post("/create-story",data)
+    }
+
     render() {
         return (
             <div>

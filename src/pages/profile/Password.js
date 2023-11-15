@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Story from "../../api/Story";
+import Story from "../../Api/Story";
 import { Toaster, toast } from 'react-hot-toast';
 
 

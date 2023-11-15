@@ -4,7 +4,7 @@ import Heading from "../../component/Heading";
 import "../../style/subscription.css";
 import Subscriptionadd from "./Subscriptionadd";
 import { useEffect, useState } from "react";
-import Story from "../../api/Story";
+import Story from "../../Api/Story";
 function Subscription() {
 
     const navigate = useNavigate();

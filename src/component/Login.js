@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "../style/login.css";
 import { useDispatch } from 'react-redux';
 import { Toaster, toast } from 'react-hot-toast';
-import Story from "../api/Story";
+import Story from "../Api/Story";
 import { login } from "../redux/UserSlice";
 
 function Login() {

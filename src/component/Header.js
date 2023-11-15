@@ -17,7 +17,6 @@ function Header() {
     return (
         <>
             {/* header */}
-
             <header className="header" id="header">
                 <div className="header_toggle"> <i className='fa fa-close' id="header-toggle"></i> </div>
             </header>

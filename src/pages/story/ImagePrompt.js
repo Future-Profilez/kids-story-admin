@@ -1,10 +1,10 @@
 import { Image, Modal } from "react-bootstrap";
 import Data from "../../image/Image.png";
 import "../../style/model.css";
-import { useState, useRef } from "react"; // Import useRef
+import { useState, useRef, useEffect } from "react"; // Import useRef
 import Story from "../../image/story-thubnail.png";
 
-function ImagePrompt({ show, handleClose }) {
+function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
     const modalTitleStyle = {
         color: '#FFF',
         textAlign: 'center',
@@ -15,12 +15,18 @@ function ImagePrompt({ show, handleClose }) {
         fontWeight: 600,
     };
 
+    console.log("imagePrompt", imagePrompt)
+
+    const [data, setData] = useState("");
+
+    console.log("data", data)
     const datacss = {
-        width: "401px",
-        height: "286px",
-        borderRadius: "8.833px",
-        background:"black"
+        width: '401px',
+        height: '286px',
+        borderRadius: '8.833px',
+        background: 'black',
     };
+
     const [isLoading, setIsLoading] = useState(true);
     const imageRef = useRef(null);
 
@@ -30,21 +36,40 @@ function ImagePrompt({ show, handleClose }) {
 
     const handleGenerateImage = () => {
         setIsLoading(false);
+        onGenerateImage(imagePrompt);
     };
+
+
+    useEffect(() => {
+        setData(imagePrompt); // Set your default image_prompt here
+    }, [show]); // You might need to include other dependencies if needed
 
     return (
         <>
             <Modal show={show} onHide={handleClose} id="generat-story">
-                <Modal.Header closeButton style={{ borderTop: "1px solid rgba(255,255,255, 0.1)" }}>
-                    <Modal.Title className="modal-image" style={modalTitleStyle}>Generate Image</Modal.Title>
+                <Modal.Header closeButton style={{ borderTop: '1px solid rgba(255,255,255, 0.1)' }}>
+                    <Modal.Title className="modal-image" style={modalTitleStyle}>
+                        Generate Image
+                    </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <div className="input-container">
-                        <input type="text" placeholder="Image Prompt" className="input_field form-control"
-                            id="password_field" style={{
-                                background: "#0B1024", borderRadius: "50px", width: "710px",
-                                height: "66px", color: "white"
-                            }} />
+                        <input
+                            type="text"
+                            placeholder="Image Prompt"
+                            value={data}
+                            name="data"
+                            onChange={(e) => setData(e.target.value)}
+                            className="input_field form-control"
+                            id="password_field"
+                            style={{
+                                background: '#0B1024',
+                                borderRadius: '50px',
+                                width: '710px',
+                                height: '66px',
+                                color: 'white',
+                            }}
+                        />
                     </div>
                     <div className="text-center m-3">
                         <div className="btn blue-gradient-btn" onClick={handleGenerateImage}>
@@ -58,7 +83,10 @@ function ImagePrompt({ show, handleClose }) {
                                 <div className="text-left" style={datacss}>
                                     <p>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-                                            <path d="M20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10ZM3.5 10C3.5 13.5899 6.41015 16.5 10 16.5C13.5899 16.5 16.5 13.5899 16.5 10C16.5 6.41015 13.5899 3.5 10 3.5C6.41015 3.5 3.5 6.41015 3.5 10Z" fill="url(#paint0_angular_140_259)" />
+                                            <path
+                                                d="M20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10ZM3.5 10C3.5 13.5899 6.41015 16.5 10 16.5C13.5899 16.5 16.5 13.5899 16.5 10C16.5 6.41015 13.5899 3.5 10 3.5C6.41015 3.5 3.5 6.41015 3.5 10Z"
+                                                fill="url(#paint0_angular_140_259)"
+                                            />
                                             <defs>
                                                 <radialGradient id="paint0_angular_140_259" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(10 10) rotate(90) scale(10)">
                                                     <stop stop-color="#9054D9" />
@@ -68,22 +96,11 @@ function ImagePrompt({ show, handleClose }) {
                                         </svg>
                                         Image Generating...
                                     </p>
-                                    <Image
-                                        ref={imageRef}
-                                        src={Story}
-                                        alt="story"
-                                        onLoad={handleImageLoad}
-                                    />
+                                    <Image ref={imageRef} src={Story} alt="story" onLoad={handleImageLoad} />
                                 </div>
                             </div>
                         ) : (
-                            <Image
-                                ref={imageRef}
-                                src={Data}
-                                alt="not found"
-                                className="img-fluid"
-                                onLoad={handleImageLoad}
-                            />
+                            <Image ref={imageRef} src={Data} alt="not found" className="img-fluid" onLoad={handleImageLoad} />
                         )}
                     </div>
                 </Modal.Body>

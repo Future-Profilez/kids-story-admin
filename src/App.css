@@ -124,3 +124,9 @@ div#reschedule-popup .modal-content{border-radius: 20px; background: #131C3E;}
   .content-wrapper, .content { min-height: 100%;border-radius: 20px; }
 
 }
+
+
+.nav_link.active {
+  color: #00f; /* Change the color to your preference */
+  font-weight: bold; /* You can adjust the font weight */
+}

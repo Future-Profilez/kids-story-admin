@@ -261,9 +261,9 @@ function StoryModal({ show, handleClose }) {
                     </div>
                 </Modal>
             </>
-            {data && (
+            {/* {data && (
                 <Storylist response={data} style={{ display: "block" }} />
-            )}
+            )} */}
         </>
 
 

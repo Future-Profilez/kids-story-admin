@@ -171,6 +171,7 @@ function Storylist(props) {
                                 <div className="btn blue-gradient-btn">
                                     <span>Confirm & Continue</span>
                                 </div>
+                                
                             </div>
                         </Modal.Body>
                         {/* <Modal.Footer> */}

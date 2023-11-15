@@ -5,7 +5,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { useState } from "react";
 import Password from "./Password"
-import Story from "../../api/Story";
+import Story from "../../Api/Story";
 import { Toaster, toast } from 'react-hot-toast';
 
 import { useNavigate } from "react-router-dom";

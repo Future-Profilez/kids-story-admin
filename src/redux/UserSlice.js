@@ -19,19 +19,19 @@ const UserSlice = createSlice({
             state.isUserLoggedIn = false;
         },
         
-        // getuser: (state, action) => {
-        //     state.users = action.payload.map(user => {
-        //         return {
-        //             email: user.email
+        getuser: (state, action) => {
+            state.users = action.payload.map(user => {
+                return {
+                    email: user.email
 
-        //         }
-        //     })
+                }
+            })
 
-        // },
+        },
 
 
         getData: (state, action) => {
-            state.users = action.payload.story.map(user => {
+            state.users = action.payload.users.map(user => {
                 return {
                     chapter: user.chapter,
                     content: user.content,
@@ -50,7 +50,9 @@ const UserSlice = createSlice({
 
 })
 
-export const { login, logout, adduser, getuser,token } = UserSlice.actions;
+export const { login, logout, adduser, getuser,token,getData } = UserSlice.actions;
 
 export const selectUser = (state) => state.users.users;
+
 export default UserSlice.reducer;
+

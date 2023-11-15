@@ -7,7 +7,12 @@ import ImagePrompt from "./ImagePrompt";
 import { Modal } from "react-bootstrap";
 
 import { useState } from "react";
+import { useSelector, useStore } from "react-redux";
+import { getData } from "../../redux/UserSlice";
 function Storylist() {
+
+    const Story = useSelector(getData);
+    console.log("story", Story)
 
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -17,7 +22,7 @@ function Storylist() {
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
 
-    
+
     return (
         <>
 

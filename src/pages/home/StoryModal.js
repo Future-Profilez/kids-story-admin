@@ -52,7 +52,7 @@ function StoryModal({ show, handleClose }) {
     const generateStory = () => {
         if (userTitle && age && gender && genre) {
             setLoading(true);
-            const prompt = `Title: ${userTitle}\nAs an  boyname: ${Boys}  girlname:${girl} age : ${age}year ,gender :${gender}, I would like to read a ${genre} story. ${userTitle}. Please provide five chapters with subtitles, content, and image prompt, ensuring that the fifth chapter always conveys the moral of the story. Format it in JSON.`;
+            const prompt = `Title: ${userTitle}\nAs an  boyname: ${Boys}  girlname:${girl} age : ${age}year ,gender :${gender}, I would like to read a ${genre} story. ${userTitle} and all detilas in one array name like deilas. Please provide five chapters with subtitles, content, and image prompt, ensuring that the fifth chapter always conveys the moral of the story. always five chapter in one aray  arrya name story  Format it in JSON.`;
             const requestData = {
                 model: 'gpt-4',
                 messages: [
@@ -71,9 +71,10 @@ function StoryModal({ show, handleClose }) {
                     const storyResponse = res.data.choices[0].message.content;
                     try {
                         const parsedStory = JSON.parse(storyResponse);
-                        console.log("storyResponse", storyResponse);
+                        console.log("storyResponse",parsedStory );
                         setStoryData(parsedStory);
-                        const datata = dispatch(adduser(parsedStory));
+                        // navigate("/list");
+                        const datata = dispatch(adduser(storyData));
                         console.log("datata", datata);
                     } catch (error) {
                         console.error("Error parsing story response:", error);

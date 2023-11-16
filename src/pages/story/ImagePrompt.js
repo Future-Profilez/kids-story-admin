@@ -5,6 +5,7 @@ import Story from "../../image/story-thubnail.png";
 
 function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
     const modalTitleStyle = {
+        
         color: '#FFF',
         textAlign: 'center',
         lineHeight: 'normal',

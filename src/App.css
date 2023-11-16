@@ -37,11 +37,30 @@ a {
   top: 0;
   left:-310px;
   width: 302px;
-  height: calc(100vh - 32px); 
+  /* height: calc(100vh - 32px);  */
+  height: 100%;
+  overflow: auto;
   transition: 0.5s;
   z-index: 2;
+} 
+/* width */
+.main-sidebar::-webkit-scrollbar {
+  width: 6px;
 }
 
+/* Track */
+.main-sidebar::-webkit-scrollbar-track {
+  background: #151b34;
+}
+ 
+/* Handle */
+.main-sidebar::-webkit-scrollbar-thumb {  
+  background: #342f71;    
+}
+/* Handle on hover */
+.main-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #3c3591; 
+}
 
 .show {
   left: 0;
@@ -120,6 +139,24 @@ div#reschedule-popup .modal-content{border-radius: 20px; background: #131C3E;}
 .reschedule-action a.delete-button{width: 50px; height: 50px;background-color: #9B0000;display: flex;align-items: center;justify-content: center;border-radius: 50px;}
 .reschedule-action a.delete-button:hover{ background-color: #bd1e1e;}
 
+/* Generate Image */
+.modal-dialog-image #generat-story.modal-dialog{max-width: 1014px;}
+.modal-dialog-image #generat-story .modal-header{padding: 40px 70px 0px;}
+.modal-dialog-image .modal-image{ width: 100%;}
+.modal-dialog-image .body-popup-title:after{left: 0; right: 0;}
+.modal-dialog-image .body-popup-title h3{padding: 0 0 37px;}
+.modal-dialog-image .body-popup-title{margin: 0 0 40px;}
+.modal-dialog-image .date-field-story{margin: 0 0 20px;}
+.modal-dialog-image .date-field-story input.form-control{    padding: 8px 25px;}
+.modal-dialog-image #generat-story .modal-body{padding: 0 74px 50px;}
+.modal-dialog-image .btn{min-width: 196px;    padding: 13px 20px;}
+
+.thumbnail-generating{border-radius: 8.833px; max-width: 401px; margin: 30px auto 0; height: 286px; background: linear-gradient(0deg, #21273E 0%, #21273E 100%), lightgray 50% / cover no-repeat; width: 100%; position: relative; display: flex; align-items: center; justify-content: center;}
+
+.image-loader { position: absolute; left: 25px; top: 25px;color: #FFF; text-align: center; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 500; line-height: normal; }
+.image-loader  svg{vertical-align: text-bottom; margin-right: 6px;}
+
+
 @media screen and (min-width: 768px) { 
   div#body-pd {
     margin: 0;
@@ -133,4 +170,11 @@ div#reschedule-popup .modal-content{border-radius: 20px; background: #131C3E;}
   }
   .content-wrapper, .content { min-height: 100%;border-radius: 20px; }
 
+}
+
+
+
+.nav_link.active {
+  color: red; /* Change this to the desired color when the link is active */
+  /* You can add other styles as needed */
 }

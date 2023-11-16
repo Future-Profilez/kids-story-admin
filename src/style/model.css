@@ -37,10 +37,12 @@
     -webkit-text-fill-color: transparent;
 }
 
+
 #generat-story .modal-title svg {
     position: absolute;
     left: 50px;
     top: 50px;
+    align-items: center;
 }
 
 #generat-story .modal-header .btn-close {

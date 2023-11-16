@@ -1,10 +1,44 @@
 import { Component } from 'react';
-import Ai from './Ai';
+import Api from './Api';
 class Story extends Component {
 
-    async ChatAi() {
-        return Ai.post("completions")
+    async Login(data) {
+        return Api.post("/login", data)
     }
+
+    async Profile(data) {
+        return Api.post("/update-profile", data)
+    }
+
+    
+    async Password(data) {
+        return Api.post("/change-password", data)
+    }
+
+    async Subscription(data){
+        return Api.post("/create-subscription", data)
+    }
+
+    async Subscriptionlist(){
+        return Api.get("/get-subscription-list")
+    }
+
+    async Scheduledate(data){
+        return Api.post("/create-story",data)
+    }
+
+    async Reschedule(id,data){
+        return Api.post(`/reschedule-story/${id}`,data)
+    }
+    async Static(){
+        return Api.get("/statistics")
+    }
+    
+    async StoryCard(type,query){
+        return Api.get(`/story-list/${type}?${query}`,)
+    }
+
+
     render() {
         return (
             <div>

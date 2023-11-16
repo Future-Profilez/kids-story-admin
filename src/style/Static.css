@@ -1,0 +1,50 @@
+.static-one {
+  display: flex;
+  padding: 16px;
+  width: 291px;
+  height: 90px;
+  justify-content: space-between;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #000518;
+}
+.static-svg {
+  padding: 10px;
+  border-radius: 5px;
+  background: #080f29;
+}
+
+.static-par h6 {
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0px;
+  font-family: Poppins;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.static-par p {
+  color: #fff;
+  font-family: Poppins;
+  text-align: center;
+  font-size: 26px;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.Static-image {
+  display: flex;
+  justify-content: center;
+}
+.Static-image img {
+  padding: 17px;
+  width: 1041px;
+  height: 462px;
+  border-radius: 10px;
+}
+
+.static-data {
+  margin: -8px;
+}

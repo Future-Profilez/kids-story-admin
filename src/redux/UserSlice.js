@@ -1,23 +1,37 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-
 const UserSlice = createSlice({
     name: "users",
     initialState: {
-        users: []
+        isUserLoggedIn: false,
+        users: null,
     },
     reducers: {
-
+    
         login: (state, action) => {
             state.users = action.payload;
+            state.isUserLoggedIn = true;
         },
 
-        logout: (state, action) => {
+        
+        logout: (state) => {
             state.users = null;
+            state.isUserLoggedIn = false;
+        },
+        
+        getuser: (state, action) => {
+            state.users = action.payload.map(user => {
+                return {
+                    email: user.email
+
+                }
+            })
+
         },
 
-        getUser: (state, action) => {
-            state.users = action.payload.story.map(user => {
+
+        getData: (state, action) => {
+            state.users = action.payload.users.map(user => {
                 return {
                     chapter: user.chapter,
                     content: user.content,
@@ -28,7 +42,7 @@ const UserSlice = createSlice({
             })
         },
         adduser: (state, action) => {
-            state.users.push(action.payload)
+            state.users.push(action.payload);
         },
 
 
@@ -36,7 +50,9 @@ const UserSlice = createSlice({
 
 })
 
-export const { login, logout, adduser, } = UserSlice.actions;
+export const { login, logout, adduser, getuser,token,getData } = UserSlice.actions;
 
-export const selectuser = (state) => state.users.users;
+export const selectUser = (state) => state.users.users;
+
 export default UserSlice.reducer;
+

@@ -2,7 +2,7 @@ import axios from 'axios';
 
 
 const APP_URL = process.env.REACT_APP_URL
-const tokens = "69|UanKi5g3C4KpYvDhcuDNqKLS2soS0q3DjMNvcVts7f1804ad"
+const tokens = "5|CG3zku8Y8MoVelrPtxy4Kw06FtKzKBel5Pnu8PPYbfe9c96f"
 console.log("BASE_URL", APP_URL)
 let Api = axios.create({
   baseURL: APP_URL,

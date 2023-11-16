@@ -1,8 +1,9 @@
 import { Image, Modal } from "react-bootstrap";
-import Data from "../../image/Image.png";
 import "../../style/model.css";
 import { useState, useRef, useEffect } from "react"; // Import useRef
 import Story from "../../image/story-thubnail.png";
+import imageAi from "../../api/imageAi";
+
 
 function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
     const modalTitleStyle = {
@@ -34,16 +35,46 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
         setIsLoading(true);
     };
 
-    const handleGenerateImage = () => {
-        setIsLoading(false);
-        onGenerateImage(imagePrompt);
+    const handleGenerateImage = async () => {
+        setIsLoading(true);
+    
+        try {
+            const response = await imageAi.post("/generations", {
+                prompt: imagePrompt,
+                style_id:"30",
+                filename:"D:\kids-story-admin\src\Genaratoerimage/Image"
+            });
+    
+            if (!response.data.success) {
+                throw new Error('Failed to generate image');
+            }
+    
+            const generatedImageUrl = response.data.data.url;
+            setData(generatedImageUrl);
+
+            downloadImage(generatedImageUrl, "generated_image.png");
+        } catch (error) {
+            console.error('Error generating image:', error);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+    const url="D:\kids-story-admin\src\Genaratoerimage"
+    const filename="/Image"
+    const downloadImage = (url, fileName ) => {
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     };
 
 
-    useEffect(() => {
-        setData(imagePrompt); // Set your default image_prompt here
-    }, [show]); // You might need to include other dependencies if needed
 
+    useEffect(() => {
+        setData(imagePrompt); 
+    }, [show]); 
     return (
         <>
             <Modal show={show} onHide={handleClose} id="generat-story">
@@ -100,7 +131,7 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
                                 </div>
                             </div>
                         ) : (
-                            <Image ref={imageRef} src={Data} alt="not found" className="img-fluid" onLoad={handleImageLoad} />
+                            <Image ref={imageRef} src={data} alt="not found" className="img-fluid" onLoad={handleImageLoad} />
                         )}
                     </div>
                 </Modal.Body>

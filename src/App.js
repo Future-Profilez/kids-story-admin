@@ -17,6 +17,8 @@ import Login from "./component/Login";
 function App() {
   const user = useSelector(login);
 
+  const IMAGE_BASE_URL = process.env.REACT_APP_IMAGE_URL;
+  console.log("Base", IMAGE_BASE_URL);
   return (
     <div id="body-pd" className="App">
       <Router>

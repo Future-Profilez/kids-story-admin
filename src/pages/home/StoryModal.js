@@ -4,13 +4,13 @@ import "../../style/model.css"
 import Ai from "../../api/Ai"
 import data from '../../Data/genre.json'
 import agegroup from "../../Data/Age.json"
-import { useDispatch } from "react-redux";
-import { adduser, selectuser } from "../../redux/UserSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { adduser, getData, selectuser } from "../../redux/UserSlice";
 import { useNavigate } from "react-router-dom";
 import Storylist from "../story/Storylist";
 function StoryModal({ show, handleClose }) {
-
     const dispatch = useDispatch();
+    const { users } = useSelector((state) => state.users);
     const [currentStep, setCurrentStep] = useState(1);
     const [showSuccess, setShowSuccess] = useState(false);
     const [selectedUser, setSelectedUser] = useState('');
@@ -59,8 +59,8 @@ function StoryModal({ show, handleClose }) {
                 const prompt =
                     `Title: ${userTitle}\nAs an  boyname: ${Boys}  girlname:${girl} age : ${age}year ,gender :${gender}, 
                     I would like to read a ${genre} story. ${userTitle} . 
-                    Please provide five chapters with subtitles, content, and image prompt, 
-                    ensuring that the fifth chapter always conveys the moral of the story. give response in json format.`
+                    Please provide five chapters with subtitles, content, and imageprompt, 
+                    ensuring that the fifth chapter always conveys the moral of the story five chapert in one variable store the data . give response in json format.`
                 //const prompt = `what is capital of india. Format it in JSON.`;
                 const requestData = {
                     model: 'gpt-4',
@@ -80,15 +80,18 @@ function StoryModal({ show, handleClose }) {
                         const storyResponse = res.data.choices[0].message.content;
                         console.log("storyResponse", storyResponse);
                         const Parstory = JSON.parse(storyResponse);
+                        dispatch(adduser(Parstory));
                         console.log("Parstory", Parstory);
                         storyres = Parstory;
                         setCard(storyres);
+                         navigate('/list');
                     }).catch((error) => {
                         console.log("error", error);
                         setLoading(false);
                     });
             }
         } catch (error) {
+
             console.log("Error", error)
         }
 
@@ -211,8 +214,6 @@ function StoryModal({ show, handleClose }) {
                             {currentStep === 4 && (
                                 loading ? (
 
-
-
                                     showSuccess && (
                                         <div className="succes" id="successpopup" >
                                             <Modal.Body>
@@ -261,9 +262,6 @@ function StoryModal({ show, handleClose }) {
                     </div>
                 </Modal>
             </>
-            {/* {data && (
-                <Storylist response={data} style={{ display: "block" }} />
-            )} */}
         </>
 
 

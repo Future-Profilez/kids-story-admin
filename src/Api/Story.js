@@ -34,8 +34,8 @@ class Story extends Component {
         return Api.get("/statistics")
     }
     
-    async StoryCard(type){
-        return Api.get(`/story-list/${type}`,)
+    async StoryCard(type,query){
+        return Api.get(`/story-list/${type}?${query}`,)
     }
 
 

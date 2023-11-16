@@ -6,11 +6,13 @@ import Heading from "../../component/Heading";
 import ImagePrompt from "./ImagePrompt";
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 function Storylist(props) {
-    const storyData = props.response;
-    console.log("storyData", storyData);
 
+    const dispatch = useDispatch();
+    const { users } = useSelector((state) => state.users);
+    console.log("users",users)
     const data = {
         title: "Tit for Tat in Space",
         cover_image: "Image of a starry sky with a small spaceship",

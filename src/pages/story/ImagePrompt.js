@@ -1,9 +1,8 @@
 import { Image, Modal } from "react-bootstrap";
 import "../../style/model.css";
-import { useState, useRef, useEffect } from "react"; // Import useRef
+import { useState, useRef, useEffect } from "react";
 import Story from "../../image/story-thubnail.png";
 import imageAi from "../../api/imageAi";
-
 
 function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
     const modalTitleStyle = {
@@ -16,65 +15,59 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
         fontWeight: 600,
     };
 
-    console.log("imagePrompt", imagePrompt)
-
     const [data, setData] = useState("");
-
-    console.log("data", data)
-    const datacss = {
-        width: '401px',
-        height: '286px',
-        borderRadius: '8.833px',
-        background: 'black',
-    };
-
     const [isLoading, setIsLoading] = useState(true);
     const imageRef = useRef(null);
 
     const handleImageLoad = () => {
-        setIsLoading(true);
+        setIsLoading(false);
     };
 
-    const handleGenerateImage = async () => {
-        setIsLoading(true);
-    
-        try {
-            const response = await imageAi.post("/generations", {
-                prompt: imagePrompt,
-                style_id:"30",
-                filename:"D:\kids-story-admin\src\Genaratoerimage/Image"
-            });
-    
-            if (!response.data.success) {
-                throw new Error('Failed to generate image');
-            }
-    
-            const generatedImageUrl = response.data.data.url;
-            setData(generatedImageUrl);
+    // const handleGenerateImage = async () => {
+    //     setIsLoading(true);
 
-            downloadImage(generatedImageUrl, "generated_image.png");
-        } catch (error) {
-            console.error('Error generating image:', error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-    const url="D:\kids-story-admin\src\Genaratoerimage"
-    const filename="/Image"
-    const downloadImage = (url, fileName ) => {
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = fileName;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
+    //     try {
+    //         const response = await imageAi.post("/generations", {
+    //             prompt: imagePrompt,
+    //             style_id: "30",
+    //             file: "/Genaratoerimage/data",
+    //         });
+    //         console.log("response", response)
+    //         if (response.headers['content-type'] === 'image/png') {
+    //             const imageUrl = URL.createObjectURL(new Blob([response.data], { type: 'image/png' }));
+    //             console.log("imageUrl", imageUrl)
+    //             setData(imageUrl);
 
+    //             if (imageUrl) {
+    //                 const link = document.createElement("a");
+    //                 link.href = "../../Genaratoerimage/data";
+    //                 link.download = "data.png";
+    //                 document.body.appendChild(link);
+    //                 link.click();
+    //                 document.body.removeChild(link);
+    //             } else {
+    //                 console.error('No image data available for download.');
+    //             }
+    //         } else {
+    //             console.error('Invalid image data received from the server.');
+    //         }
+    //     } catch (error) {
+    //         console.error('Error generating or downloading image:', error);
+    //     } finally {
+    //         setIsLoading(false);
+    //     }
+    // };
+
+const handleGenerateImage =async (e)=>{
+    e.preventDefault();
+    setIsLoading(true);
+}
 
 
     useEffect(() => {
-        setData(imagePrompt); 
-    }, [show]); 
+        setData(imagePrompt);
+    }, [show]);
+
     return (
         <>
             <Modal show={show} onHide={handleClose} id="generat-story">
@@ -88,8 +81,8 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
                         <input
                             type="text"
                             placeholder="Image Prompt"
-                            value={data}
                             name="data"
+                            value={imagePrompt}
                             onChange={(e) => setData(e.target.value)}
                             className="input_field form-control"
                             id="password_field"
@@ -106,12 +99,13 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
                         <div className="btn blue-gradient-btn" onClick={handleGenerateImage}>
                             Generate
                         </div>
+
                     </div>
 
                     <div className="d-flex justify-content-around gap-3">
                         {isLoading ? (
                             <div className="thumbnail">
-                                <div className="text-left" style={datacss}>
+                                <div className="text-left" style={{ width: '401px', height: '286px', borderRadius: '8.833px', background: 'black' }}>
                                     <p>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                                             <path
@@ -120,8 +114,8 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
                                             />
                                             <defs>
                                                 <radialGradient id="paint0_angular_140_259" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(10 10) rotate(90) scale(10)">
-                                                    <stop stop-color="#9054D9" />
-                                                    <stop offset="1" stop-color="#A04DFF" stop-opacity="0" />
+                                                    <stop stopColor="#9054D9" />
+                                                    <stop offset="1" stopColor="#A04DFF" stopOpacity="0" />
                                                 </radialGradient>
                                             </defs>
                                         </svg>

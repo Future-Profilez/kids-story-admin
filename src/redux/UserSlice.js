@@ -42,7 +42,7 @@ const UserSlice = createSlice({
             })
         },
         adduser: (state, action) => {
-            state.users.push(action.payload)
+            state.users.push(action.payload);
         },
 
 

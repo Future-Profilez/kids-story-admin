@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AuthLayout from "../../component/AuthLayout";
 import data from "../../image/login.png"
 import Heading from "../../component/Heading";
+import slugify from "react-slugify";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { Link } from "react-router-dom";
@@ -13,7 +14,8 @@ function Storycard() {
     const [loading, setLoading] = useState(false);
     const [loadings, setLoadings] = useState(false);
     const [searchQuery, setSearchQuery] = useState("");
-    const[content,setContent]=useState({})
+    const [content, setContent] = useState([]);
+
 
     const handleTabClick = (option) => {
         setSelectedOption(option);
@@ -38,14 +40,18 @@ function Storycard() {
     }
 
     const fetching = () => {
-       
         const main = new Story();
         const response = main.StoryCard(type);
         response
           .then((res) => {
             console.log("res",res)
-            
-            setContent(res?.data); 
+            if (Array.isArray(res.data.data)) {
+                setContent(res.data.data);
+              } else {
+                console.error("Data is not an array:", res.data);
+                // Handle the error or set content to an empty array, depending on your use case
+                setContent([]);
+              } 
           })
           .catch((error) => {
             console.error("Error status:", error?.response?.status);
@@ -145,7 +151,7 @@ function Storycard() {
                                                 index)=>(
                                                 <div className="col-md-3" key={index}>
                                                     <div className="card">
-                                                        <Link to={item.uuid} onClick={handleShow}>
+                                                        <Link to={`/card/${slugify(item.uuid)}`} onClick={handleShow}>
                                                             <img className="card-img-top" src={item.story_img ||data} alt="Card cap" />
                                                             <div className="card-body">
                                                                 <h5 className="card-title">
@@ -167,7 +173,7 @@ function Storycard() {
                                                 </div>
                                         </div>
                                     </Tab>
-                                    {/* <Tab eventKey="girl" title="girl">
+                                    <Tab eventKey="girl" title="girl">
                                     <div className="filter-search">
                                             <div class="search">
                                                 <input type="search" placeholder="" value={searchQuery}
@@ -213,7 +219,7 @@ function Storycard() {
                                         </div>
                                         <div className="story-card">
                                             <div className="row">
-                                                { content.map((item,key)=>(
+                                                {content &&  content.map((item,key)=>(
                                                 <div className="col-md-3" key={key}>
                                                     <div className="card">
                                                         <Link to={item.uuid} onClick={handleShow}>
@@ -238,7 +244,7 @@ function Storycard() {
                                                
                                             </div>
                                         </div>
-                                    </Tab>  */}
+                                    </Tab> 
 
                                 </Tabs>
                             </div>

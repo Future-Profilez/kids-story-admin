@@ -38,24 +38,19 @@ function Storycard() {
     }
 
     const fetching = () => {
-        if (loadings) {
-          return false;
-        }
-        setLoadings(true);
+       
         const main = new Story();
         const response = main.StoryCard(type);
         response
           .then((res) => {
             console.log("res",res)
-            setLoading(false);
-            setLoadings(false);
-            setContent(res?.data?.data); 
+            
+            setContent(res?.data); 
           })
           .catch((error) => {
             console.error("Error status:", error?.response?.status);
             console.error("Error data:", error?.response?.data);
-            setLoading(false);
-            setLoadings(false);
+          
           });
       };
       
@@ -146,9 +141,9 @@ function Storycard() {
                                         </div>
                                         <div className="story-card">
                                             <div className="row">
-                                                {content && content.map((item,key)=>(
-
-                                                <div className="col-md-3" key={key}>
+                                                {content && content.map((item,
+                                                index)=>(
+                                                <div className="col-md-3" key={index}>
                                                     <div className="card">
                                                         <Link to={item.uuid} onClick={handleShow}>
                                                             <img className="card-img-top" src={item.story_img ||data} alt="Card cap" />
@@ -169,11 +164,10 @@ function Storycard() {
                                                     </div>
                                                 </div>
                                                 ))}
-                                               
-                                            </div>
+                                                </div>
                                         </div>
                                     </Tab>
-                                    <Tab eventKey="girl" title="girl">
+                                    {/* <Tab eventKey="girl" title="girl">
                                     <div className="filter-search">
                                             <div class="search">
                                                 <input type="search" placeholder="" value={searchQuery}
@@ -219,7 +213,7 @@ function Storycard() {
                                         </div>
                                         <div className="story-card">
                                             <div className="row">
-                                                {content &&content.map((item,key)=>(
+                                                { content.map((item,key)=>(
                                                 <div className="col-md-3" key={key}>
                                                     <div className="card">
                                                         <Link to={item.uuid} onClick={handleShow}>
@@ -244,7 +238,7 @@ function Storycard() {
                                                
                                             </div>
                                         </div>
-                                    </Tab> 
+                                    </Tab>  */}
 
                                 </Tabs>
                             </div>

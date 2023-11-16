@@ -1,8 +1,27 @@
 import { Image, Modal } from "react-bootstrap";
 import Data from "../../image/list.png";
 import story from "../../image/card.png";
+import { useParams } from "react-router-dom";
+import { useEffect } from "react";
+import Story from "../../Api/Story";
 
 function Storydetails({ show, handleClose }) {
+const{uuid}=useParams();
+
+console.log("uuid",uuid);
+
+useEffect(()=>{
+const main= Story();
+const response= main.Storydetails(uuid);
+console.log("response",response);
+response.then((res)=>(
+    console.log("res",res)
+)).catch((error)=>(
+    console.log("error",error)
+))
+
+},[uuid])
+
     return (
         <>
             <Modal show={show} onHide={handleClose} id="reschedule-popup">

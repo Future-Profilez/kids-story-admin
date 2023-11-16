@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import "../../style/model.css"
-import Ai from "../../api/Ai"
+import Ai from "../../Api/Ai"
 import data from '../../Data/genre.json'
 import agegroup from "../../Data/Age.json"
 import { useDispatch, useSelector } from "react-redux";
 import { adduser, getData, selectuser } from "../../redux/UserSlice";
 import { useNavigate } from "react-router-dom";
-import Storylist from "../story/Storylist";
 function StoryModal({ show, handleClose }) {
     const dispatch = useDispatch();
     const { users } = useSelector((state) => state.users);
@@ -213,7 +212,6 @@ function StoryModal({ show, handleClose }) {
 
                             {currentStep === 4 && (
                                 loading ? (
-
                                     showSuccess && (
                                         <div className="succes" id="successpopup" >
                                             <Modal.Body>

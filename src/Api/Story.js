@@ -34,11 +34,21 @@ class Story extends Component {
         return Api.get("/statistics")
     }
     
-    async StoryCard(type,query){
-        return Api.get(`/story-list/${type}?${query}`,)
+    async StoryCard(type){
+        return Api.get(`/story-list/${type}`,)
     }
 
+    async Storydetilas(uuid){
+        return Api.get(`/story-detail/${uuid}`)
+    }
 
+    async storydelte(uuid){
+        return Api.get(`/delete-story/${uuid}`)
+    }
+
+    async storyreshedule(uuid,data){
+        return Api.post(`/reschedule-story/${uuid}`,data)
+    }
     render() {
         return (
             <div>

@@ -5,7 +5,7 @@ import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import { Modal } from "react-bootstrap";
 import "../../style/model.css"
-import Story from  "../../api/Story"
+import Story from  "../../Api/Story"
 
 
 import { useState } from "react";

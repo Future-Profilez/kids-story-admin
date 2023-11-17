@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import Api from './Api';
+import Api from '../Apis/Api';
 class Story extends Component {
 
     async Login(data) {

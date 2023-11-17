@@ -7,6 +7,7 @@ import ImagePrompt from "./ImagePrompt";
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 
 function Storylist(props) {
 
@@ -84,6 +85,11 @@ function Storylist(props) {
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
 
+const navigate =useNavigate();
+
+    function handlecontinues(){
+        navigate('/schedule')
+    }
     return (
         <>
             <AuthLayout>
@@ -170,7 +176,7 @@ function Storylist(props) {
                                 Are you sure you have read this story?
                             </h5>
                             <div className="text-center">
-                                <div className="btn blue-gradient-btn">
+                                <div className="btn blue-gradient-btn" onClick={handlecontinues}>
                                     <span>Confirm & Continue</span>
                                 </div>
                                 

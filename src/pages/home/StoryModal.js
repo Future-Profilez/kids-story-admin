@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import "../../style/model.css"
-import Ai from "../../Api/Ai"
+import Ai from "../../Apis/Ai"
 import data from '../../Data/genre.json'
 import agegroup from "../../Data/Age.json"
 import { useDispatch, useSelector } from "react-redux";

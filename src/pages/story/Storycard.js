@@ -7,7 +7,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { Link } from "react-router-dom";
 import Storydetails from "./Storydetails";
-import Story from "../../Api/Story";
+import Story from "../../Apis/Story";
 
 function Storycard() {
     const [selectedOption, setSelectedOption] = useState("boy");

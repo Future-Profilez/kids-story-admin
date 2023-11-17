@@ -3,7 +3,7 @@ import Data from "../../image/list.png";
 import story from "../../image/card.png";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import Story from "../../Api/Story";
+import Story from "../../Apis/Story";
 
 function Storydetails({ show, handleClose }) {
 const{uuid}=useParams();

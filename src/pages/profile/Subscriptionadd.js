@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
-import Story from "../../Api/Story";
+import Story from "../../Apis/Story";
 import { Toaster, toast } from 'react-hot-toast';
 
 

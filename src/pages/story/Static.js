@@ -5,7 +5,7 @@ import "../../style/Static.css"
 import data from "../../image/graph.png"
 import { Image } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import Story from "../../Api/Story";
+import Story from "../../Apis/Story";
 
 function Static() {
     const [Contnet, setContent] = useState([])

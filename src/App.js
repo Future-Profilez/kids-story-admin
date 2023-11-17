@@ -13,6 +13,7 @@ import PrivateRouter from "./component/PrivateRouter";
 import { useSelector } from 'react-redux';
 import { login, selectuser } from './redux/UserSlice';
 import Login from "./component/Login";
+import Storydetails from "./pages/story/Storydetails";
 
 function App() {
   const user = useSelector(login);
@@ -26,13 +27,13 @@ function App() {
           <Route path="/" element={<Login/>} />
           <Route path="/home" element={<Homepage />} />
           <Route path="/card" element={<Storycard />} />
+          {/* <Route path="/card/:uuid" component={<Storydetails/>} /> */}
           <Route path="/list" element={<Storylist />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/subscription" element={<Subscription />} />
           <Route path="/schedule" element={<Schedule />} />
           <Route path="/static" element={<Static />} />
         </Routes>
-
       </Router>
     </div>
   );

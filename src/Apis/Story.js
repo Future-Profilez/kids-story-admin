@@ -42,7 +42,7 @@ class Story extends Component {
         return Api.get(`/story-detail/${uuid}`)
     }
 
-    async storydelte(uuid){
+    async storydelete(uuid){
         return Api.get(`/delete-story/${uuid}`)
     }
 

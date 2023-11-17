@@ -12,6 +12,10 @@ const UserSlice = createSlice({
             state.users = action.payload;
             state.isUserLoggedIn = true;
         },
+        token: (state, action) => {
+            state.users = action.payload;
+            state.isUserLoggedIn = true;
+        },
 
         
         logout: (state) => {

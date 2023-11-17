@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AuthLayout from "../../component/AuthLayout";
 import data from "../../image/login.png"
 import Heading from "../../component/Heading";
@@ -9,10 +9,11 @@ import Storydetails from "./Storydetails";
 import Story from "../../Apis/Story";
 
 function Storycard() {
+    const inputref  = useRef(null);
     const [selectedOption, setSelectedOption] = useState("boy");
     const [loading, setLoading] = useState(false);
     const [loadings, setLoadings] = useState(false);
-    const [searchQuery, setSearchQuery] = useState("");
+    const [searchQuery, setSearchQuery] = useState(inputref.current);
     const [content, setContent] = useState([]);
     const [selectedUuid, setSelectedUuid] = useState("");
     const [selectSort, setSelectSort] = useState("");
@@ -30,18 +31,34 @@ function Storycard() {
 
 
     const handlesort = (e) => {
-        console.log("e.target.value", e.target.value);
         setSelectSort(e.target.value);
-    }
-
+    };
+    
+    
     const handlegenre = (e) => {
-        console.log("e.target.value", e.target.value);
         setSelectedGenre(e.target.value);
-    }
+    };
+let searchvalue = "";
+    const handlesearch = (e) => {
+      searchvalue =  e.target.value;
+        setSearchQuery(searchvalue)
+    };
+
+    useEffect(()=> { 
+        setSearchQuery(searchvalue);
+    },[searchvalue]);
+    
 
     const fetching = () => {
+        const query = `${
+            selectSort ? `&sortBy=${selectSort}` : ''
+        }${
+            selectedGenre ? `&genre_name=${selectedGenre}` : ''
+        }${
+            searchQuery ? `&search=${searchQuery}` : ''
+        }`;
         const main = new Story();
-        const response = main.StoryCard(type);
+        const response = main.StoryCard(type, query);
         response
             .then((res) => {
                 if (Array.isArray(res?.data?.data)) {
@@ -54,43 +71,38 @@ function Storycard() {
             .catch((error) => {
                 console.error("Error status:", error?.response?.status);
                 console.error("Error data:", error?.response?.data);
-
             });
     };
-
+    
 
     useEffect(() => {
         fetching();
-    }, [type]);
+    }, [type, selectSort,selectedGenre,searchQuery]);
 
     const handleShow = (uuid) => {
         setShow(true);
-
         setSelectedUuid(uuid);
     };
-
-
-
-
-
-console.log("content",content)
-
 
     const Listing = () => {
         return (
             <>
                 <div className="filter-search">
-                    <div class="search">
-                        <input type="search" placeholder="" value={searchQuery}
-                            onChange={(e) => setSearchQuery(e.target.value)} />
-                        <button >
+                    <div className="search">
+                        <input type="search" placeholder="search" 
+                          value={searchQuery} ref={inputref}
+                          onChange={handlesearch}
+                        />
+                        <button   >
                             Search
                         </button>
                     </div>
                     <div className="dropdwon-filter">
                         <div className="story-sort">
                             <h1>SortBy: </h1>
-                            <select className="select" value={selectSort} onChange={handlesort}>
+                            <select className="select" 
+                            value={selectSort} onChange={handlesort}
+                            >
                                 <option value="">
                                     {loading ? "LOADING ...." : "All Sort BY"}
                                 </option>
@@ -128,7 +140,7 @@ console.log("content",content)
                             index) => (
                             <div className="col-md-3" key={index}>
                                 <div className="card">
-                                    <Link  onClick={() => handleShow(item.uuid)} >
+                                    <Link onClick={() => handleShow(item.uuid)} >
                                         <img className="card-img-top" src={item.story_img || data} alt="Card cap" />
                                         <div className="card-body">
                                             <h5 className="card-title">

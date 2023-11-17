@@ -6,7 +6,7 @@ import "../style/login.css";
 import { useDispatch } from 'react-redux';
 import { Toaster, toast } from 'react-hot-toast';
 import Story from "../Apis/Story";
-import { login } from "../redux/UserSlice";
+import { login, token } from "../redux/UserSlice";
 
 function Login() {
     const navigate = useNavigate();
@@ -36,14 +36,15 @@ function Login() {
             const main = new Story();
             const response = await main.Login(Regs);
             console.log("res", response)
-            if (response.data.status === "true") {
-                const res = dispatch(login(response.data.data))
-                console.log("login", res);
-                // const token = dispatch(token(response.data.token));
-                // console.log("token", token);
+            const res = dispatch(login(response.data))
+            console.log("login", res);
+            if (response.data.status === true) {
+                // const tokens = dispatch(token(response.data.token))
+                // console.log("token",tokens);
                 toast.success(response.data.message);
                 navigate("/home")
             } else {
+
                 toast.error(response.data.message)
             }
 

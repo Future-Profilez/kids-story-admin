@@ -2,9 +2,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { logout, selectuser } from "../redux/UserSlice";
 import { NavLink } from "react-router-dom";
+import { func } from "prop-types";
+import Story from "../Apis/Story";
+import { useEffect } from "react";
 
 
 function Header() {
+
+
     const user = useSelector(logout);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -13,6 +18,21 @@ function Header() {
         dispatch(logout());
         navigate('/');
     };
+
+
+    const handellogouts = () => {
+        const main = new Story();
+        const response = main.StoryLogout();
+        response.then((res) => {
+            console.log("res", res)
+        }).catch((error) => {
+            console.log("erorr", error)
+        })
+    }
+    useEffect(() => {
+        handellogouts();
+    }, [])
+
 
     return (
         <>
@@ -64,7 +84,7 @@ function Header() {
                                 </svg>Setting  </NavLink>
                             </li>
                             <li>
-                                <div onClick={handleLogout}>
+                                <div onClick={handellogouts}>
                                     <NavLink className="nav_link" activeClassName="active">
                                         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M2.16667 15.5C1.70833 15.5 1.31583 15.3367 0.989168 15.01C0.662501 14.6833 0.499446 14.2911 0.500001 13.8333V2.16667C0.500001 1.70833 0.663335 1.31583 0.990001 0.989168C1.31667 0.662501 1.70889 0.499446 2.16667 0.500001H8V2.16667H2.16667V13.8333H8V15.5H2.16667ZM11.3333 12.1667L10.1875 10.9583L12.3125 8.83333H5.5V7.16667H12.3125L10.1875 5.04167L11.3333 3.83334L15.5 8L11.3333 12.1667Z" fill="white" />

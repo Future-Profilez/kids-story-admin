@@ -81,7 +81,6 @@ function Schedule() {
             console.log("API Response:", response);
             handleCloseContinue();
             return false;
-           toast.success(response.data.message);
         } catch (error) {
             console.error("API Error:", error);
         }

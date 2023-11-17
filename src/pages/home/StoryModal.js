@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import "../../style/model.css"
 import Ai from "../../Apis/Ai"
-import data from '../../Data/genre.json'
+import genres from '../../Data/genre.json'
 import agegroup from "../../Data/Age.json"
 import { useDispatch, useSelector } from "react-redux";
 import { adduser, getData, selectuser } from "../../redux/UserSlice";
@@ -31,7 +31,7 @@ function StoryModal({ show, handleClose }) {
 
 
 
-    const storyJSON = JSON.stringify(data, null, 2);
+    const storyJSON = JSON.stringify(genres, null, 2);
     console.log(storyJSON);
 
 
@@ -83,7 +83,7 @@ function StoryModal({ show, handleClose }) {
                         console.log("Parstory", Parstory);
                         storyres = Parstory;
                         setCard(storyres);
-                         navigate('/list');
+                        navigate('/list');
                     }).catch((error) => {
                         console.log("error", error);
                         setLoading(false);
@@ -189,7 +189,7 @@ function StoryModal({ show, handleClose }) {
                                     </div>
                                     <div className="button-list-form">
                                         <ul>
-                                            {data && data.map((item, index) => (
+                                            {genres && genres.map((item, index) => (
                                                 <li key={index}>
                                                     <div className="button-block" value={item.name} onChange={(e) => setGenre(e.target.value)}>
                                                         <input type="radio" value={item.name} name={item.name}

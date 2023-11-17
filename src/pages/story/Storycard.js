@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import AuthLayout from "../../component/AuthLayout";
 import data from "../../image/login.png"
 import Heading from "../../component/Heading";
-import slugify from "react-slugify";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { Link } from "react-router-dom";
@@ -74,7 +73,7 @@ function Storycard() {
 
 
 
-
+console.log("content",content)
 
 
     const Listing = () => {

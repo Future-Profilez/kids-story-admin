@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Image } from "react-bootstrap";
 import image from "../image/login.png";
 import { useNavigate } from "react-router-dom";
@@ -7,14 +7,23 @@ import { useDispatch } from 'react-redux';
 import { Toaster, toast } from 'react-hot-toast';
 import Story from "../Apis/Story";
 import { login, token } from "../redux/UserSlice";
+import { UserContext } from "../context/UserContextProvider";
+
 
 function Login() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+
+
+    const { setLoginUser } = useContext(UserContext) || {};
+
+console.log("Context Value:", { setLoginUser });
+
     const [Regs, setRegs] = useState({
         password: "",
         email: "",
+
     });
 
     const [showPassword, setShowPassword] = useState(false);
@@ -36,13 +45,14 @@ function Login() {
             const main = new Story();
             const response = await main.Login(Regs);
             console.log("res", response)
-            const res = dispatch(login(response.data))
-            console.log("login", res);
+            if (typeof setLoginUser === 'function') {
+                setLoginUser(response.data.data);
+            }
+            console.log("login", response);
             if (response.data.status === true) {
-                // const tokens = dispatch(token(response.data.token))
-                // console.log("token",tokens);
+              localStorage.setItem("token", response.data.token);
+              navigate("/home")
                 toast.success(response.data.message);
-                navigate("/home")
             } else {
 
                 toast.error(response.data.message)

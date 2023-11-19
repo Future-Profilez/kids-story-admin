@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import "./style/bootstrap.css";
+import "./style/Bootstrap.css";
 import './App.css';
 import Homepage from "./pages/home/Homepage";
 import Storylist from "./pages/story/Storylist";
@@ -13,7 +13,7 @@ import PrivateRouter from "./component/PrivateRouter";
 import { useSelector } from 'react-redux';
 import { login, selectuser } from './redux/UserSlice';
 import Login from "./component/Login";
-import Storydetails from "./pages/story/Storydetails";
+import UserContextProvider from "./context/UserContextProvider";
 
 function App() {
   const user = useSelector(login);
@@ -22,19 +22,52 @@ function App() {
   console.log("Base", IMAGE_BASE_URL);
   return (
     <div id="body-pd" className="App">
-      <Router>
-        <Routes>
-          <Route path="/" element={<Login/>} />
-          <Route path="/home" element={<Homepage />} />
-          <Route path="/card" element={<Storycard />} />
-          {/* <Route path="/card/:uuid" component={<Storydetails/>} /> */}
-          <Route path="/list" element={<Storylist />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/subscription" element={<Subscription />} />
-          <Route path="/schedule" element={<Schedule />} />
-          <Route path="/static" element={<Static />} />
-        </Routes>
-      </Router>
+      <UserContextProvider>
+
+
+        <Router>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/home" element={
+              <PrivateRouter>
+                <Homepage />
+              </PrivateRouter>
+            } />
+            <Route path="/card" element={
+              <PrivateRouter>
+                <Storycard />
+              </PrivateRouter>
+            }
+            />
+            <Route path="/list" element={
+              <PrivateRouter>
+                <Storylist />
+              </PrivateRouter>
+
+            } />
+            <Route path="/profile" element={
+              <PrivateRouter>
+                <Profile />
+              </PrivateRouter>
+            } />
+            <Route path="/subscription" element={
+              <PrivateRouter>
+                <Subscription />
+              </PrivateRouter>
+            } />
+            <Route path="/schedule" element={
+              <PrivateRouter>
+                <Schedule />
+              </PrivateRouter>
+            } />
+            <Route path="/static" element={
+              <PrivateRouter>
+                <Static />
+              </PrivateRouter>
+            } />
+          </Routes>
+        </Router>
+      </UserContextProvider>
     </div>
   );
 }

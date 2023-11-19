@@ -1,21 +1,35 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import {  Route } from "react-router-dom";
+import { useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Story from '../Apis/Story';
+import { UserContext } from '../context/UserContextProvider';
 
+export default function PrivateRouter(props) {
+  const userContext = useContext(UserContext);
+  const setLoginUser = userContext?.setLoginUser; 
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    if (!setLoginUser) {
+      navigate('/');
+      return;
+    }
 
-const PrivateRouter = ({ path, exact, children }) => {
-  const Navigate = useNavigate();
-  const user = useSelector((state) => state.users);
-  const isUserLoggedIn = user.isUserLoggedIn;
-  return isUserLoggedIn ? (
-    <Route path={path} exact={exact}>
-      {children}
-    </Route>
-  ) : (
-    <Navigate to="/login" />
-  );
-};
+    const main = new Story();
+    const resp = main.Login();
 
-export default PrivateRouter;
+    resp.then((res) => {
+      console.log("user", res);
+      if (res.data.data) {
+        setLoginUser(res.data.data);
+      } else {
+        navigate('/');
+      }
+    }).catch((err) => {
+      console.log(err);
+    });
+  }, [setLoginUser, navigate]);
+
+  return <>
+    {props.children}
+  </>;
+}

@@ -79,7 +79,7 @@ function StoryModal({ show, handleClose }) {
                         const storyResponse = res.data.choices[0].message.content;
                         console.log("storyResponse", storyResponse);
                         const Parstory = JSON.parse(storyResponse);
-                        dispatch(adduser(Parstory));
+                        localStorage.setItem("cart",Parstory)
                         console.log("Parstory", Parstory);
                         storyres = Parstory;
                         setCard(storyres);

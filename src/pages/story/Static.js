@@ -6,6 +6,7 @@ import data from "../../image/graph.png"
 import { Image } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import Story from "../../Apis/Story";
+import Chart from "./Chart";
 
 function Static() {
     const [Contnet, setContent] = useState([])
@@ -53,7 +54,7 @@ function Static() {
                                             </div>
                                             <div className="static-par">
                                                 <h6>Total Stories </h6>
-                                                <p>{Contnet.stories || "1200"} </p>
+                                                <p>{Contnet.stories } </p>
                                             </div>
                                             <div className="static-data">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="82" height="88" viewBox="0 0 82 88" fill="none">
@@ -87,7 +88,7 @@ function Static() {
                                             </div>
                                             <div className="static-par">
                                                 <h6>Total Users</h6>
-                                                <p>{Contnet.user || "1500"}</p>
+                                                <p>{Contnet.user }</p>
                                             </div>
                                             <div className="static-data">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="65" height="64" viewBox="0 0 65 64" fill="none">
@@ -128,7 +129,7 @@ function Static() {
                                             </div>
                                             <div className="static-par">
                                                 <h6>Total Subscribers  </h6>
-                                                <p>{Contnet.totalSubscription || "1280"}</p>
+                                                <p>{Contnet.totalSubscription }</p>
                                             </div>
                                             <div className="static-data">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="79" height="87" viewBox="0 0 79 87" fill="none">
@@ -157,7 +158,8 @@ function Static() {
 
 
                                 <div className="Static-image">
-                                    <Image src={data} alt="Not Responseive" />
+                                    <Chart/>
+                                    {/* <Image src={data} alt="Not Responseive" /> */}
                                 </div>
                             </div>
                         </div>

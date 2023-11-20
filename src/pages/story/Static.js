@@ -7,6 +7,9 @@ import { Image } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import Story from "../../Apis/Story";
 import Chart from "./Chart";
+import StoriesIcon  from "../../image/stories-icon.png";
+import UserIcon  from "../../image/total-user.png";
+import subscribersIcon  from "../../image/subscribers-icon.png";
 
 function Static() {
     const [Contnet, setContent] = useState([])

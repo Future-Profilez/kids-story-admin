@@ -1,24 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Image } from "react-bootstrap";
 import image from "../image/login.png";
 import { useNavigate } from "react-router-dom";
 import "../style/login.css";
-import { useDispatch } from 'react-redux';
 import { Toaster, toast } from 'react-hot-toast';
 import Story from "../Apis/Story";
-import { login } from "../redux/UserSlice";
+import { UserContext } from "../context/UserContextProvider";
+
 
 function Login() {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-
+    const { setLoginUser } = useContext(UserContext);
     const [Regs, setRegs] = useState({
         password: "",
         email: "",
+
     });
-
     const [showPassword, setShowPassword] = useState(false);
-
     const handleInputs = (e) => {
         const value = e.target.value;
         const name = e.target.name;
@@ -30,26 +28,23 @@ function Login() {
         setShowPassword(!showPassword);
     };
 
-    async function handleForms(e) {
-        e.preventDefault();
-        try {
-            const main = new Story();
-            const response = await main.Login(Regs);
-            console.log("res", response)
-            if (response.data.status === "true") {
-                const res = dispatch(login(response.data.data))
-                console.log("login", res);
-                // const token = dispatch(token(response.data.token));
-                // console.log("token", token);
-                toast.success(response.data.message);
-                navigate("/home")
-            } else {
-                toast.error(response.data.message)
-            }
 
+   async  function handleForms(e) {
+        e.preventDefault();
+        const main =  new Story();
+        try {
+            const response =await   main.Login(Regs);
+          //  console.log("response", response)
+            if (response?.data) {
+                 setLoginUser(response?.data);
+                navigate("/home");
+                toast.success(response.data.message);
+                localStorage.setItem("token", response?.data?.token);
+            } else {
+                console.log("error",response.data)
+            }
         } catch (error) {
             console.log("error", error);
-            toast.error("An error occurred. Please try again.");
         }
     }
 
@@ -114,18 +109,16 @@ function Login() {
                                 </div>
                             </div>
                         </div>
-
                         <div className="text-center">
                             <button
                                 title="Sign In"
                                 onClick={handleForms}
+
                                 className="btn blue-gradient-btn"
                             >
                                 <span>Login</span>
                             </button>
                         </div>
-
-
                     </div>
                 </div>
             </div>

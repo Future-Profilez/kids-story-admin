@@ -136,8 +136,8 @@ div#reschedule-popup .modal-content{border-radius: 20px; background: #131C3E;}
 .description p{color: #FFF;font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; line-height: 21px;}
 .reschedule-action { display: flex; flex-wrap: wrap; align-items: center; }
 .reschedule-action .btn{    min-width: inherit;width: calc(100% - 60px);margin-right: 10px;}
-.reschedule-action a.delete-button{width: 50px; height: 50px;background-color: #9B0000;display: flex;align-items: center;justify-content: center;border-radius: 50px;}
-.reschedule-action a.delete-button:hover{ background-color: #bd1e1e;}
+.reschedule-action button.delete-button{width: 50px; height: 50px;background-color: #9B0000;display: flex;align-items: center;justify-content: center;border-radius: 50px;}
+.reschedule-action button.delete-button:hover{ background-color: #bd1e1e;}
 
 /* Generate Image */
 .modal-dialog-image #generat-story.modal-dialog{max-width: 1014px;}

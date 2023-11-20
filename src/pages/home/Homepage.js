@@ -3,21 +3,15 @@ import { Link } from "react-router-dom";
 import StoryModal from "./StoryModal";
 import AuthLayout from "../../component/AuthLayout";
 import { Toaster } from 'react-hot-toast';
-import { useDispatch, useSelector } from "react-redux";
-import { login, logout } from "../../redux/UserSlice";
 
 function Homepage() {
-    const users = useSelector((state) => state.users.users);
-    console.log("data", users);
 
-    const dispatch = useDispatch();
+
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    useEffect(() => {
-        dispatch(logout());
-    }, [dispatch]);
+ 
 
     return (
         <>

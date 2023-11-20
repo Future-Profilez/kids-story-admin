@@ -79,8 +79,8 @@ function Schedule() {
             const main = new Story();
             const response = await main.Scheduledate(Regs);
             console.log("API Response:", response);
+            handleCloseContinue();
             return false;
-           toast.success(response.data.message);
         } catch (error) {
             console.error("API Error:", error);
         }

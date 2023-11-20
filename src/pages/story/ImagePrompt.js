@@ -118,8 +118,16 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
                                 </div>
                             </div>
                         ) : (
+
+                            <>
+                            
                             <Image ref={imageRef} src={Story} alt="not found" className="img-fluid" onLoad={handleImageLoad} />
+                        <button>Regenerate</button>
+                            
+                            </>
+                        
                         )}
+
                     </div>
                 </Modal.Body>
             </Modal>

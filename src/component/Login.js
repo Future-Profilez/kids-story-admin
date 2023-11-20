@@ -34,7 +34,7 @@ function Login() {
         const main =  new Story();
         try {
             const response =await   main.Login(Regs);
-            console.log("response", response)
+          //  console.log("response", response)
             if (response?.data) {
                  setLoginUser(response?.data);
                 navigate("/home");

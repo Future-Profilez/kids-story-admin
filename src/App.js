@@ -9,7 +9,7 @@ import Profile from "./pages/profile/Profile";
 import Subscription from "./pages/profile/Subscription";
 import Schedule from "./pages/story/Schedule";
 import Static from "./pages/story/Static";
-import PrivateRouter from "./component/PrivateRouter";
+import PrivateRouter from "./Router/PrivateRouter";
 import Login from "./component/Login";
 import UserContextProvider from "./context/UserContextProvider";
 
@@ -24,20 +24,18 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/home" element={
-              // <PrivateRouter>
+              <PrivateRouter>
                 <Homepage />
-              // </PrivateRouter>
+            </PrivateRouter>
             } />
             <Route path="/card" element={
-              // <PrivateRouter>
+              <PrivateRouter>
                 <Storycard />
-              // </PrivateRouter>
+              </PrivateRouter>
             }
             />
             <Route path="/list" element={
-              // <PrivateRouter>
                 <Storylist />
-              // </PrivateRouter>
 
             } />
             <Route path="/profile" element={
@@ -46,19 +44,19 @@ function App() {
               </PrivateRouter>
             } />
             <Route path="/subscription" element={
-              // <PrivateRouter>
+              <PrivateRouter>
                 <Subscription />
               // </PrivateRouter>
             } />
             <Route path="/schedule" element={
-              // <PrivateRouter>
+             <PrivateRouter>
                 <Schedule />
-              // </PrivateRouter>
+               </PrivateRouter>
             } />
             <Route path="/static" element={
-              // <PrivateRouter>
+              <PrivateRouter>
                 <Static />
-              // </PrivateRouter>
+             </PrivateRouter>
             } />
           </Routes>
         </Router>

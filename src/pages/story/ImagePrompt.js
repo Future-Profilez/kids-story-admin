@@ -28,7 +28,6 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
     };
 
     const [isLoading, setIsLoading] = useState(true);
-    const [data, setData] = useState("");
     const imageRef = useRef(null);
 
     const handleImageLoad = () => {

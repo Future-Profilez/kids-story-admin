@@ -2,19 +2,10 @@ import { Image, Modal } from "react-bootstrap";
 import "../../style/model.css";
 import { useState, useRef, useEffect } from "react"; // Import useRef
 import Story from "../../image/story-thubnail.png";
-<<<<<<<<< Temporary merge branch 1
-import imageAi from "../../Apis/imageAi"
+import imageAi from "../../Apis/imageAi";
 
 function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
     const modalTitleStyle = {
-
-=========
-// import imageAi from ".";
-
-
-function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
-    const modalTitleStyle = {
->>>>>>>>> Temporary merge branch 2
         color: '#FFF',
         textAlign: 'center',
         lineHeight: 'normal',
@@ -27,21 +18,14 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
     console.log("imagePrompt", imagePrompt)
 
     const [data, setData] = useState("");
-    const [ImgaeUrl, setImageUrl] = useState();
+    const [imageUrl, setImageUrl] = useState(); // Fix the variable name here
 
     console.log("data", data)
     const datacss = {
-<<<<<<<<< Temporary merge branch 1
         width: "401px",
         height: "286px",
         borderRadius: "8.833px",
-        background: "black"
-=========
-        width: '401px',
-        height: '286px',
-        borderRadius: '8.833px',
-        background: 'black',
->>>>>>>>> Temporary merge branch 2
+        background: "black",
     };
 
     const [isLoading, setIsLoading] = useState(true);
@@ -51,8 +35,6 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
         setIsLoading(true);
     };
 
-<<<<<<<<< Temporary merge branch 1
-
     const handleGenerateImage = async () => {
         setIsLoading(true);
 
@@ -60,7 +42,7 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
             const response = await imageAi.post("/generations", {
                 prompt: imagePrompt,
                 style_id: "30",
-                filename: "D:\kids-story-admin\src\Genaratoerimage/Image"
+                filename: "D:\\kids-story-admin\\src\\Genaratoerimage/Image" // Fix the filename here
             });
 
             if (!response.data.success) {
@@ -76,44 +58,8 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
         } finally {
             setIsLoading(false);
         }
-=========
-    // const handleGenerateImage = async () => {
-    //     setIsLoading(true);
-    
-    //     try {
-    //         const response = await imageAi.post("/generations", {
-    //             prompt: imagePrompt,
-    //             style_id:"30",
-    //             filename:"D:\kids-story-admin\src\Genaratoerimage/Image"
-    //         });
-    
-    //         if (!response.data.success) {
-    //             throw new Error('Failed to generate image');
-    //         }
-    
-    //         const generatedImageUrl = response.data.data.url;
-    //         setData(generatedImageUrl);
-
-    //         downloadImage(generatedImageUrl, "generated_image.png");
-    //     } catch (error) {
-    //         console.error('Error generating image:', error);
-    //     } finally {
-    //         setIsLoading(false);
-    //     }
-    // };
-    const url="D:\kids-story-admin\src\Genaratoerimage"
-    const filename="/Image"
-    const downloadImage = (url, fileName ) => {
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = fileName;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
->>>>>>>>> Temporary merge branch 2
     };
-    const url = "D:\kids-story-admin\src\Genaratoerimage"
-    const filename = "/Image"
+
     const downloadImage = (url, fileName) => {
         const link = document.createElement("a");
         link.href = url;
@@ -123,29 +69,20 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
         document.body.removeChild(link);
     };
 
-
-
-
     useEffect(() => {
         setData(imagePrompt);
     }, [show]);
 
-
-
-    useEffect(() => {
-        setData(imagePrompt); 
-    }, [show]); 
     return (
         <>
             <Modal show={show} onHide={handleClose} id="generat-story" className="modal-dialog-image">
-                <Modal.Header closeButton >
-                    <Modal.Title className="modal-image" >
-                        <div class="body-popup-title"><h3>Generate Image</h3></div>
+                <Modal.Header closeButton>
+                    <Modal.Title className="modal-image">
+                        <div className="body-popup-title"><h3>Generate Image</h3></div>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    {/* <div class="body-popup-title"></div> */}
-                    <div class="date-field-story">
+                    <div className="date-field-story">
                         <input
                             type="text"
                             placeholder="Image Prompt"
@@ -154,8 +91,6 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
                             onChange={(e) => setData(e.target.value)}
                             className="input_field form-control"
                             id="password_field"
-                            class="input_field  form-control"
-
                         />
                     </div>
                     <div className="text-center">
@@ -184,18 +119,10 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
 
                             </div>
                         ) : (
-<<<<<<<<< Temporary merge branch 1
-
                             <>
-                            
-                            <Image ref={imageRef} src={Story} alt="not found" className="img-fluid" onLoad={handleImageLoad} />
-                        <button>Regenerate</button>
-                            
+                                <Image ref={imageRef} src={Story} alt="not found" className="img-fluid" onLoad={handleImageLoad} />
+                                <button>Regenerate</button>
                             </>
-                        
-=========
-                            <Image ref={imageRef} src={data} alt="not found" className="img-fluid" onLoad={handleImageLoad} />
->>>>>>>>> Temporary merge branch 2
                         )}
                     </div>
                 </Modal.Body>

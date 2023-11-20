@@ -1,50 +1,39 @@
 .static-one {
   display: flex;
-  padding: 16px;
-  width: 291px;
-  height: 90px;
-  justify-content: space-between;
+  padding: 15px; 
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.1);
-  background: #000518;
+  background: #000518;align-items: center;
+  position: relative;min-height: 90px;;padding-left: 90px;overflow: hidden;
 }
-.static-svg {
-  padding: 10px;
-  border-radius: 5px;
-  background: #080f29;
-}
+.static-svg {position: absolute; left: 15px; top: 15px; background: linear-gradient(94deg, rgba(75,105,226,.1) -2.08%, rgba(144,84,217,.1) 99.58%); width: 60px; height: 60px; border-radius: 5px; display: flex; align-items: center; justify-content: center; }
 
 .static-par h6 {
-  color: rgba(255, 255, 255, 0.5);
+  color: #fff;
   margin: 0px;
   font-family: Poppins;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  text-align: center;
+  text-align: left;
   text-transform: uppercase;
+  margin: 0 0 13px;;
 }
 
 .static-par p {
   color: #fff;
   font-family: Poppins;
-  text-align: center;
+  text-align: left;
   font-size: 26px;
   font-style: normal;
-  font-weight: 600;
+  font-weight: 600;margin: 0;line-height: 25px;
 }
 
 .Static-image {
-  display: flex;
-  justify-content: center;
+  margin: 0;
 }
 .Static-image img {
-  padding: 17px;
-  width: 1041px;
-  height: 462px;
-  border-radius: 10px;
+ 
 }
 
-.static-data {
-  margin: -8px;
-}
+.static-data {transform: translateY(-50%); position: absolute; right: 0px; top: 50%; }

@@ -29,7 +29,6 @@ function Storycard() {
     const type = selectedOption;
 
 
-
     const handlesort = (e) => {
         setSelectSort(e.target.value);
     };
@@ -69,8 +68,8 @@ let searchvalue = "";
                 }
             })
             .catch((error) => {
-                console.error("Error status:", error?.response?.status);
-                console.error("Error data:", error?.response?.data);
+                console.error("Error status:", error);
+//console.error("Error data:", error?.response?.data);
             });
     };
     

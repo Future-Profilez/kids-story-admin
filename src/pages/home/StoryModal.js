@@ -4,12 +4,8 @@ import "../../style/model.css"
 import Ai from "../../Apis/Ai"
 import genres from '../../Data/genre.json'
 import agegroup from "../../Data/Age.json"
-import { useDispatch, useSelector } from "react-redux";
-import { adduser, getData, selectuser } from "../../redux/UserSlice";
 import { useNavigate } from "react-router-dom";
 function StoryModal({ show, handleClose }) {
-    const dispatch = useDispatch();
-    const { users } = useSelector((state) => state.users);
     const [currentStep, setCurrentStep] = useState(1);
     const [showSuccess, setShowSuccess] = useState(false);
     const [selectedUser, setSelectedUser] = useState('');
@@ -32,7 +28,6 @@ function StoryModal({ show, handleClose }) {
 
 
     const storyJSON = JSON.stringify(genres, null, 2);
-    console.log(storyJSON);
 
 
     const handleAgeChange = (age) => {

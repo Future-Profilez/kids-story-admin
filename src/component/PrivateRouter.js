@@ -4,8 +4,9 @@ import Story from '../Apis/Story';
 import { UserContext } from '../context/UserContextProvider';
 
 export default function PrivateRouter(props) {
-  const userContext = useContext(UserContext);
-  const setLoginUser = userContext?.setLoginUser; 
+
+  const { setLoginUser} = useContext(UserContext);
+ 
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -19,15 +20,15 @@ export default function PrivateRouter(props) {
 
     resp.then((res) => {
       console.log("user", res);
-      if (res.data.data) {
+      if (res.data) {
         setLoginUser(res.data.data);
       } else {
         navigate('/');
       }
     }).catch((err) => {
-      console.log(err);
+      console.log("err",err);
     });
-  }, [setLoginUser, navigate]);
+  }, [setLoginUser,navigate]);
 
   return <>
     {props.children}

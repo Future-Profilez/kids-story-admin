@@ -3,31 +3,20 @@ import { Image } from "react-bootstrap";
 import image from "../image/login.png";
 import { useNavigate } from "react-router-dom";
 import "../style/login.css";
-import { useDispatch } from 'react-redux';
 import { Toaster, toast } from 'react-hot-toast';
 import Story from "../Apis/Story";
-import { login, token } from "../redux/UserSlice";
 import { UserContext } from "../context/UserContextProvider";
 
 
 function Login() {
     const navigate = useNavigate();
-    const dispatch = useDispatch();
-
-
-
-    const { setLoginUser } = useContext(UserContext) || {};
-
-console.log("Context Value:", { setLoginUser });
-
+    const { setLoginUser } = useContext(UserContext);
     const [Regs, setRegs] = useState({
         password: "",
         email: "",
 
     });
-
     const [showPassword, setShowPassword] = useState(false);
-
     const handleInputs = (e) => {
         const value = e.target.value;
         const name = e.target.name;
@@ -39,28 +28,23 @@ console.log("Context Value:", { setLoginUser });
         setShowPassword(!showPassword);
     };
 
-    async function handleForms(e) {
+
+   async  function handleForms(e) {
         e.preventDefault();
+        const main =  new Story();
         try {
-            const main = new Story();
-            const response = await main.Login(Regs);
-            console.log("res", response)
-            if (typeof setLoginUser === 'function') {
-                setLoginUser(response.data.data);
-            }
-            console.log("login", response);
-            if (response.data.status === true) {
-              localStorage.setItem("token", response.data.token);
-              navigate("/home")
+            const response =await   main.Login(Regs);
+            console.log("response", response)
+            if (response?.data) {
+                 setLoginUser(response?.data);
+                navigate("/home");
                 toast.success(response.data.message);
+                localStorage.setItem("token", response?.data?.token);
             } else {
-
-                toast.error(response.data.message)
+                console.log("error",response.data)
             }
-
         } catch (error) {
             console.log("error", error);
-            toast.error("An error occurred. Please try again.");
         }
     }
 
@@ -125,18 +109,16 @@ console.log("Context Value:", { setLoginUser });
                                 </div>
                             </div>
                         </div>
-
                         <div className="text-center">
                             <button
                                 title="Sign In"
                                 onClick={handleForms}
+
                                 className="btn blue-gradient-btn"
                             >
                                 <span>Login</span>
                             </button>
                         </div>
-
-
                     </div>
                 </div>
             </div>

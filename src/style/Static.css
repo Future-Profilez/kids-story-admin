@@ -32,8 +32,5 @@
 .Static-image {
   margin: 0;
 }
-.Static-image img {
  
-}
-
 .static-data {transform: translateY(-50%); position: absolute; right: 0px; top: 50%; }

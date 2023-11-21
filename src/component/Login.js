@@ -33,15 +33,14 @@ function Login() {
         e.preventDefault();
         const main =  new Story();
         try {
-            const response =await   main.Login(Regs);
-          //  console.log("response", response)
+            const response =await main.Login(Regs);
             if (response?.data) {
                  setLoginUser(response?.data);
-                navigate("/home");
-                toast.success(response.data.message);
-                localStorage.setItem("token", response?.data?.token);
+                 localStorage.setItem("token", response?.data?.token);
+                 navigate("/home");
+                 toast.success(response.data.message);
             } else {
-                console.log("error",response.data)
+                console.log("error",response.data.message)
             }
         } catch (error) {
             console.log("error", error);

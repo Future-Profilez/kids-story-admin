@@ -2,12 +2,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { func } from "prop-types";
 import Story from "../Apis/Story";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContextProvider";
 
 
 function Header() {
     const { loginUser, setLoginUser, cart } = useContext(UserContext)
+    const [isClicked, setIsClicked] = useState(false);
 
 
     const navigate = useNavigate();
@@ -32,12 +33,17 @@ function Header() {
     //     handellogouts();
     // }, [])
 
+    function handledata() {
+        setIsClicked(!isClicked);
+    }
 
+    const headerClass = isClicked ? "header data-add" : "header";
+   
     return (
         <>
             {/* header */}
-            <header className="header" id="header">
-                <div className="header_toggle"> <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <header id="header" className={headerClass}>
+                <div className="header_toggle"  onClick={handledata}> <svg  xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                       <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
                     </svg>
                 </div>
@@ -117,7 +123,9 @@ function Header() {
                 </nav>
             </div>
             {/* end side bar */}
-        </>);
+        </>
+        
+        );
 }
 
 export default Header;

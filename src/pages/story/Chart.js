@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Story from "../../Apis/Story";
 
 function Chart() {
+     
     const chartRef = useRef(null);
     const chartInstance = useRef(null);
     const [Contnet, setContent] = useState([])
@@ -20,43 +21,51 @@ function Chart() {
             chartInstance.current.destroy();
         }
 
-        const chartCanvas = chartRef.current.getContext("2d");
+        const chartCanvas = chartRef.current.getContext("2d");   
 
         chartInstance.current = new chart(chartCanvas, {
-            type: "line",
+            type: "line",    
+            title: {
+                display: true,
+                text: 'Subscription tracking',
+            },       
             data: {
                 labels: ["Jan", "Feb", "Mar", "April", "May", "June", "July", "August", "Sep.", "Oct.", "Nov.", "Dec."],
-                datasets: [
+                
+                datasets: [                   
                     {
                         label: 'User',
                         // data: [Contnet.user ],
-                        data: [100, 500, 1000],
+                        data: [100, 200, 300,100, 200, 300,100, 200, 300,100, 200, 300],
                         fill: true,
-                        backgroundColor: 'red',
-                        borderColor: 'red',
-                        borderWidth: 2
+                        backgroundColor: 'rgba(34, 79, 255, 0.30)',
+                        borderColor: 'rgba(34, 79, 255, 0.30)',
+                        borderWidth: 1
                     },
-                    {
+                    { 
                         label: 'Subscription',
                         // data: [Contnet.totalSubscription],
-                        data: [300, 600, 900],
-
+                        data: [140, 250, 360,170, 280, 390,170, 240, 350,160, 270, 380],
+                        fontColor: '#ffffff',
                         fill: true,
-                        backgroundColor: 'rgba(255, 255, 255, 0.5)',
-                        borderColor: 'white',
-                        borderWidth: 2
+                        backgroundColor: 'rgba(34, 79, 255, 0.30)',
+                        borderColor: 'rgba(34, 79, 255, 0.30)',
+                        borderWidth: 1
                     },
-                    {
-                        label: 'Stories',
-                        //  data: [Contnet.stories],
-                        data: [400, 700, 900],
-                        fill: true,
-                        backgroundColor: 'rgba(0, 255, 0, 0.5)',
-                        borderColor: 'green',
-                        borderWidth: 2
-                    }
+                    // {
+                    //     label: 'Stories',
+                    //     //  data: [Contnet.stories],
+                    //     data: [120, 220, 320,120, 220, 320,120, 220, 320,120, 220, 320],
+                    //     fill: true,
+                    //     fontColor: '#ffffff',
+                    //     backgroundColor: 'rgba(34, 79, 255, 0.00)',
+                    //     borderColor: 'green',
+                    //     borderWidth: 1, 
+                    // }
                 ]
+                
             }
+           
         });
 
         return () => {
@@ -66,10 +75,8 @@ function Chart() {
         };
     }, []);
 
-    return (
-        <div className="mt-5">
-            <canvas ref={chartRef} style={{ width: "500px", height: "500px" }} />
-        </div>
+    return (        
+            <canvas ref={chartRef} style={{ width: "", height: "100px" }} /> 
     );
 }
 

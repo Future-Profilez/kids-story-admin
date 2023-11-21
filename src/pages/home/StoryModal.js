@@ -45,7 +45,7 @@ function StoryModal({ show, handleClose }) {
     const navigate = useNavigate()
 
 
-    let storyres = null
+    let storyres = null;
     const generateStory = async () => {
         try {
             if (userTitle && age && gender && genre) {
@@ -74,10 +74,11 @@ function StoryModal({ show, handleClose }) {
                         const storyResponse = res.data.choices[0].message.content;
                         console.log("storyResponse", storyResponse);
                         const Parstory = JSON.parse(storyResponse);
-                        localStorage.setItem("cart",Parstory)
+                        localStorage.setItem("cart", Parstory)
                         console.log("Parstory", Parstory);
                         storyres = Parstory;
-                        setCard(storyres);
+                        const data = setCard(storyres);
+                        console.log("data", data);
                         navigate('/list');
                     }).catch((error) => {
                         console.log("error", error);

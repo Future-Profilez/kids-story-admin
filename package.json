@@ -15,6 +15,7 @@
     "bootstrap-icons": "^1.11.1",
     "chart.js": "^4.4.0",
     "env": "^0.0.2",
+    "imaginesdk": "^1.1.0",
     "primereact": "^10.0.9",
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.1",

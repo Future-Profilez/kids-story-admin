@@ -156,8 +156,6 @@ div#reschedule-popup .modal-content{border-radius: 20px; background: #131C3E;}
 .image-loader { position: absolute; left: 25px; top: 25px;color: #FFF; text-align: center; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 500; line-height: normal; }
 .image-loader  svg{vertical-align: text-bottom; margin-right: 6px;}
 
-
-
 @media screen and (min-width: 768px) { 
   div#body-pd {
     margin: 0;
@@ -172,6 +170,14 @@ div#reschedule-popup .modal-content{border-radius: 20px; background: #131C3E;}
   .content-wrapper, .content { min-height: 100%;border-radius: 20px; }
 
 }
+@media screen and (max-width: 1400px) {
+  .main-sidebar{ width: 272px;}
+  div#body-pd{    padding-left: 272px;}
+  .content{    padding: 20px 25px;}
+
+
+ }
+
 
 
 

@@ -38,8 +38,8 @@ function Chart() {
                         // data: [Contnet.user ],
                         data: [100, 200, 300,100, 200, 300,100, 200, 300,100, 200, 300],
                         fill: true,
-                        backgroundColor: '#4B69E2',
-                        borderColor: '#4B69E2',
+                        backgroundColor: 'rgba(34, 79, 255, 0.30)',
+                        borderColor: 'rgba(34, 79, 255, 0.30)',
                         borderWidth: 1
                     },
                     { 
@@ -47,8 +47,8 @@ function Chart() {
                         // data: [Contnet.totalSubscription],
                         data: [140, 250, 360,170, 280, 390,170, 240, 350,160, 270, 380],
                         fill: true,
-                        backgroundColor: '#9054D9',
-                        borderColor: '#9054D9',
+                        backgroundColor: 'rgba(34, 79, 255, 0.30)',
+                        borderColor: 'rgba(34, 79, 255, 0.30)',
                         borderWidth: 1
                     },
                     // {

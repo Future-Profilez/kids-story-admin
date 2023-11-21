@@ -59,7 +59,6 @@ function Storylist(props) {
         ],
     };
 
-    console.log("data", data);
 
     const [show, setShow] = useState(false);
     const [imagePrompt, setImagePrompt] = useState("");
@@ -72,7 +71,6 @@ function Storylist(props) {
         setShow(true);
     };
 
-    console.log("imagePrompt", imagePrompt)
     const handleGenerateImage = (image_prompt) => {
         console.log("Generated Image Prompt:", image_prompt);
     };

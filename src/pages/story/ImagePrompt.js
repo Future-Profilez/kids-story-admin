@@ -3,6 +3,7 @@ import "../../style/model.css";
 import { useState, useRef, useEffect } from "react"; // Import useRef
 import Story from "../../image/story-thubnail.png";
 import imageAi from "../../Apis/imageAi";
+import prompt from "../../Data/image.json"
 
 function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
     const modalTitleStyle = {
@@ -15,12 +16,10 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
         fontWeight: 600,
     };
 
-    console.log("imagePrompt", imagePrompt)
 
     const [data, setData] = useState("");
-    const [imageUrl, setImageUrl] = useState(); // Fix the variable name here
+    const [imageUrl, setImageUrl] = useState();
 
-    console.log("data", data)
     const datacss = {
         width: "401px",
         height: "286px",
@@ -29,49 +28,67 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
     };
 
     const [isLoading, setIsLoading] = useState(true);
+    const [imageSource, setImageSource] = useState(null);
     const imageRef = useRef(null);
 
     const handleImageLoad = () => {
         setIsLoading(true);
     };
+    console.log("Image", prompt);
+
+    const binaryImageData = prompt;
+
+    console.log("binaryImageData",binaryImageData)
+    
+    const base64ImageString = btoa(binaryImageData);
+    
+    console.log("base64ImageString", base64ImageString);
 
     const handleGenerateImage = async () => {
         setIsLoading(true);
 
-        try {
-            const response = await imageAi.post("/generations", {
-                prompt: imagePrompt,
-                style_id: "30",
-                filename: "D:\\kids-story-admin\\src\\Genaratoerimage/Image" // Fix the filename here
-            });
+    }
+    // const handleGenerateImage = async () => {
+    //     setIsLoading(true);
+    //     try {
+    //         const response = await imageAi.post("/generations", {
+    //             prompt: imagePrompt,
+    //             style_id: "30",
+    //             filename: "Downloads/IMAGE.JPG",
+    //         });
+    //         console.log("response", response);
+    //         if (response && response.data) {
+    //             setImageSource(`data:image/png;base64, ${response.data}`);
+    //         } else {
+    //             console.error('Unexpected response format:', response);
+    //         }
+    //         // if (response && response.data && response.data.data && response.data.data.url) {
+    //         //     const generatedImageUrl = response.data.data.url;
+    //         //     console.log("generatedImageUrl", generatedImageUrl);
+    //         //     setData(generatedImageUrl);
+    //         // } else {
+    //         //     console.error('Unexpected response format:', response.error);
+    //         // }
+    //     } catch (error) {
+    //         console.error('Error generating image:', error);
+    //     } finally {
+    //         setIsLoading(false);
+    //     }
+    // };
 
-            if (!response.data.success) {
-                throw new Error('Failed to generate image');
-            }
+    console.log("imageSource", imageSource)
+    // const downloadImage = (url, fileName) => {
+    //     const link = document.createElement("a");
+    //     link.href = url;
+    //     link.download = fileName;
+    //     document.body.appendChild(link);
+    //     link.click();
+    //     document.body.removeChild(link);
+    // };
 
-            const generatedImageUrl = response.data.data.url;
-            setData(generatedImageUrl);
-
-            downloadImage(generatedImageUrl, "generated_image.png");
-        } catch (error) {
-            console.error('Error generating image:', error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    const downloadImage = (url, fileName) => {
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = fileName;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
-
-    useEffect(() => {
-        setData(imagePrompt);
-    }, [show]);
+    // useEffect(() => {
+    //     setData(imagePrompt);
+    // }, [show]);
 
     return (
         <>
@@ -115,8 +132,10 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
 
                                     Image Generating...
                                 </div>
-                                <Image ref={imageRef} src={Story} alt="story" onLoad={handleImageLoad} />
+                                {/* <Image ref={imageRef} src={Story} alt="story" onLoad={handleImageLoad} /> */}
 
+
+                                <Image src={`data:image/png;base64,${base64ImageString}`} alt="Generated Image" />
                             </div>
                         ) : (
                             <>

@@ -13,21 +13,26 @@ export default function PrivateRoute(props) {
   const Navigate = useNavigate();
   console.log("loginUser", loginUser)
   async function handleform() {
-
+    const main = new Story();
     try {
-      const main = new Story();
-      const response = await main.Login(Regs);
-      console.log("response", response);
-      if (response) {
-        setRegs(response?.data?.data)
-        setLoginUser(response?.data?.data);
-      } else {
-        Navigate('/')
-      }
+      const response = await main.Login({ Regs });
+      console.log("res.data", response.data);
+      console.log("res.status", response.status); 
     } catch (error) {
-      console.log("error", error);
+      console.error("Error in API request:", error);
+      if (error.response) {
+      
+        console.error("Server response data:", error.response.data);
+        console.error("Server response status:", error.response.status);
+      } else if (error.request) {
+   
+        console.error("No response received from the server");
+      } else {
+        console.error("Error setting up the request:", error.message);
+      }
     }
   }
+  
 
   useEffect(() => {
     handleform();

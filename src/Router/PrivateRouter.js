@@ -6,8 +6,8 @@ import Story from '../Apis/Story';
 export default function PrivateRoute(props) {
   const { setLoginUser, loginUser } = useContext(UserContext);
   const [Regs, setRegs] = useState({
-    password: "",
     email: "",
+    password: ""
 
   });
   const Navigate = useNavigate();
@@ -19,7 +19,7 @@ export default function PrivateRoute(props) {
       const response = await main.Login(Regs);
       console.log("response", response);
       if (response) {
-        setRegs(response?.data)
+        setRegs(response?.data?.data)
         setLoginUser(response?.data?.data);
       } else {
         Navigate('/')

@@ -18,7 +18,7 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
 
 
     const [data, setData] = useState("");
-    const [imageUrl, setImageUrl] = useState();
+    //  const [imageUrl, setImageUrl] = useState();
 
     const datacss = {
         width: "401px",
@@ -38,12 +38,66 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
 
     const binaryImageData = prompt;
 
-    console.log("binaryImageData",binaryImageData)
-    
-    const base64ImageString = btoa(binaryImageData);
-    
-    console.log("base64ImageString", base64ImageString);
+    console.log("binaryImageData", binaryImageData)
+    //const base64ImageString = btoa(binaryImageData);
 
+    //  console.log("base64ImageString", base64ImageString);
+
+
+    //    const blob = new Blob([binaryImageData], { type: 'image/png' });
+    //            console.log("blob00",blob)
+
+    //              const imageUrl = URL.createObjectURL(blob);
+
+    //                console.log("imageUrl",imageUrl)
+
+    // useEffect(() => {
+    //      const blob = new Blob([binaryImageData], { type: 'image/png' });
+    //      console.log("blob00",blob);
+    //      const downloadLink = document.createElement('a');
+    //      console.log("downloadLink",downloadLink);
+    //      const data =  downloadLink.href = URL.createObjectURL(blob);
+    //      console.log("data",data)
+    //      const recoird =  downloadLink.download = 'D:\kids-story-admin\src\image';
+    //    console.log("recoird",recoird)
+    //     document.body.appendChild(downloadLink);
+    //     downloadLink.click();
+    //     document.body.removeChild(downloadLink);
+    //     return () => URL.revokeObjectURL(downloadLink.href);
+    // }, [binaryImageData]);
+
+    useEffect(() => {
+        const handleDownload = () => {
+            const blob = new Blob([binaryImageData], { type: 'image/png' });
+            console.log("blog", blob)
+            const downloadLink = document.createElement('a');
+            console.log("downloadLink", downloadLink);
+            const baseName = 'image';
+            const timestamp = new Date().getTime();
+            const fileName = `${baseName}_${timestamp}.png`;
+            console.log("fileName", fileName)
+            const data = fileName;
+            console.log("data", data)
+            setImageUrl(data)
+            const url = URL.createObjectURL(blob);
+            console.log("url ", url);
+            downloadLink.href = url;
+            downloadLink.download = fileName;
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink);
+            const reboke = URL.revokeObjectURL(url);
+            console.log("reboke", reboke)
+        };
+
+        handleDownload();
+    }, [binaryImageData]);
+
+
+    const [imageUrl, setImageUrl] = useState(null);
+
+
+    console.log("imageUrl", imageUrl)
     const handleGenerateImage = async () => {
         setIsLoading(true);
 
@@ -135,7 +189,7 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
                                 {/* <Image ref={imageRef} src={Story} alt="story" onLoad={handleImageLoad} /> */}
 
 
-                                <Image src={`data:image/png;base64,${base64ImageString}`} alt="Generated Image" />
+                                {imageUrl && <img src={imageUrl} alt="Generated Image" />}
                             </div>
                         ) : (
                             <>

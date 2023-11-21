@@ -46,7 +46,7 @@ function App() {
             <Route path="/subscription" element={
               <PrivateRouter>
                 <Subscription />
-              // </PrivateRouter>
+             </PrivateRouter>
             } />
             <Route path="/schedule" element={
              <PrivateRouter>

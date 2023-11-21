@@ -92,7 +92,7 @@ let searchvalue = "";
                           value={searchQuery} ref={inputref}
                           onChange={handlesearch}
                         />
-                        <button   >
+                        <button>
                             Search
                         </button>
                     </div>
@@ -121,9 +121,7 @@ let searchvalue = "";
                                     {loading ? "LOADING ...." : "All Category"}
                                 </option>
                                 <option value="Space" className="custom-option">Space </option>
-
                                 <option value="Adventure" className="custom-option">Adventure </option>
-
                                 <option value="Animals" className="custom-option">Animals  </option>
                                 <option value="Fairy Tales" className="custom-option">Fairy Tales </option>
                                 <option value="Superhero" className="custom-option">Superhero  </option>
@@ -131,7 +129,6 @@ let searchvalue = "";
                             </select>
                         </div>
                     </div>
-
                 </div>
                 <div className="story-card">
                     <div className="row">
@@ -163,9 +160,6 @@ let searchvalue = "";
             </>
         );
     };
-
-
-
 
     return (
         <AuthLayout>

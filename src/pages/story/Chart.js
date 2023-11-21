@@ -39,7 +39,7 @@ function Chart() {
                         data: [100, 200, 300,100, 200, 300,100, 200, 300,100, 200, 300],
                         fill: true,
                         backgroundColor: 'rgba(34, 79, 255, 0.30)',
-                        borderColor: 'rgba(34, 79, 255, 0.30)',
+                        borderColor: 'rgba(34, 79, 255, 0.60)',
                         borderWidth: 1
                     },
                     { 
@@ -49,7 +49,7 @@ function Chart() {
                         fontColor: '#ffffff',
                         fill: true,
                         backgroundColor: 'rgba(34, 79, 255, 0.30)',
-                        borderColor: 'rgba(34, 79, 255, 0.30)',
+                        borderColor: 'rgba(34, 79, 255, 0.60)',
                         borderWidth: 1
                     },
                     // {

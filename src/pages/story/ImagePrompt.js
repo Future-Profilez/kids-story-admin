@@ -8,7 +8,7 @@ import prompt from "../../Data/image.json";
 // import GenerationStyle from "imaginesdk";
 // import Status from "imaginesdk";
 // import { client} from "imaginesdk";
-import { client, GenerationStyle, Status } from "imaginesdk";
+//import { client, GenerationStyle, Status } from "imaginesdk";
 
 function ImagePrompt({ show, handleClose,handleShow, imagePrompt, onGenerateImage }) {
 

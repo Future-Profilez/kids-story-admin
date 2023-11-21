@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import AuthLayout from "../../component/AuthLayout";
-import data from "../../image/login.png"
+import storys from "../../image/login.png"
 import Heading from "../../component/Heading";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -140,7 +140,7 @@ let searchvalue = "";
                             <div className="col-md-3" key={index}>
                                 <div className="card">
                                     <Link onClick={() => handleShow(item.uuid)} >
-                                        <img className="card-img-top" src={item.story_img || data} alt="Card cap" />
+                                        <img className="card-img-top" src={item.story_img || storys} alt="Card cap" />
                                         <div className="card-body">
                                             <h5 className="card-title">
                                                 {item.title || "Card title"}</h5>

@@ -134,7 +134,7 @@ let searchvalue = "";
                     <div className="row">
                         {content && content.map((item,
                             index) => (
-                            <div className="col-md-3" key={index}>
+                            <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
                                 <div className="card">
                                     <Link onClick={() => handleShow(item.uuid)} >
                                         <img className="card-img-top" src={item.story_img || storys} alt="Card cap" />

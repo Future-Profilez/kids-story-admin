@@ -266,8 +266,20 @@
 .update-field .input_field { width: 100%; border-radius: 50px; background: #0C1229; border: none; height: 58px; color: #fff; font-size: 14px; padding: 5px 18px; outline: none;} 
 .update-field div[class*="col-"] { margin: 0 0 30px; }
 
+
+@media (max-width: 1024px) {
+.filter-search{margin: 0 0 0px;flex-wrap: wrap;}
+.search{width: 100%;}
+.search input[type="search"]{max-width: calc(100% - 110px);}
+.dropdwon-filter{margin-top: 20px;justify-content: space-between; padding-left: 0;width: 100%;}}
 @media (max-width: 768px) {
   .btn-list button { margin: 0 3px;min-width: 180px;padding: 11px 18px; }
   .btn-list button + button{margin-top: 15px;}
   .btn-list{flex-direction: column;}
+  .filter-search{display: block;}
+  .dropdwon-filter{width: auto; margin: 20px -5px 0; justify-content: initial;}
+  .story-sort{width: 50%; max-width: 50%; flex-direction: column; justify-content: start; align-items: flex-start; padding: 0 5px;}
+  .story-sort + .story-sort{margin-left: 0; max-width: 50%;}
+  .story-sort h1{min-width: 66px; margin: 0 0 5px 10px;}
+  .story-sort .select, .story-sort + .story-sort .select{width: 100%;}
 }

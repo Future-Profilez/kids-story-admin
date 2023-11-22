@@ -121,7 +121,7 @@ div#reschedule-popup .modal-content{border-radius: 20px; background: #131C3E;}
 .description p{color: #FFF;font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 400; line-height: 21px;}
 .reschedule-action { display: flex; flex-wrap: wrap; align-items: center; }
 .reschedule-action .btn{    min-width: inherit;width: calc(100% - 60px);margin-right: 10px;}
-.reschedule-action button.delete-button{width: 50px; height: 50px;background-color: #9B0000;display: flex;align-items: center;justify-content: center;border-radius: 50px;}
+.reschedule-action button.delete-button{width: 50px; height: 50px;background-color: #9B0000;display: flex;align-items: center;justify-content: center;border-radius: 50px;    border: none;}
 .reschedule-action button.delete-button:hover{ background-color: #bd1e1e;}
 
 /* Generate Image */
@@ -143,7 +143,7 @@ div#reschedule-popup .modal-content{border-radius: 20px; background: #131C3E;}
 
 
 input:-webkit-autofill { border: none; -webkit-text-fill-color: rgb(255 255 255); -webkit-box-shadow: 0 0 0px 1000px #080F2C inset; -webkit-transition: background-color 5000s ease-in-out 0s; transition: background-color 5000s ease-in-out 0s;}
-input:-internal-autofill-selected { border: none; -webkit-text-fill-color: rgb(255 255 255); -webkit-box-shadow: 0 0 0px 1000px #080F2C inset; -webkit-transition: background-color 5000s ease-in-out 0s; transition: background-color 5000s ease-in-out 0s;}
+input:-internal-autofill-selected { border: none; -webkit-text-fill-color: rgb(255 255 255); -webkit-box-shadow: 0 0 0px 1000px #080F2C inset;-webkit-transition: background-color 5000s ease-in-out 0s; transition: background-color 5000s ease-in-out 0s;}
 input:-webkit-autofill:hover, input:-webkit-autofill:focus { border: none; -webkit-text-fill-color: rgb(255 255 255); -webkit-box-shadow: 0 0 0px 1000px #080F2C inset; -webkit-transition: background-color 5000s ease-in-out 0s; transition: background-color 5000s ease-in-out 0s; }
 
 

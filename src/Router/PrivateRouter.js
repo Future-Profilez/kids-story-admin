@@ -1,30 +1,35 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../context/UserContextProvider';
 import { useNavigate } from 'react-router-dom';
 import Story from '../Apis/Story';
 
 export default function PrivateRoute(props) {
   const { setLoginUser, loginUser } = useContext(UserContext);
-  const Navigate = useNavigate();
-const daat = loginUser.data
-console.log("data",daat)
-  console.log("loginuser",loginUser)
-  async function handleform() {
-    const main = new Story();
+  const navigate = useNavigate();
+  const [content, setContent] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const fetchData = async () => {
     try {
-      const { email } = loginUser.data;
-      console.log("email, password0",email)
-      const response = await main.Login({ email });
-      console.log("res.data", response);
-      setLoginUser(response?.data);
+      if (!loginUser) {
+        navigate("/");
+      } else {
+        const main = new Story();
+        const response = await main.Subscriptionlist();
+        if (response) {
+          setContent(response.data);
+          setLoading(false);
+        }
+      }
     } catch (error) {
-      console.error("Error in API request:", error);
+      console.log("error", error);
+      setLoading(false);
     }
-  }
+  };
 
   useEffect(() => {
-    handleform();
-  }, [setLoginUser, Navigate, loginUser]);
+    fetchData();
+  }, [setLoginUser, navigate, loginUser]); 
 
   return <>{props.children}</>;
 }

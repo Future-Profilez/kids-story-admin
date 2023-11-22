@@ -4,6 +4,7 @@ import "../../style/story.css";
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import ImagePrompt from "./ImagePrompt";
+import list from "../../Data/data.json"
 import { Modal } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
@@ -11,57 +12,12 @@ import { UserContext } from "../../context/UserContextProvider";
 
 function Storylist(props) {
 
-    const { cart, setCart } = useContext(UserContext);
+    const { List, setList } = useContext(UserContext);
+    const storedData = localStorage.getItem('List');
+   // const parsedData = JSON.parse(storedData);
+    const parsedData = list;
 
-    console.log("cart",cart  )
-    const data = {
-        title: "Tit for Tat in Space",
-        cover_image: "Image of a starry sky with a small spaceship",
-        story_info: {
-            character_info: ["DummyBoy", "DummyGirl"],
-            theme: "Space",
-            moral: "What goes around comes around",
-        },
-        chapters: [
-            {
-                chapter_no: 1,
-                title: "'A Spatial Ride'",
-                content:
-                    "DummyBoy and DummyGirl set off on their first interstellar adventure, exploring the wonders of the cosmos in their spaceship.",
-                image_prompt: "Image of a spaceship taking off into a starry sky",
-            },
-            {
-                chapter_no: 2,
-                title: "'Star Tip Discovery'",
-                content:
-                    "When they finally find the Star Tip, they are delighted to discover its unique properties. DummyBoy, always curious and inventive, wants to take a small piece of it back home.",
-                image_prompt: "Image of the toddlers looking at the Star Tip in awe",
-            },
-            {
-                chapter_no: 3,
-                title: "'The Warning'",
-                content:
-                    "Suddenly, a space creature appears, warning them not to take anything from the Star Tip. However, the toddlers, eager and stubborn, ignored the warning and took a piece anyway.",
-                image_prompt: "Image of the space creature warning the toddlers",
-            },
-            {
-                chapter_no: 4,
-                title: "'The Consequence'",
-                content:
-                    "As soon as they reached home, their spaceship would not function as usual – a consequence of taking from the Star Tip.",
-                image_prompt: "Image of a broken down spaceship",
-            },
-            {
-                chapter_no: 5,
-                title: "'The Lesson Learned'",
-                content:
-                    "They finally understood the space creature's warning and realized that everything in the universe is interconnected. You cannot take without giving in return.",
-                image_prompt: "Image of the toddlers returning the piece",
-                moral:
-                    "This incident taught DummyBoy and DummyGirl an important lesson, especially when they guard the balance of the universe.",
-            },
-        ],
-    };
+    console.log("parsedData", parsedData)
 
 
     const [show, setShow] = useState(false);
@@ -83,9 +39,9 @@ function Storylist(props) {
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
 
-const navigate =useNavigate();
+    const navigate = useNavigate();
 
-    function handlecontinues(){
+    function handlecontinues() {
         navigate('/schedule')
     }
     return (
@@ -96,22 +52,23 @@ const navigate =useNavigate();
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                {data.chapters.map((item, key) => (
-                                    <div className="story-list" key={key}>
-                                        <h2>
-
-                                            Chapter {item.chapter_no}:-{item.title}
-                                        </h2>
-                                        <p>{item.content}</p>
-                                        <div className="thubnail">
-                                            <Image
-                                                src={Story}
-                                                alt="story"
-                                                onClick={() => handleShow(item.image_prompt)}
-                                            />
-                                        </div>
-                                    </div>
-                                ))}
+                                {parsedData && parsedData.chapters
+                                    && parsedData.chapters
+                                        .map((item, key) => (
+                                            <div className="story-list" key={key}>
+                                                <h2>
+                                                   {item.title}
+                                                </h2>
+                                                <p>{item.content}</p>
+                                                <div className="thubnail">
+                                                    <Image
+                                                        src={Story}
+                                                        alt="story"
+                                                        onClick={() => handleShow(item.imagePrompt)}
+                                                    />
+                                                </div>
+                                            </div>
+                                        ))}
 
                                 <div className="btn-list">
                                     <button className="btn blue-gradient-btn">
@@ -178,7 +135,7 @@ const navigate =useNavigate();
                                 <div className="btn blue-gradient-btn" onClick={handlecontinues}>
                                     <span>Confirm & Continue</span>
                                 </div>
-                                
+
                             </div>
                         </Modal.Body>
                         {/* <Modal.Footer> */}

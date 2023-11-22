@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Modal } from "react-bootstrap";
 import "../../style/model.css"
 import Ai from "../../Apis/Ai"
 import genres from '../../Data/genre.json'
 import agegroup from "../../Data/Age.json"
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContextProvider";
 function StoryModal({ show, handleClose }) {
+
+    const { setList } = useContext(UserContext)
     const [currentStep, setCurrentStep] = useState(1);
     const [showSuccess, setShowSuccess] = useState(false);
     const [selectedUser, setSelectedUser] = useState('');
@@ -41,6 +44,46 @@ function StoryModal({ show, handleClose }) {
     const [genre, setGenre] = useState('');
     const [loading, setLoading] = useState(false)
 
+
+ 
+
+    const storyRsponse = {
+        "story": [
+            {
+                "chapter": "1",
+                "subtitle": "The Cosmic Heist",
+                "content": "In a far away galaxy, where advanced civilizations co-existed with alien species, our protagonists, DummyBoy, a seasoned space police officer passionately committed to upholding justice, and DummyGirl, a notorious inter-galactic thief known for her complicated heists, come into view. The chapter sets the stage revealing a heist in process, with DummyGirl attempting to steal precious celestial gems from a famed Space Museum.",
+                "imageprompt": "A museum in outer space with shimmering celestial gem exhibits and two figures, one approaching stealthily, the other observing vigilantly."
+            },
+            {
+                "chapter": "2",
+                "subtitle": "The Chase",
+                "content": "Upon the Space Police's alert, DummyBoy arrives at the scene only to find out that DummyGirl has successfully completed her heist. An intense chase begins, with DummyBoy using his cutting-edge spacecraft and space gadgets in attempt to capture the elusive DummyGirl. Despite his best efforts, the clever thief manages to escape his pursuit.",
+                "imageprompt": "An action filled scene with two spaceships, engaged in a high speed chase amidst a dazzling display of pulsating nebulae and alien worlds."
+            },
+            {
+                "chapter": "3",
+                "subtitle": "The Confrontation",
+                "content": "DummyBoy, finally manages to corner DummyGirl on the ice moon of a distant gas giant. With nowhere else to run, DummyGirl is confronted by DummyBoy. Despite facing arrest, DummyGirl remains stubbornly defiant and teases DummyBoy for his inability to apprehend her sooner.",
+                "imageprompt": "A dramatic showdown on an icy moon, a bold silhouette of DummyGirl standing across DummyBoy."
+            },
+            {
+                "chapter": "4",
+                "subtitle": "A Change of Heart",
+                "content": "In a surprising twist, DummyGirl confesses as to why she chose the life of a thief: she was doing it to provide for her impoverished family back in her home galaxy. This revelation prompts compassion in DummyBoy. He makes a choice - he decides to help DummyGirl and her family, by providing them a chance of legitimate means of survival, thus securing her promise of never resorting to stealing again.",
+                "imageprompt": "A warm conversation scene on a colder moon, with a feeling of empathy, change, and a new hope."
+            },
+            {
+                "chapter": "5",
+                "subtitle": "The Redemption",
+                "content": "This chapter revolves around the redemption of DummyGirl. With the help of DummyBoy, she and her family get a new lease of life based on a honest livelihood. DummyGirl's transformation serves as an inspiration for others, showing that it's never too late to rectify one's mistakes. The moral firmly communicated is, 'Everyone deserves a second chance. Understanding, compassion and help can change a person's life.'",
+                "imageprompt": "A picturesque image of DummyGirl and her family living happily in their peaceful home, with an aura of contentment and satisfaction, signifying the end of a journey and the beginning of a new one."
+            }
+        ]
+    }
+//    console.log("storyRsponse", storyRsponse.story)
+//     const redd = setList(storyRsponse);
+//       console.log("redd", redd);
     const [card, setCard] = useState(null)
     const navigate = useNavigate()
 
@@ -50,12 +93,16 @@ function StoryModal({ show, handleClose }) {
         try {
             if (userTitle && age && gender && genre) {
                 setLoading(true);
-                const prompt =
-                    `Title: ${userTitle}\nAs an  boyname: ${Boys}  girlname:${girl} age : ${age}year ,gender :${gender}, 
-                    I would like to read a ${genre} story. ${userTitle} . 
-                    Please provide five chapters with subtitles, content, and imageprompt, 
-                    ensuring that the fifth chapter always conveys the moral of the story five chapert in one variable store the data . give response in json format.`
-                //const prompt = `what is capital of india. Format it in JSON.`;
+                const promptData = {
+                    title: userTitle,
+                    boyname: Boys,
+                    girlname: girl,
+                    age: age,
+                    gender: gender,
+                    genre: genre,
+                    description: "Please provide five chapters with subtitles, content, and imageprompt, ensuring that the fifth chapter always moral of the story . Store the data in one variable and give the response in JSON format."
+                };
+
                 const requestData = {
                     model: 'gpt-4',
                     messages: [
@@ -65,7 +112,7 @@ function StoryModal({ show, handleClose }) {
                         },
                         {
                             role: 'user',
-                            content: prompt,
+                            content: JSON.stringify(promptData),
                         },
                     ],
                 };
@@ -73,24 +120,31 @@ function StoryModal({ show, handleClose }) {
                     .then((res) => {
                         const storyResponse = res.data.choices[0].message.content;
                         console.log("storyResponse", storyResponse);
-                        const Parstory = JSON.parse(storyResponse);
-                        localStorage.setItem("cart", Parstory)
-                        console.log("Parstory", Parstory);
-                        storyres = Parstory;
-                        const data = setCard(storyres);
-                        console.log("data", data);
-                        navigate('/list');
-                    }).catch((error) => {
+                        try {
+                            const Parstory = JSON.parse(storyResponse);
+                            console.log("parstory", Parstory);
+                            storyres = Parstory;
+                            const datastory = setList(Parstory);
+                            console.log("datastory", datastory);
+                            const data = setCard(storyres);
+                            console.log("data", data);
+                            setTimeout(() => {
+                                navigate('/list');
+                            },1000  );
+                        } catch (error) {
+                            console.log("Error parsing JSON:", error);
+                        }
+                    })
+                    .catch((error) => {
                         console.log("error", error);
                         setLoading(false);
                     });
             }
         } catch (error) {
-
-            console.log("Error", error)
+            console.log("Error", error);
         }
-
     };
+    console.log("storyres", storyres)
 
     useEffect(() => {
         setLoading(false);

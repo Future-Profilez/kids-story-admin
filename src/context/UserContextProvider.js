@@ -3,12 +3,12 @@ export const UserContext = createContext();
 
 export default function UserContextProvider(props) {
     const [loginUser, setLoginUser] = useState();
-    const[cart,setCart] = useState('');
+    const[List,setList] = useState('');
     useEffect(()=>{
-        localStorage.setItem('cart',JSON.stringify(cart))
-    },[cart])
+        localStorage.setItem('List',JSON.stringify(List))
+    },[List])
     return <>
-        <UserContext.Provider value={{ loginUser, setLoginUser,cart,setCart }} >
+        <UserContext.Provider value={{ loginUser, setLoginUser,List,setList }} >
             {props.children}
         </UserContext.Provider>
     </>

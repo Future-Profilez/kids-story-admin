@@ -16,17 +16,29 @@ function StoryModal({ show, handleClose }) {
     const [Boys, setBoys] = useState("DummyBoy")
     const [girl, setGirls] = useState("DummyGirl")
 
-    const handleOptionSelect = (nextStep, user) => {
-        if (nextStep >= 1 && nextStep <= 4) {
-            setCurrentStep(nextStep);
-            setSelectedUser(user);
-            if (nextStep === 4) {
-                setShowSuccess(true);
-            } else {
-                setShowSuccess(false);
-            }
+
+const handleOptionSelect = (nextStep, user) => {
+    if (nextStep >= 1 && nextStep <= 4) {
+        setCurrentStep(nextStep);
+        setSelectedUser(user);
+        if (nextStep === 4) {
+            setShowSuccess(true);
+        } else {
+            setShowSuccess(false);
         }
-    };
+
+        if (user === 'boy') {
+            setBoys('DummyBoy');
+            setGirls('');
+        } else if (user === 'girl') {
+            setGirls('DummyGirl');
+            setBoys('');
+        }
+    }
+};
+console.log("Boys",girl)
+// Rest of your code...
+
 
 
 
@@ -41,6 +53,7 @@ function StoryModal({ show, handleClose }) {
     const [userTitle, setUserTitle] = useState('');
     const [age, setAge] = useState('');
     const [gender, setGender] = useState('');
+    console.log("gender",gender)
     const [genre, setGenre] = useState('');
     const [loading, setLoading] = useState(false)
 
@@ -95,14 +108,12 @@ function StoryModal({ show, handleClose }) {
                 setLoading(true);
                 const promptData = {
                     title: userTitle,
-                    boyname: Boys,
-                    girlname: girl,
                     age: age,
                     gender: gender,
                     genre: genre,
-                    description: "Please provide five chapters with subtitles, content, and imageprompt, ensuring that the fifth chapter always moral of the story . Store the data in one variable and give the response in JSON format."
+                    description:"Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the datain  one variable 'charter'in this variable inside  one variable named 'chapter' and include all chapter details following this pattern: chapter number, title, content, and imageprompt. Finally, provide the response in JSON format.",
                 };
-
+                // description: "Please provide the content for five chapters, including subtitles, content, and an imageprompt. Ensure that the fifth chapter always has a moral of the story. Store the data in one variable and chapter store in one variable  variable name chapter and all chapter content,  chapterno. , imageprompt , title . all follow this pattern  and provide the response in JSON format."
                 const requestData = {
                     model: 'gpt-4',
                     messages: [

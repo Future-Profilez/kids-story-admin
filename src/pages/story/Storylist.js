@@ -11,7 +11,7 @@ import { useNavigate } from "react-router";
 import { UserContext } from "../../context/UserContextProvider";
 
 function Storylist(props) {
-    
+
 
     const { List, setList } = useContext(UserContext);
     const storedData = localStorage.getItem('List');
@@ -27,12 +27,13 @@ function Storylist(props) {
     const handleClose = () => setShow(false);
 
     const handleShow = (image_prompt) => {
-
         setImagePrompt(image_prompt);
         setShow(true);
     };
+    const [ImageUrl ,setImageUrl]=useState("")
 
     const handleGenerateImage = (image_prompt) => {
+        setImageUrl(image_prompt)
         console.log("Generated Image Prompt:", image_prompt);
     };
 
@@ -41,10 +42,14 @@ function Storylist(props) {
     const handleShowContinue = () => setShowContinue(true);
 
     const navigate = useNavigate();
+    console.log("imagePrompt",imagePrompt)
+    console.log("ImageUrl",ImageUrl)
+
 
     function handlecontinues() {
         navigate('/schedule')
     }
+    console.log("")
     return (
         <>
             <AuthLayout>

@@ -132,8 +132,8 @@ function ImagePrompt({ show, handleClose,handleShow, imagePrompt, onGenerateImag
             const response = await imageAi.post("/generations", formData);
             console.log("response", response);
             const imageData = response.data;
+            onGenerateImage(imageData)
             console.log("imageData", imageData);
-
         } catch (error) {
             console.error('Error generating image:', error);
         } finally {

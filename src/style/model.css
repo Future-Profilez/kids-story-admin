@@ -255,3 +255,14 @@ div#successpopup .body-popup-title {
 div#successpopup h3 {
     padding: 15px 0 0;
 }
+
+
+@media screen and (max-width: 1199px) {
+    #generat-story.modal-dialog{max-width: 720px;}
+    #generat-story .modal-header{padding: 20px 30px 20px;min-height: 73px;}
+
+   
+    #generat-story .modal-title svg{width: 32px; height: 32px;left: 30px; top: 20px;}
+    .body-popup-title h3{font-size: 20px;    padding: 0 0 14px;}
+    .button-list-form ul li { padding: 0 5px; margin: 0 0 10px; }
+}

@@ -12,8 +12,8 @@ console.log("data",daat)
   async function handleform() {
     const main = new Story();
     try {
-      const { email, password } = loginUser.data;
-      console.log("email, password0",email, password)
+      const { email } = loginUser.data;
+      console.log("email, password0",email)
       const response = await main.Login({ email });
       console.log("res.data", response);
       setLoginUser(response?.data);

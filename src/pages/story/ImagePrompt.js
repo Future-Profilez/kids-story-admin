@@ -8,7 +8,7 @@ import prompt from "../../Data/image.json";
 // import GenerationStyle from "imaginesdk";
 // import Status from "imaginesdk";
 // import { client} from "imaginesdk";
-//import { client, GenerationStyle, Status } from "imaginesdk";
+// import { client, GenerationStyle, Status } from "imaginesdk";
 
 function ImagePrompt({ show, handleClose,handleShow, imagePrompt, onGenerateImage }) {
 
@@ -129,13 +129,10 @@ function ImagePrompt({ show, handleClose,handleShow, imagePrompt, onGenerateImag
             formData.append('model_version', '1');
             formData.append('prompt', imagePrompt);
             formData.append('style_id', '30');
-
             const response = await imageAi.post("/generations", formData);
             console.log("response", response);
             const imageData = response.data;
             console.log("imageData", imageData);
-            //  console.log("data", data)
-
 
         } catch (error) {
             console.error('Error generating image:', error);

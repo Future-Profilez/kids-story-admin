@@ -10,6 +10,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { UserContext } from "../../context/UserContextProvider";
 import Regenerate from "./Regenerate";
+import { Link } from "react-router-dom";
 
 function Storylist(props) {
 
@@ -146,8 +147,10 @@ function Storylist(props) {
                                 Are you sure you have read this story?
                             </h5>
                             <div className="text-center">
-                                <div className="btn blue-gradient-btn" onClick={handlecontinues}>
+                                <div className="btn blue-gradient-btn" >
+                                    <Link to="/schedule">
                                     <span>Confirm & Continue</span>
+                                    </Link>
                                 </div>
 
                             </div>

@@ -41,16 +41,15 @@ function Profile() {
             console.log("main", main);
             const response = await main.Profile(Regs);
             console.log("res", response);
-            if (response.data.status === "true") {
-                toast.success(response.data.message);
+            if (response.data.status === true) {
                 setRegs(initialRegs);
-                navigate("/")
+                toast.success(response.data.message);
             }else{
-                toast.error(response.data.message)
+                toast.error(response.data.message);
             }
         } catch (error) {
             console.log("error", error);
-            toast.error("An error occurred. Please try again.");
+            toast.error(error);
         }
     }
     return (

@@ -13,8 +13,38 @@
 .input_container .form-control{border-radius: 10px; background: #080F2C;color: #FFF; font-family: Poppins; font-size: 15px; font-style: normal; font-weight: 700; line-height: 15px;  text-transform: lowercase;height: 60px;padding: 10px 27px;border: none;outline: none;box-shadow: none;}
 
 .passwaord-icon{position: relative;}
-.password-toggle-icon { position: absolute; right: 24px; bottom: 17px; }
+.password-toggle-icon { position: absolute; right: 24px; bottom: 17px; cursor: pointer;}
 .input_container ::-ms-input-placeholder { color: #a1a1a1; } 
 .input_container ::placeholder { color: #a1a1a1;}
 
 .input_container .input_label {color: rgba(255, 255, 255, .8) ; font-family: Poppins; font-size: 15px; font-style: normal; font-weight: 500; line-height: 15px; text-transform: capitalize; margin: 0 0 7px;}
+
+@media (max-width:1370px){
+    .login h1{top: 59px;}
+    .login .background-img{width: 50%;}
+    .login .login-form{width: 50%;}
+    .login .login-form{ padding: 39px 48px 0;}
+    .login h3{font-size: 32px;padding-bottom: 25px; margin: 0 0 30px;}
+}
+
+@media (max-width:1024px){
+    .login{flex-direction: column-reverse;}
+    .login .background-img{width: 100%;}
+    .login .login-form{width: 100%;}  
+    .login .background-img .img-fluid{min-height: auto;  max-height: 500px;}
+    .login .login-form { padding: 20px 0 0; }
+    .login h1{top: 0;position: relative;}
+    .form_middle{padding: 20px 0 30px;}
+    .login h3 { font-size: 28px; padding-bottom: 15px; margin: 0 0 25px; }
+    
+}
+
+@media (max-width:767px){
+    .login h1{    font-size: 24px;}
+    .login h3 { font-size: 24px; padding-bottom: 10px; margin: 0 0 20px; }
+    .input_container .form-control{height: 50px; padding: 8px 20px;font-size: 14px;}
+    .password-toggle-icon{ right: 15px; bottom: 14px;}
+    .password-toggle-icon svg { width: 20px;   height: 20px;}
+
+
+}

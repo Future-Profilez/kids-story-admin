@@ -14,8 +14,7 @@ a {
 .header {width: 100%; position: fixed; top: 0; left: 0; padding: 10px 20px; background-color: #060d25; z-index: 999; transition: 0.5s; display: flex;
 }
 .header_toggle svg{max-width: 40px;}
-.header_toggle {color: #4723d9; cursor: pointer; width: 40px;
-}
+.header_toggle {color: #4723d9; cursor: pointer; width: 40px;}
 
 
 .main-sidebar {
@@ -165,8 +164,12 @@ div#reschedule-popup .modal-content{border-radius: 20px; background: #131C3E;}
  @media screen and (max-width: 1199px) { 
   .content-wrapper{height: auto;margin-top: 75px;}
   .content{     padding: 20px 20px; }
+  .btn{    min-width: 240px;}
  }
+ @media screen and (max-width: 1199px) {
+  .btn {min-width: 200px;    padding: 13px 20px;    font-size: 15px;}
 
+  }
 .nav_link.active {
   color: red; /* Change this to the desired color when the link is active */
   /* You can add other styles as needed */

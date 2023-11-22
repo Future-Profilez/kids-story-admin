@@ -24,11 +24,7 @@ function Chart() {
         const chartCanvas = chartRef.current.getContext("2d");   
 
         chartInstance.current = new chart(chartCanvas, {
-            type: "line",    
-            title: {
-                display: true,
-                text: 'Subscription tracking',
-            },       
+            type: "line", 
             data: {
                 labels: ["Jan", "Feb", "Mar", "April", "May", "June", "July", "August", "Sep.", "Oct.", "Nov.", "Dec."],
                 
@@ -40,15 +36,16 @@ function Chart() {
                         fill: true,
                         backgroundColor: 'rgba(34, 79, 255, 0.30)',
                         borderColor: 'rgba(34, 79, 255, 0.60)',
-                        borderWidth: 1
+                        borderWidth: 1,
+                        showLine: false
                     },
                     { 
                         label: 'Subscription',
                         // data: [Contnet.totalSubscription],
                         data: [140, 250, 360,170, 280, 390,170, 240, 350,160, 270, 380],
                         fill: true,
-                        backgroundColor: 'rgba(34, 79, 255, 0.30)',
-                        borderColor: 'rgba(34, 79, 255, 0.60)',
+                        backgroundColor: 'rgba(144, 84, 217, 0.20)',
+                        borderColor: 'rgba(144, 84, 217, 1)',
                         borderWidth: 1
                     },
                     // {
@@ -63,7 +60,62 @@ function Chart() {
                     // }
                 ]
                 
-            }
+            },
+            options: {
+                plugins: {
+                  title: {
+                    display: true,
+                    text: "Subscription tracking ",
+                    color: 'rgba(255, 255, 255, 1)',
+                    font: {
+                      size: 20,
+                       
+                    },
+                    position: 'top', 
+                    titleAlign:"left",
+                    padding: {
+                        top: 10,
+                        bottom: 5 
+                    }
+                    
+                  },
+                 
+                  legend: {
+                    display: true,
+                    labels: {
+                      color: 'rgba(255, 255, 255, 1)', // Change legend text color
+                    },
+                    padding: {
+                        top: 0,
+                        bottom: 25 
+                    },
+                    Align:"start",
+                  },
+                },                
+                scales: {
+                  x: {
+                     ticks: {
+                      color: 'rgba(255, 255, 255, 1)', // Change x-axis tick text color
+                    },
+                    grid: {
+                        //  display: false, // Remove y-axis gridlines 
+                         color: 'rgba(255, 255, 255, .05)',
+                      },
+                      
+                  },
+                  y: { 
+                    ticks: {
+                      color: 'rgba(255, 255, 255, 1)', // Change y-axis tick text color
+                    },
+                    grid: {
+                       // display: false, // Remove y-axis gridlines 
+                       color: 'rgba(255, 255, 255, .05)',
+                      },
+                     
+                  },
+                },
+               
+              },
            
         });
 

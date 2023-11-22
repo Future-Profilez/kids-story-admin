@@ -1,6 +1,6 @@
 import axios from 'axios';
 const APP_URL = process.env.REACT_APP_URL
-
+console.log("APP_URL",APP_URL)
 function getToken() {
   const data = localStorage && localStorage.getItem('token');
  // console.log("data", data);

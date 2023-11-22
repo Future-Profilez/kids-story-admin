@@ -5,11 +5,15 @@ import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import ImagePrompt from "./ImagePrompt";
 import { Modal } from "react-bootstrap";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
+import { UserContext } from "../../context/UserContextProvider";
 
 function Storylist(props) {
 
+    const { cart, setCart } = useContext(UserContext);
+
+    console.log("cart",cart  )
     const data = {
         title: "Tit for Tat in Space",
         cover_image: "Image of a starry sky with a small spaceship",
@@ -59,7 +63,6 @@ function Storylist(props) {
         ],
     };
 
-    console.log("data", data);
 
     const [show, setShow] = useState(false);
     const [imagePrompt, setImagePrompt] = useState("");
@@ -72,7 +75,6 @@ function Storylist(props) {
         setShow(true);
     };
 
-    console.log("imagePrompt", imagePrompt)
     const handleGenerateImage = (image_prompt) => {
         console.log("Generated Image Prompt:", image_prompt);
     };
@@ -128,6 +130,7 @@ const navigate =useNavigate();
                     {/* data={imagepropmt}  */}
                     <ImagePrompt
                         show={show}
+                        handleShow={handleShow}
                         handleClose={handleClose}
                         onGenerateImage={handleGenerateImage}
                         imagePrompt={imagePrompt}

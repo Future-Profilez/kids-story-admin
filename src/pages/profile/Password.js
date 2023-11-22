@@ -30,9 +30,9 @@ function Password() {
             console.log("main", main);
             const response = await main.Password(Regs);
             console.log("res", response);
-            if (response.data.status === "true") {
-                toast.success(response.data.message);
+            if (response.data.status === true) {
                 setRegs(initialRegs);
+                toast.success(response.data.message);
                 navigate("/")
             }else{
                 toast.error(response.data.message)

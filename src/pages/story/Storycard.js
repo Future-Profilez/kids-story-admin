@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import AuthLayout from "../../component/AuthLayout";
-import data from "../../image/login.png"
+import storys from "../../image/login.png"
 import Heading from "../../component/Heading";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
@@ -92,7 +92,7 @@ let searchvalue = "";
                           value={searchQuery} ref={inputref}
                           onChange={handlesearch}
                         />
-                        <button   >
+                        <button>
                             Search
                         </button>
                     </div>
@@ -121,9 +121,7 @@ let searchvalue = "";
                                     {loading ? "LOADING ...." : "All Category"}
                                 </option>
                                 <option value="Space" className="custom-option">Space </option>
-
                                 <option value="Adventure" className="custom-option">Adventure </option>
-
                                 <option value="Animals" className="custom-option">Animals  </option>
                                 <option value="Fairy Tales" className="custom-option">Fairy Tales </option>
                                 <option value="Superhero" className="custom-option">Superhero  </option>
@@ -131,7 +129,6 @@ let searchvalue = "";
                             </select>
                         </div>
                     </div>
-
                 </div>
                 <div className="story-card">
                     <div className="row">
@@ -140,7 +137,7 @@ let searchvalue = "";
                             <div className="col-md-3" key={index}>
                                 <div className="card">
                                     <Link onClick={() => handleShow(item.uuid)} >
-                                        <img className="card-img-top" src={item.story_img || data} alt="Card cap" />
+                                        <img className="card-img-top" src={item.story_img || storys} alt="Card cap" />
                                         <div className="card-body">
                                             <h5 className="card-title">
                                                 {item.title || "Card title"}</h5>
@@ -163,9 +160,6 @@ let searchvalue = "";
             </>
         );
     };
-
-
-
 
     return (
         <AuthLayout>

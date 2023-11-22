@@ -2,12 +2,13 @@ import { Link, useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { func } from "prop-types";
 import Story from "../Apis/Story";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/UserContextProvider";
 
 
 function Header() {
     const { loginUser, setLoginUser, cart } = useContext(UserContext)
+    const [isClicked, setIsClicked] = useState(false);
 
 
     const navigate = useNavigate();
@@ -32,7 +33,12 @@ function Header() {
     //     handellogouts();
     // }, [])
 
+    function handledata() {
+        setIsClicked(!isClicked);
+    }
 
+    const headerClass = isClicked ? "header data-add" : "header";
+   
     return (
         <>
             {/* header */}
@@ -117,7 +123,9 @@ function Header() {
                 </nav>
             </div>
             {/* end side bar */}
-        </>);
+        </>
+        
+        );
 }
 
 export default Header;

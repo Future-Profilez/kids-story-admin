@@ -3,8 +3,15 @@ import "../../style/model.css";
 import { useState, useRef, useEffect } from "react"; // Import useRef
 import Story from "../../image/story-thubnail.png";
 import imageAi from "../../Apis/imageAi";
+import prompt from "../../Data/image.json";
+//import client from "imaginesdk";
+// import GenerationStyle from "imaginesdk";
+// import Status from "imaginesdk";
+// import { client} from "imaginesdk";
+// import { client, GenerationStyle, Status } from "imaginesdk";
 
-function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
+function ImagePrompt({ show, handleClose,handleShow, imagePrompt, onGenerateImage }) {
+
     const modalTitleStyle = {
         color: '#FFF',
         textAlign: 'center',
@@ -15,19 +22,11 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
         fontWeight: 600,
     };
 
-    console.log("imagePrompt", imagePrompt)
+    // const imagine = client("<YOUR_API_KEY>");
 
     const [data, setData] = useState("");
-    const [imageUrl, setImageUrl] = useState(); // Fix the variable name here
 
-    console.log("data", data)
-    const datacss = {
-        width: "401px",
-        height: "286px",
-        borderRadius: "8.833px",
-        background: "black",
-    };
-
+    const [modalShow, setModalShow] = useState(show);
     const [isLoading, setIsLoading] = useState(true);
     const imageRef = useRef(null);
 
@@ -35,24 +34,106 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
         setIsLoading(true);
     };
 
+    // const binaryImageData = prompt;
+
+    // console.log("binaryImageData", binaryImageData)
+    //const base64ImageString = btoa(binaryImageData);
+
+    //  console.log("base64ImageString", base64ImageString);
+
+
+    //    const blob = new Blob([binaryImageData], { type: 'image/png' });
+    //            console.log("blob00",blob)
+
+    //              const imageUrl = URL.createObjectURL(blob);
+
+    //                console.log("imageUrl",imageUrl)
+
+    // useEffect(() => {
+    //      const blob = new Blob([binaryImageData], { type: 'image/png' });
+    //      console.log("blob00",blob);
+    //      const downloadLink = document.createElement('a');
+    //      console.log("downloadLink",downloadLink);
+    //      const data =  downloadLink.href = URL.createObjectURL(blob);
+    //      console.log("data",data)
+    //      const recoird =  downloadLink.download = 'D:\kids-story-admin\src\image';
+    //    console.log("recoird",recoird)
+    //     document.body.appendChild(downloadLink);
+    //     downloadLink.click();
+    //     document.body.removeChild(downloadLink);
+    //     return () => URL.revokeObjectURL(downloadLink.href);
+    // }, [binaryImageData]);
+
+    // const handleDownload = () => {
+    //     const blob = new Blob([imageSource], { type: 'image/png' });
+    //     console.log("blog", blob)
+    //     const downloadLink = document.createElement('a');
+    //     console.log("downloadLink", downloadLink);
+    //     const baseName = 'image';
+    //     const timestamp = new Date().getTime();
+    //     const fileName = `/${baseName}_${timestamp}.png`;
+    //     console.log("fileName", fileName)
+    //     const data = fileName;
+    //     console.log("data", data)
+    //     setImageUrl(data)
+    //     const url = URL.createObjectURL(blob);
+    //     console.log("url ", url);
+    //     downloadLink.href = url;
+    //     downloadLink.download = fileName;
+    //     document.body.appendChild(downloadLink);
+    //     downloadLink.click();
+    //     document.body.removeChild(downloadLink);
+    //     const reboke = URL.revokeObjectURL(url);
+    //     console.log("reboke", reboke)
+    // };
+    // useEffect(() => {
+    //     handleDownload();
+    // }, [imageSource]);
+
+
+    const [imageUrl, setImageUrl] = useState(null);
+
+
+
+    // /generations
+    // const handleGenerateImage = async () => {
+    //     setIsLoading(true);
+    //     try {
+    //         const response = await imageAi.post("/generations", {
+    //             model_version: ( '1'),
+    //             prompt:  (  imagePrompt),
+    //             style_id: ("30"),
+    //         });
+    //         console.log("response", response);
+    //         if (response && response.data) {
+    //             const record = response.data;
+
+
+    //         } else {
+    //             console.error('Unexpected response format:', response.error);
+    //         }
+
+    //     } catch (error) {
+    //         console.error('Error generating image:', error);
+    //     } finally {
+    //         setIsLoading(false);
+    //     }
+    // };
+
+
+
     const handleGenerateImage = async () => {
         setIsLoading(true);
-
         try {
-            const response = await imageAi.post("/generations", {
-                prompt: imagePrompt,
-                style_id: "30",
-                filename: "D:\\kids-story-admin\\src\\Genaratoerimage/Image" // Fix the filename here
-            });
+            const formData = new FormData();
+            formData.append('model_version', '1');
+            formData.append('prompt', imagePrompt);
+            formData.append('style_id', '30');
+            const response = await imageAi.post("/generations", formData);
+            console.log("response", response);
+            const imageData = response.data;
+            console.log("imageData", imageData);
 
-            if (!response.data.success) {
-                throw new Error('Failed to generate image');
-            }
-
-            const generatedImageUrl = response.data.data.url;
-            setData(generatedImageUrl);
-
-            downloadImage(generatedImageUrl, "generated_image.png");
         } catch (error) {
             console.error('Error generating image:', error);
         } finally {
@@ -60,17 +141,14 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
         }
     };
 
-    const downloadImage = (url, fileName) => {
-        const link = document.createElement("a");
-        link.href = url;
-        link.download = fileName;
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-    };
+
+
+
 
     useEffect(() => {
+
         setData(imagePrompt);
+        setModalShow(show);
     }, [show]);
 
     return (
@@ -116,12 +194,16 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
                                     Image Generating...
                                 </div>
                                 <Image ref={imageRef} src={Story} alt="story" onLoad={handleImageLoad} />
-
+                                {/* {imageUrl && <img src={imageUrl} alt="Generated Image"   onLoad={handleImageLoad}/>} */}
                             </div>
                         ) : (
                             <>
-                                <Image ref={imageRef} src={Story} alt="not found" className="img-fluid" onLoad={handleImageLoad} />
-                                <button>Regenerate</button>
+                                {imageUrl && <img src={imageUrl} alt="Generated Image" onLoad={handleImageLoad} />}
+                                <div className="text-center mt-3" >
+                                    <button className="btn blue-gradient-btn"  onClick={() => handleShow()}>
+                                        Re-Generate
+                                    </button>
+                                </div>
                             </>
                         )}
                     </div>

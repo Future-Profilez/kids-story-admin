@@ -1,31 +1,24 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { UserContext } from '../context/UserContextProvider';
 import { useNavigate } from 'react-router-dom';
 import Story from '../Apis/Story';
 
 export default function PrivateRoute(props) {
   const { setLoginUser, loginUser } = useContext(UserContext);
-  const [Regs, setRegs] = useState({
-    email: "",
-    password: ""
-
-  });
   const Navigate = useNavigate();
-  console.log("loginUser", loginUser)
+const daat = loginUser.data
+console.log("data",daat)
+  console.log("loginuser",loginUser)
   async function handleform() {
-
+    const main = new Story();
     try {
-      const main = new Story();
-      const response = await main.Login(Regs);
-      console.log("response", response);
-      if (response) {
-        setRegs(response?.data?.data)
-        setLoginUser(response?.data?.data);
-      } else {
-        Navigate('/')
-      }
+      const { email } = loginUser.data;
+      console.log("email, password0",email)
+      const response = await main.Login({ email });
+      console.log("res.data", response);
+      setLoginUser(response?.data);
     } catch (error) {
-      console.log("error", error);
+      console.error("Error in API request:", error);
     }
   }
 

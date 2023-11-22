@@ -9,6 +9,7 @@ import { Modal } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { UserContext } from "../../context/UserContextProvider";
+import Regenerate from "./Regenerate";
 
 function Storylist(props) {
 
@@ -49,6 +50,12 @@ function Storylist(props) {
     function handlecontinues() {
         navigate('/schedule')
     }
+
+    const [shows, setShows] = useState(false);
+    const handleCloses = () => setShows(false);
+    const handleShows = () => setShows(true);
+
+
     console.log("")
     return (
         <>
@@ -77,7 +84,7 @@ function Storylist(props) {
                                         ))}
 
                                 <div className="btn-list">
-                                    <button className="btn blue-gradient-btn">
+                                    <button className="btn blue-gradient-btn" onClick={()=>handleShows()}>
                                         <span>Regenerate Story</span>
                                     </button>
                                     <button
@@ -90,10 +97,11 @@ function Storylist(props) {
                             </div>
                         </div>
                     </div>
+                    <Regenerate    shows={shows}
+                        handleCloses={handleCloses} />
                     {/* data={imagepropmt}  */}
                     <ImagePrompt
                         show={show}
-                        handleShow={handleShow}
                         handleClose={handleClose}
                         onGenerateImage={handleGenerateImage}
                         imagePrompt={imagePrompt}

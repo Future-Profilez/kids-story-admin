@@ -132,8 +132,8 @@ function ImagePrompt({ show, handleClose,handleShow, imagePrompt, onGenerateImag
             style_id: '30',
           });
     
-          // Assuming the response contains the image data in some format (e.g., base64)
-          const imageData = response.data; // Adjust this based on your API response structure
+          const imageData = response.data; 
+          console.log("imageData",imageData)
     
           // Convert the received data into ArrayBuffer
           const arrayBuffer = new TextEncoder().encode(imageData).buffer;

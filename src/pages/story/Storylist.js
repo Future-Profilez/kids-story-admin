@@ -4,7 +4,7 @@ import "../../style/story.css";
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import ImagePrompt from "./ImagePrompt";
-// import list from "../../Data/data.json"
+ import list from "../../Data/data.json"
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
 import Regenerate from "./Regenerate";
@@ -34,15 +34,15 @@ function Storylist() {
     const dispatch = useDispatch();
 const navigate =useNavigate();
 
-    const users = useSelector(state => state.users.users);
+//     const users = useSelector(state => state.users.users);
 
-    console.log("redux", useSelector(state => state.users.users))
+//     console.log("redux", useSelector(state => state.users.users))
 
 
-    console.log("users",users)
+//     console.log("users",users)
 
-    const data = users[0].chapters
-console.log("data",data)
+//     const data = users[0]?.chapters?
+// console.log("data",data)
     const [show, setShow] = useState(false);
     const [imagePrompt, setImagePrompt] = useState("");
     const handleClose = () => setShow(false);
@@ -63,6 +63,7 @@ console.log("data",data)
     function Schedulecontinue() {
         navigate('/schedule')
     }
+   // const imageprompt ="police and thief"
     const [shows, setShows] = useState(false);
     const handleCloses = () => setShows(false);
     const handleShows = () => setShows(true);
@@ -74,19 +75,19 @@ console.log("data",data)
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                {data 
-                                    && data
+                                {list && list.chapters 
+                                    && list.chapters
                                         .map((item, key) => (
                                             <div className="story-list" key={key}>
                                                 <h2>
-                                          Chapter:-     {item.chapternumber}    {item.title}
+                                          Chapter   {item.chapternumber || "1"}:-         {item.title}
                                                 </h2>
                                                 <p>{item.content}</p>
                                                 <div className="thubnail">
                                                     <Image
                                                         src={Story}
                                                         alt="story"
-                                                        onClick={() => handleShow(item.imageprompt)}
+                                                        onClick={() => handleShow(item.imagePrompt)}
                                                     />
                                                 </div>
                                             </div>

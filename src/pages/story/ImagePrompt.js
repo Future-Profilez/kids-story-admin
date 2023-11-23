@@ -1,5 +1,6 @@
-import { Image, Modal } from "react-bootstrap";
+import {  Modal } from "react-bootstrap";
 import "../../style/model.css";
+import { toImage, Image } from './Image';
 import { useState, useRef, useEffect } from "react"; // Import useRef
 import Story from "../../image/story-thubnail.png";
 import imageAi from "../../Apis/imageAi";
@@ -121,25 +122,36 @@ function ImagePrompt({ show, handleClose,handleShow, imagePrompt, onGenerateImag
     // };
 
 
-
     const handleGenerateImage = async () => {
         setIsLoading(true);
         try {
-            const formData = new FormData();
-            formData.append('model_version', '1');
-            formData.append('prompt', imagePrompt);
-            formData.append('style_id', '30');
-            const response = await imageAi.post("/generations", formData);
-            console.log("response", response);
-            const imageData = response.data;
-            onGenerateImage(imageData)
-            console.log("imageData", imageData);
+          // Make the API call and get the response data
+          const response = await imageAi.post("/generations", {
+            model_version: '1',
+            prompt: imagePrompt,
+            style_id: '30',
+          });
+    
+          // Assuming the response contains the image data in some format (e.g., base64)
+          const imageData = response.data; // Adjust this based on your API response structure
+    
+          // Convert the received data into ArrayBuffer
+          const arrayBuffer = new TextEncoder().encode(imageData).buffer;
+    
+          // Use the toImage function to get an Image object
+          const image= toImage(arrayBuffer);
+    
+          // Call the onGenerateImage callback with the image data
+          onGenerateImage(image.buffer());
+    
+          // Optionally, set the imageUrl state if needed
+          setImageUrl(image.asImageSrc());
         } catch (error) {
-            console.error('Error generating image:', error);
+          console.error('Error generating image:', error);
         } finally {
-            setIsLoading(false);
+          setIsLoading(false);
         }
-    };
+      };
 
 
 
@@ -193,7 +205,7 @@ function ImagePrompt({ show, handleClose,handleShow, imagePrompt, onGenerateImag
 
                                     Image Generating...
                                 </div>
-                                <Image ref={imageRef} src={Story} alt="story" onLoad={handleImageLoad} />
+                                <img ref={imageRef} src={Story} alt="story" onLoad={handleImageLoad} />
                                 {/* {imageUrl && <img src={imageUrl} alt="Generated Image"   onLoad={handleImageLoad}/>} */}
                             </div>
                         ) : (

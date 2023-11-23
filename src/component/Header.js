@@ -1,14 +1,12 @@
 import {  Link, useNavigate, Router } from "react-router-dom";
 import { NavLink } from "react-router-dom";
-import { func } from "prop-types";
-import Story from "../Apis/Story";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContextProvider";
 
 function Header() {
 
     console.log("Router", Router);
-    const { loginUser, setLoginUser, cart } = useContext(UserContext)
+    const { loginUser, setLoginUser,  } = useContext(UserContext)
     const [isClicked, setIsClicked] = useState(false);
 
 

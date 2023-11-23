@@ -7,8 +7,10 @@ import Tabs from 'react-bootstrap/Tabs';
 import { Link } from "react-router-dom";
 import Storydetails from "./Storydetails";
 import Story from "../../Apis/Story";
+import Loading from "../../component/Loading";
 
 function Storycard() {
+
     const inputref = useRef(null);
     const [selectedOption, setSelectedOption] = useState("boy");
     const [loading, setLoading] = useState(false);
@@ -21,22 +23,20 @@ function Storycard() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
 
-
     const handleTabClick = (option) => {
         setSelectedOption(option);
     };
 
     const type = selectedOption;
 
-
     const handlesort = (e) => {
         setSelectSort(e.target.value);
     };
 
-
     const handlegenre = (e) => {
         setSelectedGenre(e.target.value);
     };
+
     let searchvalue = "";
     const handlesearch = (e) => {
         searchvalue = e.target.value;
@@ -46,7 +46,6 @@ function Storycard() {
     useEffect(() => {
         setSearchQuery(searchvalue);
     }, [searchvalue]);
-
 
     const fetching = () => {
         if (loading) {
@@ -64,21 +63,15 @@ function Storycard() {
                 if (Array.isArray(res?.data?.data)) {
                     setContent(res?.data?.data);
                     setLoading(false);
-
                 } else {
                     console.error("Data is not an array:", res.data);
                     setContent([]);
                     setLoading(false);
-
                 }
             })
             .catch((error) => {
                 setLoading(false);
-
-
-
                 console.error("Error status:", error);
-                //console.error("Error data:", error?.response?.data);
             });
     };
 
@@ -142,12 +135,7 @@ function Storycard() {
                 <div className="story-card">
                     <div className="row">
                         {loading ? (
-                            <div className="story-step-form text-center  mt-3">
-                                <div className="body-popup-title text-center">
-
-                                    <h3 style={{color:"#9054D9"}}>LOADING..</h3>
-                                </div>
-                            </div>
+                          <Loading/>
                         ) : (
                             content && content.map((item,
                                 index) => (
@@ -172,8 +160,7 @@ function Storycard() {
                                     </div>
                                 </div>
                             ))
-                        )
-                        }
+                        ) }
                     </div>
                 </div>
             </>

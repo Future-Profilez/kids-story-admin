@@ -24,14 +24,15 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/home" element={
-              <PrivateRouter>
-                <Homepage />
-              </PrivateRouter>
+              <Homepage />
+              // <PrivateRouter>
+                
+              // </PrivateRouter>
             } />
             <Route path="/card" element={
-              <PrivateRouter>
+              // <PrivateRouter>
                 <Storycard />
-              </PrivateRouter>
+              // </PrivateRouter>
             }
             />
             <Route path="/list" element={
@@ -39,24 +40,24 @@ function App() {
 
             } />
             <Route path="/profile" element={
-              <PrivateRouter>
+              // <PrivateRouter>
                 <Profile />
-              </PrivateRouter>
+              // </PrivateRouter>
             } />
             <Route path="/subscription" element={
-              <PrivateRouter>
+              // <PrivateRouter>
                 <Subscription />
-              </PrivateRouter>
+              // </PrivateRouter>
             } />
             <Route path="/schedule" element={
-              <PrivateRouter>
+              // <PrivateRouter>
                 <Schedule />
-              </PrivateRouter>
+              // </PrivateRouter>
             } />
             <Route path="/static" element={
-              <PrivateRouter>
+              // <PrivateRouter>
                 <Static />
-              </PrivateRouter>
+              // </PrivateRouter>
             } />
           </Routes>
         </Router>

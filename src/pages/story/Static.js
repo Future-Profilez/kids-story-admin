@@ -1,9 +1,7 @@
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import "../../style/story.css"
-import "../../style/Static.css"
-import data from "../../image/graph.png"
-import { Image } from "react-bootstrap";
+import "../../style/Static.css"  
 import { useEffect, useState } from "react";
 import Story from "../../Apis/Story";
 import Chart from "./Chart";

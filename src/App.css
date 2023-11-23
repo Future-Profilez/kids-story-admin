@@ -194,24 +194,28 @@ input:-webkit-autofill:hover, input:-webkit-autofill:focus { border: none; -webk
 
  }
  @media screen and (max-width: 767px) {
-  .main-sidebar{    width: 256px;}
-  .new-story{    padding: 24px 10px 25px;}
+  .main-sidebar{ width: 256px;}
+  .new-story{ padding: 24px 10px 25px;}
   .new-story .btn{min-width: 100%;}
-  .menu{    padding: 35px 15px;}
+  .menu{ padding: 35px 15px;}
   .menu ul li + li { margin-top: 30px; }
   #body-pd{padding: 10px;}
   .content {padding: 15px;}
   .btn {min-width: 200px;padding: 13px 20px; font-size: 15px;}
-  .thubnail{    height: 210px;}
+  .thubnail{ height: 210px;}
   .thubnail img{max-height: 200px;}
   .generate-block h1 { font-size: 24px; line-height: 36px; }
-  .modal-dialog-image #generat-story.modal-dialog{    max-width: calc(100% - 30px);}
+  .modal-dialog-image #generat-story.modal-dialog{ max-width: calc(100% - 30px);}
   .modal-dialog-image #generat-story .modal-body{padding: 0 20px 20px;}
-  .reschedule-story .row div[class*="col"]:first-child{width: 100%;}
+  .reschedule-story .row div[class*="col"]:first-child{width: 100%;margin: 0 0 15px;}
   .reschedule-story .row div[class*="col"]:last-child { width: 100%; }
-
-  .reschedule-story{    padding: 60px 15px 25px 15px;}
-  .closebtn{    right: 5px; top: 5px;}
+  .reschedule-story{ padding: 60px 15px 25px 15px;margin: 0 -20px 30px;}
+  .closebtn{ right: 5px; top: 5px;}
+  #reschedule-popup .modal-body{padding: 0 20px 10px;}
+  .story-list p{margin: 0 0 10px;}
+  .reschedule-action button.delete-button{width: 40px; height: 40px;}
+  .reschedule-action button.delete-button svg { width: 20px; height: 20px; }
+  .reschedule-action .btn{ width: calc(100% - 50px);padding: 8px 20px;}
  }
 .nav_link.active {
   color: red; /* Change this to the desired color when the link is active */

@@ -47,7 +47,7 @@ function Header() {
                     </svg>
                 </div>
             </header>
-            <button onClick={()=>window.location("/list")} >Push</button>
+            {/* <button onClick={()=>window.location("/list")} >Push</button> */}
             {/* side bar */}
             <div className="main-sidebar" id="nav-bar">
                 <div className="new-story">

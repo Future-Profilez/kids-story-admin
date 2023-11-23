@@ -6,7 +6,12 @@ import genres from '../../Data/genre.json'
 import agegroup from "../../Data/Age.json"
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContextProvider";
+import { useDispatch } from "react-redux";
+import { adduser } from "../../Redux/UserSlice";
 function StoryModal({ show, handleClose }) {
+    
+    const dispatch = useDispatch();
+
 
     const { setList, setName, name } = useContext(UserContext);
     const [currentStep, setCurrentStep] = useState(1);
@@ -137,7 +142,8 @@ function StoryModal({ show, handleClose }) {
                             const Parstory = JSON.parse(storyResponse);
                             console.log("parstory", Parstory);
                             storyres = Parstory;
-                            const datastory = setList(Parstory);
+                            //const datastory = setList(Parstory);
+                            const datastory =   dispatch(adduser(Parstory))
                             console.log("datastory", datastory);
                             const data = setCard(storyres);
                             console.log("data", data);

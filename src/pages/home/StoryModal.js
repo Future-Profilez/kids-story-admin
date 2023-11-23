@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContextProvider";
 function StoryModal({ show, handleClose }) {
 
-    const { setList  } = useContext(UserContext);
+    const { setList,setName,name  } = useContext(UserContext);
     const [currentStep, setCurrentStep] = useState(1);
     const [showSuccess, setShowSuccess] = useState(false);
     const [selectedUser, setSelectedUser] = useState('');
@@ -33,12 +33,12 @@ function StoryModal({ show, handleClose }) {
             }
         }
     };
-    const storyJSON = JSON.stringify(genres, null, 2);
+    // const storyJSON = JSON.stringify(genres, null, 2);
     const handleAgeChange = (age) => {
         setAge(age);
         handleOptionSelect(3);
     };
-
+  console.log("selectedUser",selectedUser)
     const [userTitle, setUserTitle] = useState('');
     const [age, setAge] = useState('');
     const [gender, setGender] = useState('');
@@ -98,7 +98,7 @@ function StoryModal({ show, handleClose }) {
                     genre: genre,
                     boy:Boys,
                     girl:girl,
-                    description: "Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data  in  one variable 'data'in this variable inside age , gender,genre,userprompt  one variable named 'chapter' and include all chapter details following this pattern: chapternumber, title, content, and imageprompt. Finally, provide the response in JSON format.",
+                    description: "Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data  in  one variable 'data'in this variable inside age , gender,genre  one variable named 'chapter' and include all chapter details following this pattern: chapternumber, title, content, and imageprompt. Finally, provide the response in JSON format.",
                 };
                 const requestData = {
                     model: 'gpt-4',
@@ -171,7 +171,7 @@ function StoryModal({ show, handleClose }) {
                                         <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="white" />
                                     </g>
                                 </svg>
-                                <h2>StoryScape!</h2>
+                                <h2>StoryScape! {name}</h2>
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
@@ -307,7 +307,7 @@ function StoryModal({ show, handleClose }) {
 
                         </Modal.Body>
                     </div>
-                    {/* <button className="addStory" onClick={() => setName("Hello 4")}>{name}Add Stroy</button> */}
+                    <button className="addStory" onClick={() => setName("Hello 4")}>{name}Add Stroy</button>
 
                 </Modal>
             </>

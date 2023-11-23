@@ -1,7 +1,7 @@
 import { Image, Modal } from "react-bootstrap";
 import storyimage from "../../image/list.png";
 import story from "../../image/card.png";
-import { Link, useNavigate } from "react-router-dom";
+// import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Story from "../../Apis/Story";
 

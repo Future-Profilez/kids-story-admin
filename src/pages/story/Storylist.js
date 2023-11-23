@@ -4,21 +4,35 @@ import "../../style/story.css";
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import ImagePrompt from "./ImagePrompt";
-import list from "../../Data/data.json"
+// import list from "../../Data/data.json"
 import { Modal } from "react-bootstrap";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import Regenerate from "./Regenerate";
 import { UserContext } from "../../context/UserContextProvider";
 
 function Storylist(props) {
 
-    const  {List} = useContext(UserContext);
+    const  {List, name} = useContext(UserContext);
+
+    // const storedData = localStorage.getItem('name');
+    // console.log("storedData",storedData)
+    // const parsedData = JSON.parse(storedData);
+    // console.log("parsedData", parsedData);
 
     console.log("List",List);
-    const storedData = localStorage.setItem(List);
-   const parsedData = JSON.parse(storedData); 
-    console.log("parsedData", storedData)
+    useEffect(() => {
+        localStorage.setItem('List', JSON.stringify(List));
+    }, [List]);
+
+    const storedData = localStorage.getItem('List');
+    const parsedData = JSON.parse(storedData);
+    console.log("parsedData", parsedData);
+        
+    // const storedData = localStorage.setItem(List);
+
+
+
     const [show, setShow] = useState(false);
     const [imagePrompt, setImagePrompt] = useState("");
     const handleClose = () => setShow(false);
@@ -51,7 +65,7 @@ function Storylist(props) {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                <p>{storedData}</p>
+                                {name}
                                 {parsedData && parsedData.chapters
                                     && parsedData.chapters
                                         .map((item, key) => (

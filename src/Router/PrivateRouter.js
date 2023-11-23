@@ -7,32 +7,28 @@ export default function PrivateRoute(props) {
 
   const navigate = useNavigate();
   const [content, setContent] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     try {
       const main = new Story();
       const response = await main.Subscriptionlist();
-      console.log("response",response);
-      if(response.data.status){
+      console.log("response", response);
+      if (response.data.status) {
         setContent(response.data.data);
-        setLoading(false);
-      } else { 
-        setLoading(false);
+      } else {
         toast.error(response.data.message)
         navigate('/');
       }
     } catch (error) {
       console.log("error", error);
-      setLoading(false);
       toast.error("Please log in first.")
       navigate('/');
     }
   };
-
+  console.log("content", content)
   useMemo(() => {
     fetchData();
-  },[]); 
+  }, []);
   // setLoginUser, navigate, loginUser
   return <>{props.children}</>;
 }

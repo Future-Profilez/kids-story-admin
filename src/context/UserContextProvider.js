@@ -13,8 +13,9 @@ export default function UserContextProvider({children}) {
     }, [name]);
 
     useEffect(() => {
-        localStorage.setItem('List', List);
+        localStorage.setItem('List', JSON.stringify(List));
     }, [List]);
+    
 
     const [generatedStory, setGerenratedStory] = useState();
 

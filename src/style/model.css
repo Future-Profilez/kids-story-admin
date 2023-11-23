@@ -193,7 +193,7 @@ div#step4 .body-popup-title {
 }
 
 .button-list-form {
-    min-height: 134px;
+    min-height: 134px;margin: 0 0 10px;
 }
 
 div#step4 .body-popup-title:after {
@@ -244,25 +244,44 @@ div#successpopup .body-popup-title:after {
 div#successpopup .story-step-form {
     text-align: center;
 }
-
 div#successpopup .body-popup-title {
     margin: 0 auto;
     max-width: 500px;
     padding-top: 101px;
     padding-bottom: 58px;
 }
-
 div#successpopup h3 {
     padding: 15px 0 0;
 }
-
+.loadingtext.body-popup-title h3{background: var(--1, linear-gradient(94deg, #4B69E2 -2.08%, #9054D9 99.58%)); background-clip: text;     font-size: 24px;-webkit-background-clip: text; -webkit-text-fill-color: transparent;}
+.loadingtext.body-popup-title:after{display: none;}
 
 @media screen and (max-width: 1199px) {
     #generat-story.modal-dialog{max-width: 720px;}
-    #generat-story .modal-header{padding: 20px 30px 20px;min-height: 73px;}
-
-   
+    #generat-story .modal-header{padding: 20px 30px 20px;min-height: 73px;}   
     #generat-story .modal-title svg{width: 32px; height: 32px;left: 30px; top: 20px;}
     .body-popup-title h3{font-size: 20px;    padding: 0 0 14px;}
     .button-list-form ul li { padding: 0 5px; margin: 0 0 10px; }
+    .button-list-form ul li .button-block button{height: 50px; min-width: 140px; padding: 0 8px;font-size: 16px;}
+
+    #step2 .button-list-form ul li .button-block button { min-width: 93px; }
+    .email-field input[type="text"]{height: 50px;}
+    #generat-story .modal-body { padding: 0 30px 20px; }
+    div#successpopup .body-popup-title{padding-top: 42px;padding-bottom: 28px;}
+    div#successpopup .body-popup-title{max-width: 420px;}
+    div#successpopup .body-popup-title svg { width: 90px; height: 90px; }
+  
+
+}
+@media screen and (max-width: 1024px) {
+    #generat-story.modal-dialog {max-width: 670px;}
+    div#successpopup h3 {padding: 5px 0 0;}
+    div#successpopup .body-popup-title{padding-top: 30px;padding-bottom: 20px;} 
+}
+@media screen and (max-width: 767px) {
+    #generat-story.modal-dialog {max-width: calc(100% - 30px);margin: 1.5rem auto;}
+    #generat-story .modal-header{padding: 20px 20px 20px;}
+    #generat-story .modal-body {padding: 0 20px 20px;}
+    .body-popup-title h3{font-size: 16px;}
+    .button-list-form ul li .button-block button{ min-width: 125px;height: 46px;}
 }

@@ -24,54 +24,49 @@ function App() {
   }, [name])
   return (
     <div id="body-pd" className="App">
-        <Toaster
-          position="top-center"
-          reverseOrder={false} />
-          <UserContextProvider value={{ name, setName }}>
-          <Router>
-            <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="/home" element={
-                <PrivateRouter>
-                  <Homepage />
-                </PrivateRouter>
-              } />
-              <Route path="/card" element={
-                <PrivateRouter>
-                  <Storycard />
-                </PrivateRouter>
-              }
-              />
-              <Route path="/list" element={
-                <Storylist />
+      <UserContextProvider>
+        <Router>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/home" element={
+              <PrivateRouter>
+                <Homepage />
+              </PrivateRouter>
+            } />
+            <Route path="/card" element={
+              <PrivateRouter>
+                <Storycard />
+              </PrivateRouter>
+            }
+            />
+            <Route path="/list" element={
+              <Storylist />
 
-              } />
-              <Route path="/profile" element={
-                <PrivateRouter>
-                  <Profile />
-                </PrivateRouter>
-              } />
-              <Route path="/subscription" element={
-                <PrivateRouter>
-                  <Subscription />
-                </PrivateRouter>
-              } />
-              <Route path="/schedule" element={
-                <PrivateRouter>
-                  <Schedule />
-                </PrivateRouter>
-              } />
-              <Route path="/static" element={
-                <PrivateRouter>
-                  <Static />
-                </PrivateRouter>
-              } />
-              <Route path ="/data" element ={<Data/>}/>
-            </Routes> 
- 
-          </Router>
-          </UserContextProvider>
-      </div>
+            } />
+            <Route path="/profile" element={
+              <PrivateRouter>
+                <Profile />
+              </PrivateRouter>
+            } />
+            <Route path="/subscription" element={
+              <PrivateRouter>
+                <Subscription />
+              </PrivateRouter>
+            } />
+            <Route path="/schedule" element={
+              <PrivateRouter>
+                <Schedule />
+              </PrivateRouter>
+            } />
+            <Route path="/static" element={
+              <PrivateRouter>
+                <Static />
+              </PrivateRouter>
+            } />
+          </Routes>
+        </Router>
+      </UserContextProvider>
+    </div>
   );
 }
 

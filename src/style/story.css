@@ -3,7 +3,7 @@
 .story-list {
   margin-bottom: 33px;
 }
-
+.story-list img{max-width: 100%;}
 .story-list h2 {color: #FFF; font-family: Poppins; font-size: 18px; font-style: normal; font-weight: 600; line-height: 27px;    margin: 0 0 20px;}
 
 .story-list p {color: #FFF; font-family: Poppins; font-size: 15px; font-style: normal; font-weight: 400; line-height: 22.5px;margin: 0 0 25px;}
@@ -266,13 +266,22 @@
 .update-field .input_field { width: 100%; border-radius: 50px; background: #0C1229; border: none; height: 58px; color: #fff; font-size: 14px; padding: 5px 18px; outline: none;} 
 .update-field div[class*="col-"] { margin: 0 0 30px; }
 
-
+@media (max-width: 1199px){
+  .story-list h2{ font-size: 16px;line-height: 22px; margin: 0 0 8px;}
+  .story-list p{    font-size: 13px;line-height: 20.5px;}
+}
 @media (max-width: 1024px) {
 .filter-search{margin: 0 0 0px;flex-wrap: wrap;}
 .search{width: 100%;}
 .search input[type="search"]{max-width: calc(100% - 110px);}
-.dropdwon-filter{margin-top: 20px;justify-content: space-between; padding-left: 0;width: 100%;}}
-@media (max-width: 768px) {
+.dropdwon-filter{margin-top: 20px;justify-content: space-between; padding-left: 0;width: 100%;}
+.profile-manage .nav-tabs button{padding: 13px 13px;font-size: 16px;}
+.update-field .input_field{height: 50px;    padding: 5px 15px;}
+.update-field label{font-size: 14px;}
+.update-field div[class*="col-"] {  margin: 0 0 20px;}
+.story-list{    margin-bottom: 23px;}
+}
+@media (max-width: 767px) {
   .btn-list button { margin: 0 3px;min-width: 180px;padding: 11px 18px; }
   .btn-list button + button{margin-top: 15px;}
   .btn-list{flex-direction: column;}
@@ -282,4 +291,10 @@
   .story-sort + .story-sort{margin-left: 0; max-width: 50%;}
   .story-sort h1{min-width: 66px; margin: 0 0 5px 10px;}
   .story-sort .select, .story-sort + .story-sort .select{width: 100%;}
+  .update-field .input_field { height: 46px; padding: 5px 15px; }
+  .update-field div[class*="col-"] {  margin: 0 0 15px;}
+
+
 }
+
+ 

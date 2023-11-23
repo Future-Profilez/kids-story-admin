@@ -178,13 +178,18 @@ input:-webkit-autofill:hover, input:-webkit-autofill:focus { border: none; -webk
 
   .modal-dialog-image .body-popup-title { margin: 0 0 20px; }
   .modal-dialog-image .body-popup-title h3{padding: 0 0 17px;}
+  .modal-dialog-image #generat-story .modal-body{padding: 0 30px 30px;}
+  .heading-graph h6{margin: 0 0 15px;padding: 5px 15px;}
+  .heading-graph p{font-size: 16px;line-height: 26px;margin: 0 0 13px;}
+  .reschedule-story h5{margin: 10px 0 5px;}
 
   
 
  }
  @media screen and (max-width: 1024px) {
   .generate-block h1 { font-size: 34px; line-height: 48px;}
-
+  .btn{padding: 13px 15px;}
+  .update-field div[class*="col-"] { margin: 0 0 20px; }
 
 
  }
@@ -200,6 +205,13 @@ input:-webkit-autofill:hover, input:-webkit-autofill:focus { border: none; -webk
   .thubnail{    height: 210px;}
   .thubnail img{max-height: 200px;}
   .generate-block h1 { font-size: 24px; line-height: 36px; }
+  .modal-dialog-image #generat-story.modal-dialog{    max-width: calc(100% - 30px);}
+  .modal-dialog-image #generat-story .modal-body{padding: 0 20px 20px;}
+  .reschedule-story .row div[class*="col"]:first-child{width: 100%;}
+  .reschedule-story .row div[class*="col"]:last-child { width: 100%; }
+
+  .reschedule-story{    padding: 60px 15px 25px 15px;}
+  .closebtn{    right: 5px; top: 5px;}
  }
 .nav_link.active {
   color: red; /* Change this to the desired color when the link is active */

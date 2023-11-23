@@ -32,5 +32,8 @@
 .Static-image {margin: 40px 0 0;border-radius: 10px;background: #000518;padding: 30px;} 
 .static-data {transform: translateY(-50%); position: absolute; right: 0px; top: 50%; }
 
-
+@media (max-width: 991px) {
+  .static-one{margin: 0 0 10px;} 
+  .Static-image{    padding: 20px;    margin: 30px 0 0;}
+}
 

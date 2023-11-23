@@ -20,18 +20,18 @@ function Header() {
     }
 
 
-    const handellogouts = () => {
-        const main = new Story();
-        const response = main.StoryLogout();
-        response.then((res) => {
-            console.log("res", res)
-        }).catch((error) => {
-            console.log("erorr", error)
-        })
-    }
-    useEffect(() => {
-        handellogouts();
-    }, [])
+    // const handellogouts = () => {
+    //     const main = new Story();
+    //     const response = main.StoryLogout();
+    //     response.then((res) => {
+    //         console.log("res", res)
+    //     }).catch((error) => {
+    //         console.log("erorr", error)
+    //     })
+    // }
+    // useEffect(() => {
+    //     handellogouts();
+    // }, [])
 
     function handledata() {
         setIsClicked(!isClicked);

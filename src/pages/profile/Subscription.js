@@ -53,7 +53,7 @@ function Subscription() {
                                 <Heading />
                                 <div className="story-title">
                                     <div className="row align-items-center">
-                                        <div className="col-md-4">
+                                        <div className="col-md-12">
                                             <h6>Manage Subscription</h6>
                                         </div>
                                         {/* <div className="col-md-8">

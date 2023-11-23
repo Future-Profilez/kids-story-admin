@@ -207,5 +207,4 @@ function Storycard() {
         </AuthLayout>
     );
 }
-
 export default Storycard;

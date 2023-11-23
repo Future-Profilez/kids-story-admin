@@ -36,7 +36,7 @@ function Static() {
                                     <h6>Statistics </h6>
                                 </div>
                                 <div className="row">
-                                    <div className="col-md-6 col-lg-4">
+                                    <div className="col-sm-6 col-lg-4">
                                         <div className="static-one">
                                             <div className="static-svg" >
                                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
@@ -59,7 +59,7 @@ function Static() {
                                         </div>
 
                                     </div>
-                                    <div className="col-md-6 col-lg-4">
+                                    <div className="col-sm-6 col-lg-4">
                                         <div className="static-one">
                                             <div className="static-svg" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">
@@ -82,7 +82,7 @@ function Static() {
                                         </div>
 
                                     </div>
-                                    <div className="col-md-6 col-lg-4">
+                                    <div className="col-sm-6 col-lg-4">
                                         <div className="static-one">
                                             <div className="static-svg" >
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 30 30" fill="none">

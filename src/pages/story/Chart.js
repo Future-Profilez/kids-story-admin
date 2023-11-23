@@ -91,7 +91,7 @@ function Chart() {
                     },
                     Align:"start",
                   },
-                },                
+                },                 
                 scales: {
                   x: {
                      ticks: {

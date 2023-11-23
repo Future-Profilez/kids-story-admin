@@ -8,14 +8,17 @@ import list from "../../Data/data.json"
 import { Modal } from "react-bootstrap";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
-import { UserContext } from "../../context/UserContextProvider";
 import Regenerate from "./Regenerate";
+import { UserContext } from "../../context/UserContextProvider";
+
 function Storylist(props) {
-    const { List, setList } = useContext(UserContext);
-    const storedData = localStorage.getItem('List');
-   // const parsedData = JSON.parse(storedData); 
-    const parsedData = list;
-    console.log("parsedData", parsedData)
+
+    const  {List} = useContext(UserContext);
+
+    console.log("List",List);
+    const storedData = localStorage.setItem(List);
+   const parsedData = JSON.parse(storedData); 
+    console.log("parsedData", storedData)
     const [show, setShow] = useState(false);
     const [imagePrompt, setImagePrompt] = useState("");
     const handleClose = () => setShow(false);
@@ -48,7 +51,7 @@ function Storylist(props) {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                <p>{ImageUrl}</p>
+                                <p>{storedData}</p>
                                 {parsedData && parsedData.chapters
                                     && parsedData.chapters
                                         .map((item, key) => (

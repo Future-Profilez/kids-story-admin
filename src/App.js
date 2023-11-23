@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./style/Strap.css"
 import './App.css';
@@ -12,16 +12,21 @@ import Static from "./pages/story/Static";
 import PrivateRouter from "./Router/PrivateRouter";
 import Login from "./component/Login";
 import UserContextProvider from "./context/UserContextProvider";
+import Data from "./pages/story/Data";
+import { Toaster, toast } from 'react-hot-toast';
 
 function App() {
-
   const IMAGE_BASE_URL = process.env.REACT_APP_IMAGE_URL;
   console.log("Base", IMAGE_BASE_URL);
+
   return (
     <div id="body-pd" className="App">
-      <UserContextProvider>
-        <Router>
-          <Routes>
+      <Toaster
+        position="top-center"
+        reverseOrder={false} />
+      <Router>
+          <UserContextProvider>
+        <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/home" element={
               <PrivateRouter>
@@ -58,9 +63,11 @@ function App() {
                 <Static />
               </PrivateRouter>
             } />
-          </Routes>
-        </Router>
-      </UserContextProvider>
+            <Route path="/data" element={<Data />} />
+        </Routes>
+          </UserContextProvider>
+
+      </Router>
     </div>
   );
 }

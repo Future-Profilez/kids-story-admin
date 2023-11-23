@@ -1,15 +1,26 @@
-import { createContext, useEffect, useState } from "react";
-export const UserContext = createContext();
+import { createContext, useState, useEffect } from "react";
+export const UserContext = createContext(); 
 
-export default function UserContextProvider(props) {
+export default function UserContextProvider({children}) {
+
+    const [name, setName] = useState("data");
+    
     const [loginUser, setLoginUser] = useState();
+
     const[List,setList] = useState('');
-    useEffect(()=>{
-        localStorage.setItem('List',JSON.stringify(List))
-    },[List])
-    return <>
-        <UserContext.Provider value={{ loginUser, setLoginUser,List,setList }} >
-            {props.children}
+    useEffect(() => {
+        localStorage.setItem('name', name);
+    }, [name]);
+
+    useEffect(() => {
+        localStorage.setItem('List', List);
+    }, [List]);
+
+    const [generatedStory, setGerenratedStory] = useState();
+
+    return <UserContext.Provider value={{ generatedStory, setGerenratedStory,
+        loginUser, setLoginUser,List, setList, name, setName }} >
+            {children}
         </UserContext.Provider>
-    </>
 }
+ 

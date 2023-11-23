@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Modal } from "react-bootstrap";
 import Story from "../../Apis/Story";
-import { Toaster, toast } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
+
 
 
 function Subscriptionadd({ show, handleClose, onSubscriptionAdded }) {
@@ -46,10 +47,7 @@ function Subscriptionadd({ show, handleClose, onSubscriptionAdded }) {
 
   return (
     <>
-      <Toaster
-        position="top-center"
-        reverseOrder={false}
-      />
+      
       <Modal show={show} onHide={handleClose} id="generat-story">
         <Modal.Header closeButton id="subscription-header">
           <Modal.Title className="modal-title">When do you want to publish this story?</Modal.Title>

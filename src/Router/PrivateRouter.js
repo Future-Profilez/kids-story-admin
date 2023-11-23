@@ -1,9 +1,11 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useMemo, useState } from 'react';
 import { UserContext } from '../context/UserContextProvider';
 import { useNavigate } from 'react-router-dom';
 import Story from '../Apis/Story';
+import { toast } from 'react-hot-toast';
 
 export default function PrivateRoute(props) {
+
   const { setLoginUser, loginUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [content, setContent] = useState([]);
@@ -11,25 +13,28 @@ export default function PrivateRoute(props) {
 
   const fetchData = async () => {
     try {
-      if (!loginUser) {
-        navigate("/");
-      } else {
-        const main = new Story();
-        const response = await main.Subscriptionlist();
-        if (response) {
-          setContent(response.data);
-          setLoading(false);
-        }
+      const main = new Story();
+      const response = await main.Subscriptionlist();
+      console.log("response",response);
+      if(response.data.status){
+        setContent(response.data.data);
+        setLoading(false);
+      } else { 
+        setLoading(false);
+        toast.error(response.data.message)
+        navigate('/');
       }
     } catch (error) {
       console.log("error", error);
       setLoading(false);
+      toast.error("Please log in first.")
+      navigate('/');
     }
   };
 
-  useEffect(() => {
+  useMemo(() => {
     fetchData();
-  }, [setLoginUser, navigate, loginUser]); 
-
+  },[]); 
+  // setLoginUser, navigate, loginUser
   return <>{props.children}</>;
 }

@@ -8,43 +8,32 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContextProvider";
 function StoryModal({ show, handleClose }) {
 
-    const { setList } = useContext(UserContext)
+    const { setList  } = useContext(UserContext);
     const [currentStep, setCurrentStep] = useState(1);
     const [showSuccess, setShowSuccess] = useState(false);
     const [selectedUser, setSelectedUser] = useState('');
-
     const [Boys, setBoys] = useState("DummyBoy")
     const [girl, setGirls] = useState("DummyGirl")
+    const handleOptionSelect = (nextStep, user) => {
+        if (nextStep >= 1 && nextStep <= 4) {
+            setCurrentStep(nextStep);
+            setSelectedUser(user);
+            if (nextStep === 4) {
+                setShowSuccess(true);
+            } else {
+                setShowSuccess(false);
+            }
 
-
-const handleOptionSelect = (nextStep, user) => {
-    if (nextStep >= 1 && nextStep <= 4) {
-        setCurrentStep(nextStep);
-        setSelectedUser(user);
-        if (nextStep === 4) {
-            setShowSuccess(true);
-        } else {
-            setShowSuccess(false);
+            if (user === 'boy') {
+                setBoys('DummyBoy');
+                setGirls('');
+            } else if (user === 'girl') {
+                setGirls('DummyGirl');
+                setBoys('');
+            }
         }
-
-        if (user === 'boy') {
-            setBoys('DummyBoy');
-            setGirls('');
-        } else if (user === 'girl') {
-            setGirls('DummyGirl');
-            setBoys('');
-        }
-    }
-};
-console.log("Boys",girl)
-// Rest of your code...
-
-
-
-
+    };
     const storyJSON = JSON.stringify(genres, null, 2);
-
-
     const handleAgeChange = (age) => {
         setAge(age);
         handleOptionSelect(3);
@@ -53,50 +42,46 @@ console.log("Boys",girl)
     const [userTitle, setUserTitle] = useState('');
     const [age, setAge] = useState('');
     const [gender, setGender] = useState('');
-    console.log("gender",gender)
     const [genre, setGenre] = useState('');
     const [loading, setLoading] = useState(false)
 
-
- 
-
-    const storyRsponse = {
-        "story": [
-            {
-                "chapter": "1",
-                "subtitle": "The Cosmic Heist",
-                "content": "In a far away galaxy, where advanced civilizations co-existed with alien species, our protagonists, DummyBoy, a seasoned space police officer passionately committed to upholding justice, and DummyGirl, a notorious inter-galactic thief known for her complicated heists, come into view. The chapter sets the stage revealing a heist in process, with DummyGirl attempting to steal precious celestial gems from a famed Space Museum.",
-                "imageprompt": "A museum in outer space with shimmering celestial gem exhibits and two figures, one approaching stealthily, the other observing vigilantly."
-            },
-            {
-                "chapter": "2",
-                "subtitle": "The Chase",
-                "content": "Upon the Space Police's alert, DummyBoy arrives at the scene only to find out that DummyGirl has successfully completed her heist. An intense chase begins, with DummyBoy using his cutting-edge spacecraft and space gadgets in attempt to capture the elusive DummyGirl. Despite his best efforts, the clever thief manages to escape his pursuit.",
-                "imageprompt": "An action filled scene with two spaceships, engaged in a high speed chase amidst a dazzling display of pulsating nebulae and alien worlds."
-            },
-            {
-                "chapter": "3",
-                "subtitle": "The Confrontation",
-                "content": "DummyBoy, finally manages to corner DummyGirl on the ice moon of a distant gas giant. With nowhere else to run, DummyGirl is confronted by DummyBoy. Despite facing arrest, DummyGirl remains stubbornly defiant and teases DummyBoy for his inability to apprehend her sooner.",
-                "imageprompt": "A dramatic showdown on an icy moon, a bold silhouette of DummyGirl standing across DummyBoy."
-            },
-            {
-                "chapter": "4",
-                "subtitle": "A Change of Heart",
-                "content": "In a surprising twist, DummyGirl confesses as to why she chose the life of a thief: she was doing it to provide for her impoverished family back in her home galaxy. This revelation prompts compassion in DummyBoy. He makes a choice - he decides to help DummyGirl and her family, by providing them a chance of legitimate means of survival, thus securing her promise of never resorting to stealing again.",
-                "imageprompt": "A warm conversation scene on a colder moon, with a feeling of empathy, change, and a new hope."
-            },
-            {
-                "chapter": "5",
-                "subtitle": "The Redemption",
-                "content": "This chapter revolves around the redemption of DummyGirl. With the help of DummyBoy, she and her family get a new lease of life based on a honest livelihood. DummyGirl's transformation serves as an inspiration for others, showing that it's never too late to rectify one's mistakes. The moral firmly communicated is, 'Everyone deserves a second chance. Understanding, compassion and help can change a person's life.'",
-                "imageprompt": "A picturesque image of DummyGirl and her family living happily in their peaceful home, with an aura of contentment and satisfaction, signifying the end of a journey and the beginning of a new one."
-            }
-        ]
-    }
-//    console.log("storyRsponse", storyRsponse.story)
-//     const redd = setList(storyRsponse);
-//       console.log("redd", redd);
+    // const storyRsponse = {
+    //     "story": [
+    //         {
+    //             "chapter": "1",
+    //             "subtitle": "The Cosmic Heist",
+    //             "content": "In a far away galaxy, where advanced civilizations co-existed with alien species, our protagonists, DummyBoy, a seasoned space police officer passionately committed to upholding justice, and DummyGirl, a notorious inter-galactic thief known for her complicated heists, come into view. The chapter sets the stage revealing a heist in process, with DummyGirl attempting to steal precious celestial gems from a famed Space Museum.",
+    //             "imageprompt": "A museum in outer space with shimmering celestial gem exhibits and two figures, one approaching stealthily, the other observing vigilantly."
+    //         },
+    //         {
+    //             "chapter": "2",
+    //             "subtitle": "The Chase",
+    //             "content": "Upon the Space Police's alert, DummyBoy arrives at the scene only to find out that DummyGirl has successfully completed her heist. An intense chase begins, with DummyBoy using his cutting-edge spacecraft and space gadgets in attempt to capture the elusive DummyGirl. Despite his best efforts, the clever thief manages to escape his pursuit.",
+    //             "imageprompt": "An action filled scene with two spaceships, engaged in a high speed chase amidst a dazzling display of pulsating nebulae and alien worlds."
+    //         },
+    //         {
+    //             "chapter": "3",
+    //             "subtitle": "The Confrontation",
+    //             "content": "DummyBoy, finally manages to corner DummyGirl on the ice moon of a distant gas giant. With nowhere else to run, DummyGirl is confronted by DummyBoy. Despite facing arrest, DummyGirl remains stubbornly defiant and teases DummyBoy for his inability to apprehend her sooner.",
+    //             "imageprompt": "A dramatic showdown on an icy moon, a bold silhouette of DummyGirl standing across DummyBoy."
+    //         },
+    //         {
+    //             "chapter": "4",
+    //             "subtitle": "A Change of Heart",
+    //             "content": "In a surprising twist, DummyGirl confesses as to why she chose the life of a thief: she was doing it to provide for her impoverished family back in her home galaxy. This revelation prompts compassion in DummyBoy. He makes a choice - he decides to help DummyGirl and her family, by providing them a chance of legitimate means of survival, thus securing her promise of never resorting to stealing again.",
+    //             "imageprompt": "A warm conversation scene on a colder moon, with a feeling of empathy, change, and a new hope."
+    //         },
+    //         {
+    //             "chapter": "5",
+    //             "subtitle": "The Redemption",
+    //             "content": "This chapter revolves around the redemption of DummyGirl. With the help of DummyBoy, she and her family get a new lease of life based on a honest livelihood. DummyGirl's transformation serves as an inspiration for others, showing that it's never too late to rectify one's mistakes. The moral firmly communicated is, 'Everyone deserves a second chance. Understanding, compassion and help can change a person's life.'",
+    //             "imageprompt": "A picturesque image of DummyGirl and her family living happily in their peaceful home, with an aura of contentment and satisfaction, signifying the end of a journey and the beginning of a new one."
+    //         }
+    //     ]
+    // }
+    //    console.log("storyRsponse", storyRsponse.story)
+    //     const redd = setList(storyRsponse);
+    //       console.log("redd", redd);
     const [card, setCard] = useState(null)
     const navigate = useNavigate()
 
@@ -111,9 +96,10 @@ console.log("Boys",girl)
                     age: age,
                     gender: gender,
                     genre: genre,
-                    description:"Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the datain  one variable 'charter'in this variable inside  one variable named 'chapter' and include all chapter details following this pattern: chapter number, title, content, and imageprompt. Finally, provide the response in JSON format.",
+                    boy:Boys,
+                    girl:girl,
+                    description: "Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data  in  one variable 'data'in this variable inside age , gender,genre,userprompt  one variable named 'chapter' and include all chapter details following this pattern: chapternumber, title, content, and imageprompt. Finally, provide the response in JSON format.",
                 };
-                // description: "Please provide the content for five chapters, including subtitles, content, and an imageprompt. Ensure that the fifth chapter always has a moral of the story. Store the data in one variable and chapter store in one variable  variable name chapter and all chapter content,  chapterno. , imageprompt , title . all follow this pattern  and provide the response in JSON format."
                 const requestData = {
                     model: 'gpt-4',
                     messages: [
@@ -141,7 +127,7 @@ console.log("Boys",girl)
                             console.log("data", data);
                             setTimeout(() => {
                                 navigate('/list');
-                            },1000  );
+                            }, 1000);
                         } catch (error) {
                             console.log("Error parsing JSON:", error);
                         }
@@ -157,6 +143,7 @@ console.log("Boys",girl)
     };
     console.log("storyres", storyres)
 
+
     useEffect(() => {
         setLoading(false);
     }, [userTitle, age, gender, genre]);
@@ -166,6 +153,11 @@ console.log("Boys",girl)
     useEffect(() => {
         console.log("Card =>>>>>>>>>>>>>>>>>>:", card);
     }, [card]);
+
+    // const addStory= () => { 
+        
+    //     console.log("prev",generatedStory);
+    // }
 
     return (
         <>
@@ -186,7 +178,6 @@ console.log("Boys",girl)
                         <Modal.Body>
                             {currentStep === 1 && (
                                 <div className="story-step-form" id="step1"  >
-
                                     <div className="body-popup-title">
                                         <h3>Who do you want to generate it for </h3>
                                     </div>
@@ -269,8 +260,6 @@ console.log("Boys",girl)
                                     </div>
                                 </div>
                             )}
-
-
                             {currentStep === 4 && (
                                 loading ? (
                                     showSuccess && (
@@ -319,6 +308,8 @@ console.log("Boys",girl)
 
                         </Modal.Body>
                     </div>
+                    {/* <button className="addStory" onClick={() => setName("Hello 4")}>{name}Add Stroy</button> */}
+
                 </Modal>
             </>
         </>

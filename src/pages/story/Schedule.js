@@ -157,7 +157,9 @@ function Schedule() {
                 </div>
             </AuthLayout>
 
-        </>);
+        </>
+        
+        );
 }
 
 export default Schedule;

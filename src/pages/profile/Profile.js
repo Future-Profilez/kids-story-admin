@@ -43,6 +43,7 @@ function Profile() {
             console.log("res", response);
             if (response.data.status === true) {
                 setRegs(initialRegs);
+                navigate('/');
                 toast.success(response.data.message);
             }else{
                 toast.error(response.data.message);
@@ -67,8 +68,6 @@ function Profile() {
                                 <div className="story-title">
                                     <h6>Setting</h6>
                                 </div>
-
-
                                 <div className="profile-manage">
                                     <Tabs
                                         defaultActiveKey="home"
@@ -97,7 +96,6 @@ function Profile() {
                                                             />
                                                         </div>
                                                     </div>
-
                                                     <div className="col-md-6">
                                                         <label className="input_label" htmlFor="password_field">
                                                             Email

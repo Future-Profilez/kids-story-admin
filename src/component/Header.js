@@ -20,18 +20,18 @@ function Header() {
     }
 
 
-    // const handellogouts = () => {
-    //     const main = new Story();
-    //     const response = main.StoryLogout();
-    //     response.then((res) => {
-    //         console.log("res", res)
-    //     }).catch((error) => {
-    //         console.log("erorr", error)
-    //     })
-    // }
-    // useEffect(() => {
-    //     handellogouts();
-    // }, [])
+    const handellogouts = () => {
+        const main = new Story();
+        const response = main.StoryLogout();
+        response.then((res) => {
+            console.log("res", res)
+        }).catch((error) => {
+            console.log("erorr", error)
+        })
+    }
+    useEffect(() => {
+        handellogouts();
+    }, [])
 
     function handledata() {
         setIsClicked(!isClicked);
@@ -80,6 +80,7 @@ function Header() {
                                         </svg>
                                         Manage Subscription    </NavLink>
                                 </li>
+                             
                                 <li>
                                     <NavLink to="/static" className="nav_link" activeClassName="active">
                                         <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">

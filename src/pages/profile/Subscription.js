@@ -5,6 +5,7 @@ import "../../style/subscription.css";
 import Subscriptionadd from "./Subscriptionadd";
 import { useEffect, useState } from "react";
 import Story from "../../Apis/Story";
+import Loading from "../../component/Loading";
 function Subscription() {
 
     const navigate = useNavigate();
@@ -92,12 +93,7 @@ function Subscription() {
 
                                 <div className="row">
                                     {loading ? (
-                                        <div className="story-step-form text-center">
-                                            <div className="body-popup-title text-center">
-                                                
-                                                <h3>Please wait! Subscription </h3>
-                                            </div>
-                                        </div>
+                                      <Loading/>
                                     ) : (
                                         content && content.map((item, index) => (
                                             <div className="col-md-4" key={index}>

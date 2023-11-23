@@ -27,9 +27,12 @@ function StoryModal({ show, handleClose }) {
             if (user === 'boy') {
                 setBoys('DummyBoy');
                 setGirls('');
+                setGender("DummyBoy")
             } else if (user === 'girl') {
                 setGirls('DummyGirl');
                 setBoys('');
+                setGender("DummyGirl")
+
             }
         }
     };
@@ -91,15 +94,27 @@ function StoryModal({ show, handleClose }) {
         try {
             if (userTitle && age && gender && genre) {
                 setLoading(true);
+
+
                 const promptData = {
+                    message: "Generate a children's story with the following parameters",
                     title: userTitle,
                     age: age,
                     gender: gender,
                     genre: genre,
-                    boy:Boys,
-                    girl:girl,
-                    description: "Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data  in  one variable 'data'in this variable inside age , gender,genre  one variable named 'chapter' and include all chapter details following this pattern: chapternumber, title, content, and imageprompt. Finally, provide the response in JSON format.",
+                   
+                    description: " Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data in one variable 'data' where inside 'data', there should be 'title','','age', 'gender', 'genre', and 'chapters'. 'chapters' should be an array containing objects for each chapter with the properties: chapternumber, title, content, and imageprompt. Provide the response in JSON format",
                 };
+
+                // const promptData = {
+                //     title: userTitle,
+                //     age: age,
+                //     gender: gender,
+                //     genre: genre,
+                //     boy:Boys,
+                //     girl:girl,
+                //     description: "Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data  in  one variable 'data'in this variable inside age , gender,genre  one variable named 'chapter' and include all chapter details following this pattern: chapternumber, title, content, and imageprompt. Finally, provide the response in JSON format.",
+                // };
                 const requestData = {
                     model: 'gpt-4',
                     messages: [

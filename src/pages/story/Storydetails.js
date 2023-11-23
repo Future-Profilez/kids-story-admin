@@ -57,20 +57,18 @@ function Storydetails({ show, handleClose, uuid }) {
     };
     async function handleForms(e) {
         e.preventDefault();
-            console.log("Submitting data:", Regs);
-            const main = new Story();
+        console.log("Submitting data:", Regs);
+        const main = new Story();
+        try {
             const response = await main.storyreshedule(uuid, Regs);
             console.log("API Response:", response);
-            response.then((res)=>{
-                console.log("res",res);
-                handleCloseContinue();
-                return false;
-            }).catch((error)=>{
-                console.log("error",error)
-            })
-           
-       
+            handleCloseContinue();
+            return false;
+        } catch (error) {
+            console.log("Error:", error);
+        }
     }
+    
 
 
     return (
@@ -160,7 +158,7 @@ function Storydetails({ show, handleClose, uuid }) {
                         <div className="btn blue-gradient-btn" onClick={handleForms}  >
                             {/* */}
                             <span>
-                                Schedule
+                               Re-Schedule
                             </span>
                         </div>
                     </div>

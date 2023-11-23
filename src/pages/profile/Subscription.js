@@ -92,10 +92,10 @@ function Subscription() {
 
                                 <div className="row">
                                     {loading ? (
-                                        <div className="story-step-form text-center">
+                                        <div className="story-step-form text-center mt-3">
                                             <div className="body-popup-title text-center">
                                                 
-                                                <h3>Please wait! Subscription </h3>
+                                                <h3 style={{color:"#9054D9"}}>LOADING.. </h3>
                                             </div>
                                         </div>
                                     ) : (

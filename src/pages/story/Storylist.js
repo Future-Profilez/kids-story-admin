@@ -10,51 +10,36 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import { UserContext } from "../../context/UserContextProvider";
 import Regenerate from "./Regenerate";
-import { Link } from "react-router-dom";
-
 function Storylist(props) {
     const { List, setList } = useContext(UserContext);
     const storedData = localStorage.getItem('List');
    // const parsedData = JSON.parse(storedData); 
     const parsedData = list;
-
     console.log("parsedData", parsedData)
-
-
     const [show, setShow] = useState(false);
     const [imagePrompt, setImagePrompt] = useState("");
-
     const handleClose = () => setShow(false);
-
     const handleShow = (image_prompt) => {
         setImagePrompt(image_prompt);
         setShow(true);
     };
     const [ImageUrl ,setImageUrl]=useState("")
-
     const handleGenerateImage = (image_prompt) => {
         setImageUrl(image_prompt)
         console.log("Generated Image Prompt:", image_prompt);
     };
-
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
-
     const navigate = useNavigate();
     console.log("imagePrompt",imagePrompt)
     console.log("ImageUrl",ImageUrl)
-
     function Schedulecontinue() {
         navigate('/schedule')
     }
-
-    
     const [shows, setShows] = useState(false);
     const handleCloses = () => setShows(false);
     const handleShows = () => setShows(true);
-
-
     return (
         <>
             <AuthLayout>
@@ -147,7 +132,6 @@ function Storylist(props) {
                                 <div className="btn blue-gradient-btn"  onClick={Schedulecontinue}>
                                     <span>Confirm & Continue</span>
                                 </div>
-
                             </div>
                         </Modal.Body>
                         {/* <Modal.Footer> */}

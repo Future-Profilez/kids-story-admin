@@ -142,10 +142,10 @@ function Storycard() {
                 <div className="story-card">
                     <div className="row">
                         {loading ? (
-                            <div className="story-step-form text-center">
+                            <div className="story-step-form text-center  mt-3">
                                 <div className="body-popup-title text-center">
 
-                                    <h3>LOADING..</h3>
+                                    <h3 style={{color:"#9054D9"}}>LOADING..</h3>
                                 </div>
                             </div>
                         ) : (

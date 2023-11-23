@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContextProvider";
 function StoryModal({ show, handleClose }) {
 
-    const { setList,setName,name  } = useContext(UserContext);
+    const { setList, setName, name } = useContext(UserContext);
     const [currentStep, setCurrentStep] = useState(1);
     const [showSuccess, setShowSuccess] = useState(false);
     const [selectedUser, setSelectedUser] = useState('');
@@ -36,12 +36,13 @@ function StoryModal({ show, handleClose }) {
             }
         }
     };
+    console.log("ss", Boys, girl);
     // const storyJSON = JSON.stringify(genres, null, 2);
     const handleAgeChange = (age) => {
         setAge(age);
         handleOptionSelect(3);
     };
-  console.log("selectedUser",selectedUser)
+    console.log("selectedUser", selectedUser)
     const [userTitle, setUserTitle] = useState('');
     const [age, setAge] = useState('');
     const [gender, setGender] = useState('');
@@ -102,7 +103,7 @@ function StoryModal({ show, handleClose }) {
                     age: age,
                     gender: gender,
                     genre: genre,
-                   
+
                     description: " Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data in one variable 'data' where inside 'data', there should be 'title','','age', 'gender', 'genre', and 'chapters'. 'chapters' should be an array containing objects for each chapter with the properties: chapternumber, title, content, and imageprompt. Provide the response in JSON format",
                 };
 
@@ -169,7 +170,7 @@ function StoryModal({ show, handleClose }) {
     }, [card]);
 
     // const addStory= () => { 
-        
+
     //     console.log("prev",generatedStory);
     // }
 

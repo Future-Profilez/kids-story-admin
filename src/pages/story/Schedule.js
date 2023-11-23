@@ -6,12 +6,14 @@ import Heading from "../../component/Heading";
 import { Modal } from "react-bootstrap";
 import "../../style/model.css"
 import Story from  "../../Apis/Story"
+import { useNavigate } from "react-router-dom";
 
 
 import { useState } from "react";
 import toast from "react-hot-toast";
 
 function Schedule() {
+    const navigate = useNavigate();
 
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
@@ -80,6 +82,7 @@ function Schedule() {
             const response = await main.Scheduledate(Regs);
             console.log("API Response:", response);
             handleCloseContinue();
+            navigate('/card')
             return false;
         } catch (error) {
             console.error("API Error:", error);

@@ -13,11 +13,9 @@ import Regenerate from "./Regenerate";
 import { Link } from "react-router-dom";
 
 function Storylist(props) {
-
-
     const { List, setList } = useContext(UserContext);
     const storedData = localStorage.getItem('List');
-   // const parsedData = JSON.parse(storedData);
+   // const parsedData = JSON.parse(storedData); 
     const parsedData = list;
 
     console.log("parsedData", parsedData)
@@ -47,17 +45,16 @@ function Storylist(props) {
     console.log("imagePrompt",imagePrompt)
     console.log("ImageUrl",ImageUrl)
 
-
-    function handlecontinues() {
+    function Schedulecontinue() {
         navigate('/schedule')
     }
 
+    
     const [shows, setShows] = useState(false);
     const handleCloses = () => setShows(false);
     const handleShows = () => setShows(true);
 
 
-    console.log("")
     return (
         <>
             <AuthLayout>
@@ -147,10 +144,8 @@ function Storylist(props) {
                                 Are you sure you have read this story?
                             </h5>
                             <div className="text-center">
-                                <div className="btn blue-gradient-btn" >
-                                    <Link to="/schedule">
+                                <div className="btn blue-gradient-btn"  onClick={Schedulecontinue}>
                                     <span>Confirm & Continue</span>
-                                    </Link>
                                 </div>
 
                             </div>

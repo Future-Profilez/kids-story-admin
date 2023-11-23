@@ -9,7 +9,7 @@ import Storydetails from "./Storydetails";
 import Story from "../../Apis/Story";
 
 function Storycard() {
-    const inputref  = useRef(null);
+    const inputref = useRef(null);
     const [selectedOption, setSelectedOption] = useState("boy");
     const [loading, setLoading] = useState(false);
     const [loadings, setLoadings] = useState(false);
@@ -32,51 +32,60 @@ function Storycard() {
     const handlesort = (e) => {
         setSelectSort(e.target.value);
     };
-    
-    
+
+
     const handlegenre = (e) => {
         setSelectedGenre(e.target.value);
     };
-let searchvalue = "";
+    let searchvalue = "";
     const handlesearch = (e) => {
-      searchvalue =  e.target.value;
+        searchvalue = e.target.value;
         setSearchQuery(searchvalue)
     };
 
-    useEffect(()=> { 
+    useEffect(() => {
         setSearchQuery(searchvalue);
-    },[searchvalue]);
-    
+    }, [searchvalue]);
+
 
     const fetching = () => {
-        const query = `${
-            selectSort ? `&sortBy=${selectSort}` : ''
-        }${
-            selectedGenre ? `&genre_name=${selectedGenre}` : ''
-        }${
-            searchQuery ? `&search=${searchQuery}` : ''
-        }`;
+        if (loading) {
+            return;
+        }
+        setLoading(true);
+        const query = `${selectSort ? `&sortBy=${selectSort}` : ''
+            }${selectedGenre ? `&genre_name=${selectedGenre}` : ''
+            }${searchQuery ? `&search=${searchQuery}` : ''
+            }`;
         const main = new Story();
         const response = main.StoryCard(type, query);
         response
             .then((res) => {
                 if (Array.isArray(res?.data?.data)) {
                     setContent(res?.data?.data);
+                    setLoading(false);
+
                 } else {
                     console.error("Data is not an array:", res.data);
                     setContent([]);
+                    setLoading(false);
+
                 }
             })
             .catch((error) => {
+                setLoading(false);
+
+
+
                 console.error("Error status:", error);
-//console.error("Error data:", error?.response?.data);
+                //console.error("Error data:", error?.response?.data);
             });
     };
-    
+
 
     useEffect(() => {
         fetching();
-    }, [type, selectSort,selectedGenre,searchQuery]);
+    }, [type, selectSort, selectedGenre, searchQuery]);
 
     const handleShow = (uuid) => {
         setShow(true);
@@ -88,9 +97,9 @@ let searchvalue = "";
             <>
                 <div className="filter-search">
                     <div className="search">
-                        <input type="search" placeholder="search" 
-                          value={searchQuery} ref={inputref}
-                          onChange={handlesearch}
+                        <input type="search" placeholder="search"
+                            value={searchQuery} ref={inputref}
+                            onChange={handlesearch}
                         />
                         <button>
                             Search
@@ -99,8 +108,8 @@ let searchvalue = "";
                     <div className="dropdwon-filter">
                         <div className="story-sort">
                             <h1>SortBy: </h1>
-                            <select className="select" 
-                            value={selectSort} onChange={handlesort}
+                            <select className="select"
+                                value={selectSort} onChange={handlesort}
                             >
                                 <option value="">
                                     {loading ? "LOADING ...." : "All Sort BY"}
@@ -132,29 +141,39 @@ let searchvalue = "";
                 </div>
                 <div className="story-card">
                     <div className="row">
-                        {content && content.map((item,
-                            index) => (
-                            <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
-                                <div className="card">
-                                    <Link onClick={() => handleShow(item.uuid)} >
-                                        <img className="card-img-top" src={item.story_img || storys} alt="Card cap" />
-                                        <div className="card-body">
-                                            <h5 className="card-title">
-                                                {item.title || "Card title"}</h5>
-                                            <p className="card-text">{item.story_description}</p>
-                                            <div className="card-data">
-                                                <h6>{item.genre_name}</h6>
-                                                <h3>
-                                                    <span>
-                                                        {item.age} yrs
-                                                    </span>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                    </Link>
+                        {loading ? (
+                            <div className="story-step-form text-center">
+                                <div className="body-popup-title text-center">
+
+                                    <h3>LOADING..</h3>
                                 </div>
                             </div>
-                        ))}
+                        ) : (
+                            content && content.map((item,
+                                index) => (
+                                <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
+                                    <div className="card">
+                                        <Link onClick={() => handleShow(item.uuid)} >
+                                            <img className="card-img-top" src={item.story_img || storys} alt="Card cap" />
+                                            <div className="card-body">
+                                                <h5 className="card-title">
+                                                    {item.title || "Card title"}</h5>
+                                                <p className="card-text">{item.story_description}</p>
+                                                <div className="card-data">
+                                                    <h6>{item.genre_name}</h6>
+                                                    <h3>
+                                                        <span>
+                                                            {item.age} yrs
+                                                        </span>
+                                                    </h3>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </div>
+                                </div>
+                            ))
+                        )
+                        }
                     </div>
                 </div>
             </>

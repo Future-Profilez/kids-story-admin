@@ -48,6 +48,7 @@ function Storylist(props) {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
+                                <p>{ImageUrl}</p>
                                 {parsedData && parsedData.chapters
                                     && parsedData.chapters
                                         .map((item, key) => (

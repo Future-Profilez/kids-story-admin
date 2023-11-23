@@ -141,7 +141,6 @@ function StoryModal({ show, handleClose }) {
             console.log("Error", error);
         }
     };
-    console.log("storyres", storyres)
 
 
     useEffect(() => {

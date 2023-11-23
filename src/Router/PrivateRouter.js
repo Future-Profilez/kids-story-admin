@@ -1,12 +1,10 @@
-import { useContext, useEffect, useMemo, useState } from 'react';
-import { UserContext } from '../context/UserContextProvider';
+import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Story from '../Apis/Story';
 import { toast } from 'react-hot-toast';
 
 export default function PrivateRoute(props) {
 
-  const { setLoginUser, loginUser } = useContext(UserContext);
   const navigate = useNavigate();
   const [content, setContent] = useState([]);
   const [loading, setLoading] = useState(true);

@@ -5,79 +5,38 @@ import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import { Modal } from "react-bootstrap";
 import "../../style/model.css"
+// import records from "../../Data/data.json"
 import Story from "../../Apis/Story"
 import { useNavigate } from "react-router-dom";
-
-
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 
 function Schedule() {
-    const navigate = useNavigate();
 
+    const navigate = useNavigate();
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
-    const initialRegs = {
-        age: 8,
-        title: 'My Story',
-        prompt: 'Write a story',
-        genre_id: 1,
-        gender: 'm',
-        schedule_at: '',
-        stories: [
-            {
-                title: 'Chapter 1',
-                description: 'This is the first chapter',
-                chapter_no: 1,
-                image_prompt: 'Provide an image for this chapter',
-                // image: 'chapter1.jpg',
-            },
-            {
-                title: 'Chapter 1',
-                description: 'This is the first chapter',
-                chapter_no: 1,
-                image_prompt: 'Provide an image for this chapter',
-                //   image: 'chapter1.jpg',
-            },
-            {
-                title: 'Chapter 1',
-                description: 'This is the first chapter',
-                chapter_no: 1,
-                image_prompt: 'Provide an image for this chapter',
-                // image: 'chapter1.jpg',
-            },
-            {
-                title: 'Chapter 1',
-                description: 'This is the first chapter',
-                chapter_no: 1,
-                image_prompt: 'Provide an image for this chapter',
-                // image: 'chapter1.jpg',
-            },
-            {
-                title: 'Chapter 1',
-                description: 'This is the first chapter',
-                chapter_no: 1,
-                image_prompt: 'Provide an image for this chapter',
-                // image: 'chapter1.jpg',
-            }
+   
+     const records = useSelector(state => state.users.users);
 
-        ],
-    };
-
-    const users = useSelector(state => state.users.users);
-
+    
     console.log("redux", useSelector(state => state.users.users))
-
-
-    console.log("users", users)
-
-    const records = users[0].chapters
-    console.log("records", records)
-
-    const [Regs, setRegs] = useState(initialRegs);
-
+    console.log("users", records)
+    const storychapter = records[0].chapters
+    console.log("records", storychapter)
+    const [payLoad, setPayload] = useState({
+            "age":"",
+            "title": "",
+            "prompt":"",
+            "gender":"",
+            "schedule_at":"",
+             "stories":{storychapter},
+            //  records && records[0].chapters  
+    })
+    const [Regs, setRegs] = useState(payLoad);
+    
     const handleInputs = (e) => {
         const value = e.target.value;
         const name = e.target.name;
@@ -99,9 +58,6 @@ function Schedule() {
         }
     }
 
-
-
-
     return (
         <>
             <AuthLayout>
@@ -111,7 +67,7 @@ function Schedule() {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                {records && records.map((item, index) => {
+                                {storychapter && storychapter.map((item, index) => {
                                     return (
                                         <div className="story-list" key={index}>
                                             <h2>Chapter {item.chapternumber}:-{item.title}</h2>
@@ -122,7 +78,6 @@ function Schedule() {
                                         </div>
                                     );
                                 })}
-
                                 <div className="btn-list">
                                     <button className="btn blue-gradient-btn" onClick={handleShowContinue}>
                                         <span>Schedule</span>
@@ -132,7 +87,6 @@ function Schedule() {
                             </div>
                         </div>
                     </div>
-
                     <Modal show={showContinue} onHide={handleCloseContinue} id="generat-story">
                         <Modal.Header closeButton style={{ borderTop: "1px solid rgba(255,255,255, 0.1)" }}>
                             <Modal.Title>

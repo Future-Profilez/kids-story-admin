@@ -11,7 +11,6 @@ function Storydetails({ show, handleClose, uuid }) {
     const handleShowContinue = () => setShowContinue(true);
     console.log("UUID received in Storydetails:", uuid);
     const [content, setContent] = useState({})
-
     useEffect(() => {
         const fetchStoryDetails = () => {
             if (uuid) {
@@ -28,8 +27,6 @@ function Storydetails({ show, handleClose, uuid }) {
 
         fetchStoryDetails();
     }, [uuid]);
-
-
     const fetchStoryDelete = () => {
         if (uuid) {
             const main = new Story();
@@ -45,10 +42,7 @@ function Storydetails({ show, handleClose, uuid }) {
             handleClose();
         }
     };
-
-
     const [Regs, setRegs] = useState("");
-
     const handleInputs = (e) => {
         const value = e.target.value;
         const name = e.target.name;
@@ -68,8 +62,6 @@ function Storydetails({ show, handleClose, uuid }) {
             console.log("Error:", error);
         }
     }
-    
-
 
     return (
         <>
@@ -121,7 +113,6 @@ function Storydetails({ show, handleClose, uuid }) {
                         <div className="col-md-12">
                             {content && content?.story_chapter && content?.story_chapter?.map((item, index) => (
                                 <div className="story-list" key={index}>
-
                                     <h2>Chapter {item?.chapter_no}: {item?.title}</h2>
                                     <p>
                                         {item?.description}
@@ -133,8 +124,6 @@ function Storydetails({ show, handleClose, uuid }) {
                     </div>
                 </Modal.Body>
             </Modal>
-
-
             <Modal show={showContinue} onHide={handleCloseContinue} id="generat-story">
                 <Modal.Header closeButton style={{ borderTop: "1px solid rgba(255,255,255, 0.1)" }}>
                     <Modal.Title>
@@ -151,12 +140,9 @@ function Storydetails({ show, handleClose, uuid }) {
                         </span>
                         <input type="date" placeholder="Year/Month/Date" className="input_field  form-control" name="schedule_at"
                             id="password_field" value={Regs.schedule_at} onChange={handleInputs} />
-                        {/*  */}
                     </div>
-
                     <div className="text-center">
                         <div className="btn blue-gradient-btn" onClick={handleForms}  >
-                            {/* */}
                             <span>
                                Re-Schedule
                             </span>
@@ -164,8 +150,6 @@ function Storydetails({ show, handleClose, uuid }) {
                     </div>
                 </Modal.Body>
             </Modal>
-
-
         </>
     );
 }

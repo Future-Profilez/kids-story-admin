@@ -10,8 +10,8 @@ import UserIcon  from "../../image/total-user.png";
 import subscribersIcon  from "../../image/subscribers-icon.png";
 
 function Static() {
-    const [Contnet, setContent] = useState([])
 
+    const [Contnet, setContent] = useState([])
     useEffect(() => {
         const main = new Story();
         const response = main.Static();
@@ -55,7 +55,6 @@ function Static() {
                                                 <img src={StoriesIcon} alt="img" />
                                             </div>
                                         </div>
-
                                     </div>
                                     <div className="col-sm-6 col-lg-4">
                                         <div className="static-one">
@@ -78,7 +77,6 @@ function Static() {
                                                 <img src={UserIcon} alt="img" />
                                             </div>
                                         </div>
-
                                     </div>
                                     <div className="col-sm-6 col-lg-4">
                                         <div className="static-one">
@@ -108,11 +106,8 @@ function Static() {
                                         </div>
                                     </div>
                                 </div>
-
-
                                 <div className="Static-image">
                                     <Chart/>
-                                    {/* <Image src={data} alt="Not Responseive" /> */}
                                 </div>
                             </div>
                         </div>

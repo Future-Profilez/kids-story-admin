@@ -14,7 +14,6 @@ function Storycard() {
     const inputref = useRef(null);
     const [selectedOption, setSelectedOption] = useState("boy");
     const [loading, setLoading] = useState(false);
-    const [loadings, setLoadings] = useState(false);
     const [searchQuery, setSearchQuery] = useState(inputref.current);
     const [content, setContent] = useState([]);
     const [selectedUuid, setSelectedUuid] = useState("");
@@ -26,27 +25,21 @@ function Storycard() {
     const handleTabClick = (option) => {
         setSelectedOption(option);
     };
-
     const type = selectedOption;
-
     const handlesort = (e) => {
         setSelectSort(e.target.value);
     };
-
     const handlegenre = (e) => {
         setSelectedGenre(e.target.value);
     };
-
     let searchvalue = "";
     const handlesearch = (e) => {
         searchvalue = e.target.value;
         setSearchQuery(searchvalue)
     };
-
     useEffect(() => {
         setSearchQuery(searchvalue);
     }, [searchvalue]);
-
     const fetching = () => {
         if (loading) {
             return;
@@ -74,17 +67,13 @@ function Storycard() {
                 console.error("Error status:", error);
             });
     };
-
-
     useEffect(() => {
         fetching();
     }, [type, selectSort, selectedGenre, searchQuery]);
-
     const handleShow = (uuid) => {
         setShow(true);
         setSelectedUuid(uuid);
     };
-
     const Listing = () => {
         return (
             <>

@@ -12,25 +12,10 @@ import prompt from "../../Data/image.json";
 // import { client, GenerationStyle, Status } from "imaginesdk";
 
 function ImagePrompt({ show, handleClose,handleShow, imagePrompt, onGenerateImage }) {
-
-    const modalTitleStyle = {
-        color: '#FFF',
-        textAlign: 'center',
-        lineHeight: 'normal',
-        fontFamily: 'Poppins',
-        fontSize: '28px',
-        fontStyle: 'normal',
-        fontWeight: 600,
-    };
-
-    // const imagine = client("<YOUR_API_KEY>");
-
     const [data, setData] = useState("");
-
     const [modalShow, setModalShow] = useState(show);
     const [isLoading, setIsLoading] = useState(true);
     const imageRef = useRef(null);
-
     const handleImageLoad = () => {
         setIsLoading(true);
     };

@@ -5,20 +5,16 @@ import Ai from "../../Apis/Ai"
 import genres from '../../Data/genre.json'
 import agegroup from "../../Data/Age.json"
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../../context/UserContextProvider";
 import { useDispatch } from "react-redux";
 import { adduser } from "../../Redux/UserSlice";
 function StoryModal({ show, handleClose }) {
-    
+
     const dispatch = useDispatch();
-
-
-    const { setList, setName, name } = useContext(UserContext);
     const [currentStep, setCurrentStep] = useState(1);
     const [showSuccess, setShowSuccess] = useState(false);
     const [selectedUser, setSelectedUser] = useState('');
     const [Boys, setBoys] = useState("DummyBoy")
-    const [girl, setGirls] = useState("DummyGirl")
+    const [Girls, setGirls] = useState("DummyGirl")
     const handleOptionSelect = (nextStep, user) => {
         if (nextStep >= 1 && nextStep <= 4) {
             setCurrentStep(nextStep);
@@ -32,17 +28,16 @@ function StoryModal({ show, handleClose }) {
             if (user === 'boy') {
                 setBoys('DummyBoy');
                 setGirls('');
-                setGender("DummyBoy")
-            } else if (user === 'girl') {
+                setSelectedUser("DummyBoy")
+            } else if (user === 'Girls') {
                 setGirls('DummyGirl');
                 setBoys('');
-                setGender("DummyGirl")
+                setSelectedUser("DummyGirl")
 
             }
         }
     };
-    console.log("ss", Boys, girl);
-    // const storyJSON = JSON.stringify(genres, null, 2);
+    console.log("ss", Boys, Girls);
     const handleAgeChange = (age) => {
         setAge(age);
         handleOptionSelect(3);
@@ -54,45 +49,9 @@ function StoryModal({ show, handleClose }) {
     const [genre, setGenre] = useState('');
     const [loading, setLoading] = useState(false)
 
-    // const storyRsponse = {
-    //     "story": [
-    //         {
-    //             "chapter": "1",
-    //             "subtitle": "The Cosmic Heist",
-    //             "content": "In a far away galaxy, where advanced civilizations co-existed with alien species, our protagonists, DummyBoy, a seasoned space police officer passionately committed to upholding justice, and DummyGirl, a notorious inter-galactic thief known for her complicated heists, come into view. The chapter sets the stage revealing a heist in process, with DummyGirl attempting to steal precious celestial gems from a famed Space Museum.",
-    //             "imageprompt": "A museum in outer space with shimmering celestial gem exhibits and two figures, one approaching stealthily, the other observing vigilantly."
-    //         },
-    //         {
-    //             "chapter": "2",
-    //             "subtitle": "The Chase",
-    //             "content": "Upon the Space Police's alert, DummyBoy arrives at the scene only to find out that DummyGirl has successfully completed her heist. An intense chase begins, with DummyBoy using his cutting-edge spacecraft and space gadgets in attempt to capture the elusive DummyGirl. Despite his best efforts, the clever thief manages to escape his pursuit.",
-    //             "imageprompt": "An action filled scene with two spaceships, engaged in a high speed chase amidst a dazzling display of pulsating nebulae and alien worlds."
-    //         },
-    //         {
-    //             "chapter": "3",
-    //             "subtitle": "The Confrontation",
-    //             "content": "DummyBoy, finally manages to corner DummyGirl on the ice moon of a distant gas giant. With nowhere else to run, DummyGirl is confronted by DummyBoy. Despite facing arrest, DummyGirl remains stubbornly defiant and teases DummyBoy for his inability to apprehend her sooner.",
-    //             "imageprompt": "A dramatic showdown on an icy moon, a bold silhouette of DummyGirl standing across DummyBoy."
-    //         },
-    //         {
-    //             "chapter": "4",
-    //             "subtitle": "A Change of Heart",
-    //             "content": "In a surprising twist, DummyGirl confesses as to why she chose the life of a thief: she was doing it to provide for her impoverished family back in her home galaxy. This revelation prompts compassion in DummyBoy. He makes a choice - he decides to help DummyGirl and her family, by providing them a chance of legitimate means of survival, thus securing her promise of never resorting to stealing again.",
-    //             "imageprompt": "A warm conversation scene on a colder moon, with a feeling of empathy, change, and a new hope."
-    //         },
-    //         {
-    //             "chapter": "5",
-    //             "subtitle": "The Redemption",
-    //             "content": "This chapter revolves around the redemption of DummyGirl. With the help of DummyBoy, she and her family get a new lease of life based on a honest livelihood. DummyGirl's transformation serves as an inspiration for others, showing that it's never too late to rectify one's mistakes. The moral firmly communicated is, 'Everyone deserves a second chance. Understanding, compassion and help can change a person's life.'",
-    //             "imageprompt": "A picturesque image of DummyGirl and her family living happily in their peaceful home, with an aura of contentment and satisfaction, signifying the end of a journey and the beginning of a new one."
-    //         }
-    //     ]
-    // }
-    //    console.log("storyRsponse", storyRsponse.story)
-    //     const redd = setList(storyRsponse);
-    //       console.log("redd", redd);
-    const [card, setCard] = useState(null)
+    
     const navigate = useNavigate()
+    const [card, setCard] = useState(null)
 
 
     let storyres = null;
@@ -100,27 +59,16 @@ function StoryModal({ show, handleClose }) {
         try {
             if (userTitle && age && gender && genre) {
                 setLoading(true);
-
-
                 const promptData = {
                     message: "Generate a children's story with the following parameters",
                     title: userTitle,
                     age: age,
                     gender: gender,
                     genre: genre,
-
+                    boy: Boys,
+                    giri: Girls,
                     description: " Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data in one variable 'data' where inside 'data', there should be 'title','','age', 'gender', 'genre', and 'chapters'. 'chapters' should be an array containing objects for each chapter with the properties: chapternumber, title, content, and imageprompt. Provide the response in JSON format",
                 };
-
-                // const promptData = {
-                //     title: userTitle,
-                //     age: age,
-                //     gender: gender,
-                //     genre: genre,
-                //     boy:Boys,
-                //     girl:girl,
-                //     description: "Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data  in  one variable 'data'in this variable inside age , gender,genre  one variable named 'chapter' and include all chapter details following this pattern: chapternumber, title, content, and imageprompt. Finally, provide the response in JSON format.",
-                // };
                 const requestData = {
                     model: 'gpt-4',
                     messages: [
@@ -143,7 +91,7 @@ function StoryModal({ show, handleClose }) {
                             console.log("parstory", Parstory);
                             storyres = Parstory;
                             //const datastory = setList(Parstory);
-                            const datastory =   dispatch(adduser(Parstory))
+                            const datastory = dispatch(adduser(Parstory))
                             console.log("datastory", datastory);
                             const data = setCard(storyres);
                             console.log("data", data);
@@ -163,14 +111,9 @@ function StoryModal({ show, handleClose }) {
             console.log("Error", error);
         }
     };
-
-
     useEffect(() => {
         setLoading(false);
     }, [userTitle, age, gender, genre]);
-
-
-
     useEffect(() => {
         console.log("Card =>>>>>>>>>>>>>>>>>>:", card);
     }, [card]);
@@ -179,6 +122,10 @@ function StoryModal({ show, handleClose }) {
 
     //     console.log("prev",generatedStory);
     // }
+
+//     function generateStory(){
+//         navigate('/list')
+// }
 
     return (
         <>
@@ -193,7 +140,7 @@ function StoryModal({ show, handleClose }) {
                                         <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="white" />
                                     </g>
                                 </svg>
-                                <h2>StoryScape! {name}</h2>
+                                <h2>StoryScape!</h2>
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>
@@ -329,7 +276,7 @@ function StoryModal({ show, handleClose }) {
 
                         </Modal.Body>
                     </div>
-                    <button className="addStory" onClick={() => setName("Hello 4")}>{name}Add Stroy</button>
+                    {/* <button className="addStory" onClick={() => setName("Hello 4")}>{name}Add Stroy</button> */}
 
                 </Modal>
             </>

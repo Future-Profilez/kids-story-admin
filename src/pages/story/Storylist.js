@@ -4,7 +4,7 @@ import "../../style/story.css";
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import ImagePrompt from "./ImagePrompt";
- import list from "../../Data/data.json"
+import list from "../../Data/data.json"
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
 import Regenerate from "./Regenerate";
@@ -12,14 +12,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function Storylist() {
-
     // const  {List, name} = useContext(UserContext);
-
     // const storedData = localStorage.getItem('name');
     // console.log("storedData",storedData)
     // const parsedData = JSON.parse(storedData);
     // console.log("parsedData", parsedData);
-
     // console.log("List",List);
     // useEffect(() => {
     //     localStorage.setItem('List', JSON.stringify(List));
@@ -28,21 +25,13 @@ function Storylist() {
     // const storedData = localStorage.getItem('List');
     // const parsedData = JSON.parse(storedData);
     // console.log("parsedData", parsedData);
-        
-    // const storedData = localStorage.setItem(List);
-
     const dispatch = useDispatch();
-const navigate =useNavigate();
-
-//     const users = useSelector(state => state.users.users);
-
-//     console.log("redux", useSelector(state => state.users.users))
-
-
-//     console.log("users",users)
-
-//     const data = users[0]?.chapters?
-// console.log("data",data)
+    const navigate = useNavigate();
+    const users = useSelector(state => state.users.users);
+    console.log("redux", useSelector(state => state.users.users))
+    console.log("users", users)
+    const data = users[0]?.chapters
+    console.log("data", data)
     const [show, setShow] = useState(false);
     const [imagePrompt, setImagePrompt] = useState("");
     const handleClose = () => setShow(false);
@@ -50,7 +39,7 @@ const navigate =useNavigate();
         setImagePrompt(image_prompt);
         setShow(true);
     };
-    const [ImageUrl ,setImageUrl]=useState("")
+    const [ImageUrl, setImageUrl] = useState("")
     const handleGenerateImage = (image_prompt) => {
         setImageUrl(image_prompt)
         console.log("Generated Image Prompt:", image_prompt);
@@ -58,12 +47,12 @@ const navigate =useNavigate();
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
-    console.log("imagePrompt",imagePrompt)
-    console.log("ImageUrl",ImageUrl)
+    console.log("imagePrompt", imagePrompt)
+    console.log("ImageUrl", ImageUrl)
     function Schedulecontinue() {
         navigate('/schedule')
     }
-   // const imageprompt ="police and thief"
+    // const imageprompt ="police and thief"
     const [shows, setShows] = useState(false);
     const handleCloses = () => setShows(false);
     const handleShows = () => setShows(true);
@@ -75,12 +64,12 @@ const navigate =useNavigate();
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                {list && list.chapters 
+                                {list && list.chapters
                                     && list.chapters
                                         .map((item, key) => (
                                             <div className="story-list" key={key}>
                                                 <h2>
-                                          Chapter   {item.chapternumber || "1"}:-         {item.title}
+                                                    Chapter   {item.chapternumber || "1"}:-         {item.title}
                                                 </h2>
                                                 <p>{item.content}</p>
                                                 <div className="thubnail">
@@ -92,9 +81,8 @@ const navigate =useNavigate();
                                                 </div>
                                             </div>
                                         ))}
-
                                 <div className="btn-list">
-                                    <button className="btn blue-gradient-btn" onClick={()=>handleShows()}>
+                                    <button className="btn blue-gradient-btn" onClick={() => handleShows()}>
                                         <span>Regenerate Story</span>
                                     </button>
                                     <button
@@ -107,7 +95,7 @@ const navigate =useNavigate();
                             </div>
                         </div>
                     </div>
-                    <Regenerate    shows={shows}
+                    <Regenerate shows={shows}
                         handleCloses={handleCloses} />
                     {/* data={imagepropmt}  */}
                     <ImagePrompt
@@ -156,14 +144,11 @@ const navigate =useNavigate();
                                 Are you sure you have read this story?
                             </h5>
                             <div className="text-center">
-                                <div className="btn blue-gradient-btn"  onClick={Schedulecontinue}>
+                                <div className="btn blue-gradient-btn" onClick={Schedulecontinue}>
                                     <span>Confirm & Continue</span>
                                 </div>
                             </div>
                         </Modal.Body>
-                        {/* <Modal.Footer> */}
-                        {/* Your modal footer content */}
-                        {/* </Modal.Footer> */}
                     </Modal>
                 </div>
             </AuthLayout>

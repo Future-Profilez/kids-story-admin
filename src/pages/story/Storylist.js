@@ -30,8 +30,8 @@ function Storylist() {
     const users = useSelector(state => state.users.users);
     console.log("redux", useSelector(state => state.users.users))
     console.log("users", users)
-    const data = users[0]?.chapters
-    console.log("data", data)
+    const record = users[0]?.data?.chapters
+    console.log("data", record)
     const [show, setShow] = useState(false);
     const [imagePrompt, setImagePrompt] = useState("");
     const handleClose = () => setShow(false);
@@ -64,9 +64,9 @@ function Storylist() {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                {data 
-                                    && data
-                                        .map((item, key) => (
+                                {record 
+                                    && record.
+                                        map((item, key) => (
                                             <div className="story-list" key={key}>
                                                 <h2>
                                                    chapter{item.chapternumber }:- {item.title}

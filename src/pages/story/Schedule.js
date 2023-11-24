@@ -24,14 +24,14 @@ function Schedule() {
     
     console.log("redux", useSelector(state => state.users.users))
     console.log("users", records)
-    const storychapter = records[0].chapters
+    const storychapter = records[0]?.data?.chapters
    console.log("records", storychapter)
     const [payLoad, setPayload] = useState({
-            "age":records[0].age,
-            "title": records[0].title,
-            "gender":records[0].gender,
+            "age":records[0]?.data.age,
+            "title": records[0]?.data.title,
+            "gender":records[0]?.data.gender,
             "schedule_at":"",
-             "stories":records && records[0].chapters ,
+             "stories":records && records[0]?.data.chapters ,
             //  records && records[0].chapters  
     })
     console.log("payLoad",payLoad)

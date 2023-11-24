@@ -4,35 +4,45 @@ import "../../style/story.css";
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import ImagePrompt from "./ImagePrompt";
-// import list from "../../Data/data.json"
+ import list from "../../Data/data.json"
 import { Modal } from "react-bootstrap";
-import { useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useState } from "react";
 import Regenerate from "./Regenerate";
-import { UserContext } from "../../context/UserContextProvider";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-function Storylist(props) {
+function Storylist() {
 
-    const  {List, name} = useContext(UserContext);
+    // const  {List, name} = useContext(UserContext);
 
     // const storedData = localStorage.getItem('name');
     // console.log("storedData",storedData)
     // const parsedData = JSON.parse(storedData);
     // console.log("parsedData", parsedData);
 
-    console.log("List",List);
-    useEffect(() => {
-        localStorage.setItem('List', JSON.stringify(List));
-    }, [List]);
+    // console.log("List",List);
+    // useEffect(() => {
+    //     localStorage.setItem('List', JSON.stringify(List));
+    // }, [List]);
 
-    const storedData = localStorage.getItem('List');
-    const parsedData = JSON.parse(storedData);
-    console.log("parsedData", parsedData);
+    // const storedData = localStorage.getItem('List');
+    // const parsedData = JSON.parse(storedData);
+    // console.log("parsedData", parsedData);
         
     // const storedData = localStorage.setItem(List);
 
+    const dispatch = useDispatch();
+const navigate =useNavigate();
+
+//     const users = useSelector(state => state.users.users);
+
+//     console.log("redux", useSelector(state => state.users.users))
 
 
+//     console.log("users",users)
+
+//     const data = users[0]?.chapters?
+// console.log("data",data)
     const [show, setShow] = useState(false);
     const [imagePrompt, setImagePrompt] = useState("");
     const handleClose = () => setShow(false);
@@ -48,12 +58,12 @@ function Storylist(props) {
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
-    const navigate = useNavigate();
     console.log("imagePrompt",imagePrompt)
     console.log("ImageUrl",ImageUrl)
     function Schedulecontinue() {
         navigate('/schedule')
     }
+   // const imageprompt ="police and thief"
     const [shows, setShows] = useState(false);
     const handleCloses = () => setShows(false);
     const handleShows = () => setShows(true);
@@ -65,13 +75,12 @@ function Storylist(props) {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                {name}
-                                {parsedData && parsedData.chapters
-                                    && parsedData.chapters
+                                {list && list.chapters 
+                                    && list.chapters
                                         .map((item, key) => (
                                             <div className="story-list" key={key}>
                                                 <h2>
-                                                   {item.title}
+                                          Chapter   {item.chapternumber || "1"}:-         {item.title}
                                                 </h2>
                                                 <p>{item.content}</p>
                                                 <div className="thubnail">

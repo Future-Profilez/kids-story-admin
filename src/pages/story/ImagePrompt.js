@@ -9,7 +9,7 @@ import prompt from "../../Data/image.json";
 // import GenerationStyle from "imaginesdk";
 // import Status from "imaginesdk";
 // import { client} from "imaginesdk";
-// import { client, GenerationStyle, Status } from "imaginesdk";
+//import { client, GenerationStyle, Status } from "imaginesdk";
 
 function ImagePrompt({ show, handleClose,handleShow, imagePrompt, onGenerateImage }) {
     const [data, setData] = useState("");
@@ -18,7 +18,12 @@ function ImagePrompt({ show, handleClose,handleShow, imagePrompt, onGenerateImag
     const imageRef = useRef(null);
     const handleImageLoad = () => {
         setIsLoading(true);
-    };
+    }; 
+
+
+    const  imagePromptstatic = 'DummyBoy and DummyGirl in their spaceship, looking at an unknown alien galaxy'
+
+
 
     // const binaryImageData = prompt;
 
@@ -82,75 +87,65 @@ function ImagePrompt({ show, handleClose,handleShow, imagePrompt, onGenerateImag
 
 
     // /generations
-    // const handleGenerateImage = async () => {
-    //     setIsLoading(true);
-    //     try {
-    //         const response = await imageAi.post("/generations", {
-    //             model_version: ( '1'),
-    //             prompt:  (  imagePrompt),
-    //             style_id: ("30"),
-    //         });
-    //         console.log("response", response);
-    //         if (response && response.data) {
-    //             const record = response.data;
-
-
-    //         } else {
-    //             console.error('Unexpected response format:', response.error);
-    //         }
-
-    //     } catch (error) {
-    //         console.error('Error generating image:', error);
-    //     } finally {
-    //         setIsLoading(false);
-    //     }
-    // };
-
-
     const handleGenerateImage = async () => {
         setIsLoading(true);
+      
         try {
-          // Make the API call and get the response data
-          const response = await imageAi.post("/generations", {
-            model_version: '1',
-            prompt: imagePrompt,
-            style_id: '30',
+          const formData = new FormData();
+          formData.append('prompt', imagePromptstatic);
+          formData.append('style_id', '30');
+      
+          const response = await imageAi.post("/generations", formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data', 
+            },
           });
-    
-          const imageData = response.data; 
-          console.log("imageData",imageData)
-    
-          // Convert the received data into ArrayBuffer
-          const arrayBuffer = new TextEncoder().encode(imageData).buffer;
-    
-          // Use the toImage function to get an Image object
-          const image= toImage(arrayBuffer);
-    
-          // Call the onGenerateImage callback with the image data
-          onGenerateImage(image.buffer());
-    
-          // Optionally, set the imageUrl state if needed
-          setImageUrl(image.asImageSrc());
+      
+          console.log("response", response);
+          const imageAA = response.getOrThrow();
+          console.log("imageAA", imageAA);
+
+
         } catch (error) {
           console.error('Error generating image:', error);
         } finally {
           setIsLoading(false);
         }
       };
+      
+    // const handleGenerateImage = async () => {
+    //     setIsLoading(true);
+    //     try {
+    //       const response = await imageAi.post("/generations", {
+    //         // model_version: '1',
+    //         prompt: imagePromptstatic,
+    //         style_id: '30',
+    //       });
+    //         console.log("response",response)
+    
+    //     //   const imageData = response.data; 
 
 
+    //     //   const arrayBuffer = new TextEncoder().encode(imageData).buffer;
+    //     //   const image= toImage(arrayBuffer);
+    //     //   onGenerateImage(image.buffer());
+    //     //   setImageUrl(image.asImageSrc());
+    //     } catch (error) {
+    //       console.error('Error generating image:', error);
+    //     } finally {
+    //       setIsLoading(false);
+    //     }
 
-
+    //   };
 
     useEffect(() => {
-
         setData(imagePrompt);
         setModalShow(show);
     }, [show]);
 
     return (
         <>
-            <Modal show={show} onHide={handleClose} id="generat-story" className="modal-dialog-image">
+            <Modal show={true} onHide={handleClose} id="generat-story" className="modal-dialog-image">
                 <Modal.Header closeButton>
                     <Modal.Title className="modal-image">
                         <div className="body-popup-title"><h3>Generate Image</h3></div>
@@ -161,7 +156,7 @@ function ImagePrompt({ show, handleClose,handleShow, imagePrompt, onGenerateImag
                         <input
                             type="text"
                             placeholder="Image Prompt"
-                            value={data}
+                            value={imagePromptstatic}
                             name="data"
                             onChange={(e) => setData(e.target.value)}
                             className="input_field form-control"
@@ -187,7 +182,6 @@ function ImagePrompt({ show, handleClose,handleShow, imagePrompt, onGenerateImag
                                             </radialGradient>
                                         </defs>
                                     </svg>
-
                                     Image Generating...
                                 </div>
                                 <img ref={imageRef} src={Story} alt="story" onLoad={handleImageLoad} />

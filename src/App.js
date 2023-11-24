@@ -14,6 +14,7 @@ import Login from "./component/Login";
 import UserContextProvider from "./context/UserContextProvider";
 import Data from "./pages/story/Data";
 import { Toaster } from 'react-hot-toast';
+import ImagePrompt from "./pages/story/ImagePrompt";
 
 function App() {
   const IMAGE_BASE_URL = process.env.REACT_APP_IMAGE_URL;
@@ -61,6 +62,11 @@ function App() {
             <Route path="/static" element={
               <PrivateRouter>
                 <Static />
+              </PrivateRouter>
+            } />
+            <Route path="/image" element={
+              <PrivateRouter>
+                <ImagePrompt />
               </PrivateRouter>
             } />
           </Routes>

@@ -74,6 +74,22 @@ function Storycard() {
         setShow(true);
         setSelectedUuid(uuid);
     };
+
+    const divStyle = {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        display: '-webkit-box',
+        WebkitLineClamp: 1,
+        WebkitBoxOrient: 'vertical',
+    };
+
+    const pstyle = {
+        overflow: 'hidden',
+        textOverflow: 'ellipsis',
+        display: '-webkit-box',
+        WebkitLineClamp: 2,
+        WebkitBoxOrient: 'vertical',
+    };
     const Listing = () => {
         return (
             <>
@@ -124,7 +140,7 @@ function Storycard() {
                 <div className="story-card">
                     <div className="row">
                         {loading ? (
-                          <Loading/>
+                            <Loading />
                         ) : (
                             content && content.map((item,
                                 index) => (
@@ -133,9 +149,12 @@ function Storycard() {
                                         <Link onClick={() => handleShow(item.uuid)} >
                                             <img className="card-img-top" src={item.story_img || storys} alt="Card cap" />
                                             <div className="card-body">
-                                                <h5 className="card-title">
-                                                    {item.title || "Card title"}</h5>
-                                                <p className="card-text">{item.story_description}</p>
+                                                <p className="card-text">{item.schedule_at}</p>
+                                                <h5 className="card-title" style={divStyle}
+                                                    dangerouslySetInnerHTML={{ __html: item.title }}
+                                                ></h5>
+                                                <p className="card-text" style={pstyle}
+                                                    dangerouslySetInnerHTML={{ __html: item.story_description }}></p>
                                                 <div className="card-data">
                                                     <h6>{item.genre_name}</h6>
                                                     <h3>
@@ -149,7 +168,7 @@ function Storycard() {
                                     </div>
                                 </div>
                             ))
-                        ) }
+                        )}
                     </div>
                 </div>
             </>

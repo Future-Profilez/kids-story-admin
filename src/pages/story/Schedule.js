@@ -18,29 +18,32 @@ function Schedule() {
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
-//      const records = useSelector(state => state.users.users);
-//     console.log("redux", useSelector(state => state.users.users))
-//     console.log("users", records)
-//     const storychapter = records[0]?.data?.chapters
-//    console.log("records", storychapter)
-    // const [payLoad, setPayload] = useState({
-    //         "age":records[0]?.data.age,
-    //         "title": records[0]?.data.title,
-    //         "gender":records[0]?.data.gender,
-    //         "schedule_at":"",
-    //          "stories":records && records[0]?.data.chapters ,
-    //         //  records && records[0].chapters  
-    // })
-
+     const records = useSelector(state => state.users.users);
+    console.log("redux", useSelector(state => state.users.users))
+    console.log("users", records)
+    const storychapter = records[0]?.chapters
+   console.log("records", storychapter)
     const [payLoad, setPayload] = useState({
-        "age":records.age,
-        "title": records.title,
-        "gender":records.gender,
-        "genre":records.genre,
-        "schedule_at":"",
-         "stories":records && records.chapters ,
-        //  records && records[0].chapters  
-})
+            "age":records[0].age,
+            "title": records[0].title,
+            "gender":records[0].gender,
+            "name":"DummyBoy",
+            "genre":records[0].genre,
+            "schedule_at":"",
+             "stories":records && records[0]?.chapters ,
+            //  records && records[0].chapters  
+    })
+
+//     const [payLoad, setPayload] = useState({
+//         "age":records.age,
+//         "title": records.title,
+//         "gender":records.gender,
+//         "genre":records.genre,
+//         "schedule_at":"",
+//         "name":records.username,
+//          "stories":records && records.chapters ,
+//         //  records && records[0].chapters  
+// })
     console.log("payLoad",payLoad)
     const [Regs, setRegs] = useState(payLoad);
     
@@ -57,15 +60,17 @@ function Schedule() {
             const main = new Story();
             const response = await main.Scheduledate(Regs);
             console.log("API Response:", response);
+            toast.success(response.data.message)
             handleCloseContinue();
             navigate('/card')
             return false;
         } catch (error) {
             console.error("API Error:", error);
+            toast.error(error)
         }
     }
 
-    const storychapter =records.chapters;
+   // const storychapter =records.chapters;
 
     return (
         <>

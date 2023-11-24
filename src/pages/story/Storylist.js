@@ -76,7 +76,7 @@ function Storylist() {
                                                     <Image
                                                         src={Story}
                                                         alt="story"
-                                                        onClick={() => handleShow(item.imagePrompt)}
+                                                        onClick={() => handleShow(item.imageprompt)}
                                                     />
                                                 </div>
                                             </div>

@@ -18,10 +18,7 @@ function Schedule() {
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
-   
      const records = useSelector(state => state.users.users);
-
-    
     console.log("redux", useSelector(state => state.users.users))
     console.log("users", records)
     const storychapter = records[0]?.data?.chapters

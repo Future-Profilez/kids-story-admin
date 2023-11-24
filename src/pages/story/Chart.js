@@ -20,6 +20,7 @@ function Chart() {
         if (chartInstance.current) {
             chartInstance.current.destroy();
         }
+        console.log("Contnet",Contnet)
 
         const chartCanvas = chartRef.current.getContext("2d");   
 
@@ -124,7 +125,7 @@ function Chart() {
                 chartInstance.current.destroy();
             }
         };
-    }, []);
+    },[]);
 
     return (        
             <canvas ref={chartRef} style={{ width: "", height: "100px" }} /> 

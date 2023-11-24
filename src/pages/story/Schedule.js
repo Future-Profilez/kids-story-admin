@@ -10,7 +10,7 @@ import Story from "../../Apis/Story"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 
 function Schedule() {
 
@@ -18,32 +18,32 @@ function Schedule() {
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
-     const records = useSelector(state => state.users.users);
-    console.log("redux", useSelector(state => state.users.users))
-    console.log("users", records)
-    const storychapter = records[0]?.chapters
-   console.log("records", storychapter)
-    const [payLoad, setPayload] = useState({
-            "age":records[0].age,
-            "title": records[0].title,
-            "gender":records[0].gender,
-            "name":"DummyBoy",
-            "genre":records[0].genre,
-            "schedule_at":"",
-             "stories":records && records[0]?.chapters ,
-            //  records && records[0].chapters  
-    })
-
+//      const records = useSelector(state => state.users.users);
+//     console.log("redux", useSelector(state => state.users.users))
+//     console.log("users", records)
+//     const storychapter = records[0]?.chapters
+//    console.log("records", storychapter)
 //     const [payLoad, setPayload] = useState({
-//         "age":records.age,
-//         "title": records.title,
-//         "gender":records.gender,
-//         "genre":records.genre,
-//         "schedule_at":"",
-//         "name":records.username,
-//          "stories":records && records.chapters ,
-//         //  records && records[0].chapters  
-// })
+//             "age":records[0].age,
+//             "title": records[0].title,
+//             "gender":records[0].gender,
+//             "name":"DummyBoy",
+//             "genre":records[0].genre,
+//             "schedule_at":"",
+//              "stories":records && records[0]?.chapters ,
+//             //  records && records[0].chapters  
+//     })
+
+    const [payLoad, setPayload] = useState({
+        "age":records.age,
+        "title": records.title,
+        "gender":records.gender,
+        "genre":records.genre,
+        "schedule_at":"",
+        "name":records.username,
+         "stories":records && records.chapters ,
+        //  records && records[0].chapters  
+})
     console.log("payLoad",payLoad)
     const [Regs, setRegs] = useState(payLoad);
     
@@ -70,7 +70,7 @@ function Schedule() {
         }
     }
 
-   // const storychapter =records.chapters;
+   const storychapter =records.chapters;
 
     return (
         <>

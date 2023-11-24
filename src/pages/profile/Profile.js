@@ -46,7 +46,7 @@ function Profile() {
                 navigate('/');
                 toast.success(response.data.message);
             }else{
-                toast.error(response.data.message);
+                toast.error(response.message);
             }
         } catch (error) {
             console.log("error", error);

@@ -5,7 +5,7 @@ import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import { Modal } from "react-bootstrap";
 import "../../style/model.css"
-// import records from "../../Data/data.json"
+import records from "../../Data/data.json"
 import Story from "../../Apis/Story"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -25,16 +25,16 @@ function Schedule() {
     console.log("redux", useSelector(state => state.users.users))
     console.log("users", records)
     const storychapter = records[0].chapters
-    console.log("records", storychapter)
+   console.log("records", storychapter)
     const [payLoad, setPayload] = useState({
-            "age":"",
-            "title": "",
-            "prompt":"",
-            "gender":"",
+            "age":records[0].age,
+            "title": records[0].title,
+            "gender":records[0].gender,
             "schedule_at":"",
-             "stories":{storychapter},
+             "stories":records && records[0].chapters ,
             //  records && records[0].chapters  
     })
+    console.log("payLoad",payLoad)
     const [Regs, setRegs] = useState(payLoad);
     
     const handleInputs = (e) => {
@@ -67,7 +67,7 @@ function Schedule() {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                {storychapter && storychapter.map((item, index) => {
+                                {storychapter &&storychapter.map((item, index) => {
                                     return (
                                         <div className="story-list" key={index}>
                                             <h2>Chapter {item.chapternumber}:-{item.title}</h2>

@@ -118,10 +118,7 @@ function StoryModal({ show, handleClose }) {
         console.log("Card =>>>>>>>>>>>>>>>>>>:", card);
     }, [card]);
 
-    // const addStory= () => { 
-
-    //     console.log("prev",generatedStory);
-    // }
+    
 
 //     function generateStory(){
 //         navigate('/list')

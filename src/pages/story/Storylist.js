@@ -64,12 +64,12 @@ function Storylist() {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                {list && list.chapters
-                                    && list.chapters
+                                {data 
+                                    && data
                                         .map((item, key) => (
                                             <div className="story-list" key={key}>
                                                 <h2>
-                                                    Chapter   {item.chapternumber || "1"}:-         {item.title}
+                                                   chapter{item.chapternumber }:- {item.title}
                                                 </h2>
                                                 <p>{item.content}</p>
                                                 <div className="thubnail">

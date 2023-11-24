@@ -27,11 +27,13 @@ function Storylist() {
     // console.log("parsedData", parsedData);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const users = useSelector(state => state.users.users);
-    console.log("redux", useSelector(state => state.users.users))
-    console.log("users", users)
-    const record = users[0]?.data?.chapters
-    console.log("data", record)
+    // const users = useSelector(state => state.users.users);
+    // console.log("redux", useSelector(state => state.users.users))
+    // console.log("users", users)
+    // const record = users[0]?.data?.chapters
+    
+    const record =list.chapters
+     console.log("record", record)
     const [show, setShow] = useState(false);
     const [imagePrompt, setImagePrompt] = useState("");
     const handleClose = () => setShow(false);

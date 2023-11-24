@@ -1,26 +1,26 @@
 [
     {
-      "id": "Genre1",
+      "id": "1",
       "name": "Space"
     },
     {
-      "id": "Genre2",
+      "id": "2",
       "name": "Adventure"
     },
     {
-      "id": "Genre3",
+      "id": "3",
       "name": "Animals"
     },
     {
-      "id": "Genre4",
+      "id": "4",
       "name": "Fairy Tales"
     },
     {
-      "id": "Genre5",
+      "id": "5",
       "name": "Superhero"
     },
     {
-      "id": "Genre6",
+      "id": "6",
       "name": "Pirates"
     }
   ]

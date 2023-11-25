@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Storydetails from "./Storydetails";
 import Story from "../../Apis/Story";
 import Loading from "../../component/Loading";
+import Nodata from "../../component/Nodata";
 
 function Storycard() {
 
@@ -139,36 +140,38 @@ function Storycard() {
                 </div>
                 <div className="story-card">
                     <div className="row">
-                        {loading ? (
+                    {loading ? (
                             <Loading />
-                        ) : (
-                            content && content.map((item,
-                                index) => (
+                        ) : content && content.length > 0 ? (
+                            content.map((item, index) => (
                                 <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
-                                    <div className="card">
-                                        <Link onClick={() => handleShow(item.uuid)} >
-                                            <img className="card-img-top" src={item.story_img || storys} alt="Card cap" />
-                                            <div className="card-body">
-                                                <p className="card-text">{item.schedule_at}</p>
-                                                <h5 className="card-title" style={divStyle}
-                                                    dangerouslySetInnerHTML={{ __html: item.title }}
-                                                ></h5>
-                                                <p className="card-text" style={pstyle}
-                                                    dangerouslySetInnerHTML={{ __html: item.story_description }}></p>
-                                                <div className="card-data">
-                                                    <h6>{item.genre_name}</h6>
-                                                    <h3>
-                                                        <span>
-                                                            {item.age} yrs
-                                                        </span>
-                                                    </h3>
-                                                </div>
+                                <div className="card">
+                                    <Link onClick={() => handleShow(item.uuid)} >
+                                        <img className="card-img-top" src={item.story_img || storys} alt="Card cap" />
+                                        <div className="card-body">
+                                            <p className="card-text">{item.schedule_at}</p>
+                                            <h5 className="card-title" style={divStyle}
+                                                dangerouslySetInnerHTML={{ __html: item.title }}
+                                            ></h5>
+                                            <p className="card-text" style={pstyle}
+                                                dangerouslySetInnerHTML={{ __html: item.story_description }}></p>
+                                            <div className="card-data">
+                                                <h6>{item.genre_name}</h6>
+                                                <h3>
+                                                    <span>
+                                                        {item.age} yrs
+                                                    </span>
+                                                </h3>
                                             </div>
-                                        </Link>
-                                    </div>
+                                        </div>
+                                    </Link>
                                 </div>
+                            </div>
                             ))
+                        ) : (
+                           <Nodata/>
                         )}
+                       
                     </div>
                 </div>
             </>

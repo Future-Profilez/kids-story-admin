@@ -141,6 +141,7 @@ function StoryModal({ show, handleClose }) {
                         </Modal.Header>
                         <Modal.Body>
                             {currentStep === 1 && (
+
                                 <div className="story-step-form" id="step1"  >
                                     <div className="body-popup-title">
                                         <h3>Who do you want to generate it for </h3>
@@ -167,6 +168,7 @@ function StoryModal({ show, handleClose }) {
                                         <div className="progress-bar">
                                             <div style={{ width: 25 + '%' }}></div>
                                         </div>
+                                        
                                         <span>Step 1 of 4</span>
                                     </div>
                                 </div>

@@ -110,6 +110,7 @@ function Static() {
                                     <Chart/>
                                 </div>
                             </div>
+                            
                         </div>
                     </div>
                 </div>

@@ -7,11 +7,12 @@ import ImagePrompt from "./ImagePrompt";
 import list from "../../Data/data.json"
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
-import Regenerate from "./Regenerate";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import ReStory from "./ReStroy";
 
 function Storylist() {
+    
     // const  {List, name} = useContext(UserContext);
     // const storedData = localStorage.getItem('name');
     // console.log("storedData",storedData)
@@ -95,7 +96,7 @@ function Storylist() {
                             </div>
                         </div>
                     </div>
-                    <Regenerate shows={shows}
+                    <ReStory shows={shows}
                         handleCloses={handleCloses} />
                     {/* data={imagepropmt}  */}
                     {/* <ImagePrompt

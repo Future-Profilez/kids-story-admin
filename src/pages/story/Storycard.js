@@ -10,6 +10,7 @@ import Story from "../../Apis/Story";
 import Loading from "../../component/Loading";
 import Nodata from "../../component/Nodata";
 
+
 function Storycard() {
 
     const inputref = useRef(null);
@@ -167,10 +168,17 @@ function Storycard() {
                                     </Link>
                                 </div>
                             </div>
+                         
                             ))
                         ) : (
                            <Nodata/>
                         )}
+                           <div className="loader-btn">
+                                <Link href="/" className="btn blue-gradient-btn">Load More</Link>
+                            </div>
+                           <div className="loaderpage">
+                               <span class="loader-1"> </span>
+                            </div>
                        
                     </div>
                 </div>
@@ -199,10 +207,10 @@ function Storycard() {
                                     id="noanim-tab-example"
                                     className="mb-3"
                                 >
-                                    <Tab eventKey="boy" title="boy">
+                                    <Tab eventKey="boy" title="Boy">
                                         <Listing />
                                     </Tab>
-                                    <Tab eventKey="girl" title="girl">
+                                    <Tab eventKey="girl" title="Girl">
                                         <Listing />
                                     </Tab>
 
@@ -219,3 +227,5 @@ function Storycard() {
     );
 }
 export default Storycard;
+
+

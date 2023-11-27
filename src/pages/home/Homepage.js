@@ -11,7 +11,6 @@ function Homepage() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
  
     const  generatedStory = useContext(UserContext);
 
@@ -30,7 +29,7 @@ function Homepage() {
                                 <Link to="#" className="btn blue-gradient-btn" onClick={handleShow}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="11" height="12" viewBox="0 0 11 12" fill="none">
                                         <path d="M4.75 6.75H0.25V5.25H4.75V0.75H6.25V5.25H10.75V6.75H6.25V11.25H4.75V6.75Z" fill="white" />
-                                    </svg>{" "}
+                                    </svg>
                                     Generate Story
                                 </Link>
                             </div>

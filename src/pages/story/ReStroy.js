@@ -17,16 +17,16 @@ function ReStory({ shows, handleCloses }) {
     const users = useSelector(state => state.users.users);
     console.log("redux", useSelector(state => state.users.users))
     console.log("users", users)
-    const record = users[0]?.chapters
+    const record = users[0]
     console.log("records", record)
 
     const dispatch = useDispatch();
 
-    const [userTitle, setUserTitle] = useState(users.title);
+    const [userTitle, setUserTitle] = useState(record.title);
     const [card, setCard] = useState();
-    const [age, setAge] = useState(users.age);
-    const [gender, setGender] = useState(users.gender);
-    const [genre, setGenre] = useState(users.genre);
+    const [age, setAge] = useState(record.age);
+    const [gender, setGender] = useState(record.gender);
+    const [genre, setGenre] = useState(record.genre);
     const [loading, setLoading] = useState(false)
 
 

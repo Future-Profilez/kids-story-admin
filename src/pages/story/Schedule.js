@@ -5,12 +5,12 @@ import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import { Modal } from "react-bootstrap";
 import "../../style/model.css"
-import records from "../../Data/data.json"
+// import records from "../../Data/data.json"
 import Story from "../../Apis/Story"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import toast from "react-hot-toast";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 function Schedule() {
 
@@ -18,33 +18,70 @@ function Schedule() {
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
-//      const records = useSelector(state => state.users.users);
-//     console.log("redux", useSelector(state => state.users.users))
-//     console.log("users", records)
-//     const storychapter = records[0]?.chapters
-//    console.log("records", storychapter)
-//     const [payLoad, setPayload] = useState({
-//             "age":records[0].age,
-//             "title": records[0].title,
-//             "gender":records[0].gender,
-//             "name":"DummyBoy",
-//             "genre":records[0].genre,
-//             "schedule_at":"",
-//              "stories":records && records[0]?.chapters ,
-//             //  records && records[0].chapters  
-//     })
 
-    const [payLoad, setPayload] = useState({
-        "age":records.age,
-        "title": records.title,
-        "gender":records.gender,
-        "genre":records.genre,
-        "schedule_at":"",
-        "name":records.username,
-         "stories":records && records.chapters ,
-        //  records && records[0].chapters  
-})
-    console.log("payLoad",payLoad)
+
+
+const users = useSelector(state => state.users.users);
+console.log("users", users);
+
+let chaptersData = [];
+let userData =[];
+
+users.forEach(user => {
+    const { gender, genre, age, title, name } = user;
+    userData.push({ gender, genre, age, title, name });
+
+    if (user.chapters && user.chapters.length > 0) {
+        user.chapters.forEach(userchapter => {
+            const { chapterNumber, title, content, imagePrompt } = userchapter;
+            chaptersData.push({
+                chapterNumber,
+                title,
+                content,
+                imagePrompt,
+                // Including user-specific data with each chapter
+                genre: user.genre,
+                gender: user.gender,
+                name: user.name,
+                age: user.age,
+            });
+        });
+    }
+});
+
+
+console.log("All chapters data", chaptersData);
+
+// Rest of your Schedule component code
+// ...
+
+
+console.log("All chapters data userData", userData);
+
+    console.log("All chapters data", chaptersData);
+   const storychapter = chaptersData;
+   console.log("records", storychapter)
+   const [payLoad, setPayload] = useState({
+    "age": userData.length > 0 ? userData[userData.length - 1].age : "",
+    "title": userData.length > 0 ? userData[userData.length - 1].title : "",
+    "gender": userData.length > 0 ? userData[userData.length - 1].gender : "",
+    "name": userData.length > 0 ? userData[userData.length - 1].name : "",
+    "genre": userData.length > 0 ? userData[userData.length - 1].genre : "",
+    "schedule_at": "",
+    "stories": chaptersData,
+});
+
+//     const [payLoad, setPayload] = useState({
+//         "age":records.age,
+//         "title": records.title,
+//         "gender":records.gender,
+//         "genre":records.genre,
+//         "schedule_at":"",
+//         "name":records.username,
+//          "stories":records && records.chapters ,
+//         //  records && records[0].chapters  
+// })
+//     console.log("payLoad",payLoad)
     const [Regs, setRegs] = useState(payLoad);
     
     const handleInputs = (e) => {
@@ -70,7 +107,7 @@ function Schedule() {
         }
     }
 
-   const storychapter =records.chapters;
+//    const storychapter =records.chapters;
 
     return (
         <>
@@ -84,7 +121,7 @@ function Schedule() {
                                 {storychapter &&storychapter.map((item, index) => {
                                     return (
                                         <div className="story-list" key={index}>
-                                            <h2>Chapter {item.chapternumber}:-{item.title}</h2>
+                                            <h2>Chapter {item.chapterNumber}:-{item.title}</h2>
                                             <p>{item.content}</p>
                                             <div className="thubnail">
                                                 <Image src={data} alt="story" />

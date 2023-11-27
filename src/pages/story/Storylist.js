@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import ReStory from "./ReStroy";
 
 function Storylist() {
-    
+
     // const  {List, name} = useContext(UserContext);
     // const storedData = localStorage.getItem('name');
     // console.log("storedData",storedData)
@@ -26,15 +26,30 @@ function Storylist() {
     // const storedData = localStorage.getItem('List');
     // const parsedData = JSON.parse(storedData);
     // console.log("parsedData", parsedData);
+   
+    
+
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    // const users = useSelector(state => state.users.users);
-    // console.log("redux", useSelector(state => state.users.users))
-    // console.log("users", users)
-    // const record = users[0]?.chapters
-    
-   const record =list.chapters
-     console.log("record", record)
+
+    const users = useSelector(state => state.users.users);
+    console.log("users", users);
+
+    let chaptersData = [];
+
+    users.forEach(user => {
+        const record = user?.chapters; 
+        console.log("chapters", record);
+
+        if (record) {
+            chaptersData = [...chaptersData, ...record];
+        }
+    });
+
+    console.log("All chapters data", chaptersData);
+
+
     const [show, setShow] = useState(false);
     const [imagePrompt, setImagePrompt] = useState("");
     const handleClose = () => setShow(false);
@@ -43,19 +58,23 @@ function Storylist() {
         setShow(true);
     };
     const [ImageUrl, setImageUrl] = useState("")
+
     const handleGenerateImage = (image_prompt) => {
         setImageUrl(image_prompt)
         console.log("Generated Image Prompt:", image_prompt);
     };
+
     const [showContinue, setShowContinue] = useState(false);
+
     const handleCloseContinue = () => setShowContinue(false);
+
     const handleShowContinue = () => setShowContinue(true);
+
     console.log("imagePrompt", imagePrompt)
     console.log("ImageUrl", ImageUrl)
     function Schedulecontinue() {
         navigate('/schedule')
     }
-    // const imageprompt ="police and thief"
     const [shows, setShows] = useState(false);
     const handleCloses = () => setShows(false);
     const handleShows = () => setShows(true);
@@ -67,10 +86,10 @@ function Storylist() {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                {record  && record.map((item, key) => (
+                                {chaptersData &&  chaptersData.map((item, key) => (
                                             <div className="story-list" key={key}>
                                                 <h2>
-                                                   chapter{item.chapternumber }:- {item.title}
+                                                   chapter{item.chapterNumber }:- {item.title}
                                                 </h2>
                                                 <p>{item.content}</p>
                                                 <div className="thubnail">

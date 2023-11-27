@@ -5,7 +5,6 @@ import { UserContext } from "../context/UserContextProvider";
 
 function Header() {
 
-    console.log("Router", Router);
     const { loginUser, setLoginUser,  } = useContext(UserContext);
     const [isClicked, setIsClicked] = useState(false);
 

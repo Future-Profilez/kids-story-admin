@@ -53,6 +53,7 @@ function Storycard() {
             }`;
         const main = new Story();
         const response = main.StoryCard(type, query);
+        console.log("response",response)
         response
             .then((res) => {
                 if (Array.isArray(res?.data?.data)) {

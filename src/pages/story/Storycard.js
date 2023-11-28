@@ -152,6 +152,8 @@ function Storycard() {
                                         <img className="card-img-top" src={item.story_img || storys} alt="Card cap" />
                                         <div className="card-body">
                                             <p className="card-text">{item.schedule_at} </p>
+                                            <p className="card-text">{item.id} </p>
+
                                             <h5 className="card-title" style={divStyle}
                                                 dangerouslySetInnerHTML={{ __html: item.title }}
                                             ></h5>

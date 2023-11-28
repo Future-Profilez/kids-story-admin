@@ -31,12 +31,10 @@ function Storylist() {
     console.log("chaptersdata", chaptersdata)
     const [imageUrl, setImageUrl] = useState("");
     console.log("ImageUrl", imageUrl)
-
     const handleShow = (imageprompt) => {
         setImagePrompt(imageprompt);
-        setShow(true);
+        setShow(true); 
     };
-
     console.log("imageprompt", imageprompt)
     const [showContinue, setShowContinue] = useState(false);
 
@@ -52,6 +50,9 @@ function Storylist() {
     const handleCloses = () => setShows(false);
     const handleShows = () => setShows(true);
 
+
+
+
     return (
         <>
             <AuthLayout>
@@ -60,21 +61,30 @@ function Storylist() {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
+
+
                                 {records && records.map((item, key) => (
                                     <div className="story-list" key={key}>
-                                        <h2>
-                                            Chapter {item.chapternumber} :- {item.title}
-                                        </h2>
+                                        <h2> Chapter {item.chapternumber} :- {item.title} </h2>
                                         <p>{item.content}</p>
                                         <div className="thubnail">
-                                            <img
-                                                src={Story}
-                                                alt="story"
-                                                onClick={() => handleShow(item.imageprompt)}
+                                            <ImagePrompt
+                                                 text={<>
+                                                <img
+                                                    src={Story}
+                                                    alt="story"
+                                                    onClick={() => handleShow(item.imageprompt)}
+                                                />
+                                                </>}
+                                                show={show}
+                                                handleClose={handleClose}
+                                                imageprompt={imageprompt}
                                             />
                                         </div>
                                     </div>
                                 ))}
+
+
                                 <div className="btn-list">
                                     <button className="btn blue-gradient-btn" onClick={() => handleShows()}>
                                         <span>Regenerate Story</span>
@@ -92,11 +102,7 @@ function Storylist() {
                     <ReStory shows={shows}
                         handleCloses={handleCloses}
                     />
-                    <ImagePrompt
-                        show={show}
-                        handleClose={handleClose}
-                        imageprompt={imageprompt}
-                    />
+                   
                     <Modal
                         show={showContinue}
                         onHide={handleCloseContinue}

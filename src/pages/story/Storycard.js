@@ -12,7 +12,6 @@ import Nodata from "../../component/Nodata";
 
 
 function Storycard() {
-
     const inputref = useRef(null);
     const [selectedOption, setSelectedOption] = useState("boy");
     const [loading, setLoading] = useState(false);
@@ -177,12 +176,12 @@ function Storycard() {
                         ) : (
                            <Nodata/>
                         )}
-                           <div className="loader-btn">
+                           {/* <div className="loader-btn">
                                 <Link href="/" className="btn blue-gradient-btn">Load More</Link>
                             </div>
                            <div className="loaderpage">
                                <span class="loader-1"> </span>
-                            </div>
+                            </div> */}
                        
                     </div>
                 </div>

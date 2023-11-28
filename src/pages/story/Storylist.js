@@ -3,54 +3,41 @@ import Story from "../../image/story-thubnail.png";
 import "../../style/story.css";
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
-import ImagePrompt from "./ImagePrompt";
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ReStory from "./ReStroy";
+import record from "../../Data/data.json"
+import ImagePrompt from "./ImagePrompt";
 
 function Storylist() {
 
-    const navigate = useNavigate();
-
-    const users = useSelector(state => state.users.users);
- 
-    console.log("users", users.at(-1));
-let chaptersdata = [];
-
-    
-if (users.length > 0) {
-    chaptersdata = users.at(-1);
-} else {
-    chaptersdata = users[0];
-}
-     const records = chaptersdata.chapters;
-    console.log("chaptersdata", chaptersdata)
     const [show, setShow] = useState(false);
-
-    const [imageprompt, setImagePrompt] = useState("");
-
     const handleClose = () => setShow(false);
-    const handleShow = (image_prompt) => {
-        if (image_prompt) {
-            setImagePrompt(image_prompt);
-            //  setShow(true);
-        }
-    };
+    const [imageprompt, setImagePrompt] = useState("");
+    const navigate = useNavigate();
+    const users = useSelector(state => state.users.users);
+    console.log("users", users.at(-1));
+    let chaptersdata = [];
 
-    const [ImageUrl, setImageUrl] = useState("")
-
-    const handleGenerateImage = (image_prompt) => {
-        setImageUrl(image_prompt)
-        console.log("Generated Image Prompt:", image_prompt);
-    };
-
-
-    function handlegenrate (cards){
-     setImageUrl(cards)
-        console.log("Generated Image Prompt:", cards);
+    if (users.length > 0) {
+        chaptersdata = users.at(-1);
+    } else {
+        chaptersdata = users[0];
     }
+    //const records = chaptersdata.chapters;
+    const records = record.chapters;
+    console.log("chaptersdata", chaptersdata)
+    const [imageUrl, setImageUrl] = useState("");
+    console.log("ImageUrl", imageUrl)
+
+    const handleShow = (imageprompt) => {
+        setImagePrompt(imageprompt);
+        setShow(true);
+    };
+
+    console.log("imageprompt", imageprompt)
     const [showContinue, setShowContinue] = useState(false);
 
     const handleCloseContinue = () => setShowContinue(false);
@@ -58,7 +45,6 @@ if (users.length > 0) {
     const handleShowContinue = () => setShowContinue(true);
 
     console.log("imagePrompt", imageprompt)
-    console.log("ImageUrl", ImageUrl)
     function Schedulecontinue() {
         navigate('/schedule')
     }
@@ -66,16 +52,6 @@ if (users.length > 0) {
     const handleCloses = () => setShows(false);
     const handleShows = () => setShows(true);
 
-
-    // State to handle modal show/hide
-    const [showImagePrompt, setShowImagePrompt] = useState(false);
-    const [selectedImagePrompt, setSelectedImagePrompt] = useState("");
-
-    // Function to handle image prompt click
-    const handleImagePromptClick = (imagePrompt) => {
-        setSelectedImagePrompt(imagePrompt);
-        setShowImagePrompt(true);
-    };
     return (
         <>
             <AuthLayout>
@@ -87,14 +63,14 @@ if (users.length > 0) {
                                 {records && records.map((item, key) => (
                                     <div className="story-list" key={key}>
                                         <h2>
-                                            chapter{item.chapternumber}:- {item.title}
+                                            Chapter {item.chapternumber} :- {item.title}
                                         </h2>
                                         <p>{item.content}</p>
                                         <div className="thubnail">
-                                            <Image
+                                            <img
                                                 src={Story}
                                                 alt="story"
-                                                onClick={() => handleImagePromptClick(item.imageprompt)}
+                                                onClick={() => handleShow(item.imageprompt)}
                                             />
                                         </div>
                                     </div>
@@ -114,18 +90,13 @@ if (users.length > 0) {
                         </div>
                     </div>
                     <ReStory shows={shows}
-                        handleCloses={handleCloses} 
-                        handlegenrate ={handlegenrate}/>
-                    {/* data={imagepropmt}   */}
-                    {/* <ImagePrompt
-          show={showImagePrompt}
-          handleClose={() => setShowImagePrompt(false)}
-          imagePrompt={selectedImagePrompt}
-          onGenerateImage={(generatedImage) => {
-            // Handle generated image
-            console.log("Generated Image:", generatedImage);
-          }}
-        /> */}
+                        handleCloses={handleCloses}
+                    />
+                    <ImagePrompt
+                        show={show}
+                        handleClose={handleClose}
+                        imageprompt={imageprompt}
+                    />
                     <Modal
                         show={showContinue}
                         onHide={handleCloseContinue}

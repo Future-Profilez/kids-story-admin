@@ -3,13 +3,14 @@ import { Modal } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Ai from "../../Apis/Ai";
-import { adduser, reduxdatauser } from "../../Redux/UserSlice";
+import record from "../../Data/data.json";
+import { reduxdatauser } from "../../Redux/UserSlice";
 
-function ReStory({ shows, handleCloses ,handlegenrate}) {
+function ReStory({ shows, handleCloses }) {
+  
   const [users] = useSelector((state) => state.users.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [userTitle, setUserTitle] = useState("");
   const [card, setCard] = useState("");
   const [age, setAge] = useState("");
@@ -29,8 +30,8 @@ function ReStory({ shows, handleCloses ,handlegenrate}) {
     }
   }, [users]);
 
-  
-  
+
+
   let storyres = null;
 
   const generateStory = async () => {
@@ -66,15 +67,15 @@ function ReStory({ shows, handleCloses ,handlegenrate}) {
           .then((res) => {
             const storyResponse = res.data.choices[0].message.content;
             try {
-                const Parstory = JSON.parse(storyResponse);
-                console.log("parstory", Parstory);
-                storyres = Parstory;
-                const datastory = dispatch(reduxdatauser(storyres))
-                console.log("datastory", datastory);
-                const data = setCard(storyres);
-                navigate('/list');
-                console.log("data", data);
-      
+              const Parstory = JSON.parse(storyResponse);
+              console.log("parstory", Parstory);
+              storyres = Parstory;
+              const datastory = dispatch(reduxdatauser(storyres))
+              console.log("datastory", datastory);
+              const data = setCard(storyres);
+              navigate('/list');
+              console.log("data", data);
+
             } catch (error) {
               console.log("Error parsing JSON:", error);
             } finally {
@@ -93,21 +94,23 @@ function ReStory({ shows, handleCloses ,handlegenrate}) {
 
   useEffect(() => {
     setLoading(false);
-}, [userTitle, age, gender, genre]);
-useEffect(() => {
-    handlegenrate(card)
+  }, [userTitle, age, gender, genre]);
+  useEffect(() => {
     console.log("Card =>>>>>>>>>>>>>>>>>>:", card);
-}, [card]);
+  }, [card]);
+
+
+
 
   return (
     <Modal show={shows} onHide={handleCloses} id="generat-story" className="modal-dialog-image" >
       <Modal.Header closeButton>
-      <div className="closebtn" onClick={handleCloses}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
-                                            <circle cx="21" cy="21" r="21" fill="#0B1024" />
-                                            <path d="M15.4 28L14 26.6L19.6 21L14 15.4L15.4 14L21 19.6L26.6 14L28 15.4L22.4 21L28 26.6L26.6 28L21 22.4L15.4 28Z" fill="white" />
-                                        </svg>
-                                    </div>
+        <div className="closebtn" onClick={handleCloses}>
+          <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+            <circle cx="21" cy="21" r="21" fill="#0B1024" />
+            <path d="M15.4 28L14 26.6L19.6 21L14 15.4L15.4 14L21 19.6L26.6 14L28 15.4L22.4 21L28 26.6L26.6 28L21 22.4L15.4 28Z" fill="white" />
+          </svg>
+        </div>
         <Modal.Title className="modal-image">
           <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
             <g opacity="0.5">
@@ -120,25 +123,25 @@ useEffect(() => {
       </Modal.Header>
       <Modal.Body>
         {loading ? (
-           <div className="succes" id="successpopup" >
-           <Modal.Body>
-               <div className="story-step-form">
-                   <div className="body-popup-title">
-                       <svg width="115" height="116" viewBox="0 0 115 116" fill="none" xmlns="http://www.w3.org/2000/svg">
-                           <path d="M105.438 13.9374C90.2517 14.0025 78.9628 16.0936 70.7938 19.7076C64.6979 22.4029 62.3125 24.4424 62.3125 31.3513V103.781C71.6495 95.3583 79.9354 92.9999 112.625 92.9999V13.9374H105.438ZM12 13.9374C27.1858 14.0025 38.4747 16.0936 46.6438 19.7076C52.7397 22.4029 55.125 24.4424 55.125 31.3513V103.781C45.788 95.3583 37.5021 92.9999 4.8125 92.9999V13.9374H12Z" fill="url(#paint0_linear_109_238)" />
-                           <defs>
-                               <linearGradient id="paint0_linear_109_238" x1="1.14541" y1="30.2726" x2="117.174" y2="39.3206" gradientUnits="userSpaceOnUse">
-                                   <stop stop-color="#4B69E2" />
-                                   <stop offset="1" stop-color="#9054D9" />
-                               </linearGradient>
-                           </defs>
-                       </svg>
-                       <h3>Please wait! while your story is being generated </h3>
-                   </div>
-               </div>
+          <div className="succes" id="successpopup" >
+            <Modal.Body>
+              <div className="story-step-form">
+                <div className="body-popup-title">
+                  <svg width="115" height="116" viewBox="0 0 115 116" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M105.438 13.9374C90.2517 14.0025 78.9628 16.0936 70.7938 19.7076C64.6979 22.4029 62.3125 24.4424 62.3125 31.3513V103.781C71.6495 95.3583 79.9354 92.9999 112.625 92.9999V13.9374H105.438ZM12 13.9374C27.1858 14.0025 38.4747 16.0936 46.6438 19.7076C52.7397 22.4029 55.125 24.4424 55.125 31.3513V103.781C45.788 95.3583 37.5021 92.9999 4.8125 92.9999V13.9374H12Z" fill="url(#paint0_linear_109_238)" />
+                    <defs>
+                      <linearGradient id="paint0_linear_109_238" x1="1.14541" y1="30.2726" x2="117.174" y2="39.3206" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#4B69E2" />
+                        <stop offset="1" stop-color="#9054D9" />
+                      </linearGradient>
+                    </defs>
+                  </svg>
+                  <h3>Please wait! while your story is being generated </h3>
+                </div>
+              </div>
 
-           </Modal.Body>
-       </div>
+            </Modal.Body>
+          </div>
         ) : (
           <div className="story-step-form">
             <div className="body-popup-title">
@@ -156,7 +159,7 @@ useEffect(() => {
                   id=" "
                 />
                 <button type="submit" name="Generate" onClick={() => generateStory()}>
-                  Generate
+                  Re-Generate
                 </button>
               </div>
             </div>

@@ -1,9 +1,8 @@
-import React, { useState,useContext } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import StoryModal from "./StoryModal";
 import AuthLayout from "../../component/AuthLayout";
 import { Toaster } from 'react-hot-toast';
-import { UserContext } from "../../context/UserContextProvider";
 
 function Homepage() {
 
@@ -13,9 +12,7 @@ function Homepage() {
     const handleShow = () => setShow(true);
 
  
-    const  generatedStory = useContext(UserContext);
-
-    console.log("generatedStory",generatedStory)
+    
 
 
     return (

@@ -152,8 +152,7 @@ function Storycard() {
                                         <img className="card-img-top" src={item.story_img || storys} alt="Card cap" />
                                         <div className="card-body">
                                             <p className="card-text">{item.schedule_at} </p>
-                                            {/* <p className="card-text">{item.id} </p> */}
-
+                                            <p className="card-text">{item.id} </p>
                                             <h5 className="card-title" style={divStyle}
                                                 dangerouslySetInnerHTML={{ __html: item.title }}
                                             ></h5>
@@ -163,7 +162,7 @@ function Storycard() {
                                                 <h6>{item.genre_name}</h6>
                                                 <h3>
                                                     <span>
-                                                        {item.age} yrs
+                                                        {item.age} Yrs
                                                     </span>
                                                 </h3>
                                             </div>

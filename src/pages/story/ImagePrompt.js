@@ -1,4 +1,4 @@
-import {  Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import "../../style/model.css";
 import { toImage, Image } from './Image';
 import { useState, useRef, useEffect } from "react"; // Import useRef
@@ -11,111 +11,130 @@ import prompt from "../../Data/image.json";
 // import { client} from "imaginesdk";
 //import { client, GenerationStyle, Status } from "imaginesdk";
 
-function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
+function ImagePrompt({ show, handleClose, imageprompt }) {
     const [data, setData] = useState("");
     const [modalShow, setModalShow] = useState(show);
     const [isLoading, setIsLoading] = useState(true);
     const imageRef = useRef(null);
     const handleImageLoad = () => {
         setIsLoading(true);
-    }; 
-
-    //const  imagePromptstatic = 'DummyBoy and DummyGirl in their spaceship, looking at an unknown alien galaxy'
-    const handleGenerateImage = async () => {
-        setIsLoading(true);
-        try {
-          const formData = new FormData();
-          formData.append('prompt', imagePrompt);
-          formData.append('style_id', '30');
-      
-          const response = await imageAi.post("/generations", formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data', 
-            },
-          });
-      
-          console.log("response", response);
-          const imageAA = response.data.asFile("output.png");
-          console.log("imageAA", imageAA);
-
-
-        } catch (error) {
-          console.error('Error generating image:', error);
-        } finally {
-          setIsLoading(false);
-        }
     };
-
+    //const  imagePromptstatic = 'DummyBoy and DummyGirl in their spaceship, looking at an unknown alien galaxy'
     const [imageBase64, setImageBase64] = useState('');
+
+    //   As File Output
+    //   if (response.ok) {
+    //     const blob = await response.blob();
+    //     const url = window.URL.createObjectURL(blob);
+    //     const link = document.createElement('a');
+    //     link.href = url;
+    //     link.setAttribute('download', 'image.jpg');
+    //     document.body.appendChild(link);
+    //     link.click();
+    //     link.parentNode.removeChild(link);
+    //   } else {
+    //     console.error('Error:', response.status);
+    //   }
+
+    //base 64 Code 
+    //         if (response.ok) {
+    //             const blob = await response.blob();
+    //             const reader = new FileReader();
+    //             reader.onload = () => {
+    //                 const base64data = reader.result;
+    //                 setImageBase64(base64data); 
+    //               };
+    //    reader.readAsDataURL(blob);
+
+    //           } else {
+    //             console.error('Error:', response.status);
+    //           }
+
+
+    // if (response.ok) {
+    //     const responseData = await response;
+    //     console.log("responseData",responseData)
+    //     const { image_url } = responseData;
+    //     console.log("image_url",image_url)
+    //   } else {
+    //     console.error('Error:', response.status);
+    //   }
+    const [ImageUrl, setImageUrl] = useState('');
+
     const fetchData = async () => {
-        const bearerToken = 'vk-kBBP9gJoFQhvBVjNefJj6Cno2zUDAPcyQE3E2rAgcq9RMix';
-        const url = 'https://api.vyro.ai/v1/imagine/api/generations';
-        const formData = new FormData();
-        formData.append('model_version', '1');
-        formData.append('prompt', 'Two dogs are playing in garden.');
-        formData.append('style_id', '30');
+      const bearerToken = 'vk-kBBP9gJoFQhvBVjNefJj6Cno2zUDAPcyQE3E2rAgcq9RMix';
+      const url = 'https://api.vyro.ai/v1/imagine/api/generations';
+      const formData = new FormData();
+      formData.append('model_version', '1');
+      formData.append('prompt', imageprompt);
+      formData.append('style_id', '30');
   
-        try {
-          const response = await fetch(url, {
-            method: 'POST',
-            headers: {
-              Authorization: `Bearer ${bearerToken}`,
-            },
-            body: formData,
-          });
-
-        // As File Output
-        //   if (response.ok) {
-        //     const blob = await response.blob();
-        //     const url = window.URL.createObjectURL(blob);
-        //     const link = document.createElement('a');
-        //     link.href = url;
-        //     link.setAttribute('download', 'image.jpg');
-        //     document.body.appendChild(link);
-        //     link.click();
-        //     link.parentNode.removeChild(link);
-        //   } else {
-        //     console.error('Error:', response.status);
-        //   }
-
-        // As Base64 URL
-          if (response.ok) {
-            const blob = await response.blob();
-            const reader = new FileReader();
-            reader.onload = () => {
-              const base64data = reader.result;
-              console.log("base64data",base64data)
-            //   setImageBase64(base64data);
-            };
-            reader.readAsDataURL(blob);
-          } else {
-            console.error('Error:', response.status);
-          }
-
-        // if (response.ok) {
-        //     const responseData = await response;
-        //     console.log("responseData",responseData)
-        //     const { image_url } = responseData;
-        //     console.log("image_url",image_url)
-        //   } else {
-        //     console.error('Error:', response.status);
-        //   }
-
-
-
-        } catch (error) {
-          console.error('Error:', error);
+      try {
+        const response = await fetch(url, {
+          method: 'POST',
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+          },
+          body: formData,
+        });
+  
+        if (response.ok) {
+          const blob = await response.blob();
+          const imageUrl = URL.createObjectURL(blob); 
+          console.log("image",imageUrl)
+          // Create image URL from blob
+          setImageUrl(imageUrl); // Set the image URL to state
+        } else {
+          console.error('Error:', response.status);
         }
-      };
-   
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+  
+    // const fetchData = async () => {
+    //     const bearerToken = 'vk-kBBP9gJoFQhvBVjNefJj6Cno2zUDAPcyQE3E2rAgcq9RMix';
+    //     const url = 'https://api.vyro.ai/v1/imagine/api/generations';
+    //     const formData = new FormData();
+    //     formData.append('model_version', '1');
+    //     formData.append('prompt', imageprompt);
+    //     formData.append('style_id', '30');
+
+    //     try {
+    //         const response = await fetch(url, {
+    //             method: 'POST',
+    //             headers: {
+    //                 Authorization: `Bearer ${bearerToken}`,
+    //             },
+    //             body: formData,
+    //         });
+    //         //   As File Output
+    //         if (response.ok) {
+    //             const blob = await response.blob();
+    //             const url = window.URL.createObjectURL(blob);
+    //             const link = document.createElement('a');
+    //             link.href = url;
+    //             link.setAttribute('download', 'image.jpg');
+    //             document.body.appendChild(link);
+    //             link.click();
+    //             link.parentNode.removeChild(link);
+    //         } else {
+    //             console.error('Error:', response.status);
+    //         }
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //     }
+    // };
+
+    console.log("imageBase64", ImageUrl)
+
     useEffect(() => {
-        setData(imagePrompt);
+        setData(imageprompt);
         setModalShow(show);
     }, [show]);
-
     return (
         <>
-            <Modal show={true} onHide={handleClose} id="generat-story" className="modal-dialog-image">
+            <Modal show={show} onHide={handleClose} id="generat-story" className="modal-dialog-image">
                 <Modal.Header closeButton>
                     <Modal.Title className="modal-image">
                         <div className="body-popup-title"><h3>Generate Image</h3></div>
@@ -126,7 +145,7 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
                         <input
                             type="text"
                             placeholder="Image Prompt"
-                            value={imagePrompt}
+                            value={imageprompt}
                             name="data"
                             onChange={(e) => setData(e.target.value)}
                             className="input_field form-control"
@@ -134,7 +153,7 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
                         />
                     </div>
                     <div className="text-center">
-                        <button className="btn blue-gradient-btn" onClick={handleGenerateImage}>
+                        <button className="btn blue-gradient-btn" onClick={fetchData}>
                             Generate
                         </button>
                     </div>
@@ -159,12 +178,13 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
                             </div>
                         ) : (
                             <>
-                                {/* {imageUrl && <img src={imageUrl} alt="Generated Image" onLoad={handleImageLoad} />} */}
-                                {/* <div className="text-center mt-3" >
-                                    <button className="btn blue-gradient-btn"  onClick={() => handleShow()}>
+                             <img src={ImageUrl} alt="Generated"  onLoad={handleImageLoad} />
+
+                                <div className="text-center mt-3" >
+                                    <button className="btn blue-gradient-btn"    onClick={() => fetchData}>
                                         Re-Generate
                                     </button>
-                                </div> */}
+                                </div>
                             </>
                         )}
                     </div>

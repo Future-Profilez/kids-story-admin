@@ -151,7 +151,7 @@ function Storycard() {
                                     <Link onClick={() => handleShow(item.uuid)} >
                                         <img className="card-img-top" src={item.story_img || storys} alt="Card cap" />
                                         <div className="card-body">
-                                            <p className="card-text">{item.id}</p>
+                                            <p className="card-text">{item.schedule_at} </p>
                                             <h5 className="card-title" style={divStyle}
                                                 dangerouslySetInnerHTML={{ __html: item.title }}
                                             ></h5>

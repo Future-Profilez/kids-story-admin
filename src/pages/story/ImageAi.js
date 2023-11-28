@@ -1,17 +1,11 @@
+// import { client, GenerationStyle, Status } from "imaginesdk";
 import {  Modal } from "react-bootstrap";
 import "../../style/model.css";
-import { toImage, Image } from './Image';
 import { useState, useRef, useEffect } from "react"; // Import useRef
 import Story from "../../image/story-thubnail.png";
 import imageAi from "../../Apis/imageAi";
-import prompt from "../../Data/image.json";
-//import client from "imaginesdk";
-// import GenerationStyle from "imaginesdk";
-// import Status from "imaginesdk";
-// import { client} from "imaginesdk";
-//import { client, GenerationStyle, Status } from "imaginesdk";
 
-function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
+function ImageAi({ show, handleClose,handleShow, imagePrompt, onGenerateImage }) {
     const [data, setData] = useState("");
     const [modalShow, setModalShow] = useState(show);
     const [isLoading, setIsLoading] = useState(true);
@@ -20,33 +14,11 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
         setIsLoading(true);
     }; 
 
-    //const  imagePromptstatic = 'DummyBoy and DummyGirl in their spaceship, looking at an unknown alien galaxy'
-    const handleGenerateImage = async () => {
-        setIsLoading(true);
-        try {
-          const formData = new FormData();
-          formData.append('prompt', imagePrompt);
-          formData.append('style_id', '30');
-      
-          const response = await imageAi.post("/generations", formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data', 
-            },
-          });
-      
-          console.log("response", response);
-          const imageAA = response.data.asFile("output.png");
-          console.log("imageAA", imageAA);
-
-
-        } catch (error) {
-          console.error('Error generating image:', error);
-        } finally {
-          setIsLoading(false);
-        }
-    };
+    const  imagePromptstatic = 'DummyBoy and DummyGirl in their spaceship, looking at an unknown alien galaxy'
+  
 
     const [imageBase64, setImageBase64] = useState('');
+
     const fetchData = async () => {
         const bearerToken = 'vk-kBBP9gJoFQhvBVjNefJj6Cno2zUDAPcyQE3E2rAgcq9RMix';
         const url = 'https://api.vyro.ai/v1/imagine/api/generations';
@@ -85,7 +57,7 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
             reader.onload = () => {
               const base64data = reader.result;
               console.log("base64data",base64data)
-            //   setImageBase64(base64data);
+               setImageBase64(base64data);
             };
             reader.readAsDataURL(blob);
           } else {
@@ -126,7 +98,7 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
                         <input
                             type="text"
                             placeholder="Image Prompt"
-                            value={imagePrompt}
+                            value={imagePromptstatic}
                             name="data"
                             onChange={(e) => setData(e.target.value)}
                             className="input_field form-control"
@@ -134,7 +106,9 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
                         />
                     </div>
                     <div className="text-center">
-                        <button className="btn blue-gradient-btn" onClick={handleGenerateImage}>
+                        <button className="btn blue-gradient-btn"
+                         onClick={fetchData}
+                        >
                             Generate
                         </button>
                     </div>
@@ -154,14 +128,16 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
                                     </svg>
                                     Image Generating...
                                 </div>
-                                <img ref={imageRef} src={Story} alt="story" onLoad={handleImageLoad} />
-                                {/* {imageUrl && <img src={imageUrl} alt="Generated Image"   onLoad={handleImageLoad}/>} */}
+                                <img ref={imageRef} src={Story} alt="story" 
+                                onLoad={handleImageLoad} />
                             </div>
                         ) : (
                             <>
-                                {/* {imageUrl && <img src={imageUrl} alt="Generated Image" onLoad={handleImageLoad} />} */}
+                            {/* {imageUrl && <img src={imageUrl} alt="Generated Image" onLoad={handleImageLoad} />} */}
                                 {/* <div className="text-center mt-3" >
-                                    <button className="btn blue-gradient-btn"  onClick={() => handleShow()}>
+                                    <button className="btn blue-gradient-btn" 
+                                     onClick={fetchData}
+                                     >
                                         Re-Generate
                                     </button>
                                 </div> */}
@@ -174,4 +150,4 @@ function ImagePrompt({ show, handleClose, imagePrompt, onGenerateImage }) {
     );
 }
 
-export default ImagePrompt;
+export default ImageAi;

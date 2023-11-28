@@ -4,59 +4,41 @@ import "../../style/story.css";
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import ImagePrompt from "./ImagePrompt";
-import list from "../../Data/data.json"
 import { Modal } from "react-bootstrap";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ReStory from "./ReStroy";
 
 function Storylist() {
 
-    // const  {List, name} = useContext(UserContext);
-    // const storedData = localStorage.getItem('name');
-    // console.log("storedData",storedData)
-    // const parsedData = JSON.parse(storedData);
-    // console.log("parsedData", parsedData);
-    // console.log("List",List);
-    // useEffect(() => {
-    //     localStorage.setItem('List', JSON.stringify(List));
-    // }, [List]);
-
-    // const storedData = localStorage.getItem('List');
-    // const parsedData = JSON.parse(storedData);
-    // console.log("parsedData", parsedData);
-   
-    
-
-
-    const dispatch = useDispatch();
     const navigate = useNavigate();
 
     const users = useSelector(state => state.users.users);
-    console.log("users", users);
+ 
+    console.log("users", users.at(-1));
+let chaptersdata = [];
 
-    let chaptersData = [];
-
-    users.forEach(user => {
-        const record = user?.chapters; 
-        console.log("chapters", record);
-
-        if (record) {
-            chaptersData = [...chaptersData, ...record];
-        }
-    });
-
-    console.log("All chapters data", chaptersData);
-
-
+    
+if (users.length > 0) {
+    chaptersdata = users.at(-1);
+} else {
+    chaptersdata = users[0];
+}
+     const records = chaptersdata.chapters;
+    console.log("chaptersdata", chaptersdata)
     const [show, setShow] = useState(false);
-    const [imagePrompt, setImagePrompt] = useState("");
+
+    const [imageprompt, setImagePrompt] = useState("");
+
     const handleClose = () => setShow(false);
     const handleShow = (image_prompt) => {
-        setImagePrompt(image_prompt);
-        setShow(true);
+        if (image_prompt) {
+            setImagePrompt(image_prompt);
+            //  setShow(true);
+        }
     };
+
     const [ImageUrl, setImageUrl] = useState("")
 
     const handleGenerateImage = (image_prompt) => {
@@ -64,13 +46,18 @@ function Storylist() {
         console.log("Generated Image Prompt:", image_prompt);
     };
 
+
+    function handlegenrate (cards){
+     setImageUrl(cards)
+        console.log("Generated Image Prompt:", cards);
+    }
     const [showContinue, setShowContinue] = useState(false);
 
     const handleCloseContinue = () => setShowContinue(false);
 
     const handleShowContinue = () => setShowContinue(true);
 
-    console.log("imagePrompt", imagePrompt)
+    console.log("imagePrompt", imageprompt)
     console.log("ImageUrl", ImageUrl)
     function Schedulecontinue() {
         navigate('/schedule')
@@ -78,6 +65,17 @@ function Storylist() {
     const [shows, setShows] = useState(false);
     const handleCloses = () => setShows(false);
     const handleShows = () => setShows(true);
+
+
+    // State to handle modal show/hide
+    const [showImagePrompt, setShowImagePrompt] = useState(false);
+    const [selectedImagePrompt, setSelectedImagePrompt] = useState("");
+
+    // Function to handle image prompt click
+    const handleImagePromptClick = (imagePrompt) => {
+        setSelectedImagePrompt(imagePrompt);
+        setShowImagePrompt(true);
+    };
     return (
         <>
             <AuthLayout>
@@ -86,21 +84,21 @@ function Storylist() {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                {chaptersData &&  chaptersData.map((item, key) => (
-                                            <div className="story-list" key={key}>
-                                                <h2>
-                                                   chapter{item.chapterNumber }:- {item.title}
-                                                </h2>
-                                                <p>{item.content}</p>
-                                                <div className="thubnail">
-                                                    <Image
-                                                        src={Story}
-                                                        alt="story"
-                                                        onClick={() => handleShow(item.imageprompt)}
-                                                    />
-                                                </div>
-                                            </div>
-                                        ))}
+                                {records && records.map((item, key) => (
+                                    <div className="story-list" key={key}>
+                                        <h2>
+                                            chapter{item.chapternumber}:- {item.title}
+                                        </h2>
+                                        <p>{item.content}</p>
+                                        <div className="thubnail">
+                                            <Image
+                                                src={Story}
+                                                alt="story"
+                                                onClick={() => handleImagePromptClick(item.imageprompt)}
+                                            />
+                                        </div>
+                                    </div>
+                                ))}
                                 <div className="btn-list">
                                     <button className="btn blue-gradient-btn" onClick={() => handleShows()}>
                                         <span>Regenerate Story</span>
@@ -116,14 +114,18 @@ function Storylist() {
                         </div>
                     </div>
                     <ReStory shows={shows}
-                        handleCloses={handleCloses} />
-                    {/* data={imagepropmt}  */}
+                        handleCloses={handleCloses} 
+                        handlegenrate ={handlegenrate}/>
+                    {/* data={imagepropmt}   */}
                     {/* <ImagePrompt
-                        show={show}
-                        handleClose={handleClose}
-                        onGenerateImage={handleGenerateImage}
-                        imagePrompt={imagePrompt}
-                    /> */}
+          show={showImagePrompt}
+          handleClose={() => setShowImagePrompt(false)}
+          imagePrompt={selectedImagePrompt}
+          onGenerateImage={(generatedImage) => {
+            // Handle generated image
+            console.log("Generated Image:", generatedImage);
+          }}
+        /> */}
                     <Modal
                         show={showContinue}
                         onHide={handleCloseContinue}

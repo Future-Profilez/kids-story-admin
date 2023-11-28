@@ -34,12 +34,10 @@ function Storydetails({ show, handleClose, uuid }) {
             response.then((
                 res
             ) => {
-                console.log("res", res)
                 handleClose();
             }).catch((error) => {
                 console.log("error", error)
             })
-            handleClose();
         }
     };
     const [Regs, setRegs] = useState("");

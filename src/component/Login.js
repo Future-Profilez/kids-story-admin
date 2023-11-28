@@ -36,8 +36,7 @@ function Login() {
             const response =await main.Login(Regs);
             if (response?.data) {
                  setLoginUser(response?.data);
-          const data=        localStorage.setItem("token", response?.data?.token);
-          console.log("data",data)
+             localStorage.setItem("token", response?.data?.token);
                  navigate("/home");
                  toast.success(response.data.message);
             } else {

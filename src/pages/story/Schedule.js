@@ -21,54 +21,62 @@ function Schedule() {
 
 
 
+
+
+
 const users = useSelector(state => state.users.users);
-console.log("users", users);
-
-let chaptersData = [];
-let userData =[];
-
-users.forEach(user => {
-    const { gender, genre, age, title, name } = user;
-    userData.push({ gender, genre, age, title, name });
-
-    if (user.chapters && user.chapters.length > 0) {
-        user.chapters.forEach(userchapter => {
-            const { chapterNumber, title, content, imagePrompt } = userchapter;
-            chaptersData.push({
-                chapterNumber,
-                title,
-                content,
-                imagePrompt,
-                // Including user-specific data with each chapter
-                genre: user.genre,
-                gender: user.gender,
-                name: user.name,
-                age: user.age,
-            });
-        });
-    }
-});
+ 
+    console.log("users", users.at(-1));
+let chaptersdata = [];
 
 
-console.log("All chapters data", chaptersData);
+if (users.length > 0) {
+    chaptersdata = users.at(-1);
+} else {
+    chaptersdata = users[0];
+}
+     const records = chaptersdata.chapters;
+
+
+// users.forEach(user => {
+//     const { gender, genre, age, title, name } = user;
+//     userData.push({ gender, genre, age, title, name });
+
+//     if (user.chapters && user.chapters.length > 0) {
+//         user.chapters.forEach(userchapter => {
+//             const { chapterNumber, title, content, imagePrompt } = userchapter;
+//             chaptersData.push({
+//                 chapterNumber,
+//                 title,
+//                 content,
+//                 imagePrompt,
+//                 // Including user-specific data with each chapter
+//                 genre: user.genre,
+//                 gender: user.gender,
+//                 name: user.name,
+//                 age: user.age,
+//             });
+//         });
+//     }
+// });
+
+
+console.log("All chapters data", chaptersdata);
 
 // Rest of your Schedule component code
 // ...
 
 
-console.log("All chapters data userData", userData);
-
-    console.log("All chapters data", chaptersData);
-   const storychapter = chaptersData;
+   const storychapter = records;
    console.log("records", storychapter)
    const [payLoad, setPayload] = useState({
-    "age": userData.length > 0 ? userData[userData.length - 1].age : "",
-    "title": userData.length > 0 ? userData[userData.length - 1].title : "",
-    "gender": userData.length > 0 ? userData[userData.length - 1].gender : "",
-    "name": userData.length > 0 ? userData[userData.length - 1].name : "",
-    "genre": userData.length > 0 ? userData[userData.length - 1].genre : "",
+    "age":chaptersdata.age  ,
+    "title": chaptersdata.title,
+    "gender":chaptersdata.gender,
+    "name":chaptersdata.name ,
+    "genre": chaptersdata.genre,
     "schedule_at": "",
-    "stories": chaptersData,
+    "stories": records,
 });
 
 //     const [payLoad, setPayload] = useState({
@@ -121,7 +129,7 @@ console.log("All chapters data userData", userData);
                                 {storychapter &&storychapter.map((item, index) => {
                                     return (
                                         <div className="story-list" key={index}>
-                                            <h2>Chapter {item.chapterNumber}:-{item.title}</h2>
+                                            <h2>Chapter {item.chapternumber}:-{item.title}</h2>
                                             <p>{item.content}</p>
                                             <div className="thubnail">
                                                 <Image src={data} alt="story" />

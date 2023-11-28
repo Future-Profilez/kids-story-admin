@@ -31,8 +31,6 @@ function StoryModal({ show, handleClose }) {
 
         }
     };
-
-   
     useEffect(() => {
         if (gender === "boy") {
             setName("DummyBoy");
@@ -46,12 +44,7 @@ function StoryModal({ show, handleClose }) {
         handleOptionSelect(3);
     };
     const navigate = useNavigate()
-
-
-
     const [card, setCard] = useState(null)
-
-
     let storyres = null;
     const generateStory = async () => {
         try {
@@ -89,7 +82,7 @@ function StoryModal({ show, handleClose }) {
                             console.log("parstory", Parstory);
                             storyres = Parstory;
                             //const datastory = setList(Parstory);
-                            const datastory = dispatch(adduser(Parstory))
+                            const datastory = dispatch(adduser(storyres))
                             console.log("datastory", datastory);
                             const data = setCard(storyres);
                             console.log("data", data);
@@ -118,9 +111,7 @@ function StoryModal({ show, handleClose }) {
 
 
 
-    //     function generateStory(){
-    //         navigate('/list')
-    // }
+    
 
     return (
         <>

@@ -18,21 +18,21 @@ function Subscription() {
     const [content, setContent] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    // const fetchData = async () => {
-    //     try {
-    //         const main = new Story();
-    //         const response = await main.Subscriptionlist();
-    //         setContent(response.data.data);
-    //         setLoading(false);
-    //     } catch (error) {
-    //         console.log("error", error);
-    //         setLoading(false);
-    //     }
-    // };
+    const fetchData = async () => {
+        try {
+            const main = new Story();
+            const response = await main.Subscriptionlist();
+            setContent(response?.data?.data);
+            setLoading(false);
+        } catch (error) {
+            console.log("error", error);
+            setLoading(false);
+        }
+    };
 
-    // useEffect(() => {
-    //     fetchData();
-    // }, []); 
+    useEffect(() => {
+        fetchData();
+    }, []); 
 
     const handleSubscriptionAdded = async (newSubscription) => {
         console.log("Subscription added:", newSubscription);

@@ -12,17 +12,11 @@ import Static from "./pages/story/Static";
 import PrivateRouter from "./Router/PrivateRouter";
 import Login from "./component/Login";
 import UserContextProvider from "./context/UserContextProvider";
-import Data from "./pages/story/Data";
-import { Toaster } from 'react-hot-toast';
 import ImagePrompt from "./pages/story/ImagePrompt";
+import ImageAi from "./pages/story/ImageAi";
 
 function App() {
-  const IMAGE_BASE_URL = process.env.REACT_APP_IMAGE_URL;
-  console.log("Base", IMAGE_BASE_URL);
-  const [name, setName] = useState('')
-  useEffect(() => {
-    localStorage.setItem('name', JSON.stringify(name))
-  }, [name])
+
   return (
     <div id="body-pd" className="App">
       <UserContextProvider>
@@ -64,9 +58,10 @@ function App() {
                 <Static />
               </PrivateRouter>
             } />
-            <Route path="/image" element={
+           
+              <Route path="/imageai" element={
               <PrivateRouter>
-                <ImagePrompt />
+                <ImageAi />
               </PrivateRouter>
             } />
           </Routes>

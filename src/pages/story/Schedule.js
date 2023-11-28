@@ -147,7 +147,7 @@ console.log("All chapters data", chaptersdata);
                         </div>
                     </div>
                     <Modal show={showContinue} onHide={handleCloseContinue} id="generat-story">
-                        <Modal.Header closeButton style={{ borderTop: "1px solid rgba(255,255,255, 0.1)" }}>
+                        <Modal.Header closeButton>
                             <Modal.Title>
                                 <h2>StoryScape!</h2>
                             </Modal.Title>

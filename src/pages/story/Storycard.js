@@ -175,6 +175,7 @@ function Storycard() {
                             ))
                         ) : (
                            <Nodata/>
+
                         )}
                            {/* <div className="loader-btn">
                                 <Link href="/" className="btn blue-gradient-btn">Load More</Link>

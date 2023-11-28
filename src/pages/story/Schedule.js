@@ -5,7 +5,7 @@ import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import { Modal } from "react-bootstrap";
 import "../../style/model.css"
-// import records from "../../Data/data.json"
+ import records from "../../Data/data.json"
 import Story from "../../Apis/Story"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -35,7 +35,7 @@ if (users.length > 0) {
 } else {
     chaptersdata = users[0];
 }
-     const records = chaptersdata.chapters;
+     //const records = chaptersdata.chapters;
 
 
 // users.forEach(user => {
@@ -67,28 +67,27 @@ console.log("All chapters data", chaptersdata);
 // ...
 
 
-   const storychapter = records;
-   console.log("records", storychapter)
-   const [payLoad, setPayload] = useState({
-    "age":chaptersdata.age  ,
-    "title": chaptersdata.title,
-    "gender":chaptersdata.gender,
-    "name":chaptersdata.name ,
-    "genre": chaptersdata.genre,
-    "schedule_at": "",
-    "stories": records,
-});
+  // const storychapter = records;
+//    const [payLoad, setPayload] = useState({
+//     "age":chaptersdata.age  ,
+//     "title": chaptersdata.title,
+//     "gender":chaptersdata.gender,
+//     "name":chaptersdata.name ,
+//     "genre": chaptersdata.genre,
+//     "schedule_at": "",
+//     "stories": records,
+// });
 
-//     const [payLoad, setPayload] = useState({
-//         "age":records.age,
-//         "title": records.title,
-//         "gender":records.gender,
-//         "genre":records.genre,
-//         "schedule_at":"",
-//         "name":records.username,
-//          "stories":records && records.chapters ,
-//         //  records && records[0].chapters  
-// })
+    const [payLoad, setPayload] = useState({
+        "age":records.age,
+        "title": records.title,
+        "gender":records.gender,
+        "genre":records.genre,
+        "schedule_at":"",
+        "name":records.username,
+         "stories":records && records.chapters ,
+        //  records && records[0].chapters  
+})
 //     console.log("payLoad",payLoad)
     const [Regs, setRegs] = useState(payLoad);
     
@@ -114,8 +113,13 @@ console.log("All chapters data", chaptersdata);
             toast.error(error)
         }
     }
+ const storychapter =records.chapters;
 
-//    const storychapter =records.chapters;
+ console.log("records", storychapter);
+ 
+
+ 
+
 
     return (
         <>
@@ -132,7 +136,7 @@ console.log("All chapters data", chaptersdata);
                                             <h2>Chapter {item.chapternumber}:-{item.title}</h2>
                                             <p>{item.content}</p>
                                             <div className="thubnail">
-                                                <Image src={data} alt="story" />
+                                                <Image src={Story} alt="story" />
                                             </div>
                                         </div>
                                     );

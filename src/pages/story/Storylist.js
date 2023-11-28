@@ -33,7 +33,7 @@ function Storylist() {
     console.log("ImageUrl", imageUrl)
     const handleShow = (imageprompt) => {
         setImagePrompt(imageprompt);
-        setShow(true); 
+        setShow(true);
     };
     console.log("imageprompt", imageprompt)
     const [showContinue, setShowContinue] = useState(false);
@@ -51,7 +51,14 @@ function Storylist() {
     const handleShows = () => setShows(true);
 
 
+    const [selectedImage, setSelectedImage] = useState(null);
 
+    const handleImageData = (imageUrl) => {
+        setSelectedImage(imageUrl);
+    };
+
+
+  
 
     return (
         <>
@@ -67,18 +74,19 @@ function Storylist() {
                                     <div className="story-list" key={key}>
                                         <h2> Chapter {item.chapternumber} :- {item.title} </h2>
                                         <p>{item.content}</p>
-                                        <div className="thubnail">
+                                        <div className="thubnail"
+                                            onClick={() => handleShow(item.imageprompt)}
+                                        >
                                             <ImagePrompt
-                                                 text={<>
-                                                <img
-                                                    src={Story}
-                                                    alt="story"
-                                                    onClick={() => handleShow(item.imageprompt)}
-                                                />
+                                                text={<>
+                                                    {selectedImage && (
+                                                        <img src={selectedImage} alt="story" style={{width:"300px", height:"200px"}} />
+                                                    )}
                                                 </>}
                                                 show={show}
+                                                imagedata={handleImageData}
                                                 handleClose={handleClose}
-                                                imageprompt={imageprompt}
+                                                imageprompt={item.imageprompt}
                                             />
                                         </div>
                                     </div>
@@ -102,7 +110,7 @@ function Storylist() {
                     <ReStory shows={shows}
                         handleCloses={handleCloses}
                     />
-                   
+
                     <Modal
                         show={showContinue}
                         onHide={handleCloseContinue}

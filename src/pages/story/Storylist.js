@@ -35,7 +35,7 @@ function Storylist() {
     
    const record =list.chapters
      console.log("record", record)
-    const [show, setShow] = useState(false);
+    const [show, setShow] = useState(true);
     const [imagePrompt, setImagePrompt] = useState("");
     const handleClose = () => setShow(false);
     const handleShow = (image_prompt) => {
@@ -55,7 +55,6 @@ function Storylist() {
     function Schedulecontinue() {
         navigate('/schedule')
     }
-    // const imageprompt ="police and thief"
     const [shows, setShows] = useState(false);
     const handleCloses = () => setShows(false);
     const handleShows = () => setShows(true);

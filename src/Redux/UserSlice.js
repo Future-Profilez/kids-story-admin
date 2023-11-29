@@ -26,12 +26,16 @@ const UserSlice = createSlice({
             state.users.push(action.payload)
         },
         reduxdatauser: (state, action) => {
-            state.users.reduxdatauser = action.payload;
+            state.users.push(action.payload)
+        },
+        genraorimage: (state, action) => {
+            state.users.push(action.payload)
+
         }
     }
 })
 
-export const { getUser, adduser, login, logout ,reduxdatauser} = UserSlice.actions;
+export const { getUser, adduser, login, logout ,reduxdatauser,genraorimage} = UserSlice.actions;
 
 export const selectuser = (state) => state.users.users;
 export default UserSlice.reducer;

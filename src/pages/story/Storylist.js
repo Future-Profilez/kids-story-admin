@@ -4,15 +4,20 @@ import "../../style/story.css";
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import { Modal } from "react-bootstrap";
-import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ReStory from "./ReStroy";
 import record from "../../Data/data.json"
 import ImagePrompt from "./ImagePrompt";
+import { genraorimage } from "../../Redux/UserSlice";
 
 function Storylist() {
 
+    //Json pattrern 
+    const records = record.chapters;
+
+    const dispatch = useDispatch();
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const [imageprompt, setImagePrompt] = useState("");
@@ -27,7 +32,6 @@ function Storylist() {
         chaptersdata = users[0];
     }
     //const records = chaptersdata.chapters;
-    const records = record.chapters;
     console.log("chaptersdata", chaptersdata)
     const [imageUrl, setImageUrl] = useState("");
     console.log("ImageUrl", imageUrl)
@@ -52,13 +56,17 @@ function Storylist() {
 
 
     const [selectedImage, setSelectedImage] = useState(null);
-
+    useEffect(()=>{
+        const rrr =    dispatch(genraorimage("Helleaaa",selectedImage))
+        console.log("rees",rrr)
+    },[])
     const handleImageData = (imageUrl) => {
-        setSelectedImage(imageUrl);
+    setSelectedImage("He;llo",imageUrl);
+
     };
 
 
-  
+
 
     return (
         <>
@@ -79,9 +87,15 @@ function Storylist() {
                                         >
                                             <ImagePrompt
                                                 text={<>
-                                                    {selectedImage && (
-                                                        <img src={selectedImage} alt="story" style={{width:"300px", height:"200px"}} />
+                                                    {selectedImage ? (<>
+                                                        <img src={selectedImage} alt="story" />
+
+                                                    </>) : (
+
+                                                        <img src={Story} alt="story" />
+
                                                     )}
+
                                                 </>}
                                                 show={show}
                                                 imagedata={handleImageData}

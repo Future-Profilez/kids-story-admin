@@ -5,15 +5,17 @@ import { useState, useRef, useEffect } from "react"; // Import useRef
 import Story from "../../image/story-thubnail.png";
 import imageAi from "../../Apis/imageAi";
 import prompt from "../../Data/image.json";
+import { useSelector } from "react-redux";
 
 function ImagePrompt({ show, handleClose, imageprompt, text, imagedata }) {
 
+    const selectedImage = useSelector((state) => state.selectedImage); 
     const [imageView, setImageView] = useState(Story);
     const [data, setData] = useState("");
     const [modalShow, setModalShow] = useState(show);
     const [isLoading, setIsLoading] = useState(true);
     const imageRef = useRef(null);
-    const [isClicked, setIsClicked] = useState(false);
+    const [isClicked, setIsClicked] = useState(true);
 
     const handleImageLoad = () => {
         setIsLoading(true);
@@ -171,14 +173,12 @@ function ImagePrompt({ show, handleClose, imageprompt, text, imagedata }) {
                                 </svg>
                                 Image Generating...
                             </div>
-                            <img ref={imageRef} src={Story} alt="story" onLoad={handleImageLoad} />
-                            {/* {imageUrl && <img src={imageUrl} alt="Generated Image"   onLoad={handleImageLoad}/>} */}
+                            <img ref={imageRef} src={Story} alt="story" onClick={handleImageLoad}/>
                         </div>
                         ) : (
                             <>
                                 <div className="thumbnail-generating">
-
-                                    <img src={imageView} alt="story" onClick={handleImageLoad} />
+                                    <img src={imageView} alt="story" onClick={handleImageLoad}  />
                                 </div>
 
                                 <div className="btn-list">

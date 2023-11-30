@@ -31,11 +31,17 @@ const UserSlice = createSlice({
         genraorimage: (state, action) => {
             state.users.push(action.payload)
 
+        },
+        base64image: (state, action) => {
+            state.users.push(action.payload)
+        },
+        Imagedata: (state, action) => {
+            state.users.push(action.payload)
         }
     }
 })
 
-export const { getUser, adduser, login, logout ,reduxdatauser,genraorimage} = UserSlice.actions;
+export const { getUser, adduser, login, logout ,reduxdatauser,genraorimage,base64image,Imagedata} = UserSlice.actions;
 
 export const selectuser = (state) => state.users.users;
 export default UserSlice.reducer;

@@ -2,25 +2,30 @@ import { Modal } from "react-bootstrap";
 import "../../style/model.css";
 import { toImage, Image } from './Image';
 import { useState, useRef, useEffect } from "react"; // Import useRef
-import Story from "../../image/story-thubnail.png";
-import imageAi from "../../Apis/imageAi";
+import recordimage from "../../image/story-thubnail.png";
 import prompt from "../../Data/image.json";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Story from "../../Apis/Story";
+import { Imagedata, base64image } from "../../Redux/UserSlice";
 
 function ImagePrompt({ show, handleClose, imageprompt, text, imagedata }) {
+    const dispatch = useDispatch();
 
-    const selectedImage = useSelector((state) => state.selectedImage); 
-    const [imageView, setImageView] = useState(Story);
+    const [imageView, setImageView] = useState(recordimage);
+
     const [data, setData] = useState("");
+
     const [modalShow, setModalShow] = useState(show);
+
     const [isLoading, setIsLoading] = useState(true);
+
     const imageRef = useRef(null);
+
     const [isClicked, setIsClicked] = useState(true);
 
-    const handleImageLoad = () => {
-        setIsLoading(true);
-        setIsClicked(true);
-    };
+    // const handleImageLoad = () => {
+    // };
+
     const [imageBase64, setImageBase64] = useState('');
 
 
@@ -61,8 +66,8 @@ function ImagePrompt({ show, handleClose, imageprompt, text, imagedata }) {
     //   } else {
     //     console.error('Error:', response.status);
     //   }
+    
     const [ImageUrl, setImageUrl] = useState('');
-
 
     const fetchData = async () => {
         const bearerToken = 'vk-09oDtD3A23eck9qFtMFHX1bmGR2NZXzU0noOuWSUfcB2Vnh	';
@@ -71,7 +76,6 @@ function ImagePrompt({ show, handleClose, imageprompt, text, imagedata }) {
         formData.append('model_version', '1');
         formData.append('prompt', imageprompt);
         formData.append('style_id', '30');
-
         try {
             const response = await fetch(url, {
                 method: 'POST',
@@ -86,13 +90,13 @@ function ImagePrompt({ show, handleClose, imageprompt, text, imagedata }) {
                 reader.onload = () => {
                     const base64data = reader.result;
                     setImageBase64(base64data);
-                    console.log(base64data);
+                    console.log("base64data",base64data);
                 };
                 reader.readAsDataURL(blob);
                 // method 2
-
                 const imageUrl = URL.createObjectURL(blob);
                 setImageView(imageUrl);
+             
                 console.log("image", imageUrl)
                 setImageUrl(imageUrl);
                 setIsLoading(false);
@@ -100,15 +104,33 @@ function ImagePrompt({ show, handleClose, imageprompt, text, imagedata }) {
             } else {
                 console.error('Error in image converting :', response.status);
             }
-
-
         } catch (error) {
             console.error('Error:', error);
         }
     };
 
 
-    console.log("imageBase64", ImageUrl)
+    const[Regs,setRegs]= useState({
+        story_uuid:"",
+        chapter_no:1,
+        imageBase64:imageBase64
+    })
+console.log("Regs",Regs)
+    async function handleForms(e) {
+        e.preventDefault();
+        try {
+            console.log("Submitting data:", Regs);
+            const main = new Story();
+            const response = await main.saveimage(Regs);
+            console.log("API Response:", response);
+            return false;
+        } catch (error) {
+            console.error("API Error:", error);
+        }
+    }
+
+
+    console.log("imageBaseUrl", ImageUrl);
 
     useEffect(() => {
         setData(imageprompt);
@@ -116,8 +138,6 @@ function ImagePrompt({ show, handleClose, imageprompt, text, imagedata }) {
     }, [show, imageprompt]);
 
     const handleRegenerate = () => {
-        setIsLoading(true);
-        setIsClicked(true);
         fetchData();
     };
 
@@ -125,6 +145,13 @@ function ImagePrompt({ show, handleClose, imageprompt, text, imagedata }) {
         imagedata(imageView);
         handleClose()
     };
+    useEffect(()=>{
+      const Imagedatas = base64image(ImageUrl)
+        console.log("record",Imagedatas);
+    },[])
+
+
+
 
     return (
         <>
@@ -133,7 +160,6 @@ function ImagePrompt({ show, handleClose, imageprompt, text, imagedata }) {
             </div>
             <Modal show={show} onHide={handleClose} id="generat-story" className="image-generate modal-dialog-image">
                 <Modal.Header closeButton>
-
                     <Modal.Title className="modal-image">
                         <div className="body-popup-title"><h3>Generate Image</h3></div>
                     </Modal.Title>
@@ -158,7 +184,6 @@ function ImagePrompt({ show, handleClose, imageprompt, text, imagedata }) {
                                 </button>
                             </div>
                         </>
-
                     ) : (
                         isClicked ? (
                             <div className="thumbnail-generating">
@@ -174,14 +199,13 @@ function ImagePrompt({ show, handleClose, imageprompt, text, imagedata }) {
                                 </svg>
                                 Image Generating...
                             </div>
-                            <img ref={imageRef} src={Story} alt="story" onClick={handleImageLoad}/>
+                            <img ref={imageRef} src={Story} alt="story"/>
                         </div>
                         ) : (
                             <>
                                 <div className="thumbnail-generating">
-                                    <img src={imageView} alt="story" onClick={handleImageLoad}  />
+                                    <img src={imageView} alt="story"  />
                                 </div>
-
                                 <div className="btn-list">
                                     <button className="btn blue-gradient-btn" onClick={handleRegenerate}>
                                         <span>Regenerate</span>
@@ -196,7 +220,6 @@ function ImagePrompt({ show, handleClose, imageprompt, text, imagedata }) {
                             </>
                         )
                     )}
-
                     <div className="d-flex justify-content-around gap-3">
                     </div>
                 </Modal.Body>

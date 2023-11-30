@@ -5,28 +5,29 @@ import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import { Modal } from "react-bootstrap";
 import "../../style/model.css"
- import records from "../../Data/data.json"
+import records from "../../Data/data.json"
 import Story from "../../Apis/Story"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import imagedata from "../../Data/image.json"
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 
 function Schedule() {
-// Json Format data 
-const storychapter =records.chapters;
+   //Chart.js Json Format data 
+    const storychapter = records.chapters;
 
-    
-const [payLoad, setPayload] = useState({
-    "age":records.age,
-    "title": records.title,
-    "gender":records.gender,
-    "genre":records.genre,
-    "schedule_at":"",
-    "name":records.username,
-     "stories":records && records.chapters ,
-    //  records && records[0].chapters  
-})
+    const [payLoad, setPayload] = useState({
+        "age": records.age,
+        "title": records.title,
+        "gender": records.gender,
+        "genre": records.genre,
+        "schedule_at": "",
+        "base64": imagedata.data,
+        "name": records.username,
+        "stories": records && records.chapters,
+        //  records && records[0].chapters  
+    })
 
 
     const navigate = useNavigate();
@@ -34,66 +35,63 @@ const [payLoad, setPayload] = useState({
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
 
+    // const users = useSelector(state => state.users.users);
+    // console.log("users", users);
+    // let chaptersdata = [];
 
 
-const users = useSelector(state => state.users.users);
- 
-    console.log("users", users);
-let chaptersdata = [];
+    // if (users.length > 0) {
+    //     chaptersdata = users.at(-1);
+    // } else {
+    //     chaptersdata = users[0];
+    // }
+  //  const records = chaptersdata.chapters;
 
 
-if (users.length > 0) {
-    chaptersdata = users.at(-1);
-} else {
-    chaptersdata = users[0];
-}
-     //const records = chaptersdata.chapters;
+    // users.forEach(user => {
+    //     const { gender, genre, age, title, name } = user;
+    //     userData.push({ gender, genre, age, title, name });
+
+    //     if (user.chapters && user.chapters.length > 0) {
+    //         user.chapters.forEach(userchapter => {
+    //             const { chapterNumber, title, content, imagePrompt } = userchapter;
+    //             chaptersData.push({
+    //                 chapterNumber,
+    //                 title,
+    //                 content,
+    //                 imagePrompt,
+    //                 // Including user-specific data with each chapter
+    //                 genre: user.genre,
+    //                 gender: user.gender,
+    //                 name: user.name,
+    //                 age: user.age,
+    //             });
+    //         });
+    //     }
+    // });
 
 
-// users.forEach(user => {
-//     const { gender, genre, age, title, name } = user;
-//     userData.push({ gender, genre, age, title, name });
+    // console.log("All chapters data", chaptersdata);
 
-//     if (user.chapters && user.chapters.length > 0) {
-//         user.chapters.forEach(userchapter => {
-//             const { chapterNumber, title, content, imagePrompt } = userchapter;
-//             chaptersData.push({
-//                 chapterNumber,
-//                 title,
-//                 content,
-//                 imagePrompt,
-//                 // Including user-specific data with each chapter
-//                 genre: user.genre,
-//                 gender: user.gender,
-//                 name: user.name,
-//                 age: user.age,
-//             });
-//         });
-//     }
-// });
+    // Rest of your Schedule component code
+    // ...
 
 
-console.log("All chapters data", chaptersdata);
-
-// Rest of your Schedule component code
-// ...
-
-
-  // const storychapter = records;
-//    const [payLoad, setPayload] = useState({
-//     "age":chaptersdata.age  ,
-//     "title": chaptersdata.title,
-//     "gender":chaptersdata.gender,
-//     "name":chaptersdata.name ,
-//     "genre": chaptersdata.genre,
-//     "schedule_at": "",
-//     "stories": records,
-// });
+    // const storychapter = records;
+    //    const [payLoad, setPayload] = useState({
+    //     "age":chaptersdata.age  ,
+    //     "title": chaptersdata.title,
+    //     "gender":chaptersdata.gender,
+    //     "name":chaptersdata.name ,
+    //     "genre": chaptersdata.genre,
+    //     "schedule_at": "",
+    //     "stories": records,
+    // });
 
 
-//     console.log("payLoad",payLoad)
+    //     console.log("payLoad",payLoad)
     const [Regs, setRegs] = useState(payLoad);
-    
+
     const handleInputs = (e) => {
         const value = e.target.value;
         const name = e.target.name;
@@ -117,10 +115,10 @@ console.log("All chapters data", chaptersdata);
         }
     }
 
- console.log("records", storychapter);
- 
- 
- 
+    console.log("records", storychapter);
+
+
+
 
     return (
         <>
@@ -131,7 +129,7 @@ console.log("All chapters data", chaptersdata);
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                {storychapter &&storychapter.map((item, index) => {
+                                {storychapter && storychapter.map((item, index) => {
                                     return (
                                         <div className="story-list" key={index}>
                                             <h2>Chapter {item.chapternumber}:-{item.title}</h2>
@@ -168,7 +166,6 @@ console.log("All chapters data", chaptersdata);
                                 <input type="date" placeholder="Year/Month/Date" className="input_field  form-control" name="schedule_at"
                                     id="password_field" value={Regs.schedule_at} onChange={handleInputs} />
                             </div>
-
                             <div className="text-center">
                                 <div className="btn blue-gradient-btn" onClick={handleForms} >
                                     <span>

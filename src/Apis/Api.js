@@ -30,5 +30,4 @@ Api.interceptors.request.use(
   }
 );
 
-
 export default Api;

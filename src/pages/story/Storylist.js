@@ -15,7 +15,7 @@ import { genraorimage } from "../../Redux/UserSlice";
 function Storylist() {
 
     //Json pattrern 
-    const records = record.chapters;
+   const records = record.chapters;
 
     const dispatch = useDispatch();
     const [show, setShow] = useState(false);
@@ -31,8 +31,9 @@ function Storylist() {
     } else {
         chaptersdata = users[0];
     }
-    //const records = chaptersdata.chapters;
-    console.log("chaptersdata", chaptersdata)
+//    const records = chaptersdata.chapters;
+
+    console.log("records", records)
     const [imageUrl, setImageUrl] = useState("");
     console.log("ImageUrl", imageUrl)
     const handleShow = (imageprompt) => {
@@ -41,11 +42,8 @@ function Storylist() {
     };
     console.log("imageprompt", imageprompt)
     const [showContinue, setShowContinue] = useState(false);
-
     const handleCloseContinue = () => setShowContinue(false);
-
     const handleShowContinue = () => setShowContinue(true);
-
     console.log("imagePrompt", imageprompt)
     function Schedulecontinue() {
         navigate('/schedule')
@@ -55,13 +53,13 @@ function Storylist() {
     const handleShows = () => setShows(true);
 
 
-    const [selectedImage, setSelectedImage] = useState(null);
-    useEffect(()=>{
-        const rrr =    dispatch(genraorimage("Helleaaa",selectedImage))
-        console.log("rees",rrr)
-    },[])
+    // const [selectedImage, setSelectedImage] = useState(null);
+    // useEffect(()=>{
+    //     const rrr =    dispatch(genraorimage("Helleaaa",chaptersdata ))
+    //     console.log("rees",rrr)
+    // },[])
     const handleImageData = (imageUrl) => {
-    setSelectedImage("He;llo",imageUrl);
+   // setSelectedImage("He;llo",imageUrl);
 
     };
 
@@ -87,14 +85,14 @@ function Storylist() {
                                         >
                                             <ImagePrompt
                                                 text={<>
-                                                    {selectedImage ? (<>
-                                                        <img src={selectedImage} alt="story" />
+                                                    {/* {selectedImage ? (<> */}
+                                                        {/* <img src={selectedImage} alt="story" />
 
                                                     </>) : (
 
                                                         <img src={Story} alt="story" />
 
-                                                    )}
+                                                    )} */}
 
                                                 </>}
                                                 show={show}

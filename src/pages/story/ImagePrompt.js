@@ -86,6 +86,7 @@ function ImagePrompt({ show, handleClose, imageprompt, text, imagedata }) {
                 reader.onload = () => {
                     const base64data = reader.result;
                     setImageBase64(base64data);
+                    console.log(base64data);
                 };
                 reader.readAsDataURL(blob);
                 // method 2

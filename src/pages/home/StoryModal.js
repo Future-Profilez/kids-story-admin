@@ -44,77 +44,84 @@ function StoryModal({ show, handleClose }) {
         handleOptionSelect(3);
     };
     const navigate = useNavigate()
-    // const [card, setCard] = useState(null)
-    // let storyres = null;
-    // const generateStory = async () => {
-    //     try {
-    //         if (userTitle && age && gender && genre) {
-    //             setLoading(true);
-    //             const promptData = {
-    //                 message: "Generate a children's story with the following parameters",
-    //                 title: userTitle,
-    //                 age: age,
-    //                 gender: gender,
-    //                 genre: genre,
-    //                 name: Name,
-    //                 description: "Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data in one variable 'data' where inside 'data', there should be 'title','name','age', 'gender', 'genre', and 'chapters'. 'chapters' should be an array containing objects for each chapter with the properties: chapternumber, title, content, and imageprompt. Provide the response in JSON format",
-    //             };
-    //             const requestData = {
-    //                 model: 'gpt-4',
-    //                 messages: [
-    //                     {
-    //                         role: 'system',
-    //                         content: 'You are a storyteller.',
-    //                     },
-    //                     {
-    //                         role: 'user',
-    //                         content: JSON.stringify(promptData),
-    //                     },
-    //                 ],
-    //             };
-    //             Ai.post("/completions", requestData)
-    //                 .then((res) => {
-    //                     const storyResponse = res.data.choices[0].message.content;
-    //                     console.log("storyResponse", storyResponse);
-    //                     try {
-    //                         const Parstory = JSON.parse(storyResponse);
-    //                         console.log("parstory", Parstory);
-    //                         storyres = Parstory;
-    //                         //const datastory = setList(Parstory);
-    //                         const datastory = dispatch(adduser(storyres))
-    //                         console.log("datastory", datastory);
-    //                         const data = setCard(storyres);
-    //                         console.log("data", data);
-    //                         setTimeout(() => {
-    //                             navigate('/list');
-    //                         }, 1000);
-    //                     } catch (error) {
-    //                         console.log("Error parsing JSON:", error);
-    //                     }
-    //                 })
-    //                 .catch((error) => {
-    //                     console.log("error", error);
-    //                     setLoading(false);
-    //                 });
-    //         }
-    //     } catch (error) {
-    //         console.log("Error", error);
-    //     }
-    // };
-    // useEffect(() => {
-    //     setLoading(false);
-    // }, [userTitle, age, gender, genre]);
-    // useEffect(() => {
-    //     console.log("Card =>>>>>>>>>>>>>>>>>>:", card);
-    // }, [card]);
+
+    const [card, setCard] = useState(null)
+    let storyres = null;
+
+    function genrateAiStory() {
+        try {
+            if (userTitle && age && gender && genre) {
+                setLoading(true);
+                const promptData = {
+                    message: "Generate a children's story with the following parameters",
+                    title: userTitle,
+                    age: age,
+                    gender: gender,
+                    genre: genre,
+                    name: Name,
+                    minimum_character_length: "500 words",
+                    description: "Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data in one variable 'data' where inside 'data', there should be 'title','name','age', 'gender', 'genre', and 'chapters'. 'chapters' should be an array containing objects for each chapter with the properties: chapternumber, title, content, and imageprompt. Provide the response in JSON format",
+                };
+                console.log("promptData",promptData);
+                const requestData = {
+                    model: 'gpt-4',
+                    messages: [
+                        {
+                            role: 'system',
+                            content: 'You are a storyteller.',
+                        },
+                        {
+                            role: 'user',
+                            content: JSON.stringify(promptData),
+                        },
+                    ],
+                };
+                Ai.post("/completions", requestData)
+                    .then((res) => {
+                        const storyResponse = res.data.choices[0].message.content;
+                        console.log("storyResponse", storyResponse);
+                        try {
+                            const Parstory = JSON.parse(storyResponse);
+                            console.log("parstory", Parstory);
+                            storyres = Parstory;
+                            //const datastory = setList(Parstory);
+                            const datastory = dispatch(adduser(storyres))
+                            console.log("datastory", datastory);
+                            const data = setCard(storyres);
+                            console.log("data", data);
+                            setTimeout(() => {
+                                navigate('/list');
+                            }, 1000);
+                        } catch (error) {
+                            console.log("Error parsing JSON:", error);
+                        }
+                    })
+                    .catch((error) => {
+                        console.log("error", error);
+                        setLoading(false);
+                    });
+            }
+        } catch (error) {
+            console.log("Error", error);
+        }
+    }
+
+    const generateStory = async () => {
+     //   genrateAiStory()
+       navigate("/list");
+    };
+
+    useEffect(() => {
+        setLoading(false);
+    }, [userTitle, age, gender, genre]);
+    useEffect(() => {
+        console.log("Card =>>>>>>>>>>>>>>>>>>:", card);
+    }, [card]);
 
 
-function generateStory(){
-    navigate("/list")
-}
-
-
-    
+    // function generateStory(){
+    //     navigate("/list")
+    // }
 
     return (
         <>
@@ -258,7 +265,7 @@ function generateStory(){
                                                     className="input_field"
                                                     id=" "
                                                 />
-                                                <button type="submit" name="Generate" onClick={() => generateStory()}>Generate</button>
+                                                <button type="submit" name="Generate" onClick={() => generateStory()}> Generate </button>
                                             </div>
                                         </div>
                                     </div>
@@ -267,8 +274,6 @@ function generateStory(){
 
                         </Modal.Body>
                     </div>
-                    {/* <button className="addStory" onClick={() => setName("Hello 4")}>{name}Add Stroy</button> */}
-
                 </Modal>
             </>
         </>

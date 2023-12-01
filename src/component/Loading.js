@@ -1,8 +1,10 @@
 function Loading() {
     return (<>
-        <div className="story-step-form mt-3">
+        <div className="story-step-form mt-5 p-5">
             <div className="body-popup-title loadingtext text-center">
-                <h3>Loading.. </h3>
+                    <div className="loaderpage">
+                    <span className="loader-1"> </span>
+                    </div>
             </div>
         </div>
     </>);

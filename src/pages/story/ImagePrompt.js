@@ -1,108 +1,56 @@
 import { Modal } from "react-bootstrap";
 import "../../style/model.css";
-import { toImage, Image } from './Image';
-import { useState, useRef, useEffect } from "react"; // Import useRef
+import { useState, useRef, useEffect } from "react";
 import recordimage from "../../image/story-thubnail.png";
-import prompt from "../../Data/image.json";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Story from "../../Apis/Story";
-import { Imagedata, base64image } from "../../Redux/UserSlice";
+import { base64image } from "../../Redux/UserSlice";
 
-function ImagePrompt({ show, handleClose, imageprompt, text, imagedata }) {
-    const dispatch = useDispatch();
+function ImagePrompt({ imageprompt }) {
 
-    const [imageView, setImageView] = useState(recordimage);
+    const [prompt ,setPromopt] = useState(imageprompt);
 
-    const [data, setData] = useState("");
-
-    const [modalShow, setModalShow] = useState(show);
-
+    function handleClose() {
+        setModalShow(false);
+    }
+    const [modalShow, setModalShow] = useState();
     const [isLoading, setIsLoading] = useState(true);
-
+    const [isClicked, setIsClicked] = useState(true);
+    const [imageBase64, setImageBase64] = useState('');
     const imageRef = useRef(null);
 
-    const [isClicked, setIsClicked] = useState(true);
-
-    // const handleImageLoad = () => {
-    // };
-
-    const [imageBase64, setImageBase64] = useState('');
-
-
-    //   As File Output
-    //   if (response.ok) {
-    //     const blob = await response.blob();
-    //     const url = window.URL.createObjectURL(blob);
-    //     const link = document.createElement('a');
-    //     link.href = url;
-    //     link.setAttribute('download', 'image.jpg');
-    //     document.body.appendChild(link);
-    //     link.click();
-    //     link.parentNode.removeChild(link);
-    //   } else {
-    //     console.error('Error:', response.status);
-    //   }
-
-    //base 64 Code 
-    // if (response.ok) {
-    // const blob = await response.blob();
-    // const reader = new FileReader();
-    // reader.onload = () => {
-    //     const base64data = reader.result;
-    //     setImageBase64(base64data); 
-    //     };
-    // reader.readAsDataURL(blob);
-
-    // } else {
-    // console.error('Error:', response.status);
-    // }
-
-
-    // if (response.ok) {
-    //     const responseData = await response;
-    //     console.log("responseData",responseData)
-    //     const { image_url } = responseData;
-    //     console.log("image_url",image_url)
-    //   } else {
-    //     console.error('Error:', response.status);
-    //   }
-    
-    const [ImageUrl, setImageUrl] = useState('');
+    const [updatedImage, setupdatedImage] = useState(recordimage)
 
     const fetchData = async () => {
-        const bearerToken = 'vk-09oDtD3A23eck9qFtMFHX1bmGR2NZXzU0noOuWSUfcB2Vnh	';
+        const bearerToken = 'vk-1qfZB3V2De7daqhYUCXV2280hF89d3ac2gMzFZ5ILp7OAFE2oB';
         const url = 'https://api.vyro.ai/v1/imagine/api/generations';
         const formData = new FormData();
         formData.append('model_version', '1');
-        formData.append('prompt', imageprompt);
+        formData.append('prompt', `${prompt} also modify image prompt`);
         formData.append('style_id', '30');
         try {
             const response = await fetch(url, {
                 method: 'POST',
-                headers: {
-                    Authorization: `Bearer ${bearerToken}`,
-                },
+                headers: {Authorization: `Bearer ${bearerToken}`},
                 body: formData,
             });
             if (response.ok) {
                 const blob = await response.blob();
+                // reader.readAsDataURL(blob);
+                const imageUrl = URL.createObjectURL(blob);
+                setupdatedImage(imageUrl);
+                setIsLoading(false);
+                console.log("render 1")
+                setIsClicked(false);
                 const reader = new FileReader();
+                console.log("render 2")
                 reader.onload = () => {
+                    console.log("render 3")
                     const base64data = reader.result;
                     setImageBase64(base64data);
-                    console.log("base64data",base64data);
                 };
-                reader.readAsDataURL(blob);
-                // method 2
-                const imageUrl = URL.createObjectURL(blob);
-                setImageView(imageUrl);
-             
-                console.log("image", imageUrl)
-                setImageUrl(imageUrl);
-                setIsLoading(false);
-                setIsClicked(false);
             } else {
-                console.error('Error in image converting :', response.status);
+                console.error('Error in image converting:', response.status);
             }
         } catch (error) {
             console.error('Error:', error);
@@ -110,56 +58,32 @@ function ImagePrompt({ show, handleClose, imageprompt, text, imagedata }) {
     };
 
 
-    const[Regs,setRegs]= useState({
-        story_uuid:"",
-        chapter_no:1,
-        imageBase64:imageBase64
-    })
-console.log("Regs",Regs)
-    async function handleForms(e) {
-        e.preventDefault();
-        try {
-            console.log("Submitting data:", Regs);
-            const main = new Story();
-            const response = await main.saveimage(Regs);
-            console.log("API Response:", response);
-            return false;
-        } catch (error) {
-            console.error("API Error:", error);
-        }
-    }
-
-
-    console.log("imageBaseUrl", ImageUrl);
-
-    useEffect(() => {
-        setData(imageprompt);
-        setModalShow(show);
-    }, [show, imageprompt]);
-
     const handleRegenerate = () => {
         fetchData();
     };
 
     const handleContinue = () => {
-        imagedata(imageView);
-        handleClose()
+        handleClose();
     };
-    useEffect(()=>{
-      const Imagedatas = base64image(ImageUrl)
-        console.log("record",Imagedatas);
-    },[])
-
-
 
 
     return (
         <>
             <div onClick={() => setModalShow(true)} >
-                {text}
+                <img src={updatedImage} alt="story" />
             </div>
-            <Modal show={show} onHide={handleClose} id="generat-story" className="image-generate modal-dialog-image">
+
+            <Modal show={modalShow} onHide={handleClose}
+                id="generat-story" className="image-generate modal-dialog-image">
+
+                <div className="closebtn" onClick={handleClose}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                        <circle cx="21" cy="21" r="21" fill="#0B1024" />
+                        <path d="M15.4 28L14 26.6L19.6 21L14 15.4L15.4 14L21 19.6L26.6 14L28 15.4L22.4 21L28 26.6L26.6 28L21 22.4L15.4 28Z" fill="white" />
+                    </svg>
+                </div>
                 <Modal.Header closeButton>
+
                     <Modal.Title className="modal-image">
                         <div className="body-popup-title"><h3>Generate Image</h3></div>
                     </Modal.Title>
@@ -171,9 +95,9 @@ console.log("Regs",Regs)
                                 <input
                                     type="text"
                                     placeholder="Image Prompt"
-                                    value={imageprompt}
                                     name="data"
-                                    onChange={(e) => setData(e.target.value)}
+                                    defaultValue={prompt}
+                                    onChange={(e) => setPromopt(e.target.value)}
                                     className="input_field form-control"
                                     id="password_field"
                                 />
@@ -187,25 +111,25 @@ console.log("Regs",Regs)
                     ) : (
                         isClicked ? (
                             <div className="thumbnail-generating">
-                            <div className="image-loader">
-                                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10ZM3.5 10C3.5 13.5899 6.41015 16.5 10 16.5C13.5899 16.5 16.5 13.5899 16.5 10C16.5 6.41015 13.5899 3.5 10 3.5C6.41015 3.5 3.5 6.41015 3.5 10Z" fill="url(#paint0_angular_563_396)" />
-                                    <defs>
-                                        <radialGradient id="paint0_angular_563_396" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(10 10) rotate(90) scale(10)">
-                                            <stop stop-color="#9054D9" />
-                                            <stop offset="1" stop-color="#A04DFF" stop-opacity="0" />
-                                        </radialGradient>
-                                    </defs>
-                                </svg>
-                                Image Generating...
+                                <div className="image-loader">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10ZM3.5 10C3.5 13.5899 6.41015 16.5 10 16.5C13.5899 16.5 16.5 13.5899 16.5 10C16.5 6.41015 13.5899 3.5 10 3.5C6.41015 3.5 3.5 6.41015 3.5 10Z" fill="url(#paint0_angular_563_396)" />
+                                        <defs>
+                                            <radialGradient id="paint0_angular_563_396" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(10 10) rotate(90) scale(10)">
+                                                <stop stop-color="#9054D9" />
+                                                <stop offset="1" stop-color="#A04DFF" stop-opacity="0" />
+                                            </radialGradient>
+                                        </defs>
+                                    </svg>
+                                    Image Generating...
+                                </div>
+                                <img ref={imageRef} src={Story} alt="story" />
                             </div>
-                            <img ref={imageRef} src={Story} alt="story"/>
-                        </div>
                         ) : (
                             <>
-                                <div className="thumbnail-generating">
-                                    <img src={imageView} alt="story"  />
-                                </div>
+                                {/* <div className="thumbnail-generating">
+                                    <img src={updatedImage} alt="story" />
+                                </div> */}
                                 <div className="btn-list">
                                     <button className="btn blue-gradient-btn" onClick={handleRegenerate}>
                                         <span>Regenerate</span>

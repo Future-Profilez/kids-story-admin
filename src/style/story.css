@@ -266,6 +266,16 @@
 .update-field .input_field { width: 100%; border-radius: 50px; background: #0C1229; border: none; height: 58px; color: #fff; font-size: 14px; padding: 5px 18px; outline: none;} 
 .update-field div[class*="col-"] { margin: 0 0 30px; }
 
+.thubnail img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%; object-fit: cover;
+  max-height: 100% !important;
+}
+.thubnail {
+  overflow: hidden;
+}
+
 @media (max-width: 1199px){
   .story-list h2{ font-size: 16px;line-height: 22px; margin: 0 0 8px;}
   .story-list p{    font-size: 13px;line-height: 20.5px;}

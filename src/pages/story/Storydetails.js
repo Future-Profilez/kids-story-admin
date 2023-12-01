@@ -55,6 +55,7 @@ function Storydetails({ show, handleClose, uuid }) {
             const response = await main.storyreshedule(uuid, Regs);
             console.log("API Response:", response);
             handleCloseContinue();
+            handleClose();
             return false;
         } catch (error) {
             console.log("Error:", error);

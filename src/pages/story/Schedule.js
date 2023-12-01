@@ -5,7 +5,7 @@ import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import { Modal } from "react-bootstrap";
 import "../../style/model.css"
-import records from "../../Data/data.json"
+import record from "../../Data/data.json"
 import Story from "../../Apis/Story"
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
@@ -15,19 +15,26 @@ import { useSelector } from "react-redux";
 
 function Schedule() {
    //Chart.js Json Format data 
-    const storychapter = records.chapters;
+
+   console.log("record",record)
+   const storychapter = record.data.story_chapter;
+   console.log("records",record?.data?.genre)
+    // const storychapter = records.chapters;
 
     const [payLoad, setPayload] = useState({
-        "age": records.age,
-        "title": records.title,
-        "gender": records.gender,
-        "genre": records.genre,
+        "age": record?.data?.age,
+        "title": record?.data?.title,
+        "gender": record?.data?.gender,
+        "genre": record?.data?.genre,
         "schedule_at": "",
-        "base64": imagedata.data,
-        "name": records.username,
-        "stories": records && records.chapters,
+        "base64": imagedata?.data,
+        "name": record?.data?.name,
+        "stories":  record.data.story_chapter,
         //  records && records[0].chapters  
     })
+
+    console.log("payLoad",payLoad);
+
 
 
     const navigate = useNavigate();
@@ -35,46 +42,24 @@ function Schedule() {
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
 
-    // const users = useSelector(state => state.users.users);
-    // console.log("users", users);
-    // let chaptersdata = [];
+    const users = useSelector(state => state.users.users);
+    console.log("users", users);
+    let chaptersdata = [];
 
 
-    // if (users.length > 0) {
-    //     chaptersdata = users.at(-1);
-    // } else {
-    //     chaptersdata = users[0];
-    // }
-  //  const records = chaptersdata.chapters;
+    if (users.length > 0) {
+        chaptersdata = users.at(-1);
+    } else {
+        chaptersdata = users[0];
+    }
 
+    console.log("chaptersdata",chaptersdata)
+    
+   //const records = chaptersdata && chaptersdata.chapters;
 
-    // users.forEach(user => {
-    //     const { gender, genre, age, title, name } = user;
-    //     userData.push({ gender, genre, age, title, name });
+//console.log("records",records)
+   
 
-    //     if (user.chapters && user.chapters.length > 0) {
-    //         user.chapters.forEach(userchapter => {
-    //             const { chapterNumber, title, content, imagePrompt } = userchapter;
-    //             chaptersData.push({
-    //                 chapterNumber,
-    //                 title,
-    //                 content,
-    //                 imagePrompt,
-    //                 // Including user-specific data with each chapter
-    //                 genre: user.genre,
-    //                 gender: user.gender,
-    //                 name: user.name,
-    //                 age: user.age,
-    //             });
-    //         });
-    //     }
-    // });
-
-
-    // console.log("All chapters data", chaptersdata);
-
-    // Rest of your Schedule component code
-    // ...
 
 
     // const storychapter = records;
@@ -89,7 +74,7 @@ function Schedule() {
     // });
 
 
-    //     console.log("payLoad",payLoad)
+
     const [Regs, setRegs] = useState(payLoad);
 
     const handleInputs = (e) => {

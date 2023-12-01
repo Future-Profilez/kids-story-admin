@@ -1,47 +1,97 @@
- {
-    "age": "7",
-    "username":"DummyBoy",
-    "chapters": [
-      {
-        "chapternumber": "1",
-        "content":
-          "On the beautiful, colorful planet of Zork, lived DummyGirl with her friend, DummyBoy. They were known for their adventurous spirit and kind-hearted nature. Even though they were young, they were very smart and full of enthusiasm to explore space and its mysteries. Everyday, they would gaze at the skies and dream of visiting the far-off galaxies.",
-        "imageprompt": "A picture of DummyBoy and DummyGirl on Planet Zork, looking at the space full of stars and galaxies with awe and excitement.",
-        "title": "Greetings from Planet Zork"
-      },
-      {
-        "chapternumber": "2",
-        "content":
-          "One night, as DummyBoy and DummyGirl were stargazing, they saw a bright light streak across the sky. It was a comet! The comet was glowing with a peculiar shade of purple, unlike anything they had ever seen. Intrigued and excited, they decided to follow it in their trusty spaceship to see where it might lead them.",
-        "imageprompt": "DummyBoy and DummyGirl in their spaceship, following a bright, purplish comet in the sky.",
-        "title": "Mysterious Comet Appears"
-      },
-      {
-        "chapternumber": "3",
-        "content":
-          "Following the comet, the kids ended up in a completely unknown galaxy. They had never seen such a strange place! It was both beautiful and frightening at the same time. But they did not lose hope. They knew they had to be brave and find a way back home. So, they decided to explore, hoping to find clues that could help them.",
-        "imageprompt": "DummyBoy and DummyGirl in their spaceship, looking at an unknown alien galaxy.",
-        "title": "Lost in an Alien Galaxy"
-      },
-      {
-        "chapternumber": "4",
-        "content":
-          "While exploring, they found a creature who was in trouble. It was trapped under some heavy space rocks. The kids decided to help, forgetting their own problem. They managed to free the creature by working together. The grateful creature then used its special powers to guide the children back to their home galaxy, back to Planet Zork.",
-        "imageprompt": "A grateful alien creature using its special powers to guide DummyBoy and DummyGirl back to their home.",
-        "title": "A Helping Hand"
-      },
-      {
-        "chapternumber": "5",
-        "content":
-          "As they returned home, everyone in Planet Zork gave them a warm welcome. The friends were glad to be back. More importantly, they had learned a valuable lesson that day - kindness and helping others can not only earn you a new friend, but also lead you back home even from the most unfamiliar places. It was true 'Tit for Tat'. The more good we do to others, the more good comes back to us.",
-        "imageprompt": "DummyBoy and DummyGirl being welcomed back home to Planet Zork with the alien creature waving them goodbye.",
-        "title": "A Warm Welcome and A Valuable Lesson"
-      }
-    ],
-    "gender": "Boy",
-    "genre": "Adventure",
-    "title": "The True Story of Four Black Women and the Space Race"
+{
+  "status": true,
+  "message": "Story Created successfully",
+  "data": {
+      "id": 49,
+      "uuid": "c90e0838-3fcc-454f-84a7-ddeb349e6149",
+      "title": "Escape from Mr. Lemoncello’s Library",
+      "age": 8,
+      "prompt": null,
+      "genre": "Space",
+      "gender": "f",
+      "status": 1,
+      "schedule_at": "2024-12-10 00:00:00",
+      "created_at": "2023-12-01T09:29:02.000000Z",
+      "updated_at": "2023-12-01T09:29:02.000000Z",
+      "deleted_at": null,
+      "name": "DummyGirl",
+      "title": "Escape from Mr. Lemoncello’s Library",
+      "story_chapter": [
+          {
+              "id": 158,
+              "story_id": 49,
+              "title": "The Mysterious Invitation",
+              "content": "Once upon a time, there was an enthusiastic and curious girl named DummyGirl. One day, she received a puzzle-like invitation for an overnight adventure in the town's new library. The library was owned by the eccentric and legendary gamemaker, Mr. Lemoncello. With sparkling eyes and a racing heart, DummyGirl accepted the invitation, intrigued by the excitement and mystery that lay ahead.",
+              "chapternumber": 1,
+              "imageprompt": "A girl holding a mysterious, puzzle-like invitation near a beautifully crafted wooden library.",
+              "image": "image_1701422942.png",
+              "created_at": "2023-12-01T09:29:02.000000Z",
+              "updated_at": "2023-12-01T09:29:02.000000Z",
+              "deleted_at": null,
+              "title": "The Mysterious Invitation",
+              "content": "Once upon a time, there was an enthusiastic and curious girl named DummyGirl. One day, she received a puzzle-like invitation for an overnight adventure in the town's new library. The library was owned by the eccentric and legendary gamemaker, Mr. Lemoncello. With sparkling eyes and a racing heart, DummyGirl accepted the invitation, intrigued by the excitement and mystery that lay ahead.",
+              "image_url": "https://kidsstory.laraveldevelopmentcompany.com/storage/image_1701422942.png"
+          },
+          {
+              "id": 159,
+              "story_id": 49,
+              "title": "The Grand Library",
+              "content": "As DummyGirl entered the magnificent library, she was awestruck by the towering shelves filled with thousands of books, revolving bookcases, and secret passages. The library was nothing like she had ever seen before. Mr. Lemoncello greeted her with a wide grin and introduced her to the other participants. The adventure was about to begin.",
+              "chapternumber": 2,
+              "imageprompt": "An immense library with towering shelves and secret passages filled with a variety of books.",
+              "image": "image_1701422942.png",
+              "created_at": "2023-12-01T09:29:02.000000Z",
+              "updated_at": "2023-12-01T09:29:02.000000Z",
+              "deleted_at": null,
+              "title": "The Grand Library",
+              "content": "As DummyGirl entered the magnificent library, she was awestruck by the towering shelves filled with thousands of books, revolving bookcases, and secret passages. The library was nothing like she had ever seen before. Mr. Lemoncello greeted her with a wide grin and introduced her to the other participants. The adventure was about to begin.",
+              "image_url": "https://kidsstory.laraveldevelopmentcompany.com/storage/image_1701422942.png"
+          },
+          {
+              "id": 160,
+              "story_id": 49,
+              "title": "The Great Library Escape",
+              "content": "Just as everything seemed calm, Mr. Lemoncello announced the real challenge. The doors of the library were locked, and the only way out was to solve a series of riddles and clues hidden in the books around the library. With a determined spirit, DummyGirl started to unravel the mysterious riddles, one at a time.",
+              "chapternumber": 3,
+              "imageprompt": "A girl engrossed in reading books and solving riddles.",
+              "image": "image_1701422942.png",
+              "created_at": "2023-12-01T09:29:02.000000Z",
+              "updated_at": "2023-12-01T09:29:02.000000Z",
+              "deleted_at": null,
+              "title": "The Great Library Escape",
+              "content": "Just as everything seemed calm, Mr. Lemoncello announced the real challenge. The doors of the library were locked, and the only way out was to solve a series of riddles and clues hidden in the books around the library. With a determined spirit, DummyGirl started to unravel the mysterious riddles, one at a time.",
+              "image_url": "https://kidsstory.laraveldevelopmentcompany.com/storage/image_1701422942.png"
+          },
+          {
+              "id": 161,
+              "story_id": 49,
+              "title": "The Final Clue",
+              "content": "As she solved each riddle, DummyGirl delved deeper into the magical world of books, each holding a unique clue. The final clue led her to the topmost shelf, holding a dusty book. Like a brave adventurer, she reached for it, and with that, a key fell out from the book! It was the key to the front door! Triumphantly, DummyGirl held the key up in the air.",
+              "chapternumber": 4,
+              "imageprompt": "A girl holding a dusty book from which falls a key.",
+              "image": "image_1701422942.png",
+              "created_at": "2023-12-01T09:29:02.000000Z",
+              "updated_at": "2023-12-01T09:29:02.000000Z",
+              "deleted_at": null,
+              "title": "The Final Clue",
+              "content": "As she solved each riddle, DummyGirl delved deeper into the magical world of books, each holding a unique clue. The final clue led her to the topmost shelf, holding a dusty book. Like a brave adventurer, she reached for it, and with that, a key fell out from the book! It was the key to the front door! Triumphantly, DummyGirl held the key up in the air.",
+              "image_url": "https://kidsstory.laraveldevelopmentcompany.com/storage/image_1701422942.png"
+          },
+          {
+              "id": 162,
+              "story_id": 49,
+              "title": "The Grand Escape and The Lesson",
+              "content": "With the key in her hand, DummyGirl unlocked the front door. Everyone cheered and applauded. She had solved Mr. Lemoncello’s grand library escape game! However, the true reward was the incredible journey she embarked on through the world of books, learning that knowledge unlocks doors and every book holds a story waiting to be discovered. This adventure taught DummyGirl the joy of reading and the power of perseverance.",
+              "chapternumber": 5,
+              "imageprompt": "A smiling girl standing at the open door of the library.",
+              "image": "image_1701422942.png",
+              "created_at": "2023-12-01T09:29:02.000000Z",
+              "updated_at": "2023-12-01T09:29:02.000000Z",
+              "deleted_at": null,
+              "title": "The Grand Escape and The Lesson",
+              "content": "With the key in her hand, DummyGirl unlocked the front door. Everyone cheered and applauded. She had solved Mr. Lemoncello’s grand library escape game! However, the true reward was the incredible journey she embarked on through the world of books, learning that knowledge unlocks doors and every book holds a story waiting to be discovered. This adventure taught DummyGirl the joy of reading and the power of perseverance.",
+              "image_url": "https://kidsstory.laraveldevelopmentcompany.com/storage/image_1701422942.png"
+          }
+      ]
   }
-  
-
-  
+}

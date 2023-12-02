@@ -65,8 +65,8 @@ setRegs({
             console.log("res", response);
             if (response.data.status === true) {
                 setRegs(initialRegs);
-                toast.success(response.data.message);
                 navigate('/');
+                toast.success(response.data.message);
             }else{
                 toast.error(response.data.message);
             }

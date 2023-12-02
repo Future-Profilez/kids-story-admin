@@ -65,7 +65,6 @@ function Profile() {
             console.log("res", response);
             if (response.data.status === true) {
                 setRegs(initialRegs);
-                navigate('/');
                 toast.success(response.data.message);
             } else {
                 toast.error(response.data.message);

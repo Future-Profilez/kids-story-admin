@@ -35,16 +35,15 @@ function Storylist() {
     const [imageUrl, setImageUrl] = useState("");
     console.log("ImageUrl", imageUrl)
     
-    const handleShow = (imageprompt) => {
-        setImagePrompt(imageprompt);
-        setShow(true);
-    };
+    // const handleShow = (imageprompt) => {
+    //     setImagePrompt(imageprompt);
+    //     setShow(true);
+    // };
 
-    console.log("imageprompt", imageprompt)
+    console.log("imagePrompt", imageprompt)
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
-    console.log("imagePrompt", imageprompt)
     function Schedulecontinue() {
         navigate('/schedule')
     }

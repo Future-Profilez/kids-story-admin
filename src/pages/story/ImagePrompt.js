@@ -1,25 +1,17 @@
 import { Modal } from "react-bootstrap";
 import "../../style/model.css";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import recordimage from "../../image/story-thubnail.png";
-import { useDispatch } from "react-redux";
 import Story from "../../Apis/Story";
-import { base64image } from "../../Redux/UserSlice";
 
 function ImagePrompt({ imageprompt }) {
-
-    const [prompt ,setPromopt] = useState(imageprompt);
-
-    function handleClose() {
-        setModalShow(false);
-    }
-    const [modalShow, setModalShow] = useState();
+    const [prompt, setPrompt] = useState(imageprompt);
+    const [modalShow, setModalShow] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [isClicked, setIsClicked] = useState(true);
+    const [isClicked, setIsClicked] = useState(false);
     const [imageBase64, setImageBase64] = useState('');
     const imageRef = useRef(null);
-
-    const [updatedImage, setupdatedImage] = useState(recordimage)
+    const [updatedImage, setUpdatedImage] = useState(recordimage);
 
     const fetchData = async () => {
         const bearerToken = 'vk-1qfZB3V2De7daqhYUCXV2280hF89d3ac2gMzFZ5ILp7OAFE2oB';
@@ -28,27 +20,27 @@ function ImagePrompt({ imageprompt }) {
         formData.append('model_version', '1');
         formData.append('prompt', `${prompt} also modify image prompt`);
         formData.append('style_id', '30');
+        
         try {
             const response = await fetch(url, {
                 method: 'POST',
-                headers: {Authorization: `Bearer ${bearerToken}`},
+                headers: { Authorization: `Bearer ${bearerToken}` },
                 body: formData,
             });
+
             if (response.ok) {
                 const blob = await response.blob();
-                // reader.readAsDataURL(blob);
                 const imageUrl = URL.createObjectURL(blob);
-                setupdatedImage(imageUrl);
+                setUpdatedImage(imageUrl);
                 setIsLoading(false);
-                console.log("render 1")
-                setIsClicked(false);
+                setIsClicked(true);
+
                 const reader = new FileReader();
-                console.log("render 2")
                 reader.onload = () => {
-                    console.log("render 3")
                     const base64data = reader.result;
                     setImageBase64(base64data);
                 };
+                reader.readAsDataURL(blob);
             } else {
                 console.error('Error in image converting:', response.status);
             }
@@ -57,33 +49,29 @@ function ImagePrompt({ imageprompt }) {
         }
     };
 
-
     const handleRegenerate = () => {
+        setIsLoading(true);
         fetchData();
     };
 
     const handleContinue = () => {
-        handleClose();
+        setModalShow(false);
     };
-
 
     return (
         <>
-            <div onClick={() => setModalShow(true)} >
+            <div onClick={() => setModalShow(true)}>
                 <img src={updatedImage} alt="story" />
             </div>
 
-            <Modal show={modalShow} onHide={handleClose}
-                id="generat-story" className="image-generate modal-dialog-image">
-
-                <div className="closebtn" onClick={handleClose}>
+            <Modal show={modalShow} onHide={() => setModalShow(false)} id="generat-story" className="image-generate modal-dialog-image">
+                <div className="closebtn" onClick={() => setModalShow(false)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
                         <circle cx="21" cy="21" r="21" fill="#0B1024" />
                         <path d="M15.4 28L14 26.6L19.6 21L14 15.4L15.4 14L21 19.6L26.6 14L28 15.4L22.4 21L28 26.6L26.6 28L21 22.4L15.4 28Z" fill="white" />
                     </svg>
                 </div>
                 <Modal.Header closeButton>
-
                     <Modal.Title className="modal-image">
                         <div className="body-popup-title"><h3>Generate Image</h3></div>
                     </Modal.Title>
@@ -97,7 +85,6 @@ function ImagePrompt({ imageprompt }) {
                                     placeholder="Image Prompt"
                                     name="data"
                                     defaultValue={prompt}
-                                    onChange={(e) => setPromopt(e.target.value)}
                                     className="input_field form-control"
                                     id="password_field"
                                 />
@@ -110,6 +97,10 @@ function ImagePrompt({ imageprompt }) {
                         </>
                     ) : (
                         isClicked ? (
+                            <div className="thumbnail-generating">
+                                <img src={updatedImage} alt="story" />
+                                </div>
+                        ) : (
                             <div className="thumbnail-generating">
                                 <div className="image-loader">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -125,26 +116,19 @@ function ImagePrompt({ imageprompt }) {
                                 </div>
                                 <img ref={imageRef} src={Story} alt="story" />
                             </div>
-                        ) : (
-                            <>
-                                {/* <div className="thumbnail-generating">
-                                    <img src={updatedImage} alt="story" />
-                                </div> */}
-                                <div className="btn-list">
-                                    <button className="btn blue-gradient-btn" onClick={handleRegenerate}>
-                                        <span>Regenerate</span>
-                                    </button>
-                                    <button
-                                        className="btn blue-gradient-btn"
-                                        onClick={handleContinue()}
-                                    >
-                                        <span>Continue</span>
-                                    </button>
-                                </div>
-                            </>
                         )
                     )}
                     <div className="d-flex justify-content-around gap-3">
+                        {isClicked && (
+                            <div className="btn-list">
+                                <button className="btn blue-gradient-btn" onClick={handleRegenerate}>
+                                    <span>Regenerate</span>
+                                </button>
+                                <button className="btn blue-gradient-btn" onClick={handleContinue}>
+                                    <span>Continue</span>
+                                </button>
+                            </div>
+                        )}
                     </div>
                 </Modal.Body>
             </Modal>

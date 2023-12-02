@@ -174,7 +174,6 @@ function Listing({type}) {
                                     <img className="card-img-top" src={storys} alt="Card cap" />
                                     <div className="card-body">
                                         <p className="card-text">{item.scheduled_at} </p>
-                                        <p className="card-text">{item.id} </p>
                                         <h5 className="card-title" style={divStyle}
                                             dangerouslySetInnerHTML={{ __html: item.title }}
                                         ></h5>
@@ -196,7 +195,7 @@ function Listing({type}) {
                 ) : !loading ? <Nodata /> : ''
                 }
                 {loading ? <Loading /> : ''}
-                { !loading && hasmore && (
+                { page<1 && !loading && hasmore && (
                     <div className="loader-btn" onClick={loadMore}>
                         <Link className="btn blue-gradient-btn">Load More</Link>
                     </div>

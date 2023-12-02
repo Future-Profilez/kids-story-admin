@@ -15,7 +15,7 @@ import { useSelector } from "react-redux";
 
 function Schedule() {
 
-
+const datas =record.data.title 
    console.log("record",record)
    const storychapter = record.data.story_chapter;
    console.log("records",record?.data?.genre)
@@ -111,6 +111,7 @@ function Schedule() {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
+                                <h1 className="mb-3">Title:- {datas}</h1>
                                 {storychapter && storychapter.map((item, index) => {
                                     return (
                                         <div className="story-list" key={index}>

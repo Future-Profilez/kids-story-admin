@@ -13,6 +13,7 @@ import { genraorimage } from "../../Redux/UserSlice";
 
 function Storylist() {
 
+    const chapter =record.data.title
     //Json pattrern 
     const [records, setRecords] = useState(record.data.story_chapter);
     console.log("records",records)
@@ -59,7 +60,7 @@ function Storylist() {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                
+                                <h1 className="mb-3"> Title :- {chapter}   </h1>
                                 {records && records.map((item, key) => (
                                     <div className="story-list" key={key}>
                                         <h2> Chapter {item.chapternumber} :- {item.title} </h2>

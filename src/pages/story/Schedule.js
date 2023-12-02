@@ -46,12 +46,9 @@ function Schedule({record,getStoryUID }) {
     async function handleForms(e) {
         e.preventDefault();
         setLoading(true);
-        
         const main = new Story();
-    
         try {
             const response = await main.Scheduledate(Regs);
-    
             if (response.data.status) {
                 handleCloseContinue();
                 toast.success("Story added successfully.");

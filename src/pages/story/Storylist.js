@@ -60,10 +60,9 @@ function Storylist() {
                                     <div className="story-list" key={key}>
                                         <h2> Chapter {item.chapternumber} :- {item.title} </h2>
                                         <p>{item.content}</p>
-                                        {storyUID ?<> <div className="thubnail" >
+                                         <div className="thubnail" >
                                             <ImagePrompt uid={storyUID} chapter={item && item.chapternumber} imageprompt={item.imageprompt} />
-                                        </div></> :<div className="thubnail" >Please click the sechedule button  and schedule the story then after show imageprompt</div>}
-                                       
+                                        </div>
                                     </div>
                                 ))}
 

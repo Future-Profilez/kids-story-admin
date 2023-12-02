@@ -78,6 +78,10 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
         // usethis();
         // console.log("uid",uid);
         // return false;
+        if(!uid){
+            toast.error("Please schedule story first to generate image.")
+            return false;
+        }
         setIsLoading(true);
         const bearerToken = imagekey;
         const url = 'https://api.vyro.ai/v1/imagine/api/generations';

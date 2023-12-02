@@ -7,13 +7,14 @@ import agegroup from "../../Data/Age.json"
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { adduser } from "../../Redux/UserSlice";
+import toast from 'react-hot-toast';
+
 function StoryModal({ show, handleClose }) {
     const dispatch = useDispatch();
     const [currentStep, setCurrentStep] = useState(1);
     const [showSuccess, setShowSuccess] = useState(false);
     const [selectedUser, setSelectedUser] = useState('');
     const [Name, setName] = useState("")
-    console.log("selectedUser", selectedUser)
     const [userTitle, setUserTitle] = useState('');
     const [age, setAge] = useState('');
     const [gender, setGender] = useState('');
@@ -81,6 +82,10 @@ function StoryModal({ show, handleClose }) {
                         const storyResponse = res.data.choices[0].message.content;
                         console.log("storyResponse", storyResponse);
                         try {
+                            const jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
+                            if (jsonMatch && jsonMatch.length > 0) {
+                            const jsonData = JSON.parse(jsonMatch[0]);
+                            const dataField = jsonData.data;
                             const Parstory = JSON.parse(storyResponse);
                             console.log("parstory", Parstory);
                             storyres = Parstory;
@@ -92,9 +97,14 @@ function StoryModal({ show, handleClose }) {
                             setTimeout(() => {
                                 navigate('/list');
                             }, 1000);
+                            console.log(dataField);
+                            }  else {
+                                toast.error("Failed to generate a story please try again.")
+                            }
                         } catch (error) {
                             console.log("Error parsing JSON:", error);
                         }
+                        setLoading(false);
                     })
                     .catch((error) => {
                         console.log("error", error);

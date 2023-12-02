@@ -208,7 +208,7 @@ function Listing({type}) {
                 )}
             </div>
         </div>
-        <Storydetails show={show} handleClose={handleClose} uuid={selectedUuid} />
+        <Storydetails show={show} handleClose={handleClose} uuid={selectedUuid}  />
 
     </>);
 }

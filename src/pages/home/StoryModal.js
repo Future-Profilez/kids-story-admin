@@ -117,12 +117,6 @@ function StoryModal({ show, handleClose }) {
     useEffect(() => {
         console.log("Card =>>>>>>>>>>>>>>>>>>:", card);
     }, [card]);
-
-
-    // function generateStory(){
-    //     navigate("/list")
-    // }
-
     return (
         <>
             <>

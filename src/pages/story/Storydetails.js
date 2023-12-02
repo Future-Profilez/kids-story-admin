@@ -5,26 +5,25 @@ import story from "../../image/card.png";
 import { useEffect, useState } from "react";
 import Story from "../../Apis/Story";
 
-function Storydetails({ show, handleClose, uuid }) {
+function Storydetails({ show, handleClose, uuid,  }) {
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
     console.log("UUID received in Storydetails:", uuid);
     const [content, setContent] = useState({})
+    const fetchStoryDetails = () => {
+        if (uuid) {
+            const main = new Story();
+            const response = main.Storydetilas(uuid);
+            response.then((res) => {
+                console.log("res0", res)
+                setContent(res?.data?.data);
+            }).catch((error) => {
+                console.log("error", error)
+            })
+        }
+    };
     useEffect(() => {
-        const fetchStoryDetails = () => {
-            if (uuid) {
-                const main = new Story();
-                const response = main.Storydetilas(uuid);
-                response.then((res) => {
-                    console.log("res0", res)
-                    setContent(res?.data?.data);
-                }).catch((error) => {
-                    console.log("error", error)
-                })
-            }
-        };
-
         fetchStoryDetails();
     }, [uuid]);
     const fetchStoryDelete = () => {
@@ -53,7 +52,6 @@ function Storydetails({ show, handleClose, uuid }) {
         const main = new Story();
         try {
             const response = await main.storyreshedule(uuid, Regs);
-            console.log("API Response:", response);
             handleCloseContinue();
             handleClose();
             return false;
@@ -143,7 +141,7 @@ function Storydetails({ show, handleClose, uuid }) {
                     <div className="text-center">
                         <div className="btn blue-gradient-btn" onClick={handleForms}  >
                             <span>
-                               Re-Schedule
+                                Re-Schedule
                             </span>
                         </div>
                     </div>

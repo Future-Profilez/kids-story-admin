@@ -15,34 +15,34 @@ function Profile() {
     const initialRegs = {
         phone_no: "",
         name: "",
-        email:"",
+        email: "",
     };
 
 
     const [Regs, setRegs] = useState(initialRegs);
 
     const navigate = useNavigate();
-    const[content,setcontent] =useState([])
+    const [content, setcontent] = useState([])
 
-     useEffect(()=>{
+    useEffect(() => {
         const main = new Story();
-        const response =main.getdetilas();
-        response.then((res)=>{
-setcontent(res.data.data)
-setRegs({
-    phone_no: res.data.data.phone_no,
-    name: res.data.data.name,
-    email: res.data.data.email,
-});
-            console.log("res",res)
-        }).catch((error)=>{
+        const response = main.getdetilas();
+        response.then((res) => {
+            setcontent(res.data.data)
+            setRegs({
+                phone_no: res.data.data.phone_no,
+                name: res.data.data.name,
+                email: res.data.data.email,
+            });
+            console.log("res", res)
+        }).catch((error) => {
             console.log("error")
         })
-     },[])
+    }, [])
 
-     console.log("cddd",content)
+    console.log("cddd", content)
 
-  
+
 
     const handleInputs = (e) => {
         const value = e.target.value;
@@ -67,7 +67,7 @@ setRegs({
                 setRegs(initialRegs);
                 navigate('/');
                 toast.success(response.data.message);
-            }else{
+            } else {
                 toast.error(response.data.message);
             }
         } catch (error) {

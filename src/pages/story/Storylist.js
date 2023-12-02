@@ -80,7 +80,7 @@ function Storylist() {
                                         onClick={handleShowContinue} >
                                         <span>Continue</span>
                                     </button> */}
-                                    <Schedule getStoryUID={getStoryUID} record={story}  />
+                                    <Schedule getStoryUID={getStoryUID} record={chaptersdata}  />
                                     </> 
                                     }
                                 </div>

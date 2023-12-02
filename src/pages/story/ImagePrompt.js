@@ -18,7 +18,8 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
     const [updatedImage, setUpdatedImage] = useState(recordimage);
     const [finalImage, setFinalImage] = useState(recordimage);
     const imagekey = process.env.REACT_APP_IMAGE;
-    const [uploading, setUploading] = useState(false)
+    const [uploading, setUploading] = useState(false);
+    const [showPrompt, setShowPrompt] = useState(true);
     // async function addImage(base64) {
     //     setUploading(true);
     //     const main = new Story();
@@ -120,6 +121,7 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
 
     const handleRegenerate = () => {
          setIsLoading(true);
+         setShowPrompt(true);
         };
 
     // const handleContinue = () => {
@@ -178,24 +180,26 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
                                 </div>
                             </div>
                             :
-                            <div className="promtEdit w-100" >
-                                <div className="date-field-story">
-                                    <input
-                                        type="text"
-                                        placeholder="Image Prompt"
-                                        name="data"
-                                        value={prompt}
-                                        onChange={(e) => setPrompt(e.target.value)}
-                                        className="input_field form-control"
-                                        id="password_field"
-                                    />
+                            showPrompt && (
+                                <div className="promtEdit w-100">
+                                    <div className="date-field-story">
+                                        <input
+                                            type="text"
+                                            placeholder="Image Prompt"
+                                            name="data"
+                                            value={prompt}
+                                            onChange={(e) => setPrompt(e.target.value)}
+                                            className="input_field form-control"
+                                            id="password_field"
+                                        />
+                                    </div>
+                                    <div className="text-center">
+                                        <button className="btn blue-gradient-btn" onClick={fetchData}>
+                                            Generate
+                                        </button>
+                                    </div>
                                 </div>
-                                <div className="text-center">
-                                    <button className="btn blue-gradient-btn" onClick={fetchData}>
-                                        Generate
-                                    </button>
-                                </div>
-                            </div>
+                            )
                     }
 
                     

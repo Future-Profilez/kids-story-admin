@@ -18,7 +18,6 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
     const [updatedImage, setUpdatedImage] = useState(recordimage);
     const [finalImage, setFinalImage] = useState(recordimage);
     const imagekey = process.env.REACT_APP_IMAGE;
-
     const [uploading, setUploading] = useState(false)
     async function addImage(base64) {
         setUploading(true);

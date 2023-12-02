@@ -51,6 +51,10 @@ class Story extends Component {
     async saveimage(data) {
         return Api.post(`/save-image`, data)
     }
+
+    async getdetilas(){
+        return Api.get("/get-detail")
+    }
     async StoryLogout() {
         return Api.get("/admin-logout")
     }

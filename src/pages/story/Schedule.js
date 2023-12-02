@@ -14,12 +14,11 @@ import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 
 function Schedule() {
-   //Chart.js Json Format data 
+
 
    console.log("record",record)
    const storychapter = record.data.story_chapter;
    console.log("records",record?.data?.genre)
-    // const storychapter = records.chapters;
 
     const [payLoad, setPayload] = useState({
         "age": record?.data?.age,
@@ -27,10 +26,8 @@ function Schedule() {
         "gender": record?.data?.gender,
         "genre": record?.data?.genre,
         "schedule_at": "",
-        "base64": imagedata?.data,
         "name": record?.data?.name,
         "stories":  record.data.story_chapter,
-        //  records && records[0].chapters  
     })
 
     console.log("payLoad",payLoad);
@@ -120,7 +117,7 @@ function Schedule() {
                                             <h2>Chapter {item.chapternumber}:-{item.title}</h2>
                                             <p>{item.content}</p>
                                             <div className="thubnail">
-                                                <Image src={Story} alt="story" />
+                                                <Image src={imagedata} alt="story" />
                                             </div>
                                         </div>
                                     );

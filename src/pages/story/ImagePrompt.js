@@ -3,7 +3,6 @@ import "../../style/model.css";
 import { useState, useRef } from "react";
 import recordimage from "../../image/story-thubnail.png";
 import Story from "../../Apis/Story";
-
 function ImagePrompt({ imageprompt }) {
     const [prompt, setPrompt] = useState(imageprompt);
     console.log("Prompt ", prompt)
@@ -13,8 +12,6 @@ function ImagePrompt({ imageprompt }) {
     const [imageBase64, setImageBase64] = useState('');
     const imageRef = useRef(null);
     const [updatedImage, setUpdatedImage] = useState(recordimage);
-
-
     const imagekey = process.env.REACT_APP_IMAGE;
     console.log("REACT_APP_IMAGE",imagekey)
     const fetchData = async () => {
@@ -24,7 +21,6 @@ function ImagePrompt({ imageprompt }) {
         formData.append('model_version', '1');
         formData.append('prompt', `${prompt} also modify image prompt`);
         formData.append('style_id', '30');
-
         try {
             const response = await fetch(url, {
                 method: 'POST',
@@ -60,13 +56,6 @@ function ImagePrompt({ imageprompt }) {
  const handleContinue = () => {
     setModalShow(false);
      };
-
-    const handleGenerate = () => {
-        setModalShow(true);
-        setIsClicked(false);
-        setIsLoading(false);
-    };
-
     return (
         <>
         <div onClick={() => setModalShow(true)}>
@@ -133,9 +122,7 @@ function ImagePrompt({ imageprompt }) {
                         <img ref={imageRef} src={Story} alt="story" />
                     </div>
                 )}
-
-
-                <div className="d-flex justify-content-around gap-3">
+s                <div className="d-flex justify-content-around gap-3">
                     {isClicked && (
                         <div className="btn-list">
                             <button className="btn blue-gradient-btn" onClick={handleRegenerate}>

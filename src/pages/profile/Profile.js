@@ -3,24 +3,46 @@ import Heading from "../../component/Heading";
 import "../../style/story.css"
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Password from "./Password"
 import Story from "../../Apis/Story";
 import { Toaster, toast } from 'react-hot-toast';
 
-import { useNavigate } from "react-router-dom";
+import { useAsyncError, useNavigate } from "react-router-dom";
 
 
 function Profile() {
-    const navigate = useNavigate();
-
     const initialRegs = {
         phone_no: "",
         name: "",
-        email: "",
+        email:"",
     };
 
+
     const [Regs, setRegs] = useState(initialRegs);
+
+    const navigate = useNavigate();
+    const[content,setcontent] =useState([])
+
+     useEffect(()=>{
+        const main = new Story();
+        const response =main.getdetilas();
+        response.then((res)=>{
+setcontent(res.data.data)
+setRegs({
+    phone_no: res.data.data.phone_no,
+    name: res.data.data.name,
+    email: res.data.data.email,
+});
+            console.log("res",res)
+        }).catch((error)=>{
+            console.log("error")
+        })
+     },[])
+
+     console.log("cddd",content)
+
+  
 
     const handleInputs = (e) => {
         const value = e.target.value;
@@ -43,10 +65,10 @@ function Profile() {
             console.log("res", response);
             if (response.data.status === true) {
                 setRegs(initialRegs);
-                navigate('/');
                 toast.success(response.data.message);
+                navigate('/');
             }else{
-                toast.error(response.message);
+                toast.error(response.data.message);
             }
         } catch (error) {
             console.log("error", error);

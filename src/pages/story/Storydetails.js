@@ -67,7 +67,7 @@ function Storydetails({ show, handleClose, uuid,  }) {
                     <div className="reschedule-story">
                         <div className="row">
                             <div className="col-md-6">
-                                <Image src={content?.story_img || storyimage} alt="img" />
+                                <Image src={storyimage} alt="img" />
                             </div>
                             <div className="col-md-6">
                                 <div className="heading d-flex justify-content-between">
@@ -114,7 +114,7 @@ function Storydetails({ show, handleClose, uuid,  }) {
                                     <p>
                                         {item?.description}
                                     </p>
-                                    <Image src={item?.image || story} alt="story" />
+                                    <Image src={story} alt="story" />
                                 </div>
                             ))}
                         </div>

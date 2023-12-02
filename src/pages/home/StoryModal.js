@@ -117,8 +117,8 @@ function StoryModal({ show, handleClose }) {
     }
 
     const generateStory = async () => {
-      genrateAiStory()
-     //  navigate("/list");
+  genrateAiStory()
+  //   navigate("/list");
     };
 
     useEffect(() => {

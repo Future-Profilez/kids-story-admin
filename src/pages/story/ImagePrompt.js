@@ -78,9 +78,8 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
         // usethis();
         // console.log("uid",uid);
         // return false;
-        if(!uid){
+        if(uid){
             toast.error("Please schedule story first to generate image.")
-            return false;
         }
         setIsLoading(true);
         const bearerToken = imagekey;

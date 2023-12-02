@@ -46,22 +46,48 @@ function Schedule({record,getStoryUID }) {
     async function handleForms(e) {
         e.preventDefault();
         setLoading(true);
+        
         const main = new Story();
-        await main.Scheduledate(Regs).then((res)=>{
-            if(res.data.status){
+    
+        try {
+            const response = await main.Scheduledate(Regs);
+    
+            if (response.data.status) {
                 handleCloseContinue();
                 toast.success("Story added successfully.");
-                getStoryUID(res.data.data.uuid);
+                getStoryUID(response.data.data.id);
             } else {
-                toast.error("Failed  to add story !!");
+                toast.error("Failed to add story !!");
             }
+        } catch (error) {
+            console.error("API Error:", error);
+            toast.error("An error occurred while adding the story.");
+        } finally {
             setLoading(false);
-        }).catch((err)=>{
-            console.error("API Error:", err);
-            toast.error(err)
-            setLoading(false);
-        });
+        }
     }
+    
+
+    // async function handleForms(e) {
+    //     e.preventDefault();
+    //     setLoading(true);
+    //     const main = new Story();
+    //   const response =  await main.Scheduledate(Regs)
+    //   response.then((res)=>{
+    //         if(res.data.status){
+    //             handleCloseContinue();
+    //             toast.success("Story added successfully.");
+    //             getStoryUID(res.data.data.id);
+    //         } else {
+    //             toast.error("Failed  to add story !!");
+    //         }
+    //         setLoading(false);
+    //     }).catch((err)=>{
+    //         console.error("API Error:", err);
+    //         toast.error(err)
+    //         setLoading(false);
+    //     });
+    // }
 
     return (
         <>

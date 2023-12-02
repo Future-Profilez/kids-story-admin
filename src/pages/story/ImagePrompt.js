@@ -19,30 +19,56 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
     const [finalImage, setFinalImage] = useState(recordimage);
     const imagekey = process.env.REACT_APP_IMAGE;
     const [uploading, setUploading] = useState(false)
+    // async function addImage(base64) {
+    //     setUploading(true);
+    //     const main = new Story();
+    //     const resp = await main.saveimage({
+    //         "story_uuid":uid,
+    //         "chapter_no":chapter,
+    //         "imageBase64":base64,
+    //     });
+    //     resp.then((res)=>{
+    //         if(res.data.status){
+    //             console.log("res",res);
+    //             setModalShow(false);
+    //             setFinalImage("final image url.")
+    //         } else {
+    //             toast.error("error");
+    //         }
+    //         setUploading(false);
+    //     }).catch((err)=>{
+    //         console.error("API Error:", err);
+    //         toast.error(err);
+    //         setUploading(false);
+    //     });
+    // }
     async function addImage(base64) {
         setUploading(true);
+    
         const main = new Story();
-        const resp = await main.saveimage({
-            "story_uuid":uid,
-            "chapter_no":chapter,
-            "imageBase64":base64,
-        });
-        resp.then((res)=>{
-            if(res.data.status){
-                console.log("res",res);
+    
+        try {
+            const resp = await main.saveimage({
+                "story_uuid": uid,
+                "chapter_no": chapter,
+                "imageBase64": base64,
+            });
+    
+            if (resp.data.status) {
+                console.log("res", resp);
                 setModalShow(false);
-                setFinalImage("final image url.")
+                setFinalImage("final image url.");
             } else {
-                toast.error("error");
+                toast.error("Error");
             }
+        } catch (error) {
+            console.error("API Error:", error);
+            toast.error("An error occurred while saving the image.");
+        } finally {
             setUploading(false);
-        }).catch((err)=>{
-            console.error("API Error:", err);
-            toast.error(err);
-            setUploading(false);
-        });
+        }
     }
-
+    
     const usethis = () => {
         addImage(imageBase64);
         setFinalImage(updatedImage);
@@ -52,7 +78,6 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
         // usethis();
         // console.log("uid",uid);
         // return false;
-
         setIsLoading(true);
         const bearerToken = imagekey;
         const url = 'https://api.vyro.ai/v1/imagine/api/generations';
@@ -90,9 +115,9 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
         }
     };
 
-    // const handleRegenerate = () => {
-    //      setIsLoading(true);
-    //     };
+    const handleRegenerate = () => {
+         setIsLoading(true);
+        };
 
     // const handleContinue = () => {
     //     setModalShow(false);
@@ -140,7 +165,14 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
                                 <div className="thumbnail-generating w-100">
                                     <img src={updatedImage} alt="story" />
                                 </div> 
-                                <button className="btn blue-gradient-btn" onClick={usethis} >{uploading ? "Uploading..." : "Use This Image"}</button>
+
+                                <div className="btn-list">
+                                <button className="btn blue-gradient-btn" onClick={handleRegenerate}>
+                                <span>Regenerate</span>
+                            </button>
+                                <button className="btn blue-gradient-btn  mt-2" onClick={usethis} >{uploading ? "Uploading..." : "Use This Image"}</button>
+
+                                </div>
                             </div>
                             :
                             <div className="promtEdit w-100" >

@@ -107,8 +107,8 @@ function StoryModal({ show, handleClose }) {
     }
 
     const generateStory = async () => {
-     //   genrateAiStory()
-       navigate("/list");
+      genrateAiStory()
+     //  navigate("/list");
     };
 
     useEffect(() => {
@@ -120,7 +120,7 @@ function StoryModal({ show, handleClose }) {
     return (
         <>
             <>
-                <Modal show={show} onHide={handleClose} id="generat-story">
+                <Modal centered show={show} onHide={handleClose} id="generat-story">
                     <div className={`step${currentStep}`}>
                         <Modal.Header closeButton >
                             <Modal.Title>

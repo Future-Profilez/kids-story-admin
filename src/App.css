@@ -251,3 +251,17 @@ input:-webkit-autofill:hover, input:-webkit-autofill:focus { border: none; -webk
   max-width: 400px;
   max-height: 300px;
 }
+.thumbnail-generating.w-100 {
+  width: 100% !important;
+  max-width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.thumbnail-generating.w-100 img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}

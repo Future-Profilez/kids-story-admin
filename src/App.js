@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./style/Strap.css"
 import './App.css';
+import "./style/model.css"
+import "./style/story.css"
 import Homepage from "./pages/home/Homepage";
 import Storylist from "./pages/story/Storylist";
 import Storycard from "./pages/story/Storycard";
@@ -12,7 +14,6 @@ import Static from "./pages/story/Static";
 import PrivateRouter from "./Router/PrivateRouter";
 import Login from "./component/Login";
 import UserContextProvider from "./context/UserContextProvider";
-import ImagePrompt from "./pages/story/ImagePrompt";
 import ImageAi from "./pages/story/ImageAi";
 
 function App() {

@@ -3,18 +3,58 @@ import "../../style/model.css";
 import { useState, useRef } from "react";
 import recordimage from "../../image/story-thubnail.png";
 import Story from "../../Apis/Story";
-function ImagePrompt({ imageprompt }) {
+import toast from "react-hot-toast";
+
+
+function ImagePrompt({ imageprompt , uid, chapter }) {
+
     const [prompt, setPrompt] = useState(imageprompt);
-    console.log("Prompt ", prompt)
+    console.log("Prompt ", prompt);
     const [modalShow, setModalShow] = useState(false);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
     const [imageBase64, setImageBase64] = useState('');
     const imageRef = useRef(null);
     const [updatedImage, setUpdatedImage] = useState(recordimage);
+    const [finalImage, setFinalImage] = useState(recordimage);
     const imagekey = process.env.REACT_APP_IMAGE;
-    console.log("REACT_APP_IMAGE",imagekey)
+
+    const [uploading, setUploading] = useState(false)
+    async function addImage(base64) {
+        setUploading(true);
+        const main = new Story();
+        const resp = await main.saveimage({
+            "story_uuid":uid,
+            "chapter_no":chapter,
+            "imageBase64":base64,
+        });
+        resp.then((res)=>{
+            if(res.data.status){
+                console.log("res",res);
+                setModalShow(false);
+                setFinalImage("final image url.")
+            } else {
+                toast.error("error");
+            }
+            setUploading(false);
+        }).catch((err)=>{
+            console.error("API Error:", err);
+            toast.error(err);
+            setUploading(false);
+        });
+    }
+
+    const usethis = () => {
+        addImage(imageBase64);
+        setFinalImage(updatedImage);
+    }
+
     const fetchData = async () => {
+        // usethis();
+        // console.log("uid",uid);
+        // return false;
+
+        setIsLoading(true);
         const bearerToken = imagekey;
         const url = 'https://api.vyro.ai/v1/imagine/api/generations';
         const formData = new FormData();
@@ -34,7 +74,6 @@ function ImagePrompt({ imageprompt }) {
                 setUpdatedImage(imageUrl);
                 setIsLoading(false);
                 setIsClicked(true);
-
                 const reader = new FileReader();
                 reader.onload = () => {
                     const base64data = reader.result;
@@ -44,25 +83,29 @@ function ImagePrompt({ imageprompt }) {
             } else {
                 console.error('Error in image converting:', response.status);
             }
+            setIsLoading(false);
         } catch (error) {
             console.error('Error:', error);
+            setIsLoading(false);
+
         }
     };
 
-    const handleRegenerate = () => {
-         setIsLoading(true);
-        };
+    // const handleRegenerate = () => {
+    //      setIsLoading(true);
+    //     };
 
- const handleContinue = () => {
-    setModalShow(false);
-     };
+    // const handleContinue = () => {
+    //     setModalShow(false);
+    // };
+
+
     return (
         <>
         <div onClick={() => setModalShow(true)}>
             <img src={updatedImage} alt="story" />
         </div>
-
-        <Modal show={modalShow} onHide={() => setModalShow(false)} id="generat-story" className="image-generate modal-dialog-image">
+        <Modal centered show={modalShow} onHide={() => setModalShow(false)} id="generat-story" className="image-generate modal-dialog-image">
             <div className="closebtn" onClick={() => setModalShow(false)}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
                     <circle cx="21" cy="21" r="21" fill="#0B1024" />
@@ -74,36 +117,57 @@ function ImagePrompt({ imageprompt }) {
                     <div className="body-popup-title"><h3>Generate Image</h3></div>
                 </Modal.Title>
             </Modal.Header>
-            <Modal.Body>
-                {isLoading ? (
-                    <>
-                        <div className="date-field-story">
-                            <input
-                                type="text"
-                                placeholder="Image Prompt"
-                                name="data"
-                                value={prompt}
-                                onChange={(e) => setPrompt(e.target.value)}
-                                className="input_field form-control"
-                                id="password_field"
-                            />
-                        </div>
-                        <div className="text-center">
-                            <button className="btn blue-gradient-btn" onClick={fetchData}>
-                                Generate
-                            </button>
-                        </div>
-                    </>
-                ) : (
-                    isClicked ? (
-                        <div className="thumbnail-generating">
-                            <img src={updatedImage} alt="story" />
-                        </div>
-                    ) : (
-                        <></>
-                    )
-                )}
-                {!isLoading ? (
+            <Modal.Body className="d-flex align-items-center justify-content-center" >
+            
+                    {isLoading ?
+                            <div className="thumbnail-generating">
+                                <div className="image-loader">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10ZM3.5 10C3.5 13.5899 6.41015 16.5 10 16.5C13.5899 16.5 16.5 13.5899 16.5 10C16.5 6.41015 13.5899 3.5 10 3.5C6.41015 3.5 3.5 6.41015 3.5 10Z" fill="url(#paint0_angular_563_396)" />
+                                        <defs>
+                                            <radialGradient id="paint0_angular_563_396" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(10 10) rotate(90) scale(10)">
+                                                <stop stop-color="#9054D9" />
+                                                <stop offset="1" stop-color="#A04DFF" stop-opacity="0" />
+                                            </radialGradient>
+                                        </defs>
+                                    </svg>
+                                    Image Generating...
+                                </div>
+                                <img ref={imageRef} src={Story} alt="story" />
+                            </div>
+                    :
+                        isClicked ?
+                            <div className="promtEdit w-100" >
+                                <div className="thumbnail-generating w-100">
+                                    <img src={updatedImage} alt="story" />
+                                </div> 
+                                <button className="btn blue-gradient-btn" onClick={usethis} >{uploading ? "Uploading..." : "Use This Image"}</button>
+                            </div>
+                            :
+                            <div className="promtEdit w-100" >
+                                <div className="date-field-story">
+                                    <input
+                                        type="text"
+                                        placeholder="Image Prompt"
+                                        name="data"
+                                        value={prompt}
+                                        onChange={(e) => setPrompt(e.target.value)}
+                                        className="input_field form-control"
+                                        id="password_field"
+                                    />
+                                </div>
+                                <div className="text-center">
+                                    <button className="btn blue-gradient-btn" onClick={fetchData}>
+                                        Generate
+                                    </button>
+                                </div>
+                            </div>
+                    }
+
+                    
+                    
+
+                {/* {!isLoading ? (
                     <></>
                 ) : (
                     <div className="thumbnail-generating">
@@ -134,7 +198,7 @@ s                <div className="d-flex justify-content-around gap-3">
                             </button>
                         </div>
                     )}
-                </div>
+                </div> */}
             </Modal.Body>
         </Modal>
     </>

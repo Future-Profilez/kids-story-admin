@@ -126,6 +126,7 @@ function ImagePrompt({ imageprompt }) {
                                 </button>
                                 <button className="btn blue-gradient-btn" onClick={handleContinue}>
                                     <span>Continue</span>
+                                    
                                 </button>
                             </div>
                         )}

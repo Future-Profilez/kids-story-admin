@@ -20,6 +20,7 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
     const imagekey = process.env.REACT_APP_IMAGE;
     const [uploading, setUploading] = useState(false);
     const [showPrompt, setShowPrompt] = useState(true);
+    
     // async function addImage(base64) {
     //     setUploading(true);
     //     const main = new Story();

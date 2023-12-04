@@ -16,23 +16,37 @@ function Storylist() {
 
     const [storyUID, setStoryUID] = useState(null);
 
-    const getStoryUID = (uid) =>{
+    const getStoryUID = (uid) => {
         setStoryUID(uid);
         console.log("uid", uid);
     }
     const [story, setStory] = useState(record && record.data);
     const navigate = useNavigate();
     const users = useSelector(state => state.users.users);
+
+
     console.log("users", users.at(-1));
-    let chaptersdata = [];
+    const [records, setRecords] = useState([]);
 
-    if (users.length > 0) {
+    useEffect(() => {
+      let chaptersdata = [];
+      if (users.length > 0) {
         chaptersdata = users.at(-1);
-    } else {
+      } else {
         chaptersdata = users[0];
-    }
-
-    console.log("chaptersdata",chaptersdata)
+      }
+  
+      let extractedRecords = [];
+      if (chaptersdata) {
+        extractedRecords = chaptersdata.data;
+      } else {
+        extractedRecords = chaptersdata;
+      }
+  
+      // Set the extracted records to the state
+      setRecords(extractedRecords);
+    }, [users]);
+    console.log("chaptersdata", records)
 
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
@@ -43,7 +57,7 @@ function Storylist() {
     const handleCloses = () => setShows(false);
     const handleShows = () => setShows(true);
 
-    const handleFinal  = () => { 
+    const handleFinal = () => {
         navigate('/card');
     }
 
@@ -55,33 +69,33 @@ function Storylist() {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                <h1 className="mb-3"> Title :- {chaptersdata && chaptersdata.title}   </h1>
-                                {chaptersdata && chaptersdata.chapters && chaptersdata.chapters.map((item, key) => (
+                                <h1 className="mb-3"> Title :- {records && records.title}   </h1>
+                                {records && records.chapters && records.chapters.map((item, key) => (
                                     <div className="story-list" key={key}>
                                         <h2> Chapter {item.chapternumber} :- {item.title} </h2>
                                         <p>{item.content}</p>
-                                        {storyUID ?<> <div className="thubnail" >
+                                        {storyUID ? <> <div className="thubnail" >
                                             <ImagePrompt uid={storyUID} chapter={item && item.chapternumber} imageprompt={item.imageprompt} />
-                                        </div></> :<div className="thubnail" >Please click the sechedule button  and schedule the story then after show imageprompt</div>}
+                                        </div></> : <div className="thubnail" >Please click the sechedule button  and schedule the story then after show imageprompt</div>}
                                     </div>
                                 ))}
 
                                 <div className="btn-list">
-                                    {storyUID ? 
-                                    <button className="btn blue-gradient-btn" onClick={ handleFinal}>
-                                        <span>Done</span>
-                                    </button>
-                                    : <>
-                                    <button className="btn blue-gradient-btn" onClick={() => handleShows()}>
-                                        <span>Regenerate Story</span>
-                                    </button>
-                                    {/* <button
+                                    {storyUID ?
+                                        <button className="btn blue-gradient-btn" onClick={handleFinal}>
+                                            <span>Done</span>
+                                        </button>
+                                        : <>
+                                            <button className="btn blue-gradient-btn" onClick={() => handleShows()}>
+                                                <span>Regenerate Story</span>
+                                            </button>
+                                            {/* <button
                                         className="btn blue-gradient-btn"
                                         onClick={handleShowContinue} >
                                         <span>Continue</span>
                                     </button> */}
-                                    <Schedule getStoryUID={getStoryUID} record={chaptersdata}  />
-                                    </> 
+                                            <Schedule getStoryUID={getStoryUID} record={records} />
+                                        </>
                                     }
                                 </div>
                             </div>

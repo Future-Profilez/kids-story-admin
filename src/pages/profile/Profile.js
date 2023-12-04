@@ -8,7 +8,6 @@ import Password from "./Password"
 import Story from "../../Apis/Story";
 import { Toaster, toast } from 'react-hot-toast';
 
-import { useAsyncError, useNavigate } from "react-router-dom";
 
 
 function Profile() {
@@ -21,7 +20,6 @@ function Profile() {
 
     const [Regs, setRegs] = useState(initialRegs);
 
-    const navigate = useNavigate();
     const [content, setcontent] = useState([])
 
     useEffect(() => {
@@ -34,9 +32,8 @@ function Profile() {
                 name: res.data.data.name,
                 email: res.data.data.email,
             });
-            console.log("res", res)
         }).catch((error) => {
-            console.log("error")
+            console.log("error", error)
         })
     }, [])
 
@@ -57,29 +54,35 @@ function Profile() {
         setkeys(keys);
     };
 
-    async function handleForms(e) {
-        try {
-            const main = new Story();
-            console.log("main", main);
-            const response = await main.Profile(Regs);
-            console.log("res", response);
-            if (response.data.status === true) {
-                setRegs(initialRegs);
-                toast.success(response.data.message);
-            } else {
-                toast.error(response.data.message);
-            }
-        } catch (error) {
-            console.log("error", error);
-            toast.error(error);
-        }
+
+    function handleForms(e) {
+        e.preventDefault();
+        const main = new Story();
+        main.Profile(Regs)
+            .then((res) => {
+                console.log("res", res);
+                if (res && res?.status === true) {
+                    toast.success(res.message);
+                    setRegs(initialRegs);
+                } else {
+                    toast.error(res.message);
+                }
+            })
+            .catch((error) => {
+                console.log("error", error);
+                toast.error("Failed to update profile");
+            });
     }
+
+
+
     return (
         <>
             <Toaster
                 position="top-center"
                 reverseOrder={false}
             />
+
             <AuthLayout>
                 <div className="content-wrapper">
                     <div className="content">
@@ -144,7 +147,7 @@ function Profile() {
                                                                 name="phone_no"
                                                                 onChange={handleInputs}
                                                                 value={Regs.phone_no}
-                                                                type="text"
+                                                                type="number"
                                                                 className="input_field password"
                                                                 id="password_field"
                                                             />
@@ -159,6 +162,8 @@ function Profile() {
                                                     </button>
                                                 </div>
                                             </div>
+
+
                                         </Tab>
                                         <Tab eventKey="password" title="Password">
                                             <Password />

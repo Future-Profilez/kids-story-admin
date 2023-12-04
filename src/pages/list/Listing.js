@@ -6,6 +6,8 @@ import Story from "../../Apis/Story";
 import Loading from "../../component/Loading";
 import Nodata from "../../component/Nodata";
 import Storydetails from '../story/Storydetails';
+import slugify from "react-slugify";
+
 
 function Listing({type}) {
 
@@ -170,7 +172,7 @@ function Listing({type}) {
                     content.map((item, index) => (
                         <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
                             <div className="card">
-                                <Link onClick={() => handleShow(item.uuid)} >
+                                <Link to={`${slugify(item.uuid)}`} >
                                     <img className="card-img-top" src={storys} alt="Card cap" />
                                     <div className="card-body">
                                         <p className="card-text">{item.scheduled_at} </p>
@@ -207,7 +209,6 @@ function Listing({type}) {
                 )}
             </div>
         </div>
-        <Storydetails show={show} handleClose={handleClose} uuid={selectedUuid}  />
 
     </>);
 }

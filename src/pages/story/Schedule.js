@@ -16,22 +16,49 @@ function Schedule({record,getStoryUID }) {
     const users = useSelector(state => state.users.users);
     console.log("users", users);
 
-    let chaptersdata = [];
-    if (users.length > 0) {
+    const [records, setRecords] = useState([]);
+
+    useEffect(() => {
+      let chaptersdata = [];
+      if (users.length > 0) {
         chaptersdata = users.at(-1);
-    } else {
+      } else {
         chaptersdata = users[0];
-    }
+      }
+  
+      let extractedRecords = [];
+      if (chaptersdata) {
+        extractedRecords = chaptersdata.data;
+      } else {
+        extractedRecords = chaptersdata;
+      }
+
+      setRegs({
+        "age": extractedRecords.age || "", 
+        "title": extractedRecords.title || "", 
+        "gender": extractedRecords.gender || "", 
+        "genre": extractedRecords.genre || "", 
+        "schedule_at": "",
+        "name": extractedRecords.name || "", 
+        "stories": extractedRecords.chapters || ""
+      });
+  
+      setRecords(extractedRecords);
+    }, [users]);
+
+    console.log("records", records)
 
     const [Regs, setRegs] = useState({
-        "age": record && record.age,
-        "title": record && record.title,
-        "gender": record && record.gender,
-        "genre": record && record.genre,
+        "age": records.age,
+        "title":records.title,
+        "gender":  records.gender,
+        "genre":  records.genre,
         "schedule_at": "",
-        "name": record && record.name,
-        "stories": record && record.story_chapter,
+        "name":  records.name,
+        "stories":records.story_chapter,
     });
+
+    console.log("Regs",Regs)
 
     const handleInputs = (e) => {
         const value = e.target.value;

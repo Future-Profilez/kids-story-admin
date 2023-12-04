@@ -15,6 +15,7 @@ import PrivateRouter from "./Router/PrivateRouter";
 import Login from "./component/Login";
 import UserContextProvider from "./context/UserContextProvider";
 import ImageAi from "./pages/story/ImageAi";
+import Storydetails from "./pages/story/Storydetails";
 
 function App() {
 
@@ -35,6 +36,10 @@ function App() {
               </PrivateRouter>
             }
             />
+            <Route
+              path="/card/:uuid"
+              element={<Storydetails />}
+            ></Route>
             <Route path="/list" element={
               <Storylist />
 

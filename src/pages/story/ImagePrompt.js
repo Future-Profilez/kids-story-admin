@@ -20,7 +20,7 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
     const imagekey = process.env.REACT_APP_IMAGE;
     const [uploading, setUploading] = useState(false);
     const [showPrompt, setShowPrompt] = useState(true);
-    
+
     // async function addImage(base64) {
     //     setUploading(true);
     //     const main = new Story();
@@ -84,7 +84,7 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
             toast.error("Please schedule story first to generate image.")
         }
         setIsLoading(true);
-        const bearerToken = imagekey;
+        const bearerToken = 'vk-fuCF23M5lQPBP25SrdsoVLXSwONFZnDkBebQjBR7AIR1OyU';
         const url = 'https://api.vyro.ai/v1/imagine/api/generations';
         const formData = new FormData();
         formData.append('model_version', '1');

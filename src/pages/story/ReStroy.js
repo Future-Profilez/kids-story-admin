@@ -9,6 +9,9 @@ import { reduxdatauser } from "../../Redux/UserSlice";
 function ReStory({ shows, handleCloses }) {
   
   const [users] = useSelector((state) => state.users.users);
+  console.log("iuser",users)
+
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userTitle, setUserTitle] = useState("");
@@ -19,14 +22,30 @@ function ReStory({ shows, handleCloses }) {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const [records, setRecords] = useState([]);
+  useEffect(()=>{
+
+    let extractedRecords = [];
+    if (users) {
+      extractedRecords = users.data;
+    } else {
+      extractedRecords = users;
+    }
+    setRecords(extractedRecords);
+
+  },[])
+    
+
+    // Set the extracted records to the state
+  console.log("users", records)
   useEffect(() => {
     if (users) {
-      setUserTitle(users.title);
-      setCard(users.card);
-      setAge(users.age);
-      setGender(users.gender);
-      setGenre(users.genre);
-      setName(users.name);
+      setUserTitle(records.title);
+      setCard(records.card);
+      setAge(records.age);
+      setGender(records.gender);
+      setGenre(records.genre);
+      setName(records.name);
     }
   }, [users]);
 

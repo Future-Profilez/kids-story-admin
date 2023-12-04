@@ -1,11 +1,15 @@
 import { Image, Modal } from "react-bootstrap";
 import storyimage from "../../image/list.png";
 import story from "../../image/card.png";
-// import { Link, useNavigate } from "react-router-dom";
+ import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Story from "../../Apis/Story";
+import { useParams } from "react-router-dom";
 
-function Storydetails({ show, handleClose, uuid,  }) {
+
+function Storydetails() {
+   const navigate= useNavigate();
+    const { uuid } = useParams();
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
@@ -18,6 +22,7 @@ function Storydetails({ show, handleClose, uuid,  }) {
             response.then((res) => {
                 console.log("res0", res)
                 setContent(res?.data?.data);
+                navigate('/list')
             }).catch((error) => {
                 console.log("error", error)
             })
@@ -33,7 +38,6 @@ function Storydetails({ show, handleClose, uuid,  }) {
             response.then((
                 res
             ) => {
-                handleClose();
             }).catch((error) => {
                 console.log("error", error)
             })
@@ -53,7 +57,6 @@ function Storydetails({ show, handleClose, uuid,  }) {
         try {
             const response = await main.storyreshedule(uuid, Regs);
             handleCloseContinue();
-            handleClose();
             return false;
         } catch (error) {
             console.log("Error:", error);
@@ -62,8 +65,7 @@ function Storydetails({ show, handleClose, uuid,  }) {
 
     return (
         <>
-            <Modal show={show} onHide={handleClose} id="reschedule-popup">
-                <Modal.Body>
+          
                     <div className="reschedule-story">
                         <div className="row">
                             <div className="col-md-6">
@@ -71,12 +73,7 @@ function Storydetails({ show, handleClose, uuid,  }) {
                             </div>
                             <div className="col-md-6">
                                 <div className="heading d-flex justify-content-between">
-                                    <div className="closebtn" onClick={handleClose}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
-                                            <circle cx="21" cy="21" r="21" fill="#0B1024" />
-                                            <path d="M15.4 28L14 26.6L19.6 21L14 15.4L15.4 14L21 19.6L26.6 14L28 15.4L22.4 21L28 26.6L26.6 28L21 22.4L15.4 28Z" fill="white" />
-                                        </svg>
-                                    </div>
+                                  
                                     <div className="heading-graph">
                                         <h6><span> {content?.genre_name} </span> </h6>
                                         <p>{content?.title}</p>
@@ -119,8 +116,7 @@ function Storydetails({ show, handleClose, uuid,  }) {
                             ))}
                         </div>
                     </div>
-                </Modal.Body>
-            </Modal>
+               
             <Modal show={showContinue} onHide={handleCloseContinue} id="generat-story">
                 <Modal.Header closeButton style={{ borderTop: "1px solid rgba(255,255,255, 0.1)" }}>
                     <Modal.Title>

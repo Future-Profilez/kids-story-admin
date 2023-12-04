@@ -8,8 +8,9 @@ import { useParams } from "react-router-dom";
 
 
 function Storydetails() {
-   const navigate= useNavigate();
     const { uuid } = useParams();
+    console.log("uuid",uuid)
+    const navigate= useNavigate();
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
@@ -22,7 +23,6 @@ function Storydetails() {
             response.then((res) => {
                 console.log("res0", res)
                 setContent(res?.data?.data);
-                navigate('/list')
             }).catch((error) => {
                 console.log("error", error)
             })
@@ -38,6 +38,7 @@ function Storydetails() {
             response.then((
                 res
             ) => {
+            navigate('/card')
             }).catch((error) => {
                 console.log("error", error)
             })
@@ -57,6 +58,7 @@ function Storydetails() {
         try {
             const response = await main.storyreshedule(uuid, Regs);
             handleCloseContinue();
+            navigate('/card')
             return false;
         } catch (error) {
             console.log("Error:", error);
@@ -65,8 +67,8 @@ function Storydetails() {
 
     return (
         <>
-          
-                    <div className="reschedule-story">
+          <div>
+          <div className="reschedule-story">
                         <div className="row">
                             <div className="col-md-6">
                                 <Image src={storyimage} alt="img" />
@@ -116,6 +118,9 @@ function Storydetails() {
                             ))}
                         </div>
                     </div>
+          </div>
+
+            
                
             <Modal show={showContinue} onHide={handleCloseContinue} id="generat-story">
                 <Modal.Header closeButton style={{ borderTop: "1px solid rgba(255,255,255, 0.1)" }}>

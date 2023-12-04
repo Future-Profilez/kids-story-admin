@@ -3,15 +3,12 @@ import { Modal } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Ai from "../../Apis/Ai";
-import record from "../../Data/data.json";
 import { reduxdatauser } from "../../Redux/UserSlice";
 
 function ReStory({ shows, handleCloses }) {
-  
+
   const [users] = useSelector((state) => state.users.users);
-  console.log("iuser",users)
-
-
+  console.log("iuser", users)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userTitle, setUserTitle] = useState("");
@@ -23,20 +20,23 @@ function ReStory({ shows, handleCloses }) {
   const [loading, setLoading] = useState(false);
 
   const [records, setRecords] = useState([]);
-  useEffect(()=>{
+  useEffect(() => {
+    let chaptersdata = [];
+    if (users.length > 0) {
+      chaptersdata = users.at(-1);
+    } else {
+      chaptersdata = users[0];
+    }
 
     let extractedRecords = [];
-    if (users) {
-      extractedRecords = users.data;
+    if (chaptersdata) {
+      extractedRecords = chaptersdata.data;
     } else {
-      extractedRecords = users;
+      extractedRecords = chaptersdata;
     }
     setRecords(extractedRecords);
+  }, [users]);
 
-  },[])
-    
-
-    // Set the extracted records to the state
   console.log("users", records)
   useEffect(() => {
     if (users) {

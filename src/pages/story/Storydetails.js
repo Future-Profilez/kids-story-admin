@@ -1,16 +1,15 @@
 import { Image, Modal } from "react-bootstrap";
 import storyimage from "../../image/list.png";
 import story from "../../image/card.png";
- import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Story from "../../Apis/Story";
 import { useParams } from "react-router-dom";
-
-
 function Storydetails() {
+    
     const { uuid } = useParams();
-    console.log("uuid",uuid)
-    const navigate= useNavigate();
+    console.log("uuid", uuid)
+    const navigate = useNavigate();
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
@@ -38,7 +37,7 @@ function Storydetails() {
             response.then((
                 res
             ) => {
-            navigate('/card')
+                navigate('/card')
             }).catch((error) => {
                 console.log("error", error)
             })
@@ -67,61 +66,61 @@ function Storydetails() {
 
     return (
         <>
-          <div>
-          <div className="reschedule-story">
-                        <div className="row">
-                            <div className="col-md-6">
-                                <Image src={storyimage} alt="img" />
-                            </div>
-                            <div className="col-md-6">
-                                <div className="heading d-flex justify-content-between">
-                                  
-                                    <div className="heading-graph">
-                                        <h6><span> {content?.genre_name} </span> </h6>
-                                        <p>{content?.title}</p>
-                                    </div>
-
-                                </div>
-                                <div className="add-line">
-                                </div>
-                                <div className="description">
-                                    <h5>Description</h5>
-                                    <p>
-                                        {content?.story_description}
-                                    </p>
-                                </div>
-                                <div className="reschedule-action">
-                                    <div className="btn blue-gradient-btn" onClick={handleShowContinue}>
-                                        <span>
-                                            Reschedule Story
-                                        </span>
-                                    </div>
-                                    <button button className="delete-button" onClick={fetchStoryDelete}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <path d="M7 21C6.45 21 5.979 20.804 5.587 20.412C5.195 20.02 4.99933 19.5493 5 19V6H4V4H9V3H15V4H20V6H19V19C19 19.55 18.804 20.021 18.412 20.413C18.02 20.805 17.5493 21.0007 17 21H7ZM9 17H11V8H9V17ZM13 17H15V8H13V17Z" fill="white" />
-                                        </svg>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <div>
+                <div className="reschedule-story">
                     <div className="row">
-                        <div className="col-md-12">
-                            {content && content?.story_chapter && content?.story_chapter?.map((item, index) => (
-                                <div className="story-list" key={index}>
-                                    <h2>Chapter {item?.chapter_no}: {item?.title}</h2>
-                                    <p>
-                                        {item?.description}
-                                    </p>
-                                    <Image src={story} alt="story" />
+                        <div className="col-md-6">
+                            <Image src={storyimage} alt="img" />
+                        </div>
+                        <div className="col-md-6">
+                            <div className="heading d-flex justify-content-between">
+
+                                <div className="heading-graph">
+                                    <h6><span> {content?.genre_name} </span> </h6>
+                                    <p>{content?.title}</p>
                                 </div>
-                            ))}
+
+                            </div>
+                            <div className="add-line">
+                            </div>
+                            <div className="description">
+                                <h5>Description</h5>
+                                <p>
+                                    {content?.story_description}
+                                </p>
+                            </div>
+                            <div className="reschedule-action">
+                                <div className="btn blue-gradient-btn" onClick={handleShowContinue}>
+                                    <span>
+                                        Reschedule Story
+                                    </span>
+                                </div>
+                                <button button className="delete-button" onClick={fetchStoryDelete}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                        <path d="M7 21C6.45 21 5.979 20.804 5.587 20.412C5.195 20.02 4.99933 19.5493 5 19V6H4V4H9V3H15V4H20V6H19V19C19 19.55 18.804 20.021 18.412 20.413C18.02 20.805 17.5493 21.0007 17 21H7ZM9 17H11V8H9V17ZM13 17H15V8H13V17Z" fill="white" />
+                                    </svg>
+                                </button>
+                            </div>
                         </div>
                     </div>
-          </div>
+                </div>
+                <div className="row">
+                    <div className="col-md-12">
+                        {content && content?.story_chapter && content?.story_chapter?.map((item, index) => (
+                            <div className="story-list" key={index}>
+                                <h2>Chapter {item?.chapter_no}: {item?.title}</h2>
+                                <p>
+                                    {item?.description}
+                                </p>
+                                <Image src={story} alt="story"  />
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
 
-            
-               
+
+
             <Modal show={showContinue} onHide={handleCloseContinue} id="generat-story">
                 <Modal.Header closeButton style={{ borderTop: "1px solid rgba(255,255,255, 0.1)" }}>
                     <Modal.Title>

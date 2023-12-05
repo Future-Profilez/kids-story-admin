@@ -97,7 +97,6 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
                 headers: { Authorization: `Bearer ${bearerToken}` },
                 body: formData,
             });
-
             if (response.ok) {
                 const blob = await response.blob();
                 const imageUrl = URL.createObjectURL(blob);

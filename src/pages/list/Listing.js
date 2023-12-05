@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import Story from "../../Apis/Story";
 import Loading from "../../component/Loading";
 import Nodata from "../../component/Nodata";
-import Storydetails from '../story/Storydetails';
 import slugify from "react-slugify";
 
 
@@ -104,6 +103,8 @@ function Listing({type}) {
             fetching(page + 1);
         }
     };
+
+    console.log("Adsff",content)
 
     const divStyle = {
         overflow: 'hidden',

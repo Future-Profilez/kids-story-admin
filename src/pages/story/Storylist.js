@@ -28,25 +28,26 @@ function Storylist() {
     console.log("users", users.at(-1));
     const [records, setRecords] = useState([]);
 
-    useEffect(() => {
-      let chaptersdata = [];
-      if (users.length > 0) {
-        chaptersdata = users.at(-1);
-      } else {
-        chaptersdata = users[0];
-      }
+    let chaptersdata = [];
+    if (users.length > 0) {
+      chaptersdata = users.at(-1);
+    } else {
+      chaptersdata = users[0];
+    }
+
+    // useEffect(() => {
   
-      let extractedRecords = [];
-      if (chaptersdata) {
-        extractedRecords = chaptersdata.data;
-      } else {
-        extractedRecords = chaptersdata;
-      }
+    //   let extractedRecords = [];
+    //   if (chaptersdata) {
+    //     extractedRecords = chaptersdata.data;
+    //   } else {
+    //     extractedRecords = chaptersdata;
+    //   }
   
-      // Set the extracted records to the state
-      setRecords(extractedRecords);
-    }, [users]);
-    console.log("chaptersdata", records)
+    //   // Set the extracted records to the state
+    //   setRecords(extractedRecords);
+    // }, [users]);
+    console.log("chaptersdata", chaptersdata)
 
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
@@ -69,8 +70,8 @@ function Storylist() {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                <h1 className="mb-3"> Title :- {records && records.title}   </h1>
-                                {records && records.chapters && records.chapters.map((item, key) => (
+                                <h1 className="mb-3"> Title :- {chaptersdata && chaptersdata.title}   </h1>
+                                {chaptersdata && chaptersdata.chapters && chaptersdata.chapters.map((item, key) => (
                                     <div className="story-list" key={key}>
                                         <h2> Chapter {item.chapternumber} :- {item.title} </h2>
                                         <p>{item.content}</p>

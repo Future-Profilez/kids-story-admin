@@ -3,7 +3,7 @@ import { Modal } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Ai from "../../Apis/Ai";
-import { reduxdatauser } from "../../Redux/UserSlice";
+import { adduser, reduxdatauser } from "../../Redux/UserSlice";
 
 function ReStory({ shows, handleCloses }) {
 
@@ -20,34 +20,35 @@ function ReStory({ shows, handleCloses }) {
   const [loading, setLoading] = useState(false);
 
   const [records, setRecords] = useState([]);
-  useEffect(() => {
-    let chaptersdata = [];
-    if (users.length > 0) {
-      chaptersdata = users.at(-1);
-    } else {
-      chaptersdata = users[0];
-    }
+  let chaptersdata = [];
+  if (users.length > 0) {
+    chaptersdata = users.at(-1);
+  } else {
+    chaptersdata = users;
+  }
 
-    let extractedRecords = [];
-    if (chaptersdata) {
-      extractedRecords = chaptersdata.data;
-    } else {
-      extractedRecords = chaptersdata;
-    }
-    setRecords(extractedRecords);
-  }, [users]);
+  console.log("chaptersdatareee",chaptersdata)
+  // useEffect(() => {
+
+  //   let extractedRecords = [];
+  //   if (chaptersdata) {
+  //     extractedRecords = chaptersdata.data;
+  //   } else {
+  //     extractedRecords = chaptersdata;
+  //   }
+  //   setRecords(extractedRecords);
+  // }, [users]);
 
   console.log("users", records)
   useEffect(() => {
-    if (users) {
-      setUserTitle(records.title);
-      setCard(records.card);
-      setAge(records.age);
-      setGender(records.gender);
-      setGenre(records.genre);
-      setName(records.name);
-    }
-  }, [users]);
+  
+      setUserTitle(chaptersdata.title);
+      setCard(chaptersdata.card);
+      setAge(chaptersdata.age);
+      setGender(chaptersdata.gender);
+      setGenre(chaptersdata.genre);
+      setName(chaptersdata.name);
+  }, []);
 
 
 
@@ -89,7 +90,7 @@ function ReStory({ shows, handleCloses }) {
               const Parstory = JSON.parse(storyResponse);
               console.log("parstory", Parstory);
               storyres = Parstory;
-              const datastory = dispatch(reduxdatauser(storyres))
+              const datastory = dispatch(adduser(storyres))
               console.log("datastory", datastory);
               const data = setCard(storyres);
               navigate('/list');
@@ -118,7 +119,7 @@ function ReStory({ shows, handleCloses }) {
     console.log("Card =>>>>>>>>>>>>>>>>>>:", card);
   }, [card]);
 
-
+console.log("userTitle",userTitle)
 
 
   return (

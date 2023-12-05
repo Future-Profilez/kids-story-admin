@@ -18,44 +18,36 @@ function Schedule({record,getStoryUID }) {
 
     const [records, setRecords] = useState([]);
 
-    useEffect(() => {
-      let chaptersdata = [];
-      if (users.length > 0) {
-        chaptersdata = users.at(-1);
-      } else {
-        chaptersdata = users[0];
-      }
+    let chaptersdata = [];
+    if (users.length > 0) {
+      chaptersdata = users.at(-1);
+    } else {
+      chaptersdata = users[0];
+    }
+    console.log("chaptersdata",chaptersdata)
+    // useEffect(() => {
   
-      let extractedRecords = [];
-      if (chaptersdata) {
-        extractedRecords = chaptersdata.data;
-      } else {
-        extractedRecords = chaptersdata;
-      }
+    //   let extractedRecords = [];
+    //   if (chaptersdata) {
+    //     extractedRecords = chaptersdata.data;
+    //   } else {
+    //     extractedRecords = chaptersdata;
+    //   }
 
-      setRegs({
-        "age": extractedRecords.age || "", 
-        "title": extractedRecords.title || "", 
-        "gender": extractedRecords.gender || "", 
-        "genre": extractedRecords.genre || "", 
-        "schedule_at": "",
-        "name": extractedRecords.name || "", 
-        "stories": extractedRecords.chapters || ""
-      });
   
-      setRecords(extractedRecords);
-    }, [users]);
+    //   setRecords(extractedRecords);
+    // }, [users]);
 
     console.log("records", records)
 
     const [Regs, setRegs] = useState({
-        "age": records.age,
-        "title":records.title,
-        "gender":  records.gender,
-        "genre":  records.genre,
+        "age": chaptersdata.age,
+        "title":chaptersdata.title,
+        "gender":  chaptersdata.gender,
+        "genre":  chaptersdata.genre,
         "schedule_at": "",
-        "name":  records.name,
-        "stories":records.story_chapter,
+        "name":  chaptersdata.name,
+        "stories":chaptersdata.chapters,
     });
 
     console.log("Regs",Regs)

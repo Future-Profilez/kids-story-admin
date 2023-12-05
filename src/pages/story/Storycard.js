@@ -4,6 +4,7 @@ import Heading from "../../component/Heading";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Listing from "../list/Listing";
+import { Toaster } from 'react-hot-toast';
 function Storycard() {
 
     const [selectedOption, setSelectedOption] = useState("boy");
@@ -11,7 +12,12 @@ function Storycard() {
         setSelectedOption(option);
     };
     return (
+
         <AuthLayout>
+             <Toaster
+                        position="top-center"
+                        reverseOrder={false}
+                    />
             <div className="content-wrapper">
                 <div className="content">
                     <div className="row">

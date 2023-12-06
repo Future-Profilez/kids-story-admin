@@ -1,176 +1,157 @@
-import {  Modal } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import "../../style/model.css";
-import { toImage, Image } from './Image';
-import { useState, useRef, useEffect } from "react"; // Import useRef
-import Story from "../../image/story-thubnail.png";
-import imageAi from "../../Apis/imageAi";
-import prompt from "../../Data/image.json";
-//import client from "imaginesdk";
-// import GenerationStyle from "imaginesdk";
-// import Status from "imaginesdk";
-// import { client} from "imaginesdk";
-//import { client, GenerationStyle, Status } from "imaginesdk";
+import { useState, useRef } from "react";
+import recordimage from "../../image/story-thubnail.png";
+import Story from "../../Apis/Story";
+import toast from "react-hot-toast";
 
-function ImagePrompt({ show, handleClose,handleShow, imagePrompt, onGenerateImage }) {
-    const [data, setData] = useState("");
-    const [modalShow, setModalShow] = useState(show);
-    const [isLoading, setIsLoading] = useState(true);
+
+function ImagePrompt({ imageprompt , uid, chapter }) {
+
+    const [prompt, setPrompt] = useState(imageprompt);
+    console.log("Prompt ", prompt);
+    const [modalShow, setModalShow] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
+    const [imageBase64, setImageBase64] = useState('');
     const imageRef = useRef(null);
-    const handleImageLoad = () => {
-        setIsLoading(true);
-    }; 
-
-
-    const  imagePromptstatic = 'DummyBoy and DummyGirl in their spaceship, looking at an unknown alien galaxy'
-
-
-
-    // const binaryImageData = prompt;
-
-    // console.log("binaryImageData", binaryImageData)
-    //const base64ImageString = btoa(binaryImageData);
-
-    //  console.log("base64ImageString", base64ImageString);
-
-
-    //    const blob = new Blob([binaryImageData], { type: 'image/png' });
-    //            console.log("blob00",blob)
-
-    //              const imageUrl = URL.createObjectURL(blob);
-
-    //                console.log("imageUrl",imageUrl)
-
-    // useEffect(() => {
-    //      const blob = new Blob([binaryImageData], { type: 'image/png' });
-    //      console.log("blob00",blob);
-    //      const downloadLink = document.createElement('a');
-    //      console.log("downloadLink",downloadLink);
-    //      const data =  downloadLink.href = URL.createObjectURL(blob);
-    //      console.log("data",data)
-    //      const recoird =  downloadLink.download = 'D:\kids-story-admin\src\image';
-    //    console.log("recoird",recoird)
-    //     document.body.appendChild(downloadLink);
-    //     downloadLink.click();
-    //     document.body.removeChild(downloadLink);
-    //     return () => URL.revokeObjectURL(downloadLink.href);
-    // }, [binaryImageData]);
-
-    // const handleDownload = () => {
-    //     const blob = new Blob([imageSource], { type: 'image/png' });
-    //     console.log("blog", blob)
-    //     const downloadLink = document.createElement('a');
-    //     console.log("downloadLink", downloadLink);
-    //     const baseName = 'image';
-    //     const timestamp = new Date().getTime();
-    //     const fileName = `/${baseName}_${timestamp}.png`;
-    //     console.log("fileName", fileName)
-    //     const data = fileName;
-    //     console.log("data", data)
-    //     setImageUrl(data)
-    //     const url = URL.createObjectURL(blob);
-    //     console.log("url ", url);
-    //     downloadLink.href = url;
-    //     downloadLink.download = fileName;
-    //     document.body.appendChild(downloadLink);
-    //     downloadLink.click();
-    //     document.body.removeChild(downloadLink);
-    //     const reboke = URL.revokeObjectURL(url);
-    //     console.log("reboke", reboke)
-    // };
-    // useEffect(() => {
-    //     handleDownload();
-    // }, [imageSource]);
-
-
-    const [imageUrl, setImageUrl] = useState(null);
-
-
-
-    // /generations
-    const handleGenerateImage = async () => {
-        setIsLoading(true);
-      
-        try {
-          const formData = new FormData();
-          formData.append('prompt', imagePromptstatic);
-          formData.append('style_id', '30');
-      
-          const response = await imageAi.post("/generations", formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data', 
-            },
-          });
-      
-          console.log("response", response);
-          const imageAA = response.getOrThrow();
-          console.log("imageAA", imageAA);
-
-
-        } catch (error) {
-          console.error('Error generating image:', error);
-        } finally {
-          setIsLoading(false);
-        }
-      };
-      
-    // const handleGenerateImage = async () => {
-    //     setIsLoading(true);
-    //     try {
-    //       const response = await imageAi.post("/generations", {
-    //         // model_version: '1',
-    //         prompt: imagePromptstatic,
-    //         style_id: '30',
-    //       });
-    //         console.log("response",response)
+    const [updatedImage, setUpdatedImage] = useState(recordimage);
+    const [finalImage, setFinalImage] = useState(recordimage);
+    const imagekey = process.env.REACT_APP_IMAGE;
+    const [uploading, setUploading] = useState(false);
     
-    //     //   const imageData = response.data; 
+    const [showPrompt, setShowPrompt] = useState(true);
 
+    // async function addImage(base64) {
+    //     setUploading(true);
+    //     const main = new Story();
+    //     const resp = await main.saveimage({
+    //         "story_uuid":uid,
+    //         "chapter_no":chapter,
+    //         "imageBase64":base64,
+    //     });
+    //     resp.then((res)=>{
+    //         if(res.data.status){
+    //             console.log("res",res);
+    //             setModalShow(false);
+    //             setFinalImage("final image url.")
+    //         } else {
+    //             toast.error("error");
+    //         }
+    //         setUploading(false);
+    //     }).catch((err)=>{
+    //         console.error("API Error:", err);
+    //         toast.error(err);
+    //         setUploading(false);
+    //     });
+    // }
+    async function addImage(base64) {
+        setUploading(true);
+    
+        const main = new Story();
+    
+        try {
+            const resp = await main.saveimage({
+                "story_uuid": uid,
+                "chapter_no": chapter,
+                "imageBase64": base64,
+            });
+    
+            if (resp.data.status) {
+                console.log("res", resp);
+                setModalShow(false);
+                setFinalImage("final image url.");
+            } else {
+                toast.error("Error");
+            }
+        } catch (error) {
+            console.error("API Error:", error);
+            toast.error("An error occurred while saving the image.");
+        } finally {
+            setUploading(false);
+        }
+    }
+    
+    const usethis = () => {
+        addImage(imageBase64);
+        setFinalImage(updatedImage);
+    }
 
-    //     //   const arrayBuffer = new TextEncoder().encode(imageData).buffer;
-    //     //   const image= toImage(arrayBuffer);
-    //     //   onGenerateImage(image.buffer());
-    //     //   setImageUrl(image.asImageSrc());
-    //     } catch (error) {
-    //       console.error('Error generating image:', error);
-    //     } finally {
-    //       setIsLoading(false);
-    //     }
+    const fetchData = async () => {
+        // usethis();
+        // console.log("uid",uid);
+        // return false;
+        if(uid){
+            toast.error("Please schedule story first to generate image.")
+        }
+        setIsLoading(true);
+        const bearerToken = 'vk-DilS3jeHuQdtbmrXvFTuDaeGSv2Vfw9bIXHAlUzEZ3Qik';
+        const url = 'https://api.vyro.ai/v1/imagine/api/generations';
+        const formData = new FormData();
+        formData.append('model_version', '1');
+        formData.append('prompt', `${prompt} also modify image prompt`);
+        formData.append('style_id', '30');
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: { Authorization: `Bearer ${bearerToken}` },
+                body: formData,
+            });
+            if (response.ok) {
+                const blob = await response.blob();
+                const imageUrl = URL.createObjectURL(blob);
+                setUpdatedImage(imageUrl);
+                setIsLoading(false);
+                setIsClicked(true);
+                const reader = new FileReader();
+                reader.onload = () => {
+                    const base64data = reader.result;
+                    setImageBase64(base64data);
+                    console.log("base64data",base64data)
+                    navigator.clipboard.writeText(base64data)
+                };
+                reader.readAsDataURL(blob);
+            } else {
+                console.error('Error in image converting:', response.status);
+            }
+            setIsLoading(false);
+        } catch (error) {
+            console.error('Error:', error);
+            setIsLoading(false);
 
-    //   };
+        }
+    };
 
-    useEffect(() => {
-        setData(imagePrompt);
-        setModalShow(show);
-    }, [show]);
+    const handleRegenerate = () => {
+         setIsLoading(true);
+         setShowPrompt(true);
+        };
+
+    // const handleContinue = () => {
+    //     setModalShow(false);
+    // };
+
 
     return (
         <>
-            <Modal show={true} onHide={handleClose} id="generat-story" className="modal-dialog-image">
-                <Modal.Header closeButton>
-                    <Modal.Title className="modal-image">
-                        <div className="body-popup-title"><h3>Generate Image</h3></div>
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <div className="date-field-story">
-                        <input
-                            type="text"
-                            placeholder="Image Prompt"
-                            value={imagePromptstatic}
-                            name="data"
-                            onChange={(e) => setData(e.target.value)}
-                            className="input_field form-control"
-                            id="password_field"
-                        />
-                    </div>
-                    <div className="text-center">
-                        <button className="btn blue-gradient-btn" onClick={handleGenerateImage}>
-                            Generate
-                        </button>
-                    </div>
-
-                    <div className="d-flex justify-content-around gap-3">
-                        {isLoading ? (
+        <div onClick={() => setModalShow(true)}>
+            <img src={updatedImage} alt="story" />
+        </div>
+        <Modal centered show={modalShow} onHide={() => setModalShow(false)} id="generat-story" className="image-generate modal-dialog-image">
+            <div className="closebtn" onClick={() => setModalShow(false)}>
+                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                    <circle cx="21" cy="21" r="21" fill="#0B1024" />
+                    <path d="M15.4 28L14 26.6L19.6 21L14 15.4L15.4 14L21 19.6L26.6 14L28 15.4L22.4 21L28 26.6L26.6 28L21 22.4L15.4 28Z" fill="white" />
+                </svg>
+            </div>
+            <Modal.Header closeButton>
+                <Modal.Title className="modal-image">
+                    <div className="body-popup-title"><h3>Generate Image</h3></div>
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="d-flex align-items-center justify-content-center" >
+            
+                    {isLoading ?
                             <div className="thumbnail-generating">
                                 <div className="image-loader">
                                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -184,23 +165,84 @@ function ImagePrompt({ show, handleClose,handleShow, imagePrompt, onGenerateImag
                                     </svg>
                                     Image Generating...
                                 </div>
-                                <img ref={imageRef} src={Story} alt="story" onLoad={handleImageLoad} />
-                                {/* {imageUrl && <img src={imageUrl} alt="Generated Image"   onLoad={handleImageLoad}/>} */}
+                                <img ref={imageRef} src={Story} alt="story" />
                             </div>
-                        ) : (
-                            <>
-                                {imageUrl && <img src={imageUrl} alt="Generated Image" onLoad={handleImageLoad} />}
-                                <div className="text-center mt-3" >
-                                    <button className="btn blue-gradient-btn"  onClick={() => handleShow()}>
-                                        Re-Generate
-                                    </button>
+                    :
+                        isClicked ?
+                            <div className="promtEdit w-100" >
+                                <div className="thumbnail-generating w-100">
+                                    <img src={updatedImage} alt="story" />
+                                </div> 
+
+                                <div className="btn-list">
+                                <button className="btn blue-gradient-btn" onClick={handleRegenerate}>
+                                <span>Regenerate</span>
+                            </button>
+                                <button className="btn blue-gradient-btn  mt-2" onClick={usethis} >{uploading ? "Uploading..." : "Use This Image"}</button>
+
                                 </div>
-                            </>
-                        )}
+                            </div>
+                            :
+                            showPrompt && (
+                                <div className="promtEdit w-100">
+                                    <div className="date-field-story">
+                                        <input
+                                            type="text"
+                                            placeholder="Image Prompt"
+                                            name="data"
+                                            value={prompt}
+                                            onChange={(e) => setPrompt(e.target.value)}
+                                            className="input_field form-control"
+                                            id="password_field"
+                                        />
+                                    </div>
+                                    <div className="text-center">
+                                        <button className="btn blue-gradient-btn" onClick={fetchData}>
+                                            Generate
+                                        </button>
+                                    </div>
+                                </div>
+                            )
+                    }
+
+                    
+                    
+
+                {/* {!isLoading ? (
+                    <></>
+                ) : (
+                    <div className="thumbnail-generating">
+                        <div className="image-loader">
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10ZM3.5 10C3.5 13.5899 6.41015 16.5 10 16.5C13.5899 16.5 16.5 13.5899 16.5 10C16.5 6.41015 13.5899 3.5 10 3.5C6.41015 3.5 3.5 6.41015 3.5 10Z" fill="url(#paint0_angular_563_396)" />
+                                <defs>
+                                    <radialGradient id="paint0_angular_563_396" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(10 10) rotate(90) scale(10)">
+                                        <stop stop-color="#9054D9" />
+                                        <stop offset="1" stop-color="#A04DFF" stop-opacity="0" />
+                                    </radialGradient>
+                                </defs>
+                            </svg>
+                            Image Generating...
+                        </div>
+                        <img ref={imageRef} src={Story} alt="story" />
                     </div>
-                </Modal.Body>
-            </Modal>
-        </>
+                )}
+s                <div className="d-flex justify-content-around gap-3">
+                    {isClicked && (
+                        <div className="btn-list">
+                            <button className="btn blue-gradient-btn" onClick={handleRegenerate}>
+                                <span>Regenerate</span>
+                            </button>
+                            <button className="btn blue-gradient-btn" onClick={handleContinue}>
+                                <span>Continue</span>
+
+                            </button>
+                        </div>
+                    )}
+                </div> */}
+            </Modal.Body>
+        </Modal>
+    </>
     );
 }
 

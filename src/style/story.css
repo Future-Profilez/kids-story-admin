@@ -1,6 +1,6 @@
 /* Stry Lsit  */
-
 .story-list {
+  margin-top: 17px;
   margin-bottom: 33px;
 }
 .story-list img{max-width: 100%;}
@@ -265,6 +265,16 @@
 .update-field label { color: #B3B3B3; text-align: center; font-family: Poppins; font-size: 16px; font-style: normal; font-weight: 400; line-height: normal; margin: 0 0 10px; } 
 .update-field .input_field { width: 100%; border-radius: 50px; background: #0C1229; border: none; height: 58px; color: #fff; font-size: 14px; padding: 5px 18px; outline: none;} 
 .update-field div[class*="col-"] { margin: 0 0 30px; }
+
+.thubnail img {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100%; object-fit: cover;
+  max-height: 100% !important;
+}
+.thubnail {
+  overflow: hidden;
+}
 
 @media (max-width: 1199px){
   .story-list h2{ font-size: 16px;line-height: 22px; margin: 0 0 8px;}

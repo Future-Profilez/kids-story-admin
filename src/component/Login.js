@@ -28,23 +28,29 @@ function Login() {
         setShowPassword(!showPassword);
     };
 
+    const [loading, setLoading] = useState(false);
 
-   async  function handleForms(e) {
+   async function handleForms(e) {
         e.preventDefault();
+        if(loading){
+            return false;
+        }
+        setLoading(true);
         const main =  new Story();
         try {
-            const response =await main.Login(Regs);
+            const response = await main.Login(Regs);
             if (response?.data) {
                  setLoginUser(response?.data);
-          const data=        localStorage.setItem("token", response?.data?.token);
-          console.log("data",data)
-                 navigate("/home");
-                 toast.success(response.data.message);
+                localStorage.setItem("token", response?.data?.token);
+                toast.success(response.data.message);
+                navigate("/home");
             } else {
                 console.log("error",response.data.message)
             }
+            setLoading(false);
         } catch (error) {
             console.log("error", error);
+            setLoading(false);
         }
     }
 
@@ -110,13 +116,11 @@ function Login() {
                             </div>
                         </div>
                         <div className="text-center">
-                            <button
+                            <button disabled={loading}
                                 title="Sign In"
                                 onClick={handleForms}
-
-                                className="btn blue-gradient-btn"
-                            >
-                                <span>Login</span>
+                                className="btn blue-gradient-btn" >
+                                <span>{loading ? "Wait..":"Login"}</span>
                             </button>
                         </div>
                     </div>

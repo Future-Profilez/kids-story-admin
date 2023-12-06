@@ -7,14 +7,12 @@ import { useEffect, useState } from "react";
 import Story from "../../Apis/Story";
 import Loading from "../../component/Loading";
 function Subscription() {
-
     const navigate = useNavigate();
     const handleShow = () => {
         setShow(true);
     };
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-
     const [content, setContent] = useState([]);
     const [loading, setLoading] = useState(true);
 
@@ -22,7 +20,7 @@ function Subscription() {
         try {
             const main = new Story();
             const response = await main.Subscriptionlist();
-            setContent(response.data.data);
+            setContent(response?.data?.data);
             setLoading(false);
         } catch (error) {
             console.log("error", error);
@@ -36,11 +34,7 @@ function Subscription() {
 
     const handleSubscriptionAdded = async (newSubscription) => {
         console.log("Subscription added:", newSubscription);
-    
-       
-        await fetchData();
-    
-       
+       // await fetchData();
         handleClose();
     };
     return (

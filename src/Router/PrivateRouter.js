@@ -12,7 +12,6 @@ export default function PrivateRoute(props) {
     try {
       const main = new Story();
       const response = await main.Subscriptionlist();
-      console.log("response", response);
       if (response.data.status) {
         setContent(response.data.data);
       } else {
@@ -21,11 +20,10 @@ export default function PrivateRoute(props) {
       }
     } catch (error) {
       console.log("error", error);
-      toast.error("Please log in first.")
+      toast.error("Please login in first.")
       navigate('/');
     }
   };
-  console.log("content", content)
   useMemo(() => {
     fetchData();
   }, []);

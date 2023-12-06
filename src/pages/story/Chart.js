@@ -32,8 +32,8 @@ function Chart() {
                 datasets: [                   
                     {
                         label: 'User',
-                        // data: [Contnet.user ],
-                        data: [100, 200, 300,100, 200, 300,100, 200, 300,100, 200, 300],
+                         data: [Contnet.user ],
+///data: [100, 200, 300,100, 200, 300,100, 200, 300,100, 200, 300],
                         fill: true,
                         backgroundColor: 'rgba(34, 79, 255, 0.30)',
                         borderColor: 'rgba(34, 79, 255, 0.60)',
@@ -42,8 +42,8 @@ function Chart() {
                     },
                     { 
                         label: 'Subscription',
-                        // data: [Contnet.totalSubscription],
-                        data: [140, 250, 360,170, 280, 390,170, 240, 350,160, 270, 380],
+                        data: [Contnet.totalSubscription],
+//data: [140, 250, 360,170, 280, 390,170, 240, 350,160, 270, 380],
                         fill: true,
                         backgroundColor: 'rgba(144, 84, 217, 0.20)',
                         borderColor: 'rgba(144, 84, 217, 1)',
@@ -51,7 +51,7 @@ function Chart() {
                     },
                     // {
                     //     label: 'Stories',
-                    //     //  data: [Contnet.stories],
+                    //     //data: [Contnet.stories],
                     //     data: [120, 220, 320,120, 220, 320,120, 220, 320,120, 220, 320],
                     //     fill: true,
                     //     fontColor: '#ffffff',

@@ -3,24 +3,43 @@ import Heading from "../../component/Heading";
 import "../../style/story.css"
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Password from "./Password"
 import Story from "../../Apis/Story";
 import { Toaster, toast } from 'react-hot-toast';
 
-import { useNavigate } from "react-router-dom";
 
 
 function Profile() {
-    const navigate = useNavigate();
-
     const initialRegs = {
         phone_no: "",
         name: "",
         email: "",
     };
 
+
     const [Regs, setRegs] = useState(initialRegs);
+
+    const [content, setcontent] = useState([])
+
+    useEffect(() => {
+        const main = new Story();
+        const response = main.getdetilas();
+        response.then((res) => {
+            setcontent(res.data.data)
+            setRegs({
+                phone_no: res.data.data.phone_no,
+                name: res.data.data.name,
+                email: res.data.data.email,
+            });
+        }).catch((error) => {
+            console.log("error", error)
+        })
+    }, [])
+
+    console.log("cddd", content)
+
+
 
     const handleInputs = (e) => {
         const value = e.target.value;
@@ -35,30 +54,35 @@ function Profile() {
         setkeys(keys);
     };
 
-    async function handleForms(e) {
-        try {
-            const main = new Story();
-            console.log("main", main);
-            const response = await main.Profile(Regs);
-            console.log("res", response);
-            if (response.data.status === true) {
-                setRegs(initialRegs);
-                navigate('/');
-                toast.success(response.data.message);
-            }else{
-                toast.error(response.message);
-            }
-        } catch (error) {
-            console.log("error", error);
-            toast.error(error);
-        }
+
+    function handleForms(e) {
+        e.preventDefault();
+        const main = new Story();
+        main.Profile(Regs)
+            .then((res) => {
+                console.log("res", res);
+                if (res && res?.status === true) {
+                    toast.success(res.message);
+                    setRegs(initialRegs);
+                } else {
+                    toast.error(res.message);
+                }
+            })
+            .catch((error) => {
+                console.log("error", error);
+                toast.error("Failed to update profile");
+            });
     }
+
+
+
     return (
         <>
             <Toaster
                 position="top-center"
                 reverseOrder={false}
             />
+
             <AuthLayout>
                 <div className="content-wrapper">
                     <div className="content">
@@ -123,7 +147,7 @@ function Profile() {
                                                                 name="phone_no"
                                                                 onChange={handleInputs}
                                                                 value={Regs.phone_no}
-                                                                type="text"
+                                                                type="number"
                                                                 className="input_field password"
                                                                 id="password_field"
                                                             />
@@ -138,6 +162,8 @@ function Profile() {
                                                     </button>
                                                 </div>
                                             </div>
+
+
                                         </Tab>
                                         <Tab eventKey="password" title="Password">
                                             <Password />

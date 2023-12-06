@@ -98,7 +98,7 @@ a {text-decoration: none;}
 
 div#reschedule-popup{max-width: 830px;}
 div#reschedule-popup .modal-content{border-radius: 20px; background: #131C3E;}
-.reschedule-story{border-radius: 20px; background: #101733;margin: 0 -30px 30px;padding: 20px 20px 20px 20px;position: relative;}
+.reschedule-story{border-radius: 20px; background: #101733;padding: 20px 20px 20px 20px;position: relative;}
 #reschedule-popup .modal-body{padding: 0 30px 30px;}
 .reschedule-story .row { margin: 0 -10px;}
 .reschedule-story .row div[class*="col"] { padding: 0 10px; }
@@ -106,10 +106,10 @@ div#reschedule-popup .modal-content{border-radius: 20px; background: #131C3E;}
 .reschedule-story .row div[class*="col"]:last-child { width: 52%; }
 
 .reschedule-story img{max-width: 100%;}
-.closebtn{position: absolute;right: 20px;top: 20px;cursor: pointer;}
+.closebtn{position: absolute;right: 20px;top: 20px;cursor: pointer; z-index: 1;}
 .heading-graph { display: flex; flex-wrap: wrap; }
 .heading-graph h6{border-radius: 40px; background: rgba(0, 5, 24, 0.70);margin: 0 0 20px;padding: 5px 20px;}
-.heading-graph h6 span{background: var(--1, linear-gradient(94deg, #4B69E2 -2.08%, #9054D9 99.58%)); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;font-size: 13px;font-weight: 400;}
+.heading-graph h6 span{background: var(--1, linear-gradient(94deg, #4B69E2 -2.08%, #9054D9 99.58%)); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;font-size: 16px;font-weight: 400;}
 .heading-graph p{color: #FFF;font-family: Poppins; font-size: 18px; font-style: normal; font-weight: 600; line-height: 27px;    width: 100%;    margin: 0 0 18px;}
 .reschedule-story .add-line { background: #060C24; height: 1px; margin: 0 -20px 0 -20px; }
 .reschedule-story  h5{color: #999; font-family: Poppins; font-size: 14px; font-style: normal; font-weight: 300; line-height: 21px;  margin: 20px 0 10px;}
@@ -234,4 +234,34 @@ input:-webkit-autofill:hover, input:-webkit-autofill:focus { border: none; -webk
   color: red; 
   /* Change this to the desired color when the link is active */
   /* You can add other styles as needed */
+}
+
+
+
+.image-generate.modal-dialog-image  #generat-story.modal-dialog {
+  max-width: 640px;
+}
+.image-loader img {
+  width: 10%;
+  height: 100%;
+}
+
+
+.thumbnail-generating img {
+  max-width: 400px;
+  max-height: 300px;
+}
+.thumbnail-generating.w-100 {
+  width: 100% !important;
+  max-width: 100%;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.thumbnail-generating.w-100 img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  max-width: 100% !important;
+  max-height: 100% !important;
 }

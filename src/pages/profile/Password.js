@@ -6,7 +6,6 @@ import { Toaster, toast } from 'react-hot-toast';
 
 function Password() {
     const navigate = useNavigate();
-
     const initialRegs = {
         old_password: "",
         password: "",
@@ -45,7 +44,6 @@ function Password() {
 
 
     return (
-
         <>
           <Toaster
                 position="top-center"
@@ -69,7 +67,6 @@ function Password() {
                             />
                         </div>
                     </div>
-
                     <div className="col-md-6">
                         <label className="input_label" htmlFor="password_field">
                             Password

@@ -34,8 +34,8 @@ class Story extends Component {
         return Api.get("/statistics")
     }
 
-    async StoryCard(type, query) {
-        return Api.get(`/story-list/${type}?${query}`,)
+    async StoryCard(type, query,page) {
+        return Api.get(`/story-list/${type}?${query}&page=${page}`,)
     }
 
     async Storydetilas(uuid) {
@@ -45,9 +45,15 @@ class Story extends Component {
     async storydelete(uuid) {
         return Api.get(`/delete-story/${uuid}`)
     }
-
     async storyreshedule(uuid, data) {
         return Api.post(`/reschedule-story/${uuid}`, data)
+    }
+    async saveimage(data) {
+        return Api.post(`/save-image`, data)
+    }
+
+    async getdetilas(){
+        return Api.get("/get-detail")
     }
     async StoryLogout() {
         return Api.get("/admin-logout")

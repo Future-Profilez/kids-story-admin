@@ -1,24 +1,40 @@
 import { Image } from "react-bootstrap";
-import Story from "../../image/story-thubnail.png";
 import "../../style/story.css";
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
-import ImagePrompt from "./ImagePrompt";
-import list from "../../Data/data.json"
 import { Modal } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ReStory from "./ReStroy";
+import record from "../../Data/data.json"
+import ImagePrompt from "./ImagePrompt";
+import { genraorimage } from "../../Redux/UserSlice";
+import Schedule from "./Schedule";
 
 function Storylist() {
-    
-    // const  {List, name} = useContext(UserContext);
-    // const storedData = localStorage.getItem('name');
-    // console.log("storedData",storedData)
-    // const parsedData = JSON.parse(storedData);
-    // console.log("parsedData", parsedData);
-    // console.log("List",List);
+
+    const [storyUID, setStoryUID] = useState(null);
+
+    const getStoryUID = (uid) => {
+        setStoryUID(uid);
+        console.log("uid", uid);
+    }
+    const [story, setStory] = useState(record && record.data);
+    const navigate = useNavigate();
+    const users = useSelector(state => state.users.users);
+
+
+    console.log("users", users.at(-1));
+    const [records, setRecords] = useState([]);
+
+    let chaptersdata = [];
+    if (users.length > 0) {
+      chaptersdata = users.at(-1);
+    } else {
+      chaptersdata = users[0];
+    }
+
     // useEffect(() => {
     //     localStorage.setItem('List', JSON.stringify(List));
     // }, [List]);
@@ -35,7 +51,7 @@ function Storylist() {
     
    const record =list.chapters
      console.log("record", record)
-    const [show, setShow] = useState(true);
+    const [show, setShow] = useState(false);
     const [imagePrompt, setImagePrompt] = useState("");
     const handleClose = () => setShow(false);
     const handleShow = (image_prompt) => {
@@ -49,15 +65,17 @@ function Storylist() {
     };
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
-    const handleShowContinue = () => setShowContinue(true);
-    console.log("imagePrompt", imagePrompt)
-    console.log("ImageUrl", ImageUrl)
     function Schedulecontinue() {
         navigate('/schedule')
     }
     const [shows, setShows] = useState(false);
     const handleCloses = () => setShows(false);
     const handleShows = () => setShows(true);
+
+    const handleFinal = () => {
+        navigate('/card');
+    }
+
     return (
         <>
             <AuthLayout>
@@ -66,49 +84,43 @@ function Storylist() {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                {record  && record.map((item, key) => (
-                                            <div className="story-list" key={key}>
-                                                <h2>
-                                                   chapter{item.chapternumber }:- {item.title}
-                                                </h2>
-                                                <p>{item.content}</p>
-                                                <div className="thubnail">
-                                                    <Image
-                                                        src={Story}
-                                                        alt="story"
-                                                        onClick={() => handleShow(item.imageprompt)}
-                                                    />
-                                                </div>
-                                            </div>
-                                        ))}
+                                <h1 className="mb-3"> Title :- {chaptersdata && chaptersdata.title}   </h1>
+                                {chaptersdata && chaptersdata.chapters && chaptersdata.chapters.map((item, key) => (
+                                    <div className="story-list" key={key}>
+                                        <h2> Chapter {item.chapternumber} :- {item.title} </h2>
+                                        <p>{item.content}</p>
+                                        {storyUID ? <> <div className="thubnail" >
+                                            <ImagePrompt uid={storyUID} chapter={item && item.chapternumber} imageprompt={item.imageprompt} />
+                                        </div></> : <div className="thubnail" >Please click the sechedule button  and schedule the story then after show imageprompt</div>}
+                                    </div>
+                                ))}
+
                                 <div className="btn-list">
-                                    <button className="btn blue-gradient-btn" onClick={() => handleShows()}>
-                                        <span>Regenerate Story</span>
-                                    </button>
-                                    <button
+                                    {storyUID ?
+                                        <button className="btn blue-gradient-btn" onClick={handleFinal}>
+                                            <span>Done</span>
+                                        </button>
+                                        : <>
+                                            <button className="btn blue-gradient-btn" onClick={() => handleShows()}>
+                                                <span>Regenerate Story</span>
+                                            </button>
+                                            {/* <button
                                         className="btn blue-gradient-btn"
-                                        onClick={handleShowContinue}
-                                    >
+                                        onClick={handleShowContinue} >
                                         <span>Continue</span>
-                                    </button>
+                                    </button> */}
+                                            <Schedule getStoryUID={getStoryUID} record={records} />
+                                        </>
+                                    }
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <ReStory shows={shows}
-                        handleCloses={handleCloses} />
-                    {/* data={imagepropmt}  */}
-                    {/* <ImagePrompt
-                        show={show}
-                        handleClose={handleClose}
-                        onGenerateImage={handleGenerateImage}
-                        imagePrompt={imagePrompt}
-                    /> */}
+                    <ReStory shows={shows} handleCloses={handleCloses} />
                     <Modal
                         show={showContinue}
                         onHide={handleCloseContinue}
-                        id="generat-story"
-                    >
+                        id="generat-story" >
                         <Modal.Header
                             closeButton
                             style={{ borderTop: "1px solid rgba(255,255,255, 0.1)" }}

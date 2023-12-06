@@ -102,8 +102,8 @@ div#reschedule-popup .modal-content{border-radius: 20px; background: #131C3E;}
 #reschedule-popup .modal-body{padding: 0 30px 30px;}
 .reschedule-story .row { margin: 0 -10px;}
 .reschedule-story .row div[class*="col"] { padding: 0 10px; }
-.reschedule-story .row div[class*="col"]:first-child { width: 48%; }
-.reschedule-story .row div[class*="col"]:last-child { width: 52%; }
+.reschedule-story .row div[class*="col"]:first-child { width: 34%; }
+.reschedule-story .row div[class*="col"]:last-child { width: 66%; }
 
 .reschedule-story img{max-width: 100%;}
 .closebtn{position: absolute;right: 20px;top: 20px;cursor: pointer; z-index: 1;}
@@ -205,6 +205,8 @@ input:-webkit-autofill:hover, input:-webkit-autofill:focus { border: none; -webk
   .generate-block h1 { font-size: 34px; line-height: 48px;}
   .btn{padding: 13px 15px;}
   .update-field div[class*="col-"] { margin: 0 0 20px; }
+  .reschedule-story .row div[class*="col"]:first-child { width: 45%; }
+  .reschedule-story .row div[class*="col"]:last-child { width: 55%; }
  }
  @media screen and (max-width: 767px) {
   .main-sidebar{ width: 256px;}

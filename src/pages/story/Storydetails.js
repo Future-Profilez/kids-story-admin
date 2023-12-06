@@ -1,7 +1,6 @@
 import { Image, Modal } from "react-bootstrap";
 import storyimage from "../../image/list.png";
-import story from "../../image/card.png";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Story from "../../Apis/Story";
 import { useParams } from "react-router-dom";
@@ -95,7 +94,7 @@ function Storydetails() {
                 <div className="reschedule-story">
                     <div className="row">
                         <div className="col-md-6 col-lg-4">
-                            <Image src={storyimage} alt="img" />
+                            <Image src={content?.story_image_url} alt="img" />
                         </div>
                         <div className="col-md-6 col-lg-8">
                             <div className="heading d-flex justify-content-between">
@@ -105,7 +104,7 @@ function Storydetails() {
                     />
                                 <div className="heading-graph">
                                     <h6><span> {content?.genre_name} </span> </h6>
-                                    <p>{content?.title}</p>
+                                    <p>Title :- {content?.title}</p>
                                 </div>
 
                             </div>
@@ -140,7 +139,7 @@ function Storydetails() {
                                 <p>
                                     {item?.story_description}
                                 </p>
-                                <Image src={item?.story_image_url} alt="story"  />
+                                <Image src={item?.image_url} alt="story"  />
                             </div>
                         ))}
                     </div>

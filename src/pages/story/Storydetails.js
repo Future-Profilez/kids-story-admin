@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import Story from "../../Apis/Story";
 import { useParams } from "react-router-dom";
 import { toast, Toaster } from 'react-hot-toast';
+import AuthLayout from "../../component/AuthLayout";
+import Heading from "../../component/Heading";
 function Storydetails() {
      
     const { uuid } = useParams();
@@ -87,13 +89,17 @@ function Storydetails() {
 
     return (
         <>
-            <div>
+           <AuthLayout> 
+            <div className="content-wrapper">
+                <div className="content ">
+                <Heading/>
+                <div className="story-title"><h6> Title :- {content?.title}</h6></div>
                 <div className="reschedule-story">
                     <div className="row">
-                        <div className="col-md-6">
+                        <div className="col-md-6 col-lg-4">
                             <Image src={storyimage} alt="img" />
                         </div>
-                        <div className="col-md-6">
+                        <div className="col-md-6 col-lg-8">
                             <div className="heading d-flex justify-content-between">
                             <Toaster
                         position="top-center"
@@ -141,8 +147,9 @@ function Storydetails() {
                         ))}
                     </div>
                 </div>
+              </div>
             </div>
-
+            </AuthLayout>
 
 
             <Modal show={showContinue} onHide={handleCloseContinue} id="generat-story">

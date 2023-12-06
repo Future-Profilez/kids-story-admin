@@ -36,33 +36,19 @@ function Storylist() {
     }
 
     // useEffect(() => {
-    //     localStorage.setItem('List', JSON.stringify(List));
-    // }, [List]);
+  
+    //   let extractedRecords = [];
+    //   if (chaptersdata) {
+    //     extractedRecords = chaptersdata.data;
+    //   } else {
+    //     extractedRecords = chaptersdata;
+    //   }
+  
+    //   // Set the extracted records to the state
+    //   setRecords(extractedRecords);
+    // }, [users]);
+    console.log("chaptersdata", chaptersdata)
 
-    // const storedData = localStorage.getItem('List');
-    // const parsedData = JSON.parse(storedData);
-    // console.log("parsedData", parsedData);
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    // const users = useSelector(state => state.users.users);
-    // console.log("redux", useSelector(state => state.users.users))
-    // console.log("users", users)
-    // const record = users[0]?.chapters
-    
-   const record =list.chapters
-     console.log("record", record)
-    const [show, setShow] = useState(false);
-    const [imagePrompt, setImagePrompt] = useState("");
-    const handleClose = () => setShow(false);
-    const handleShow = (image_prompt) => {
-        setImagePrompt(image_prompt);
-        setShow(true);
-    };
-    const [ImageUrl, setImageUrl] = useState("")
-    const handleGenerateImage = (image_prompt) => {
-        setImageUrl(image_prompt)
-        console.log("Generated Image Prompt:", image_prompt);
-    };
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     function Schedulecontinue() {

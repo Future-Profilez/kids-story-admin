@@ -104,8 +104,10 @@ div#reschedule-popup .modal-content{border-radius: 20px; background: #131C3E;}
 .reschedule-story .row div[class*="col"] { padding: 0 10px; }
 .reschedule-story .row div[class*="col"]:first-child { width: 34%; }
 .reschedule-story .row div[class*="col"]:last-child { width: 66%; }
-
-.reschedule-story img{max-width: 100%;}
+.reschedule-story img {
+  object-fit: cover;
+  max-width: 100%;
+}
 .closebtn{position: absolute;right: 20px;top: 20px;cursor: pointer; z-index: 1;}
 .heading-graph { display: flex; flex-wrap: wrap; }
 .heading-graph h6{border-radius: 40px; background: rgba(0, 5, 24, 0.70);margin: 0 0 20px;padding: 5px 20px;}

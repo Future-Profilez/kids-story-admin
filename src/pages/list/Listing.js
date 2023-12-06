@@ -14,11 +14,9 @@ function Listing({type}) {
     const [loading, setLoading] = useState(false);
     const [searchQuery, setSearchQuery] = useState(inputref.current);
     const [content, setContent] = useState([]);
-    const [selectedUuid, setSelectedUuid] = useState("");
     const [selectSort, setSelectSort] = useState("");
     const [selectedGenre, setSelectedGenre] = useState("");
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
+   
 
    
     const handlesort = (e) => {
@@ -93,10 +91,7 @@ function Listing({type}) {
         }
     }, [type, selectSort, selectedGenre, searchQuery]);
 
-    const handleShow = (uuid) => {
-        setShow(true);
-        setSelectedUuid(uuid);
-    };
+   
     const loadMore = () => {
         if (!loading && hasmore) {
             setLoading(true);
@@ -176,7 +171,20 @@ function Listing({type}) {
                         <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
                             <div className="card">
                                 <Link to={`${slugify(item.uuid)}`} >
-                                    <img className="card-img-top" src={item.image_url} alt="Card cap" />
+                                {item.image_url && item.image_url ? (
+                    <img
+                      className="card-img-top img-fluid"
+                      src={item.image_url}
+                      alt="player"
+                    />
+                  ) : (
+                    <img
+                      className="card-img-top img-fluid"
+                      src={storys}
+                      alt="player"
+                    />
+                  )}
+                                 
                                     <div className="card-body">
                                         <p className="card-text">{item.scheduled_at} </p>
                                         <h5 className="card-title" style={divStyle}

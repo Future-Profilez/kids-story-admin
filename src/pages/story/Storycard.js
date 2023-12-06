@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import Tab from 'react-bootstrap/Tab';

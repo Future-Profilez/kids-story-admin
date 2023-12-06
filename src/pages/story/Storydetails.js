@@ -1,8 +1,8 @@
 import { Image, Modal } from "react-bootstrap";
-import storyimage from "../../image/list.png";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Story from "../../Apis/Story";
+import storyimage from "../../image/Image.png"
 import { useParams } from "react-router-dom";
 import { toast, Toaster } from 'react-hot-toast';
 import AuthLayout from "../../component/AuthLayout";
@@ -94,7 +94,7 @@ function Storydetails() {
                 <div className="reschedule-story">
                     <div className="row">
                         <div className="col-md-6 col-lg-4">
-                            <Image src={content?.story_image_url} alt="img" />
+                        <Image src={  storyimage || content?.story_image_url } alt="img" />
                         </div>
                         <div className="col-md-6 col-lg-8">
                             <div className="heading d-flex justify-content-between">
@@ -139,7 +139,19 @@ function Storydetails() {
                                 <p>
                                     {item?.story_description}
                                 </p>
-                                <Image src={item?.image_url} alt="story"  />
+                                {item.image_url && item.image_url ? (
+                    <img
+                      className="card-img-top img-fluid"
+                      src={item.image_url}
+                      alt="player"
+                    />
+                  ) : (
+                    <img
+                      className="card-img-top img-fluid"
+                      src={storyimage}
+                      alt="player"
+                    />
+                  )}
                             </div>
                         ))}
                     </div>

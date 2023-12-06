@@ -14,7 +14,6 @@ import Static from "./pages/story/Static";
 import PrivateRouter from "./Router/PrivateRouter";
 import Login from "./component/Login";
 import UserContextProvider from "./context/UserContextProvider";
-import ImageAi from "./pages/story/ImageAi";
 import Storydetails from "./pages/story/Storydetails";
 
 function App() {
@@ -65,11 +64,7 @@ function App() {
               </PrivateRouter>
             } />
            
-              <Route path="/imageai" element={
-              <PrivateRouter>
-                <ImageAi />
-              </PrivateRouter>
-            } />
+            
           </Routes>
         </Router>
       </UserContextProvider>

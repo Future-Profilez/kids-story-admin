@@ -108,7 +108,6 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
                     const base64data = reader.result;
                     setImageBase64(base64data);
                     console.log("base64data",base64data)
-                    navigator.clipboard.writeText(base64data)
                 };
                 reader.readAsDataURL(blob);
             } else {

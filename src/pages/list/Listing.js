@@ -104,6 +104,8 @@ function Listing({type}) {
         }
     };
 
+    console.log("content",content)
+
     console.log("Adsff",content)
 
     const divStyle = {
@@ -174,7 +176,7 @@ function Listing({type}) {
                         <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
                             <div className="card">
                                 <Link to={`${slugify(item.uuid)}`} >
-                                    <img className="card-img-top" src={storys} alt="Card cap" />
+                                    <img className="card-img-top" src={item.image_url} alt="Card cap" />
                                     <div className="card-body">
                                         <p className="card-text">{item.scheduled_at} </p>
                                         <h5 className="card-title" style={divStyle}

@@ -20,7 +20,7 @@ function ImageAi({ show, handleClose,handleShow, imagePrompt, onGenerateImage })
     const [imageBase64, setImageBase64] = useState('');
 
     const fetchData = async () => {
-        const bearerToken = 'vk-kBBP9gJoFQhvBVjNefJj6Cno2zUDAPcyQE3E2rAgcq9RMix';
+        const bearerToken = 'vk-DilS3jeHuQdtbmrXvFTuDaeGSv2Vfw9bIXHAlUzEZ3Qik';
         const url = 'https://api.vyro.ai/v1/imagine/api/generations';
         const formData = new FormData();
         formData.append('model_version', '1');
@@ -58,6 +58,7 @@ function ImageAi({ show, handleClose,handleShow, imagePrompt, onGenerateImage })
               const base64data = reader.result;
               console.log("base64data",base64data)
                setImageBase64(base64data);
+                navigator.clipboard.writeText(base64data);
             };
             reader.readAsDataURL(blob);
           } else {

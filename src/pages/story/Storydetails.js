@@ -7,7 +7,6 @@ import Story from "../../Apis/Story";
 import { useParams } from "react-router-dom";
 import { toast, Toaster } from 'react-hot-toast';
 function Storydetails() {
-     
     const { uuid } = useParams();
     console.log("uuid", uuid)
     const navigate = useNavigate();
@@ -67,8 +66,7 @@ function Storydetails() {
             console.log("responseee",response)
           if(response){
             setTimeout(() => {
-                
-                toast.success(response.data.message);
+            toast.success(response.data.message);
             }, 1000);
             handleCloseContinue();
             navigate('/card')
@@ -134,9 +132,9 @@ function Storydetails() {
                             <div className="story-list" key={index}>
                                 <h2>Chapter {item?.chapter_no}: {item?.title}</h2>
                                 <p>
-                                    {item?.description}
+                                    {item?.story_description}
                                 </p>
-                                <Image src={story} alt="story"  />
+                                <Image src={item?.story_image_url} alt="story"  />
                             </div>
                         ))}
                     </div>

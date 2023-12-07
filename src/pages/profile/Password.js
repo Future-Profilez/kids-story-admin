@@ -21,7 +21,6 @@ function Password() {
         console.table(Regs);
     };
 
-    
     async function handleForms(e) {
         e.preventDefault();
         try {
@@ -33,7 +32,7 @@ function Password() {
                 setRegs(initialRegs);
                 toast.success(response.data.message);
                 navigate("/")
-            }else{
+            } else {
                 toast.error(response.data.message)
             }
         } catch (error) {
@@ -45,7 +44,7 @@ function Password() {
 
     return (
         <>
-          <Toaster
+            <Toaster
                 position="top-center"
                 reverseOrder={false}
             />
@@ -59,12 +58,13 @@ function Password() {
                             <input
                                 placeholder=""
                                 name="old_password"
-                              onChange={handleInputs}
+                                onChange={handleInputs}
                                 value={Regs.old_password}
                                 type="password"
                                 className="input_field password"
                                 id="password_field"
                             />
+
                         </div>
                     </div>
                     <div className="col-md-6">
@@ -81,6 +81,7 @@ function Password() {
                                 className="input_field password"
                                 id="password_field"
                             />
+
                         </div>
                     </div>
 
@@ -98,7 +99,9 @@ function Password() {
                                 className="input_field password"
                                 id="password_field"
                             />
+
                         </div>
+
                     </div>
                 </div>
                 <div className="text-center">

@@ -16,14 +16,14 @@ function Login() {
         email: "",
 
     });
-    const [showPassword, setShowPassword] = useState(false);
     const handleInputs = (e) => {
         const value = e.target.value;
         const name = e.target.name;
         setRegs((prevState) => ({ ...prevState, [name]: value }));
         console.table(Regs)
     };
-
+    
+    const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
     };

@@ -19,7 +19,7 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
     const imagekey = process.env.REACT_APP_IMAGE;
     const [uploading, setUploading] = useState(false);
     
-    const [showPrompt, setShowPrompt] = useState(true);
+    const [showPrompt, setShowPrompt] = useState(false);
 
     // async function addImage(base64) {
     //     setUploading(true);
@@ -102,6 +102,7 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
                 setUpdatedImage(imageUrl);
                 setIsLoading(false);
                 setIsClicked(true);
+                setShowPrompt(false)
                 const reader = new FileReader();
                 reader.onload = () => {
                     const base64data = reader.result;
@@ -181,7 +182,7 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
                                 </div>
                             </div>
                             :
-                            showPrompt && (
+                            !showPrompt && (
                                 <div className="promtEdit w-100">
                                     <div className="date-field-story">
                                         <input

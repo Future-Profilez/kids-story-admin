@@ -3,7 +3,7 @@ import { Modal } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Ai from "../../Apis/Ai";
-import { adduser, reduxdatauser } from "../../Redux/UserSlice";
+import { adduser,reduxdatauser } from "../../Redux/UserSlice";
 
 function ReStory({ shows, handleCloses }) {
 
@@ -90,12 +90,11 @@ function ReStory({ shows, handleCloses }) {
               const Parstory = JSON.parse(storyResponse);
               console.log("parstory", Parstory);
               storyres = Parstory;
-              const datastory = dispatch(adduser(storyres))
+              const datastory = dispatch(reduxdatauser(storyres))
               console.log("datastory", datastory);
               const data = setCard(storyres);
               navigate('/list');
               console.log("data", data);
-
             } catch (error) {
               console.log("Error parsing JSON:", error);
             } finally {

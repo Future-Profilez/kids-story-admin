@@ -139,19 +139,8 @@ function Storydetails() {
                                 <p>
                                     {item?.story_description}
                                 </p>
-                                {item.image_url && item.image_url ? (
-                    <img
-                      className="card-img-top img-fluid"
-                      src={item.image_url}
-                      alt="player"
-                    />
-                  ) : (
-                    <img
-                      className="card-img-top img-fluid"
-                      src={storyimage}
-                      alt="player"
-                    />
-                  )}
+
+                                <img src={item.image_url || storyimage } alt="N/A"/>
                             </div>
                         ))}
                     </div>

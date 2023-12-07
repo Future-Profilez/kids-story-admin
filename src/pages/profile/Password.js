@@ -61,7 +61,7 @@ function Password() {
                                 name="old_password"
                               onChange={handleInputs}
                                 value={Regs.old_password}
-                                type="text"
+                                type="password"
                                 className="input_field password"
                                 id="password_field"
                             />
@@ -77,7 +77,7 @@ function Password() {
                                 name="password"
                                 onChange={handleInputs}
                                 value={Regs.password}
-                                type="text"
+                                type="password"
                                 className="input_field password"
                                 id="password_field"
                             />
@@ -94,7 +94,7 @@ function Password() {
                                 name="confirm_password"
                                 onChange={handleInputs}
                                 value={Regs.confirm_password}
-                                type="text"
+                                type="password"
                                 className="input_field password"
                                 id="password_field"
                             />

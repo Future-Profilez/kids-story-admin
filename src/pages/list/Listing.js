@@ -171,20 +171,7 @@ function Listing({type}) {
                         <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
                             <div className="card">
                                 <Link to={`${slugify(item.uuid)}`} >
-                                {item.image_url && item.image_url ? (
-                    <img
-                      className="card-img-top img-fluid"
-                      src={item.image_url}
-                      alt="player"
-                    />
-                  ) : (
-                    <img
-                      className="card-img-top img-fluid"
-                      src={storys}
-                      alt="player"
-                    />
-                  )}
-                                 
+                                <img src={item.image_url || storys } alt="N/A"/>
                                     <div className="card-body">
                                         <p className="card-text">{item.scheduled_at} </p>
                                         <h5 className="card-title" style={divStyle}

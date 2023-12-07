@@ -56,8 +56,7 @@ function Storydetails() {
     async function handleForms(e) {
         e.preventDefault();
         const currentDate = new Date().toISOString().split('T')[0];
-
-        if (currentDate == Regs.schedule_at) {
+        if (currentDate === Regs.schedule_at) {
             toast.success("You can not schedule story today.Please select a upcoming date. ");
             return false;
         }
@@ -101,10 +100,7 @@ function Storydetails() {
                                 </div>
                                 <div className="col-md-6 col-lg-8">
                                     <div className="heading d-flex justify-content-between">
-                                        <Toaster
-                                            position="top-center"
-                                            reverseOrder={false}
-                                        />
+
                                         <div className="heading-graph">
                                             <h6><span> {content?.genre_name} </span> </h6>
                                             <p> {content?.title}</p>
@@ -139,20 +135,20 @@ function Storydetails() {
                                     <div className="story-list" key={index}>
                                         <h2 className="mt-4 pt-3 mb-3" > {item?.title}</h2>
                                         <div className="chapterImg w-100 position-relative mt-2 mb-3" >
-                                            <img src={item.image_url || inmagerecoird} alt="N/A" 
+                                            <img src={item.image_url || inmagerecoird} alt="N/A"
                                             />
                                             <ImagePrompt customclass="editimagebtn"
-                                             custom={<>
+                                                custom={<>
                                                     <div className="editImage" >Edit Image</div>
-                                                    </>}
-                                                    imageUrl={item?.imageUrl || inmagerecoird}
-                                                    uid={id}
-                                                    chapter={item?.chapter_no}
-                                                    imageprompt={item?.image_prompt}
-                                                    show={showImagePromptModal}
-                                                />
-                                            </div>
-                                            <p>   {item?.story_description}
+                                                </>}
+                                                imageUrl={item?.imageUrl || inmagerecoird}
+                                                uid={id}
+                                                chapter={item?.chapter_no}
+                                                imageprompt={item?.image_prompt}
+                                                show={showImagePromptModal}
+                                            />
+                                        </div>
+                                        <p>   {item?.story_description}
                                         </p>
                                     </div>
                                 ))}
@@ -171,7 +167,10 @@ function Storydetails() {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-
+                    <Toaster
+                        position="top-center"
+                        reverseOrder={false}
+                    />
                     <div class="body-popup-title"><h3>When do you want to publish this story?</h3></div>
                     <div className="date-field-story" >
                         {/* <span>

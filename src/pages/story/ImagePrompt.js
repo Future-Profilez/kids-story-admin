@@ -114,7 +114,7 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
         <>
         {custom ? 
         <div>
-            
+            <img src={existed} alt="N/A" />
             <div className={customclass} onClick={() => setModalShow(true)}>{custom}</div>
         </div>
         : <div onClick={() => setModalShow(true)}>

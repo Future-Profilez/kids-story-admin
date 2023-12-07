@@ -49,9 +49,14 @@ function Profile() {
         setkeys(keys);
     };
 
+    const [loading, setLoading] = useState(false);
 
     function handleForms(e) {
         e.preventDefault();
+        if(loading){
+            return false;
+        }
+        setLoading(true);
         const main = new Story();
         main.Profile(Regs)
             .then((res) => {
@@ -61,9 +66,11 @@ function Profile() {
                 } else {
                     toast.error(res.message);
                 }
+                setLoading(false)
             })
             .catch((error) => {
                 console.log("error", error);
+                setLoading(false)
                 toast.error("Failed to update profile");
             });
     }
@@ -148,7 +155,7 @@ function Profile() {
                                                 <div className="text-center">
                                                     <button className="btn blue-gradient-btn" onClick={handleForms}>
                                                         <span>
-                                                            Submit
+                                                        <span>{loading ? "Wait..":"Submit"}</span>
                                                         </span>
                                                     </button>
                                                 </div>

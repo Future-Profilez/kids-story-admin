@@ -38,13 +38,17 @@ function Login() {
         const main =  new Story();
         try {
             const response = await main.Login(Regs);
-            if (response?.data) {
+            console.log("response",response)
+            if (response?.data?.status===true) {
                  setLoginUser(response?.data);
                 localStorage.setItem("token", response?.data?.token);
-                toast.success(response.data.message);
-                navigate("/home");
+                setTimeout(() => {
+                    toast.success(response.data.message);
+                    navigate("/home");
+                }, 1000);
             } else {
-                console.log("error",response.data.message)
+                console.log("error")
+                toast.error(response.data.message);
             }
             setLoading(false);
         } catch (error) {

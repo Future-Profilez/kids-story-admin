@@ -119,6 +119,7 @@
   margin-top: 20px;
   border-radius: 20px;
   background: #000518;
+  overflow: hidden;
 }
 .story-card .card-body { padding: 15px; }
 .card .card-img-top {

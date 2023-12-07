@@ -17,8 +17,9 @@ function Storydetails() {
     const handleShowContinue = () => setShowContinue(true);
     console.log("UUID received in Storydetails:", uuid);
     const [content, setContent] = useState({})
+
     const fetchStoryDetails = () => {
-        if (uuid) {
+       
             const main = new Story();
             const response = main.Storydetilas(uuid);
             response.then((res) => {
@@ -26,11 +27,12 @@ function Storydetails() {
             }).catch((error) => {
                 console.log("error", error)
             })
-        }
-    };
+        };
+  
     useEffect(() => {
         fetchStoryDetails();
     }, [uuid]);
+
     const fetchStoryDelete = () => {
         if (uuid) {
             const main = new Story();
@@ -135,8 +137,7 @@ function Storydetails() {
                                     <div className="story-list" key={index}>
                                         <h2 className="mt-4 pt-3 mb-3" > {item?.title}</h2>
                                         <div className="chapterImg w-100 position-relative mt-2 mb-3" >
-                                            <img src={item.image_url || inmagerecoird} alt="N/A"
-                                            />
+                                       <img src ={item.image_url}  alt="N/A"/>
                                             <ImagePrompt customclass="editimagebtn"
                                                 custom={<>
                                                     <div className="editImage" >Edit Image</div>

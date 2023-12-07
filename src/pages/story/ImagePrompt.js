@@ -6,7 +6,7 @@ import Story from "../../Apis/Story";
 import toast from "react-hot-toast";
 
 
-function ImagePrompt({ customclass, custom, imageprompt, uid, chapter,showImagePromptModal }) {
+function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter,showImagePromptModal }) {
     const [prompt, setPrompt] = useState(imageprompt);
     console.log("Prompt ", prompt);
     const [modalShow, setModalShow] = useState(false);
@@ -21,6 +21,7 @@ function ImagePrompt({ customclass, custom, imageprompt, uid, chapter,showImageP
     
     const [showPrompt, setShowPrompt] = useState(false);
 
+    const [existed,setexisted] = useState(image_url);
    
     async function addImage(base64) {
         setUploading(true);
@@ -52,6 +53,7 @@ function ImagePrompt({ customclass, custom, imageprompt, uid, chapter,showImageP
     const usethis = () => {
         addImage(imageBase64);
         setFinalImage(updatedImage);
+        setexisted(updatedImage)
     }
 
     const fetchData = async () => {
@@ -110,7 +112,12 @@ function ImagePrompt({ customclass, custom, imageprompt, uid, chapter,showImageP
 
     return (
         <>
-        {custom ? <div className={customclass} onClick={() => setModalShow(true)}>{custom}</div>: <div onClick={() => setModalShow(true)}>
+        {custom ? 
+        <div>
+            
+            <div className={customclass} onClick={() => setModalShow(true)}>{custom}</div>
+        </div>
+        : <div onClick={() => setModalShow(true)}>
             <img src={updatedImage} alt="story" />
         </div>}
 
@@ -142,7 +149,7 @@ function ImagePrompt({ customclass, custom, imageprompt, uid, chapter,showImageP
                                     </svg>
                                     Image Generating...
                                 </div>
-                                <img ref={imageRef} src={Story} alt="story" />
+                                <img ref={imageRef} src={recordimage} alt="story" />
                             </div>
                     :
                         isClicked ?

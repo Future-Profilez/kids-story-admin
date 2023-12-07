@@ -44,6 +44,8 @@ function Storydetails() {
             })
         }
     };
+
+    const id = content.id;
     const [Regs, setRegs] = useState("");
     const handleInputs = (e) => {
         const value = e.target.value;
@@ -83,27 +85,7 @@ function Storydetails() {
             console.log("Error:", error);
         }
     }
-
-
-    const [storyimage, setStoryimage] = useState({
-
-
-    })
-
-    console.log("content", content)
-
-    const [selectedImage, setSelectedImage] = useState(null);
-    const [selectedChapter, setSelectedChapter] = useState(null);
-    const [selectedImagePrompt, setSelectedImagePrompt] = useState(null);
     const [showImagePromptModal, setShowImagePromptModal] = useState(false);
-
-    console.log("fdsfds", selectedChapter, selectedImage, selectedImagePrompt)
-    const openImagePrompt = (chapter, imageprompt, image_url) => {
-        setSelectedChapter(chapter);
-        setSelectedImagePrompt(imageprompt);
-        setSelectedImage(image_url);
-        setShowImagePromptModal(true);
-    };
 
     return (
         <>
@@ -125,14 +107,13 @@ function Storydetails() {
                                         />
                                         <div className="heading-graph">
                                             <h6><span> {content?.genre_name} </span> </h6>
-                                            <p>Title :- {content?.title}</p>
+                                            <p> {content?.title}</p>
                                         </div>
 
                                     </div>
                                     <div className="add-line">
                                     </div>
                                     <div className="description">
-                                        <h5>Description</h5>
                                         <p>
                                             {content?.story_description}
                                         </p>
@@ -156,24 +137,23 @@ function Storydetails() {
                             <div className="col-md-12">
                                 {content && content?.story_chapter && content?.story_chapter?.map((item, index) => (
                                     <div className="story-list" key={index}>
-                                        <h2>Chapter {item?.chapter_no}: {item?.title}</h2>
-                                        <p>
-                                            {item?.story_description}
-                                        </p>
-                                        <img src={item.image_url || inmagerecoird} alt="N/A" onClick={() => openImagePrompt(
-                                            item.chapter_no,
-                                            item.image_prompt,
-                                            item.image_url
-                                        )} />
-                                        {selectedImage && (
-                                            <ImagePrompt
-                                                imageUrl={selectedImage}
-                                                uid={uuid}
-                                                chapter={selectedChapter}
-                                                imageprompt={selectedImagePrompt}
-                                                show={showImagePromptModal}
+                                        <h2 className="mt-4 pt-3 mb-3" > {item?.title}</h2>
+                                        <div className="chapterImg w-100 position-relative mt-2 mb-3" >
+                                            <img src={item.image_url || inmagerecoird} alt="N/A" 
                                             />
-                                        )}
+                                            <ImagePrompt customclass="editimagebtn"
+                                             custom={<>
+                                                    <div className="editImage" >Edit Image</div>
+                                                    </>}
+                                                    imageUrl={item?.imageUrl || inmagerecoird}
+                                                    uid={id}
+                                                    chapter={item?.chapter_no}
+                                                    imageprompt={item?.image_prompt}
+                                                    show={showImagePromptModal}
+                                                />
+                                            </div>
+                                            <p>   {item?.story_description}
+                                        </p>
                                     </div>
                                 ))}
                             </div>

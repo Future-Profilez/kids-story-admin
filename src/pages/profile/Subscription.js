@@ -80,7 +80,6 @@ function Subscription() {
                                                     </svg> <span>Add Subscription Plan</span>
                                                 </Link>
                                             </div>
-
                                         </div> */}
                                     </div>
                                 </div>

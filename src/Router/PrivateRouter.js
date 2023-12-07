@@ -16,7 +16,6 @@ export default function PrivateRoute(props) {
         setContent(response.data.data);
       } else {
         toast.error(response.data.message)
-        navigate('/');
       }
     } catch (error) {
       console.log("error", error);

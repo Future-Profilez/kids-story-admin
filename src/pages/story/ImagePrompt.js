@@ -6,7 +6,7 @@ import Story from "../../Apis/Story";
 import toast from "react-hot-toast";
 
 
-function ImagePrompt({ imageprompt , uid, chapter }) {
+function ImagePrompt({ customclass, custom, imageprompt, uid, chapter,showImagePromptModal }) {
     const [prompt, setPrompt] = useState(imageprompt);
     console.log("Prompt ", prompt);
     const [modalShow, setModalShow] = useState(false);
@@ -21,29 +21,7 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
     
     const [showPrompt, setShowPrompt] = useState(false);
 
-    // async function addImage(base64) {
-    //     setUploading(true);
-    //     const main = new Story();
-    //     const resp = await main.saveimage({
-    //         "story_uuid":uid,
-    //         "chapter_no":chapter,
-    //         "imageBase64":base64,
-    //     });
-    //     resp.then((res)=>{
-    //         if(res.data.status){
-    //             console.log("res",res);
-    //             setModalShow(false);
-    //             setFinalImage("final image url.")
-    //         } else {
-    //             toast.error("error");
-    //         }
-    //         setUploading(false);
-    //     }).catch((err)=>{
-    //         console.error("API Error:", err);
-    //         toast.error(err);
-    //         setUploading(false);
-    //     });
-    // }
+   
     async function addImage(base64) {
         setUploading(true);
     
@@ -84,7 +62,7 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
             toast.error("Please schedule story first to generate image.")
         }
         setIsLoading(true);
-        const bearerToken = 'vk-DilS3jeHuQdtbmrXvFTuDaeGSv2Vfw9bIXHAlUzEZ3Qik';
+        const bearerToken = 'vk-X8WKL5pkTBhhNvWxx3ILLrbLZ77wo8G1DWo887i6aPN0O';
         const url = 'https://api.vyro.ai/v1/imagine/api/generations';
         const formData = new FormData();
         formData.append('model_version', '1');
@@ -124,18 +102,18 @@ function ImagePrompt({ imageprompt , uid, chapter }) {
     const handleRegenerate = () => {
          setIsLoading(true);
          setShowPrompt(true);
+         fetchData();
         };
 
-    // const handleContinue = () => {
-    //     setModalShow(false);
-    // };
+ 
 
 
     return (
         <>
-        <div onClick={() => setModalShow(true)}>
+        {custom ? <div className={customclass} onClick={() => setModalShow(true)}>{custom}</div>: <div onClick={() => setModalShow(true)}>
             <img src={updatedImage} alt="story" />
-        </div>
+        </div>}
+
         <Modal centered show={modalShow} onHide={() => setModalShow(false)} id="generat-story" className="image-generate modal-dialog-image">
             <div className="closebtn" onClick={() => setModalShow(false)}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">

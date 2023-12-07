@@ -6,10 +6,24 @@
 .story-list img {
   object-fit: cover; width: 100%; max-height: 360px; border-radius: 8.174px;
 }
-.story-list h2 {color: #FFF; font-family: Poppins; font-size: 18px; font-style: normal; font-weight: 600; line-height: 27px;    margin: 0 0 10px;}
-
-.story-list p {color: #FFF; font-family: Poppins; font-size: 15px; font-style: normal; font-weight: 400; line-height: 22.5px;margin: 0 0 25px;}
-
+.story-list h2 {
+  color: #FFF;
+  font-family: Poppins;
+  font-size: 21px;
+  font-style: normal;
+  font-weight: 800;
+  line-height: 28px;
+  margin: 0 0 10px;
+}
+.story-list p {
+  color: #FFF;
+  font-family: Poppins;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 27.5px;
+  margin: 0 0 25px;
+}
 .thubnail{ height: 250px;display: flex;align-items: center;justify-content: center;background: rgba(255, 255, 255, 0.1);margin: 0 0 20px;}
 
 .btn-list { 
@@ -29,7 +43,7 @@
 .profile-manage .nav-tabs button.active, .profile-manage .nav-tabs button:hover,.profile-manage .nav-tabs button:focus {background: var(--1, linear-gradient(94deg, #4B69E2 -2.08%, #9054D9 99.58%)); background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent; border: none; border-bottom: 1px solid #fff; }
 
 .story-card img {
-  object-fit: cover; width: 100%; max-height: 270px; height: 270px;
+  object-fit: cover; width: 100%; max-height: 270px; height: 270px; overflow: hidden;
 }
  
 .profile-manage .nav-tabs {margin: 0 0 30px;border-bottom: 1px solid rgba(255, 255, 255, 0.1);}
@@ -281,9 +295,11 @@
 }
 
 @media (max-width: 1199px){
-  .story-list h2{ font-size: 16px;line-height: 22px; margin: 0 0 8px;}
-  .story-list p{    font-size: 13px;line-height: 20.5px;}
-}
+  .story-list h2{ font-size: 18px;line-height: 27px;  }
+  .story-list p {
+    font-size: 15px;
+    line-height: 25.5px;
+}}
 @media (max-width: 1024px) {
 .filter-search{margin: 0 0 0px;flex-wrap: wrap;}
 .search{width: 100%;}
@@ -308,7 +324,11 @@
     background-position: calc(100% - 12px) center;    padding-right: 26px;}
   .update-field .input_field { height: 46px; padding: 5px 15px; }
   .update-field div[class*="col-"] {  margin: 0 0 15px;}
-
+  .editimagebtn {
+    padding: 7px 16px;
+    border-radius: 10px;
+    font-size: 11px;
+  }
 
 }
 

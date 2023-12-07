@@ -273,3 +273,15 @@ input:-webkit-autofill:hover, input:-webkit-autofill:focus { border: none; -webk
   max-width: 100% !important;
   max-height: 100% !important;
 }
+.editimagebtn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #fff;
+  color: #000;
+  padding: 7px 30px;
+  border-radius: 10px;
+}
+.button-list-form ul li .button-block:hover button {
+  background: #8c55d9 !important;
+}

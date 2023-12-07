@@ -99,9 +99,6 @@ function Listing({type}) {
         }
     };
 
-    console.log("content",content)
-
-    console.log("Adsff",content)
 
     const divStyle = {
         overflow: 'hidden',

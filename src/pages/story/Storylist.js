@@ -41,6 +41,9 @@ function Storylist() {
         } else {
           extractdata = chaptersdata.data;
       }
+
+  console.log("extractdata",extractdata)
+
     // useEffect(() => {
   
     //   let extractedRecords = [];
@@ -76,9 +79,7 @@ function Storylist() {
                                     <div className="story-list" key={key}>
                                         <h2> Chapter {item.chapternumber} :- {item.title} </h2>
                                         <p>{item.content}</p>
-                                        {storyUID ? <> <div className="thubnail" >
                                             <ImagePrompt uid={storyUID} chapter={item && item.chapternumber} imageprompt={item.imageprompt} />
-                                        </div></> : <div className="thubnail" >Please click the sechedule button  and schedule the story then after show imageprompt</div>}
                                     </div>
                                 ))}
 
@@ -92,7 +93,7 @@ function Storylist() {
                                                 <span>Regenerate Story</span>
                                             </button>
                                            
-                                            <Schedule getStoryUID={getStoryUID} record={records} />
+                                            <Schedule getStoryUID={getStoryUID} record={extractdata} />
                                         </>
                                     }
                                 </div>

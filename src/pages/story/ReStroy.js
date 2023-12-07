@@ -19,7 +19,6 @@ function ReStory({ shows, handleCloses }) {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const [records, setRecords] = useState([]);
   let chaptersdata = [];
   if (users.length > 0) {
     chaptersdata = users.at(-1);

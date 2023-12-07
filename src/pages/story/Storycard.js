@@ -14,10 +14,10 @@ function Storycard() {
     return (
 
         <AuthLayout>
-             <Toaster
-                        position="top-center"
-                        reverseOrder={false}
-                    />
+            <Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
             <div className="content-wrapper">
                 <div className="content">
                     <div className="row">
@@ -35,10 +35,10 @@ function Storycard() {
                                     id="noanim-tab-example"
                                     className="mb-3" >
                                     <Tab eventKey="boy" title="Boy">
-                                        {selectedOption ==='boy'?<Listing type={selectedOption} /> : ''}  
+                                        {selectedOption === 'boy' ? <Listing type={selectedOption} /> : ''}
                                     </Tab>
                                     <Tab eventKey="girl" title="Girl">
-                                    {selectedOption ==='girl'?<Listing type={selectedOption} /> : ''}  
+                                        {selectedOption === 'girl' ? <Listing type={selectedOption} /> : ''}
                                     </Tab>
                                 </Tabs>
                             </div>

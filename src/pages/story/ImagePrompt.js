@@ -55,8 +55,9 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
     }
 
     const fetchData = async () => {
-        if(uid){
-            toast.error("Please schedule story first to generate image.")
+        if (uid) {
+            toast.error("Please schedule the story first to generate the image.");
+            return;
         }
         setIsLoading(true);
         const bearerToken = 'vk-X8WKL5pkTBhhNvWxx3ILLrbLZ77wo8G1DWo887i6aPN0O';

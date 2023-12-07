@@ -23,13 +23,10 @@ function Subscriptionadd({ show, handleClose, onSubscriptionAdded }) {
     const value = e.target.value;
     const name = e.target.name;
     setRegs((prevState) => ({ ...prevState, [name]: value }));
-    console.table(Regs);
   };
   async function handleForms(e) {
     e.preventDefault();
     try {
-        console.log("Submitting data:", Regs);
-
         const main = new Story();
         const response = await main.Subscription(Regs);
         toast.success(response.data.message);

@@ -41,7 +41,6 @@ function Profile() {
         const value = e.target.value;
         const name = e.target.name;
         setRegs((prevState) => ({ ...prevState, [name]: value }));
-        console.table(Regs);
     };
 
     const [keys, setkeys] = useState("profile");

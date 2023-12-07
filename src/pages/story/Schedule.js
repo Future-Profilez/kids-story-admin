@@ -13,8 +13,6 @@ function Schedule({record,getStoryUID }) {
 
     const [loading, setLoading] = useState(null);
     const users = useSelector(state => state.users.users);
-    const [records, setRecords] = useState([]);
-
     let chaptersdata = [];
     if (users.length > 0) {
       chaptersdata = users.at(-1);
@@ -31,6 +29,7 @@ function Schedule({record,getStoryUID }) {
       extractdata = chaptersdata.data;
   }
 
+  console.log("extractdata",extractdata)
     const [Regs, setRegs] = useState({
         "age": extractdata.age,
         "title":extractdata.title,

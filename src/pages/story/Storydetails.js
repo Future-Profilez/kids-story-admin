@@ -11,7 +11,7 @@ import ImagePrompt from "./ImagePrompt";
 import Loading from "../../component/Loading";
 function Storydetails() {
     const { uuid } = useParams();
-    const[loading,setLoading]=useState(false);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
@@ -104,9 +104,9 @@ function Storydetails() {
                                     <div className="heading d-flex justify-content-between">
 
                                         <div className="heading-graph">
-                                            <h6><span> {loading ?(content?.genre_name):(<Loading/>)} </span> </h6>
-                                            <p>                                             {loading ? (content?.title):(<Loading/>)}
-</p>
+                                            <h6><span> {loading ? (content?.genre_name) : (<Loading />)} </span> </h6>
+                                            <p>                                             {loading ? (content?.title) : (<Loading />)}
+                                            </p>
                                         </div>
 
                                     </div>
@@ -114,7 +114,7 @@ function Storydetails() {
                                     </div>
                                     <div className="description">
                                         <p>
-                                            {loading ? (content?.story_description):(<Loading/>)}
+                                            {loading ? (content?.story_description) : (<Loading />)}
                                         </p>
                                     </div>
                                     <div className="reschedule-action">
@@ -134,7 +134,7 @@ function Storydetails() {
                         </div>
                         <div className="row">
                             <div className="col-md-12">
-                                {loading ?(content && content?.story_chapter && content?.story_chapter?.map((item, index) => (
+                                {loading ? (content && content?.story_chapter && content?.story_chapter?.map((item, index) => (
                                     <div className="story-list" key={index}>
                                         <h2 className="mt-4 pt-3 mb-3" > {item?.title}</h2>
                                         <div className="chapterImg w-100 position-relative mt-2 mb-3" >
@@ -152,7 +152,7 @@ function Storydetails() {
                                         <p>   {item?.story_description}
                                         </p>
                                     </div>
-                                ))) :(<Loading/>)}
+                                ))) : (<Loading />)}
                             </div>
                         </div>
                     </div>

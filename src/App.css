@@ -286,3 +286,9 @@ input:-webkit-autofill:hover, input:-webkit-autofill:focus { border: none; -webk
 .button-list-form ul li .button-block:hover button {
   background: #8c55d9 !important;
 }
+
+  
+  .header-data h2 {
+    color: #8c55d9;
+    padding: 5px;
+}

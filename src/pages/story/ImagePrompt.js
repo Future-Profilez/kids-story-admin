@@ -7,7 +7,6 @@ import toast from "react-hot-toast";
 
 
 function ImagePrompt({ imageprompt , uid, chapter }) {
-
     const [prompt, setPrompt] = useState(imageprompt);
     console.log("Prompt ", prompt);
     const [modalShow, setModalShow] = useState(false);

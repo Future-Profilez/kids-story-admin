@@ -4,7 +4,9 @@
   margin-bottom: 33px;
 }
 .story-list img {
-  object-fit: cover; width: 100%; max-height: 360px; border-radius: 8.174px;
+  object-fit: cover; width: 100%; 
+  /* max-height: 360px;  */
+  border-radius: 8.174px;
 }
 .story-list h2 {
   color: #FFF;

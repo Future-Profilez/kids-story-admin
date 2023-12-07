@@ -37,10 +37,6 @@ function Profile() {
         })
     }, [])
 
-    console.log("cddd", content)
-
-
-
     const handleInputs = (e) => {
         const value = e.target.value;
         const name = e.target.name;
@@ -60,7 +56,6 @@ function Profile() {
         const main = new Story();
         main.Profile(Regs)
             .then((res) => {
-                console.log("res", res);
                 if (res && res?.status === true) {
                     toast.success(res.message);
                     setRegs(initialRegs);
@@ -73,9 +68,6 @@ function Profile() {
                 toast.error("Failed to update profile");
             });
     }
-
-
-
     return (
         <>
             <Toaster

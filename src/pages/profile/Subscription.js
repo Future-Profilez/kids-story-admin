@@ -33,8 +33,6 @@ function Subscription() {
     }, []); 
 
     const handleSubscriptionAdded = async (newSubscription) => {
-        console.log("Subscription added:", newSubscription);
-       // await fetchData();
         handleClose();
     };
     return (

@@ -35,14 +35,15 @@ function Storylist() {
       chaptersdata = users[0];
     }
 
+    let extractdata =[];
+      if (chaptersdata) {
+          extractdata = chaptersdata;
+        } else {
+          extractdata = chaptersdata.data;
+      }
     // useEffect(() => {
   
     //   let extractedRecords = [];
-    //   if (chaptersdata) {
-    //     extractedRecords = chaptersdata.data;
-    //   } else {
-    //     extractedRecords = chaptersdata;
-    //   }
   
     //   // Set the extracted records to the state
     //   setRecords(extractedRecords);
@@ -70,8 +71,8 @@ function Storylist() {
                         <div className="row">
                             <div className="col-md-12">
                                 <Heading />
-                                <h1 className="mb-3"> Title :- {chaptersdata && chaptersdata.title}   </h1>
-                                {chaptersdata && chaptersdata.chapters && chaptersdata.chapters.map((item, key) => (
+                                <div className="story-title"><h6> Title :- {extractdata?.title}</h6></div>
+                                {extractdata && extractdata.chapters && extractdata.chapters.map((item, key) => (
                                     <div className="story-list" key={key}>
                                         <h2> Chapter {item.chapternumber} :- {item.title} </h2>
                                         <p>{item.content}</p>
@@ -90,11 +91,7 @@ function Storylist() {
                                             <button className="btn blue-gradient-btn" onClick={() => handleShows()}>
                                                 <span>Regenerate Story</span>
                                             </button>
-                                            {/* <button
-                                        className="btn blue-gradient-btn"
-                                        onClick={handleShowContinue} >
-                                        <span>Continue</span>
-                                    </button> */}
+                                           
                                             <Schedule getStoryUID={getStoryUID} record={records} />
                                         </>
                                     }

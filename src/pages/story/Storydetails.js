@@ -8,15 +8,14 @@ import { toast, Toaster } from 'react-hot-toast';
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import ImagePrompt from "./ImagePrompt";
+import Loading from "../../component/Loading";
 function Storydetails() {
     const { uuid } = useParams();
     const[loading,setLoading]=useState(false);
-    console.log("uuid", uuid)
     const navigate = useNavigate();
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
-    console.log("UUID received in Storydetails:", uuid);
     const [content, setContent] = useState({})
     const fetchStoryDetails = () => {
         if (uuid) {
@@ -24,7 +23,9 @@ function Storydetails() {
             const response = main.Storydetilas(uuid);
             response.then((res) => {
                 setContent(res?.data?.data);
+                setLoading(true);
             }).catch((error) => {
+                setLoading(false);
                 console.log("error", error)
             })
         }
@@ -103,8 +104,9 @@ function Storydetails() {
                                     <div className="heading d-flex justify-content-between">
 
                                         <div className="heading-graph">
-                                            <h6><span> {content?.genre_name} </span> </h6>
-                                            <p> {content?.title}</p>
+                                            <h6><span> {loading ?(content?.genre_name):(<Loading/>)} </span> </h6>
+                                            <p>                                             {loading ? (content?.title):(<Loading/>)}
+</p>
                                         </div>
 
                                     </div>
@@ -112,7 +114,7 @@ function Storydetails() {
                                     </div>
                                     <div className="description">
                                         <p>
-                                            {content?.story_description}
+                                            {loading ? (content?.story_description):(<Loading/>)}
                                         </p>
                                     </div>
                                     <div className="reschedule-action">
@@ -132,7 +134,7 @@ function Storydetails() {
                         </div>
                         <div className="row">
                             <div className="col-md-12">
-                                {content && content?.story_chapter && content?.story_chapter?.map((item, index) => (
+                                {loading ?(content && content?.story_chapter && content?.story_chapter?.map((item, index) => (
                                     <div className="story-list" key={index}>
                                         <h2 className="mt-4 pt-3 mb-3" > {item?.title}</h2>
                                         <div className="chapterImg w-100 position-relative mt-2 mb-3" >
@@ -150,7 +152,7 @@ function Storydetails() {
                                         <p>   {item?.story_description}
                                         </p>
                                     </div>
-                                ))}
+                                ))) :(<Loading/>)}
                             </div>
                         </div>
                     </div>

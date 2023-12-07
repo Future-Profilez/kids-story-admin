@@ -24,8 +24,8 @@ export default function PrivateRoute(props) {
     }
   };
   useMemo(() => {
+    
     fetchData();
   }, []);
-  // setLoginUser, navigate, loginUser
   return <>{props.children}</>;
 }

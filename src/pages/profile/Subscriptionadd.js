@@ -32,9 +32,7 @@ function Subscriptionadd({ show, handleClose, onSubscriptionAdded }) {
 
         const main = new Story();
         const response = await main.Subscription(Regs);
-        console.log("API Response:", response);
         toast.success(response.data.message);
-
         if (onSubscriptionAdded) {
             onSubscriptionAdded(response.data.data); 
         }

@@ -34,9 +34,7 @@ function Password() {
         e.preventDefault();
         try {
             const main = new Story();
-            console.log("main", main);
             const response = await main.Password(Regs);
-            console.log("res", response);
             if (response.data.status === true) {
                 setRegs(initialRegs);
                 toast.success(response.data.message);

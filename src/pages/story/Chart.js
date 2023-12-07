@@ -20,7 +20,6 @@ function Chart() {
         if (chartInstance.current) {
             chartInstance.current.destroy();
         }
-        console.log("Contnet",Contnet)
 
         const chartCanvas = chartRef.current.getContext("2d");   
 
@@ -99,7 +98,6 @@ function Chart() {
                       color: 'rgba(255, 255, 255, 1)', // Change x-axis tick text color
                     },
                     grid: {
-                        //  display: false, // Remove y-axis gridlines 
                          color: 'rgba(255, 255, 255, .05)',
                       },
                       
@@ -109,7 +107,6 @@ function Chart() {
                       color: 'rgba(255, 255, 255, 1)', // Change y-axis tick text color
                     },
                     grid: {
-                       // display: false, // Remove y-axis gridlines 
                        color: 'rgba(255, 255, 255, .05)',
                       },
                      

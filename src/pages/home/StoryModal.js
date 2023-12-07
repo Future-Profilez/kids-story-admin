@@ -77,31 +77,36 @@ function StoryModal({ show, handleClose }) {
                         },
                     ],
                 };
-                Ai.post("/completions", requestData)
+                 Ai.post("/completions", requestData)
                     .then((res) => {
                         const storyResponse = res.data.choices[0].message.content;
                         console.log("storyResponse", storyResponse);
                         try {
-                          const jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
+                            const jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
                             if (jsonMatch && jsonMatch.length > 0) {
-                            const jsonData = JSON.parse(jsonMatch[0]);
-                            const dataField = jsonData.data;
-                            const Parstory = JSON.parse(storyResponse);
-                            console.log("parstory", Parstory);
-                            storyres = Parstory;
-                            //const datastory = setList(Parstory);
-                            const datastory = dispatch(adduser(storyres))
-                            console.log("datastory", datastory);
-                            const data = setCard(storyres);
-                            console.log("data", data);
-                            setTimeout(() => {
+                              const jsonData = JSON.parse(jsonMatch[0]);
+                              const dataField = jsonData.data;
+                              const Parstory = JSON.parse(storyResponse);
+                              console.log("parstory", Parstory);
+                              storyres = Parstory;
+                              const datastory = dispatch(adduser(storyres));
+                              console.log("datastory", datastory);
+                              const data = setCard(storyres);
+                              console.log("data", data);
+                              setTimeout(() => {
                                 navigate('/list');
-                            }, 1000);
-                             console.log(dataField);
-                            }  else {
-                                toast.error("Failed to generate a story please try again.")
+                              }, 1000);
+                              console.log(dataField);
+                            } else {
+                              const Parstory = JSON.parse(storyResponse);
+                              storyres = Parstory;
+                              const datastory = dispatch(adduser(storyres));
+                              console.log("datastory", datastory);
+                              const data = setCard(storyres);
+                              console.log("data", data);
+                              navigate('/list');
                             }
-                        } catch (error) {
+                          }   catch (error) {
                             console.log("Error parsing JSON:", error);
                         }
                         setLoading(false);
@@ -109,12 +114,59 @@ function StoryModal({ show, handleClose }) {
                     .catch((error) => {
                         console.log("error", error);
                         setLoading(false);
+  toast.error("Failed to complete the API request. Please try again.");
                     });
             }
         } catch (error) {
             console.log("Error", error);
+            setLoading(false);
+  toast.error("Failed to complete the API request. Please try again.");
         }
     }
+
+
+// Ai.post("/completions", requestData)
+// .then((res) => {
+//   const storyResponse = res.data.choices[0].message.content;
+//   console.log("storyResponse", storyResponse);
+
+//   try {
+//     const jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
+//     if (jsonMatch && jsonMatch.length > 0) {
+//       const jsonData = JSON.parse(jsonMatch[0]);
+//       const dataField = jsonData.data;
+//       const Parstory = JSON.parse(storyResponse);
+//       console.log("parstory", Parstory);
+//       storyres = Parstory;
+//       const datastory = dispatch(adduser(storyres));
+//       console.log("datastory", datastory);
+//       const data = setCard(storyres);
+//       console.log("data", data);
+//       setTimeout(() => {
+//         navigate('/list');
+//       }, 1000);
+//       console.log(dataField);
+//     } else {
+//       const Parstory = JSON.parse(storyResponse);
+//       storyres = Parstory;
+//       const datastory = dispatch(adduser(storyres));
+//       console.log("datastory", datastory);
+//       const data = setCard(storyres);
+//       console.log("data", data);
+//       navigate('/list');
+//     }
+//   } catch (error) {
+//     console.log("Error parsing JSON:", error);
+//     toast.error("Failed to generate or parse story. Please try again.");
+//   }
+//   setLoading(false);
+// })
+// .catch((error) => {
+//   console.error("Error:", error);
+//   setLoading(false);
+//   toast.error("Failed to complete the API request. Please try again.");
+// });
+            
 
     const generateStory = async () => {
   genrateAiStory()

@@ -28,26 +28,24 @@ function ReStory({ shows, handleCloses }) {
   }
 
   console.log("chaptersdatareee",chaptersdata)
-  // useEffect(() => {
 
-  //   let extractedRecords = [];
-  //   if (chaptersdata) {
-  //     extractedRecords = chaptersdata.data;
-  //   } else {
-  //     extractedRecords = chaptersdata;
-  //   }
-  //   setRecords(extractedRecords);
-  // }, [users]);
+  let extractdata =[];
+  if (chaptersdata) {
+      extractdata = chaptersdata;
+    } else {
+      extractdata = chaptersdata.data;
+  }
 
-  console.log("users", records)
+  
+
   useEffect(() => {
   
-      setUserTitle(chaptersdata.title);
-      setCard(chaptersdata.card);
-      setAge(chaptersdata.age);
-      setGender(chaptersdata.gender);
-      setGenre(chaptersdata.genre);
-      setName(chaptersdata.name);
+      setUserTitle(extractdata.title);
+      setCard(extractdata.card);
+      setAge(extractdata.age);
+      setGender(extractdata.gender);
+      setGenre(extractdata.genre);
+      setName(extractdata.name);
   }, []);
 
 
@@ -88,13 +86,11 @@ function ReStory({ shows, handleCloses }) {
             const storyResponse = res.data.choices[0].message.content;
             try {
               const Parstory = JSON.parse(storyResponse);
-              console.log("parstory", Parstory);
               storyres = Parstory;
               const datastory = dispatch(reduxdatauser(storyres))
               console.log("datastory", datastory);
               const data = setCard(storyres);
               navigate('/list');
-              console.log("data", data);
             } catch (error) {
               console.log("Error parsing JSON:", error);
             } finally {
@@ -115,11 +111,7 @@ function ReStory({ shows, handleCloses }) {
     setLoading(false);
   }, [userTitle, age, gender, genre]);
   useEffect(() => {
-    console.log("Card =>>>>>>>>>>>>>>>>>>:", card);
   }, [card]);
-
-console.log("userTitle",userTitle)
-
 
   return (
     <Modal show={shows} onHide={handleCloses} id="generat-story" className="modal-dialog-image" >

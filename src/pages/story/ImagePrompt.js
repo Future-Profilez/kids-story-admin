@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 
 function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter,showImagePromptModal }) {
     const [prompt, setPrompt] = useState(imageprompt);
-    console.log("Prompt ", prompt);
     const [modalShow, setModalShow] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [isClicked, setIsClicked] = useState(false);
@@ -36,7 +35,6 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
             });
     
             if (resp.data.status) {
-                console.log("res", resp);
                 setModalShow(false);
                 setFinalImage("final image url.");
             } else {
@@ -57,9 +55,6 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
     }
 
     const fetchData = async () => {
-        // usethis();
-        // console.log("uid",uid);
-        // return false;
         if(uid){
             toast.error("Please schedule story first to generate image.")
         }
@@ -87,7 +82,6 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
                 reader.onload = () => {
                     const base64data = reader.result;
                     setImageBase64(base64data);
-                    console.log("base64data",base64data)
                 };
                 reader.readAsDataURL(blob);
             } else {
@@ -107,9 +101,6 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
          fetchData();
         };
 
- 
-
-
     return (
         <>
         {custom ? 
@@ -120,7 +111,6 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
         : <div onClick={() => setModalShow(true)}>
             <img src={updatedImage} alt="story" />
         </div>}
-
         <Modal centered show={modalShow} onHide={() => setModalShow(false)} id="generat-story" className="image-generate modal-dialog-image">
             <div className="closebtn" onClick={() => setModalShow(false)}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
@@ -134,7 +124,6 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body className="d-flex align-items-center justify-content-center" >
-            
                     {isLoading ?
                             <div className="thumbnail-generating">
                                 <div className="image-loader">
@@ -157,13 +146,11 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
                                 <div className="thumbnail-generating w-100">
                                     <img src={updatedImage} alt="story" />
                                 </div> 
-
                                 <div className="btn-list">
                                 <button className="btn blue-gradient-btn" onClick={handleRegenerate}>
                                 <span>Regenerate</span>
                             </button>
                                 <button className="btn blue-gradient-btn  mt-2" onClick={usethis} >{uploading ? "Uploading..." : "Use This Image"}</button>
-
                                 </div>
                             </div>
                             :
@@ -188,42 +175,6 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
                                 </div>
                             )
                     }
-
-                    
-                    
-
-                {/* {!isLoading ? (
-                    <></>
-                ) : (
-                    <div className="thumbnail-generating">
-                        <div className="image-loader">
-                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20 10C20 15.5228 15.5228 20 10 20C4.47715 20 0 15.5228 0 10C0 4.47715 4.47715 0 10 0C15.5228 0 20 4.47715 20 10ZM3.5 10C3.5 13.5899 6.41015 16.5 10 16.5C13.5899 16.5 16.5 13.5899 16.5 10C16.5 6.41015 13.5899 3.5 10 3.5C6.41015 3.5 3.5 6.41015 3.5 10Z" fill="url(#paint0_angular_563_396)" />
-                                <defs>
-                                    <radialGradient id="paint0_angular_563_396" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(10 10) rotate(90) scale(10)">
-                                        <stop stop-color="#9054D9" />
-                                        <stop offset="1" stop-color="#A04DFF" stop-opacity="0" />
-                                    </radialGradient>
-                                </defs>
-                            </svg>
-                            Image Generating...
-                        </div>
-                        <img ref={imageRef} src={Story} alt="story" />
-                    </div>
-                )}
-s                <div className="d-flex justify-content-around gap-3">
-                    {isClicked && (
-                        <div className="btn-list">
-                            <button className="btn blue-gradient-btn" onClick={handleRegenerate}>
-                                <span>Regenerate</span>
-                            </button>
-                            <button className="btn blue-gradient-btn" onClick={handleContinue}>
-                                <span>Continue</span>
-
-                            </button>
-                        </div>
-                    )}
-                </div> */}
             </Modal.Body>
         </Modal>
     </>

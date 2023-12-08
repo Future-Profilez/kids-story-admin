@@ -76,12 +76,12 @@ function Profile() {
     }
     return (
         <>
+
+            <AuthLayout>
             <Toaster
                 position="top-center"
                 reverseOrder={false}
             />
-
-            <AuthLayout>
                 <div className="content-wrapper">
                     <div className="content">
                         <div className="row">

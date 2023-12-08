@@ -8,6 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { adduser } from "../../Redux/UserSlice";
 import toast from 'react-hot-toast';
+const responsestory = `{\n  \"title\": \"Dog in Space\",\n  \"name\": \"DummyBoy\",\n  \"age\": \"5\",\n  \"gender\": \"boy\",\n  \"genre\": \"Superhero\",\n  \"chapters\": [\n    {\n      \"chapternumber\": 1,\n      \"title\": \"The Ordinary Dog\",\n      \"content\": \"Once there was a dog named DummyBoy. He was a very ordinary dog with no special abilities. He used to lay around in his house all day and chase his tail. His favourite game was fetch and his best friend was a little boy named Timmy, who always dreamed about adventures in space.\",\n      \"imageprompt\": \"A dog laying around in the house.\"\n    },\n    {\n      \"chapternumber\": 2,\n      \"title\": \"The Rocket Crash\",\n      \"content\": \"One day, while playing fetch, DummyBoy chased his ball into the woods. There, he stumbled upon a fallen rocket. The rocket was shining, and to DummyBoy’s surprise, he could understand everything the rocket was saying. It seemed like the rocket had some kind of special powers which gave DummyBoy the ability to talk and understand human language.\",\n      \"imageprompt\": \"A dog standing near a crashed rocket in the woods.\"\n    },\n    {\n      \"chapternumber\": 3,\n      \"title\": \"Becoming Superdog\",\n      \"content\": \"DummyBoy realized that the rocket had given him special powers. Not only could he understand humans, but he could also fly now. He became the Superdog that everyone in town was talking about. Along with his best friend Timmy, he started helping people and saving the day.\",\n      \"imageprompt\": \"A dog flying in the sky.\"\n    },\n    {\n      \"chapternumber\": 4,\n      \"title\": \"The Adventure in Space\",\n      \"content\": \"One day, Superdog decided to use his powers to fulfill Timmy’s dream of space adventure. He flew with Timmy on his back up into the stars. They had a great time exploring different planets, meting aliens, and even playing fetch on the moon.\",\n      \"imageprompt\": \"A dog and a little boy in a space adventure.\"\n    },\n    {\n      \"chapternumber\": 5,\n      \"title\": \"Returning Home\",\n      \"content\": \"After their space adventure, Superdog and Timmy returned home. They realized that no matter how extraordinary the powers you have, or how far you travel, there's no place like home. The moral of the story is, 'Home is where the heart is.'\",\n      \"imageprompt\": \"A dog and a little boy returning to their home.\"\n    }\n  ]\n}
+`
 
 function StoryModal({ show, handleClose }) {
     const dispatch = useDispatch();
@@ -49,7 +51,9 @@ function StoryModal({ show, handleClose }) {
     const [card, setCard] = useState(null)
     let storyres = null;
 
-    function genrateAiStory() {
+    async function genrateAiStory() {
+        
+         
         try {
             if (userTitle && age && gender && genre) {
                 setLoading(true);
@@ -81,40 +85,35 @@ function StoryModal({ show, handleClose }) {
                     .then((res) => {
                         const storyResponse = res.data.choices[0].message.content;
                         console.log("storyResponse", storyResponse);
-                        try {
-                            const jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
-                            if (jsonMatch && jsonMatch.length > 0) {
-                                const jsonData = JSON.parse(jsonMatch[0]);
-                                const dataField = jsonData.data;
-                                const Parstory = JSON.parse(storyResponse);
+                        try {   
+                                const jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
+                                let Parstory;
+                                if (jsonMatch && jsonMatch.length > 0) {
+                                    Parstory = JSON.parse(jsonMatch[0]);
+                                } else { 
+                                    toast.error("Failed to generate a story.Please try with diffrent prompt.")
+                                    return false;
+                                }
                                 console.log("parstory", Parstory);
-                                storyres = Parstory;
-                                const datastory = dispatch(adduser(storyres));
+                                const datastory = dispatch(adduser(Parstory));
                                 console.log("datastory", datastory);
-                                const data = setCard(storyres);
-                                console.log("data", data);
+                                const data = setCard(Parstory);
+                                console.log("setCard", data);
                                 setTimeout(() => {
-                                    navigate('/list');
+                                    if(Parstory && Parstory.title){
+                                        navigate('/list');
+                                    }
                                 }, 1000);
-                                console.log(dataField);
-                            } else {
-                                const Parstory = JSON.parse(storyResponse);
-                                storyres = Parstory;
-                                const datastory = dispatch(adduser(storyres));
-                                console.log("datastory1", datastory);
-                                const data = setCard(storyres);
-                                console.log("data1", data);
-                                navigate('/list');
-                            }
+                                setLoading(false);
                         } catch (error) {
                             console.log("Error parsing JSON:", error);
                         }
                         setLoading(false);
                     })
                     .catch((error) => {
-                        console.log("error", error);
-                        setLoading(false);
                         toast.error("error",error);
+                        console.log("error", "Some went wrong !!");
+                        setLoading(false);
                     });
             }
         } catch (error) {
@@ -130,6 +129,7 @@ function StoryModal({ show, handleClose }) {
     useEffect(() => {
         setLoading(false);
     }, [userTitle, age, gender, genre]);
+
     useEffect(() => {
     }, [card]);
     return (

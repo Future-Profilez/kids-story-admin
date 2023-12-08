@@ -27,25 +27,25 @@ function ReStory({ shows, handleCloses }) {
     chaptersdata = users;
   }
 
-  console.log("chaptersdatareee",chaptersdata)
+  console.log("chaptersdatareee", chaptersdata)
 
-  let extractdata =[];
+  let extractdata = [];
   if (chaptersdata) {
-      extractdata = chaptersdata;
-    } else {
-      extractdata = chaptersdata.data;
+    extractdata = chaptersdata;
+  } else {
+    extractdata = chaptersdata.data;
   }
 
-  
+
 
   useEffect(() => {
-  
-      setUserTitle(extractdata.title);
-      setCard(extractdata.card);
-      setAge(extractdata.age);
-      setGender(extractdata.gender);
-      setGenre(extractdata.genre);
-      setName(extractdata.name);
+
+    setUserTitle(extractdata.title);
+    setCard(extractdata.card);
+    setAge(extractdata.age);
+    setGender(extractdata.gender);
+    setGenre(extractdata.genre);
+    setName(extractdata.name);
   }, []);
 
 
@@ -82,51 +82,46 @@ function ReStory({ shows, handleCloses }) {
         };
 
         Ai.post("/completions", requestData)
-        .then((res) => {
+          .then((res) => {
             const storyResponse = res.data.choices[0].message.content;
             console.log("storyResponse", storyResponse);
             try {
-                const jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
-                if (jsonMatch && jsonMatch.length > 0) {
-                    const jsonData = JSON.parse(jsonMatch[0]);
-                    const dataField = jsonData.data;
-                    const Parstory = JSON.parse(storyResponse);
-                    console.log("parstory", Parstory);
-                    storyres = Parstory;
-                    const datastory = dispatch(adduser(storyres));
-                    console.log("datastory", datastory);
-                    const data = setCard(storyres);
-                    console.log("data", data);
-                    setTimeout(() => {
-                        navigate('/list');
-                    }, 1000);
-                    console.log(dataField);
-                } else {
-                    const Parstory = JSON.parse(storyResponse);
-                    storyres = Parstory;
-                    const datastory = dispatch(adduser(storyres));
-                    console.log("datastory1", datastory);
-                    const data = setCard(storyres);
-                    console.log("data1", data);
-                    navigate('/list');
+              const jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
+              let Parstory;
+              if (jsonMatch && jsonMatch.length > 0) {
+                Parstory = JSON.parse(jsonMatch[0]);
+              } else {
+                toast.error("Failed to generate a story.Please try with diffrent prompt.")
+                return false;
+              }
+              console.log("parstory", Parstory);
+              const datastory = dispatch(adduser(Parstory));
+              console.log("datastory", datastory);
+              const data = setCard(Parstory);
+              console.log("setCard", data);
+              setTimeout(() => {
+                if (Parstory && Parstory.title) {
+                  navigate('/list');
                 }
+              }, 1000);
+              setLoading(false);
             } catch (error) {
-                console.log("Error parsing JSON:", error);
+              console.log("Error parsing JSON:", error);
             }
             setLoading(false);
-        })
-        .catch((error) => {
-            console.log("error", error);
+          })
+          .catch((error) => {
+            toast.error("error", error);
+            console.log("error", "Some went wrong !!");
             setLoading(false);
-            toast.error("error",error);
-        });
-}
-} catch (error) {
-console.log("Error", error);
-setLoading(false);
-toast.error("Failed to complete the API request. Please try again.");
-}
-}
+          });
+      }
+    } catch (error) {
+      console.log("Error", error);
+      setLoading(false);
+      toast.error("Failed to complete the API request. Please try again.");
+    }
+  }
 
   useEffect(() => {
     setLoading(false);

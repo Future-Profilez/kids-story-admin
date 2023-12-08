@@ -60,7 +60,7 @@ function StoryModal({ show, handleClose }) {
                     gender: gender,
                     genre: genre,
                     name: Name,
-                    minimum_character_length: "500 words",
+                    minimum_character_length: "100 words",
                     description: "Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data in one variable 'data' where inside 'data', there should be 'title','name','age', 'gender', 'genre', and 'chapters'. 'chapters' should be an array containing objects for each chapter with the properties: chapternumber, title, content, and imageprompt. Provide the response in JSON format",
                 };
                 console.log("promptData", promptData);

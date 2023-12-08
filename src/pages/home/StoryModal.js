@@ -23,15 +23,15 @@ function StoryModal({ show, handleClose }) {
     const [loading, setLoading] = useState(false)
     const handleOptionSelect = (nextStep, user) => {
         if (nextStep >= 1 && nextStep <= 4) {
-            setCurrentStep(nextStep);
-            setSelectedUser(user);
-            if (nextStep === 4) {
-                setShowSuccess(true);
-            } else {
-                setShowSuccess(false);
-            }
+          setCurrentStep(nextStep);
+          setSelectedUser(user);
+          if (nextStep === 4) {
+            setShowSuccess(true);
+          } else {
+            setShowSuccess(false);
+          }
         }
-    };
+      };
     useEffect(() => {
         if (gender === "boy") {
             setName("DummyBoy");
@@ -127,6 +127,12 @@ function StoryModal({ show, handleClose }) {
 
     useEffect(() => {
     }, [card]);
+
+    const handleBack = () => {
+        if (currentStep > 1) {
+          setCurrentStep(currentStep - 1);
+        }
+      };
     return (
         <>
             <>
@@ -134,7 +140,7 @@ function StoryModal({ show, handleClose }) {
                     <div className={`step${currentStep}`}>
                         <Modal.Header closeButton >
                             <Modal.Title>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" onClick={handleBack}>
                                     <g opacity="0.5">
                                         <path d="M18 31H21V25H27V31H30V22L24 17.5L18 22V31ZM16 33V21L24 15L32 21V33H25V27H23V33H16Z" fill="white" />
                                         <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="white" />

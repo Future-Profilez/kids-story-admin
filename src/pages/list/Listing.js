@@ -13,7 +13,6 @@ function Listing({type}) {
     const [content, setContent] = useState([]);
     const [selectSort, setSelectSort] = useState("");
     const [selectedGenre, setSelectedGenre] = useState("");
-
     const handlesort = (e) => {
         setSelectSort(e.target.value);
     };
@@ -27,17 +26,13 @@ function Listing({type}) {
             setSearchQuery(searchvalue);
         }else {
             setSearchQuery('');
-
         }
     };
     useEffect(() => {
         setSearchQuery(searchvalue);
     }, [searchvalue]);
-
-
     const [page, setPage] = useState(1);
     const [hasmore, setHasMore] = useState(true);
-
     const fetching = (pg) => {
         if (loading) {
             return;
@@ -49,7 +44,6 @@ function Listing({type}) {
         }`;
         const main = new Story();
         const response = main.StoryCard(type, query, pg);
-
         response
             .then((res) => {
                 if (Array.isArray(res?.data?.data)) {
@@ -110,11 +104,6 @@ function Listing({type}) {
         WebkitLineClamp: 2,
         WebkitBoxOrient: 'vertical',
     };
-
- 
-console.log("schedule",content)
-
-
     return (<>
         <div className="filter-search">
             <div className="search">
@@ -169,7 +158,7 @@ console.log("schedule",content)
                             <div className="card">
                                 <Link to={`${slugify(item.uuid)}`} >
                                 <img src={item.image_url || storys } alt="N/A"/>
-                                <button className="editimagebtn btn blue-gradient-btn"> {item.scheduled_at ?"Published":null}</button>
+                                <div className="editimagebtns btn blue-gradient-btn"> {item.scheduled_at? "Published" : <></>}</div>
                                     <div className="card-body">
                                         <p className="card-text">{item.scheduled_at || "N/A"} </p>
                                         <h5 className="card-title" style={divStyle}

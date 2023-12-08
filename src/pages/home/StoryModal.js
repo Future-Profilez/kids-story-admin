@@ -8,9 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { adduser } from "../../Redux/UserSlice";
 import toast from 'react-hot-toast';
-const responsestory = `{\n  \"title\": \"Dog in Space\",\n  \"name\": \"DummyBoy\",\n  \"age\": \"5\",\n  \"gender\": \"boy\",\n  \"genre\": \"Superhero\",\n  \"chapters\": [\n    {\n      \"chapternumber\": 1,\n      \"title\": \"The Ordinary Dog\",\n      \"content\": \"Once there was a dog named DummyBoy. He was a very ordinary dog with no special abilities. He used to lay around in his house all day and chase his tail. His favourite game was fetch and his best friend was a little boy named Timmy, who always dreamed about adventures in space.\",\n      \"imageprompt\": \"A dog laying around in the house.\"\n    },\n    {\n      \"chapternumber\": 2,\n      \"title\": \"The Rocket Crash\",\n      \"content\": \"One day, while playing fetch, DummyBoy chased his ball into the woods. There, he stumbled upon a fallen rocket. The rocket was shining, and to DummyBoy’s surprise, he could understand everything the rocket was saying. It seemed like the rocket had some kind of special powers which gave DummyBoy the ability to talk and understand human language.\",\n      \"imageprompt\": \"A dog standing near a crashed rocket in the woods.\"\n    },\n    {\n      \"chapternumber\": 3,\n      \"title\": \"Becoming Superdog\",\n      \"content\": \"DummyBoy realized that the rocket had given him special powers. Not only could he understand humans, but he could also fly now. He became the Superdog that everyone in town was talking about. Along with his best friend Timmy, he started helping people and saving the day.\",\n      \"imageprompt\": \"A dog flying in the sky.\"\n    },\n    {\n      \"chapternumber\": 4,\n      \"title\": \"The Adventure in Space\",\n      \"content\": \"One day, Superdog decided to use his powers to fulfill Timmy’s dream of space adventure. He flew with Timmy on his back up into the stars. They had a great time exploring different planets, meting aliens, and even playing fetch on the moon.\",\n      \"imageprompt\": \"A dog and a little boy in a space adventure.\"\n    },\n    {\n      \"chapternumber\": 5,\n      \"title\": \"Returning Home\",\n      \"content\": \"After their space adventure, Superdog and Timmy returned home. They realized that no matter how extraordinary the powers you have, or how far you travel, there's no place like home. The moral of the story is, 'Home is where the heart is.'\",\n      \"imageprompt\": \"A dog and a little boy returning to their home.\"\n    }\n  ]\n}
-`
-
+// const responsestory = `{\n  \"title\": \"Dog in Space\",\n  \"name\": \"DummyBoy\",\n  \"age\": \"5\",\n  \"gender\": \"boy\",\n  \"genre\": \"Superhero\",\n  \"chapters\": [\n    {\n      \"chapternumber\": 1,\n      \"title\": \"The Ordinary Dog\",\n      \"content\": \"Once there was a dog named DummyBoy. He was a very ordinary dog with no special abilities. He used to lay around in his house all day and chase his tail. His favourite game was fetch and his best friend was a little boy named Timmy, who always dreamed about adventures in space.\",\n      \"imageprompt\": \"A dog laying around in the house.\"\n    },\n    {\n      \"chapternumber\": 2,\n      \"title\": \"The Rocket Crash\",\n      \"content\": \"One day, while playing fetch, DummyBoy chased his ball into the woods. There, he stumbled upon a fallen rocket. The rocket was shining, and to DummyBoy’s surprise, he could understand everything the rocket was saying. It seemed like the rocket had some kind of special powers which gave DummyBoy the ability to talk and understand human language.\",\n      \"imageprompt\": \"A dog standing near a crashed rocket in the woods.\"\n    },\n    {\n      \"chapternumber\": 3,\n      \"title\": \"Becoming Superdog\",\n      \"content\": \"DummyBoy realized that the rocket had given him special powers. Not only could he understand humans, but he could also fly now. He became the Superdog that everyone in town was talking about. Along with his best friend Timmy, he started helping people and saving the day.\",\n      \"imageprompt\": \"A dog flying in the sky.\"\n    },\n    {\n      \"chapternumber\": 4,\n      \"title\": \"The Adventure in Space\",\n      \"content\": \"One day, Superdog decided to use his powers to fulfill Timmy’s dream of space adventure. He flew with Timmy on his back up into the stars. They had a great time exploring different planets, meting aliens, and even playing fetch on the moon.\",\n      \"imageprompt\": \"A dog and a little boy in a space adventure.\"\n    },\n    {\n      \"chapternumber\": 5,\n      \"title\": \"Returning Home\",\n      \"content\": \"After their space adventure, Superdog and Timmy returned home. They realized that no matter how extraordinary the powers you have, or how far you travel, there's no place like home. The moral of the story is, 'Home is where the heart is.'\",\n      \"imageprompt\": \"A dog and a little boy returning to their home.\"\n    }\n  ]\n}
+// `
 function StoryModal({ show, handleClose }) {
     const dispatch = useDispatch();
     const [currentStep, setCurrentStep] = useState(1);
@@ -31,7 +30,6 @@ function StoryModal({ show, handleClose }) {
             } else {
                 setShowSuccess(false);
             }
-
         }
     };
     useEffect(() => {
@@ -48,12 +46,9 @@ function StoryModal({ show, handleClose }) {
     };
     const navigate = useNavigate()
 
-    const [card, setCard] = useState(null)
-    let storyres = null;
+    const [card, setCard] = useState(null);
 
     async function genrateAiStory() {
-        
-         
         try {
             if (userTitle && age && gender && genre) {
                 setLoading(true);
@@ -64,7 +59,7 @@ function StoryModal({ show, handleClose }) {
                     gender: gender,
                     genre: genre,
                     name: Name,
-                    minimum_character_length: "100 words",
+                    minimum_character_length: "50 words",
                     description: "Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data in one variable 'data' where inside 'data', there should be 'title','name','age', 'gender', 'genre', and 'chapters'. 'chapters' should be an array containing objects for each chapter with the properties: chapternumber, title, content, and imageprompt. Provide the response in JSON format",
                 };
                 console.log("promptData", promptData);

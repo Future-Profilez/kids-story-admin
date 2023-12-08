@@ -1,13 +1,13 @@
 import "../../style/story.css";
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
-import { Modal } from "react-bootstrap";
-import {  useState } from "react";
-import {  useSelector } from "react-redux";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ReStory from "./ReStroy";
 import ImagePrompt from "./ImagePrompt";
-import Schedule from "./Schedule";
+import Story from "../../Apis/Story";
+import { toast } from 'react-hot-toast';
 
 function Storylist() {
 
@@ -25,34 +25,22 @@ function Storylist() {
 
     let chaptersdata = [];
     if (users.length > 0) {
-      chaptersdata = users.at(-1);
+        chaptersdata = users.at(-1);
     } else {
-      chaptersdata = users[0];
+        chaptersdata = users[0];
     }
 
-    let extractdata =[];
-      if (chaptersdata) {
-          extractdata = chaptersdata;
-        } else {
-          extractdata = chaptersdata.data;
-      }
-
-  console.log("extractdata",extractdata)
-
-    // useEffect(() => {
-  
-    //   let extractedRecords = [];
-  
-    //   // Set the extracted records to the state
-    //   setRecords(extractedRecords);
-    // }, [users]);
-    console.log("chaptersdata", chaptersdata)
-
-    const [showContinue, setShowContinue] = useState(false);
-    const handleCloseContinue = () => setShowContinue(false);
-    function Schedulecontinue() {
-        navigate('/schedule')
+    let extractdata = [];
+    if (chaptersdata) {
+        extractdata = chaptersdata;
+    } else {
+        extractdata = chaptersdata.data;
     }
+
+    console.log("extractdata", extractdata);
+    console.log("chaptersdata", chaptersdata);
+
+   
     const [shows, setShows] = useState(false);
     const handleCloses = () => setShows(false);
     const handleShows = () => setShows(true);
@@ -61,6 +49,48 @@ function Storylist() {
         navigate('/card');
     }
 
+
+
+    const [Regs, setRegs] = useState({
+        "age": extractdata.age,
+        "title": extractdata.title,
+        "gender": extractdata.gender,
+        "genre": extractdata.genre,
+        "name": extractdata.name,
+        "stories": extractdata.chapters,
+    });
+
+
+    const handleInputs = (e) => {
+        const value = e.target.value;
+        const name = e.target.name;
+        setRegs((prevState) => ({ ...prevState, [name]: value }));
+    };
+
+    useEffect(() => {
+        console.table(Regs);
+    }, [Regs]);
+
+    const [loading, setLoading] = useState(false)
+    async function handleForms(e) {
+        e.preventDefault();
+        setLoading(true);
+        const main = new Story();
+        try {
+            const response = await main.Scheduledate(Regs);
+            if (response.data.status) {
+                toast.success("Story added successfully.");
+                getStoryUID(response.data.data.id);
+            } else {
+                toast.error("Failed to add story !!");
+            }
+        } catch (error) {
+            console.error("API Error:", error);
+            toast.error("An error occurred while adding the story.");
+        } finally {
+            setLoading(false);
+        }
+    }
     return (
         <>
             <AuthLayout>
@@ -77,7 +107,7 @@ function Storylist() {
                                         {storyUID ? <> <div className="thubnail" >
                                             <ImagePrompt uid={storyUID} chapter={item && item.chapternumber} imageprompt={item.imageprompt} />
                                         </div></> : <div className="thubnail" >
-                                            <p>Please click the sechedule button  and schedule the story then after show imageprompt</p></div>}
+                                            <p>Please save the story then after show imagePrompt </p></div>}
                                     </div>
                                 ))}
 
@@ -90,8 +120,10 @@ function Storylist() {
                                             <button className="btn blue-gradient-btn" onClick={() => handleShows()}>
                                                 <span>Regenerate Story</span>
                                             </button>
-                                           
-                                            <Schedule getStoryUID={getStoryUID} record={extractdata} />
+
+                                            <div className="btn blue-gradient-btn" onClick={handleForms} >
+                                                <span>{loading ? "Adding..." : 'Save'}  </span>
+                                            </div>
                                         </>
                                     }
                                 </div>
@@ -99,51 +131,7 @@ function Storylist() {
                         </div>
                     </div>
                     <ReStory shows={shows} handleCloses={handleCloses} />
-                    <Modal
-                        show={showContinue}
-                        onHide={handleCloseContinue}
-                        id="generat-story" >
-                        <Modal.Header
-                            closeButton
-                            style={{ borderTop: "1px solid rgba(255,255,255, 0.1)" }}
-                        >
-                            <Modal.Title>
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    width="48"
-                                    height="48"
-                                    viewBox="0 0 48 48"
-                                    fill="none"
-                                >
-                                    <g opacity="0.5">
-                                        <path
-                                            d="M18 31H21V25H27V31H30V22L24 17.5L18 22V31ZM16 33V21L24 15L32 21V33H25V27H23V33H16Z"
-                                            fill="white"
-                                        />
-                                        <rect
-                                            x="0.5"
-                                            y="0.5"
-                                            width="47"
-                                            height="47"
-                                            rx="23.5"
-                                            stroke="white"
-                                        />
-                                    </g>
-                                </svg>
-                                <h2>StoryScape!</h2>
-                            </Modal.Title>
-                        </Modal.Header>
-                        <Modal.Body>
-                            <h5 className="text-center m-5">
-                                Are you sure you have read this story?
-                            </h5>
-                            <div className="text-center">
-                                <div className="btn blue-gradient-btn" onClick={Schedulecontinue}>
-                                    <span>Confirm & Continue</span>
-                                </div>
-                            </div>
-                        </Modal.Body>
-                    </Modal>
+                  
                 </div>
             </AuthLayout>
         </>

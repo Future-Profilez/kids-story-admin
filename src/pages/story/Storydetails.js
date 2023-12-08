@@ -30,6 +30,9 @@ function Storydetails() {
             })
         }
     };
+   
+    console.log("contr",content)
+
     useEffect(() => {
         fetchStoryDetails();
     }, [uuid]);
@@ -60,7 +63,7 @@ function Storydetails() {
         const currentDate = new Date().toISOString().split('T')[0];
         if (currentDate === Regs.schedule_at) {
             toast.success("You can not schedule story today.Please select a upcoming date. ");
-            return false;
+           
         }
 
         console.log("Submitting data:", Regs);
@@ -94,67 +97,86 @@ function Storydetails() {
                 <div className="content-wrapper">
                     <div className="content ">
                         <Heading />
-                        <div className="story-title"><h6> Title :- {content?.title}</h6></div>
-                        <div className="reschedule-story">
-                            <div className="row">
-                                <div className="col-md-6 col-lg-4">
-                                    <Image src={content?.story_image_url || inmagerecoird} alt="img" />
+                        {loading ? (
+
+                            <div>
+                                <div className="story-title"><h6> Title :- {content?.title}</h6></div>
+                                <div className="reschedule-story">
+                                    <div className="row">
+                                        <div className="col-md-6 col-lg-4">
+                                            <Image src={content?.story_image_url || inmagerecoird} alt="img" />
+                                        </div>
+                                        <div className="col-md-6 col-lg-8">
+                                            <div className="heading d-flex justify-content-between">
+
+                                                <div className="heading-graph">
+                                                    <h6><span> {content?.genre_name} </span> </h6>
+                                                    <p>{content?.title}</p>
+                                                </div>
+
+                                            </div>
+                                            <div className="add-line">
+                                            </div>
+                                            <div className="description">
+                                                <p>
+                                                    {content?.story_description}
+                                                </p>
+                                            </div>
+                                            { content && content.schedule_at ? (   <div className="reschedule-action">
+                                                <div className="btn blue-gradient-btn" onClick={handleShowContinue}>
+                                                    <span>
+                                                       Reschedule Story
+                                                    </span>
+                                                </div>
+                                                <button button className="delete-button" onClick={fetchStoryDelete}>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path d="M7 21C6.45 21 5.979 20.804 5.587 20.412C5.195 20.02 4.99933 19.5493 5 19V6H4V4H9V3H15V4H20V6H19V19C19 19.55 18.804 20.021 18.412 20.413C18.02 20.805 17.5493 21.0007 17 21H7ZM9 17H11V8H9V17ZM13 17H15V8H13V17Z" fill="white" />
+                                                    </svg>
+                                                </button>
+                                            </div>) :(   <div className="reschedule-action">
+                                                <div className="btn blue-gradient-btn" onClick={handleShowContinue}>
+                                                    <span>
+                                                        Publish
+                                                    </span>
+                                                </div>
+                                                <button button className="delete-button" onClick={fetchStoryDelete}>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                                        <path d="M7 21C6.45 21 5.979 20.804 5.587 20.412C5.195 20.02 4.99933 19.5493 5 19V6H4V4H9V3H15V4H20V6H19V19C19 19.55 18.804 20.021 18.412 20.413C18.02 20.805 17.5493 21.0007 17 21H7ZM9 17H11V8H9V17ZM13 17H15V8H13V17Z" fill="white" />
+                                                    </svg>
+                                                </button>
+                                            </div>)}
+                                         
+                                        </div>
+                                    </div>
                                 </div>
-                                <div className="col-md-6 col-lg-8">
-                                    <div className="heading d-flex justify-content-between">
-
-                                        <div className="heading-graph">
-                                            <h6><span> {loading ? (content?.genre_name) : (<Loading />)} </span> </h6>
-                                            <p>                                             {loading ? (content?.title) : (<Loading />)}
-                                            </p>
-                                        </div>
-
-                                    </div>
-                                    <div className="add-line">
-                                    </div>
-                                    <div className="description">
-                                        <p>
-                                            {loading ? (content?.story_description) : (<Loading />)}
-                                        </p>
-                                    </div>
-                                    <div className="reschedule-action">
-                                        <div className="btn blue-gradient-btn" onClick={handleShowContinue}>
-                                            <span>
-                                                Reschedule Story
-                                            </span>
-                                        </div>
-                                        <button button className="delete-button" onClick={fetchStoryDelete}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                                <path d="M7 21C6.45 21 5.979 20.804 5.587 20.412C5.195 20.02 4.99933 19.5493 5 19V6H4V4H9V3H15V4H20V6H19V19C19 19.55 18.804 20.021 18.412 20.413C18.02 20.805 17.5493 21.0007 17 21H7ZM9 17H11V8H9V17ZM13 17H15V8H13V17Z" fill="white" />
-                                            </svg>
-                                        </button>
+                                <div className="row">
+                                    <div className="col-md-12">
+                                        {content && content?.story_chapter && content?.story_chapter?.map((item, index) => (
+                                            <div className="story-list" key={index}>
+                                                <h2 className="mt-4 pt-3 mb-3" > {item?.title}</h2>
+                                                <div className="chapterImg w-100 position-relative mt-2 mb-3" >
+                                                    <ImagePrompt image_url={item.image_url || inmagerecoird} customclass="editimagebtn btn blue-gradient-btn"
+                                                        custom={<>
+                                                            <div className="editImage" >Edit Image</div>
+                                                        </>}
+                                                        imageUrl={item?.imageUrl || inmagerecoird}
+                                                        uid={id}
+                                                        chapter={item?.chapter_no}
+                                                        imageprompt={item?.image_prompt}
+                                                        show={showImagePromptModal}
+                                                    />
+                                                </div>
+                                                <p>   {item?.story_description}
+                                                </p>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="row">
-                            <div className="col-md-12">
-                                {loading ? (content && content?.story_chapter && content?.story_chapter?.map((item, index) => (
-                                    <div className="story-list" key={index}>
-                                        <h2 className="mt-4 pt-3 mb-3" > {item?.title}</h2>
-                                        <div className="chapterImg w-100 position-relative mt-2 mb-3" >
-                                            <ImagePrompt image_url={item.image_url || inmagerecoird} customclass="editimagebtn btn blue-gradient-btn"
-                                                custom={<>
-                                                    <div className="editImage" >Edit Image</div>
-                                                </>}
-                                                imageUrl={item?.imageUrl || inmagerecoird}
-                                                uid={id}
-                                                chapter={item?.chapter_no}
-                                                imageprompt={item?.image_prompt}
-                                                show={showImagePromptModal}
-                                            />
-                                        </div>
-                                        <p>   {item?.story_description}
-                                        </p>
-                                    </div>
-                                ))) : (<Loading />)}
-                            </div>
-                        </div>
+
+
+                        ) : (<Loading />)}
+
                     </div>
                 </div>
             </AuthLayout>

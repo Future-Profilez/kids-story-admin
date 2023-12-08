@@ -54,7 +54,6 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
     }
 
     const imagekey = process.env.REACT_APP_IMAGE;
-    console.log("imagekey", imagekey)
     const fetchData = async () => {
         if (!uid) {
             toast.error("Please schedule the story first to generate the image.");

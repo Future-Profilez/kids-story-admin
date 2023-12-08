@@ -6,19 +6,14 @@ import Story from "../../Apis/Story";
 import Loading from "../../component/Loading";
 import Nodata from "../../component/Nodata";
 import slugify from "react-slugify";
-
-
 function Listing({type}) {
-
     const inputref = useRef(null);
     const [loading, setLoading] = useState(false);
     const [searchQuery, setSearchQuery] = useState(inputref.current);
     const [content, setContent] = useState([]);
     const [selectSort, setSelectSort] = useState("");
     const [selectedGenre, setSelectedGenre] = useState("");
-   
 
-   
     const handlesort = (e) => {
         setSelectSort(e.target.value);
     };
@@ -116,6 +111,10 @@ function Listing({type}) {
         WebkitBoxOrient: 'vertical',
     };
 
+ 
+console.log("schedule",content)
+
+
     return (<>
         <div className="filter-search">
             <div className="search">
@@ -163,14 +162,16 @@ function Listing({type}) {
         </div>
         <div className="story-card">
             <div className="row">
+
                 {content && content.length > 0 ? (
                     content.map((item, index) => (
                         <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
                             <div className="card">
                                 <Link to={`${slugify(item.uuid)}`} >
                                 <img src={item.image_url || storys } alt="N/A"/>
+                                <button className="editimagebtn btn blue-gradient-btn"> {item.scheduled_at ?"Published":null}</button>
                                     <div className="card-body">
-                                        <p className="card-text">{item.scheduled_at} </p>
+                                        <p className="card-text">{item.scheduled_at || "N/A"} </p>
                                         <h5 className="card-title" style={divStyle}
                                             dangerouslySetInnerHTML={{ __html: item.title }}
                                         ></h5>
@@ -186,6 +187,8 @@ function Listing({type}) {
                                         </div>
                                     </div>
                                 </Link>
+
+
                             </div>
                         </div>
                     ))

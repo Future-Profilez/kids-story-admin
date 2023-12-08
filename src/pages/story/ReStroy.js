@@ -3,7 +3,8 @@ import { Modal } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Ai from "../../Apis/Ai";
-import { adduser,reduxdatauser } from "../../Redux/UserSlice";
+import { adduser } from "../../Redux/UserSlice";
+import { toast } from 'react-hot-toast';
 
 function ReStory({ shows, handleCloses }) {
 
@@ -81,30 +82,51 @@ function ReStory({ shows, handleCloses }) {
         };
 
         Ai.post("/completions", requestData)
-          .then((res) => {
+        .then((res) => {
             const storyResponse = res.data.choices[0].message.content;
+            console.log("storyResponse", storyResponse);
             try {
-              const Parstory = JSON.parse(storyResponse);
-              storyres = Parstory;
-              const datastory = dispatch(reduxdatauser(storyres))
-              console.log("datastory", datastory);
-              const data = setCard(storyres);
-              navigate('/list');
+                const jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
+                if (jsonMatch && jsonMatch.length > 0) {
+                    const jsonData = JSON.parse(jsonMatch[0]);
+                    const dataField = jsonData.data;
+                    const Parstory = JSON.parse(storyResponse);
+                    console.log("parstory", Parstory);
+                    storyres = Parstory;
+                    const datastory = dispatch(adduser(storyres));
+                    console.log("datastory", datastory);
+                    const data = setCard(storyres);
+                    console.log("data", data);
+                    setTimeout(() => {
+                        navigate('/list');
+                    }, 1000);
+                    console.log(dataField);
+                } else {
+                    const Parstory = JSON.parse(storyResponse);
+                    storyres = Parstory;
+                    const datastory = dispatch(adduser(storyres));
+                    console.log("datastory1", datastory);
+                    const data = setCard(storyres);
+                    console.log("data1", data);
+                    navigate('/list');
+                }
             } catch (error) {
-              console.log("Error parsing JSON:", error);
-            } finally {
-              setLoading(false);
+                console.log("Error parsing JSON:", error);
             }
-          })
-          .catch((error) => {
+            setLoading(false);
+        })
+        .catch((error) => {
             console.log("error", error);
             setLoading(false);
-          });
-      }
-    } catch (error) {
-      console.log("Error", error);
-    }
-  };
+            toast.error("error",error);
+        });
+}
+} catch (error) {
+console.log("Error", error);
+setLoading(false);
+toast.error("Failed to complete the API request. Please try again.");
+}
+}
 
   useEffect(() => {
     setLoading(false);

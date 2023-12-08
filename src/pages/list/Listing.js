@@ -129,7 +129,7 @@ function Listing({type}) {
             </div>
             <div className="dropdwon-filter">
                 <div className="story-sort">
-                    <h1>SortBy: </h1>
+                    <h1>SortBy :</h1>
                     <select className="select"
                         value={selectSort} onChange={handlesort}
                     >
@@ -145,7 +145,7 @@ function Listing({type}) {
                     </select>
                 </div>
                 <div className="story-sort">
-                    <h1>Category: </h1>
+                    <h1>Category :</h1>
                     <select className="select" value={selectedGenre}
                         onChange={handlegenre}>
                         <option value="">

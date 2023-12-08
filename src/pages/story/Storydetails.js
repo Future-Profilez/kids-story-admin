@@ -118,6 +118,7 @@ function Storydetails() {
                                             <div className="add-line">
                                             </div>
                                             <div className="description">
+                                                <h6>Schedule Date:- {content.schedule_at} </h6>
                                                 <p>
                                                     {content?.story_description}
                                                 </p>

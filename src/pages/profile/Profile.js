@@ -12,6 +12,7 @@ function Profile() {
     const handleTabClick = (keys) => {
         setkeys(keys);
     };
+    const [content, setcontent] = useState([])
 
     const initialRegs = {
         phone_no: "",
@@ -19,16 +20,16 @@ function Profile() {
         email: "",
     };
     const [Regs, setRegs] = useState(initialRegs);
-    const [content, setcontent] = useState({})
     useEffect(() => {
         const main = new Story();
         const response = main.getdetilas();
         response.then((res) => {
             setcontent(res?.data?.data)
+            const userdata = res.data.data
             setRegs({
-                phone_no: res.data.data.phone_no,
-                name: res.data.data.name,
-                email: res.data.data.email,
+                phone_no: userdata.phone_no,
+                name: userdata.name,
+                email: userdata.email,
             });
             toast.success(res?.data?.message)
         }).catch((error) => {
@@ -41,7 +42,8 @@ function Profile() {
         const name = e.target.name;
         setRegs((prevState) => ({ ...prevState, [name]: value }));
     };
-    
+
+    console.log("content", content)
     const [loading, setLoading] = useState(false);
 
     function handleForms(e) {
@@ -53,12 +55,11 @@ function Profile() {
         const main = new Story();
         const response = main.Profile(Regs)
         response.then((res) => {
-            console.log("dfsd0", res)
-            if (res.data.status === true) {
+            toast.success(res.data.message);
+            if (res.data) {
                 setRegs(res.data.data);
-                toast.success("res.data.message", res.data.message);
             } else {
-                toast.error(res.message);
+                toast.error(res.data.message);
             }
             setLoading(false)
         })
@@ -80,10 +81,6 @@ function Profile() {
                                     <h6>Setting</h6>
                                 </div>
                                 <div className="profile-manage">
-                                      <Toaster
-                                                position="top-center"
-                                                reverseOrder={false}
-                                            />
                                     <Tabs
                                         defaultActiveKey="profile"
                                         transition={false}
@@ -153,6 +150,7 @@ function Profile() {
                                                     </button>
                                                 </div>
                                             </div>
+
                                         </Tab>
                                         <Tab eventKey="password" title="Password">
                                             <Password />
@@ -160,6 +158,10 @@ function Profile() {
 
                                     </Tabs>
                                 </div>
+                                <Toaster
+                                    position="top-center"
+                                    reverseOrder={false}
+                                />
                             </div>
                         </div>
                     </div>

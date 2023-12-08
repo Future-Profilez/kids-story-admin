@@ -1,15 +1,12 @@
-import { Image } from "react-bootstrap";
 import "../../style/story.css";
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import { Modal } from "react-bootstrap";
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {  useState } from "react";
+import {  useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import ReStory from "./ReStroy";
-import record from "../../Data/data.json"
 import ImagePrompt from "./ImagePrompt";
-import { genraorimage } from "../../Redux/UserSlice";
 import Schedule from "./Schedule";
 
 function Storylist() {
@@ -20,13 +17,11 @@ function Storylist() {
         setStoryUID(uid);
         console.log("uid", uid);
     }
-    const [story, setStory] = useState(record && record.data);
     const navigate = useNavigate();
     const users = useSelector(state => state.users.users);
 
 
     console.log("users", users.at(-1));
-    const [records, setRecords] = useState([]);
 
     let chaptersdata = [];
     if (users.length > 0) {

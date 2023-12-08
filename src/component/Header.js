@@ -27,7 +27,6 @@ function Header() {
    
     return (
         <>
-            {/* header */}
             <header className={headerClass} id="header">
              <div className="header-data"> 
              <h2>
@@ -39,8 +38,6 @@ function Header() {
                     </svg>
                 </div>
             </header>
-            {/* <button onClick={()=>window.location("/list")} >Push</button> */}
-            {/* side bar */}
             <div className="main-sidebar" id="nav-bar">
                 <div className="new-story">
                     <NavLink to="/home" className="btn blue-gradient-btn" activeClassName="active">

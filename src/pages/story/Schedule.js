@@ -51,9 +51,15 @@ function Schedule({record,getStoryUID }) {
         console.table(Regs);
     },[Regs]);
 
+
     async function handleForms(e) {
         e.preventDefault();
         setLoading(true);
+        const currentDate = new Date().toISOString().split('T')[0];
+        if (currentDate === Regs.schedule_at) {
+            toast.success("You can  schedule story today. Please do not select a before date. ");
+            return false;
+        }
         const main = new Story();
         try {
             const response = await main.Scheduledate(Regs);

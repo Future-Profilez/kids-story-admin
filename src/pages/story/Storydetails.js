@@ -138,7 +138,7 @@ function Storydetails() {
                                     <div className="story-list" key={index}>
                                         <h2 className="mt-4 pt-3 mb-3" > {item?.title}</h2>
                                         <div className="chapterImg w-100 position-relative mt-2 mb-3" >
-                                            <ImagePrompt image_url={item.image_url || inmagerecoird} customclass="editimagebtn"
+                                            <ImagePrompt image_url={item.image_url || inmagerecoird} customclass="editimagebtn btn blue-gradient-btn"
                                                 custom={<>
                                                     <div className="editImage" >Edit Image</div>
                                                 </>}
@@ -162,7 +162,7 @@ function Storydetails() {
 
             <Modal show={showContinue} onHide={handleCloseContinue} id="generat-story">
 
-                <Modal.Header closeButton style={{ borderTop: "1px solid rgba(255,255,255, 0.1)" }}>
+                <Modal.Header closeButton>
                     <Modal.Title>
                         <h2>StoryScape!</h2>
                     </Modal.Title>

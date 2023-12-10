@@ -118,6 +118,8 @@ function Storydetails() {
                                             </div>
                                             <div className="description">
                                                 <h6>Schedule Date:- {content.scheduled_at  || "Null"} </h6>
+
+                                                
                                                 <p>
                                                     {content?.story_description}
                                                 </p>

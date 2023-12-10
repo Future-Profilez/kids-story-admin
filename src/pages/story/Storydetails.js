@@ -98,7 +98,6 @@ function Storydetails() {
                     <div className="content ">
                         <Heading />
                         {loading ? (
-
                             <div>
                                 <div className="story-title"><h6> Title :- {content?.title}</h6></div>
                                 <div className="reschedule-story">
@@ -118,13 +117,13 @@ function Storydetails() {
                                             <div className="add-line">
                                             </div>
                                             <div className="description">
-                                                <h6>Schedule Date:- {content.schedule_at} </h6>
+                                                <h6>Schedule Date:- {content.scheduled_at  || "Null"} </h6>
                                                 <p>
                                                     {content?.story_description}
                                                 </p>
                                             </div>
-                                            { content && content.schedule_at ? (   <div className="reschedule-action">
-                                                <div className="btn blue-gradient-btn" onClick={handleShowContinue}>
+                                            { content && content.scheduled_at ? (   <div className="reschedule-action">
+                                                <div className="btn blue-gradient-btn" onClick={handleShowContinue} >
                                                     <span>
                                                        Reschedule Story
                                                     </span>
@@ -183,7 +182,7 @@ function Storydetails() {
             </AuthLayout>
 
 
-            <Modal show={showContinue} onHide={handleCloseContinue} id="generat-story">
+            <Modal show={showContinue} onHide={handleCloseContinue}   id="generat-story">
 
                 <Modal.Header closeButton>
                     <Modal.Title>
@@ -195,7 +194,9 @@ function Storydetails() {
                         position="top-center"
                         reverseOrder={false}
                     />
-                    <div class="body-popup-title"><h3>When do you want to publish this story?</h3></div>
+                    <div class="body-popup-title"><h3>When do you want to publish this story?</h3>
+                    <p>Schedule date:- {content.scheduled_at || "Null"}</p>
+                    </div>
                     <div className="date-field-story" >
                         {/* <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -205,13 +206,22 @@ function Storydetails() {
                         <input type="date" placeholder="Year/Month/Date" className="input_field  form-control" name="schedule_at"
                             id="password_field" value={Regs.schedule_at} onChange={handleInputs} />
                     </div>
-                    <div className="text-center">
-                        <div className="btn blue-gradient-btn" onClick={handleForms}  >
-                            <span>
-                                Re-Schedule
-                            </span>
-                        </div>
+                    {content.scheduled_at ? (
+ <div className="text-center">
+ <div className="btn blue-gradient-btn" onClick={handleForms}  >
+     <span>
+         Re-Schedule
+     </span>
+ </div>
+</div>                       
+                    ):( <div className="text-center">
+                    <div className="btn blue-gradient-btn" onClick={handleForms}  >
+                        <span>
+Publish
+                        </span>
                     </div>
+                </div>)}
+                   
                 </Modal.Body>
             </Modal>
         </>

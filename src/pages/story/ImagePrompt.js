@@ -50,7 +50,8 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
     const usethis = () => {
         addImage(imageBase64);
         setFinalImage(updatedImage);
-        setexisted(updatedImage)
+        setexisted(updatedImage);
+        setModalShow(false);
     }
 
     const imagekey = process.env.REACT_APP_IMAGE;
@@ -77,7 +78,7 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
                 setUpdatedImage(imageUrl);
                 setIsLoading(false);
                 setIsClicked(true);
-                setShowPrompt(false)
+                setShowPrompt(false);
                 const reader = new FileReader();
                 reader.onload = () => {
                     const base64data = reader.result;

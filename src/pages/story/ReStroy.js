@@ -103,7 +103,9 @@ function ReStory({ shows, handleCloses }) {
                 if (Parstory && Parstory.title) {
                   navigate('/list');
                 }
+
               }, 1000);
+              handleCloses();
               setLoading(false);
             } catch (error) {
               console.log("Error parsing JSON:", error);

@@ -86,7 +86,7 @@ function Storydetails() {
         e.preventDefault();
         const currentDate = new Date().toISOString().split('T')[0];
         if (currentDate === Regs.schedule_at) {
-            toast.success("You can not schedule story today.Please select a upcoming date. ");
+            toast.error("You can not schedule story today.Please select a upcoming date. ");
 
         }
 
@@ -97,7 +97,7 @@ function Storydetails() {
             console.log("responseee", response)
             if (response) {
                 setTimeout(() => {
-                    toast.success(response.data.message);
+                    toast.error(response.data.message);
                 }, 1000);
                 handleCloseContinue();
                 navigate('/card')
@@ -105,6 +105,8 @@ function Storydetails() {
                 setTimeout(() => {
                     toast.error(response.data.message);
                 }, 1000);
+                handleCloseContinue();
+                navigate('/card')
             }
         } catch (error) {
             console.log("Error:", error);
@@ -138,9 +140,6 @@ function Storydetails() {
                                             <div className="add-line">
                                             </div>
                                             <div className="description">
-                                                <h6>Schedule Date:- {content.scheduled_at || "Null"} </h6>
-
-
                                                 <p>
                                                     {content?.story_description}
                                                 </p>
@@ -218,7 +217,12 @@ function Storydetails() {
                         reverseOrder={false}
                     />
                     <div class="body-popup-title"><h3>When do you want to publish this story?</h3>
-                        <p>Schedule date:- {content.scheduled_at || "Null"}</p>
+                        {content.scheduled_at ? (
+                            <p>Schedule date: {content.scheduled_at}</p>
+                        ) : (<></>
+                        )}
+
+
                     </div>
                     <div className="date-field-story" >
 

@@ -23,15 +23,15 @@ function StoryModal({ show, handleClose }) {
     const [loading, setLoading] = useState(false)
     const handleOptionSelect = (nextStep, user) => {
         if (nextStep >= 1 && nextStep <= 4) {
-          setCurrentStep(nextStep);
-          setSelectedUser(user);
-          if (nextStep === 4) {
-            setShowSuccess(true);
-          } else {
-            setShowSuccess(false);
-          }
+            setCurrentStep(nextStep);
+            setSelectedUser(user);
+            if (nextStep === 4) {
+                setShowSuccess(true);
+            } else {
+                setShowSuccess(false);
+            }
         }
-      };
+    };
     useEffect(() => {
         if (gender === "boy") {
             setName("DummyBoy");
@@ -80,33 +80,33 @@ function StoryModal({ show, handleClose }) {
                     .then((res) => {
                         const storyResponse = res.data.choices[0].message.content;
                         console.log("storyResponse", storyResponse);
-                        try {   
-                                const jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
-                                let Parstory;
-                                if (jsonMatch && jsonMatch.length > 0) {
-                                    Parstory = JSON.parse(jsonMatch[0]);
-                                } else { 
-                                    toast.error("Failed to generate a story.Please try with diffrent prompt.")
-                                    return false;
+                        try {
+                            const jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
+                            let Parstory;
+                            if (jsonMatch && jsonMatch.length > 0) {
+                                Parstory = JSON.parse(jsonMatch[0]);
+                            } else {
+                                toast.error("Failed to generate a story.Please try with diffrent prompt.")
+                                return false;
+                            }
+                            console.log("parstory", Parstory);
+                            const datastory = dispatch(adduser(Parstory));
+                            console.log("datastory", datastory);
+                            const data = setCard(Parstory);
+                            console.log("setCard", data);
+                            setTimeout(() => {
+                                if (Parstory && Parstory.title) {
+                                    navigate('/list');
                                 }
-                                console.log("parstory", Parstory);
-                                const datastory = dispatch(adduser(Parstory));
-                                console.log("datastory", datastory);
-                                const data = setCard(Parstory);
-                                console.log("setCard", data);
-                                setTimeout(() => {
-                                    if(Parstory && Parstory.title){
-                                        navigate('/list');
-                                    }
-                                }, 1000);
-                                setLoading(false);
+                            }, 1000);
+                            setLoading(false);
                         } catch (error) {
                             console.log("Error parsing JSON:", error);
                         }
                         setLoading(false);
                     })
                     .catch((error) => {
-                        toast.error("error",error);
+                        toast.error("error", error);
                         console.log("error", "Some went wrong !!");
                         setLoading(false);
                     });
@@ -130,9 +130,9 @@ function StoryModal({ show, handleClose }) {
 
     const handleBack = () => {
         if (currentStep > 1) {
-          setCurrentStep(currentStep - 1);
+            setCurrentStep(currentStep - 1);
         }
-      };
+    };
     return (
         <>
             <>
@@ -140,12 +140,22 @@ function StoryModal({ show, handleClose }) {
                     <div className={`step${currentStep}`}>
                         <Modal.Header closeButton >
                             <Modal.Title>
-                      <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" onClick={handleBack}>
-                                    <g opacity="0.5">
-                                        <path d="M18 31H21V25H27V31H30V22L24 17.5L18 22V31ZM16 33V21L24 15L32 21V33H25V27H23V33H16Z" fill="white" />
-                                        <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="white" />
-                                    </g>
-                                </svg>
+
+                                {currentStep === 1 ? (
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" >
+                                        <g opacity="0.5">
+                                            <path d="M18 31H21V25H27V31H30V22L24 17.5L18 22V31ZM16 33V21L24 15L32 21V33H25V27H23V33H16Z" fill="white" />
+                                            <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="white" />
+                                        </g>
+                                    </svg>
+                                ) : (
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" onClick={handleBack}>
+                                        <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="#898D9E" />
+                                        <path d="M19.825 25L25.425 30.6L24 32L16 24L24 16L25.425 17.4L19.825 23H32V25H19.825Z" fill="#898D9E" />
+                                    </svg>
+                                )}
+
+
                                 <h2>StoryScape!</h2>
                             </Modal.Title>
                         </Modal.Header>

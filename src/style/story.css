@@ -47,14 +47,23 @@
 .story-card img {
   object-fit: cover; width: 100%; max-height: 270px; height: 270px; overflow: hidden;
 }
-
 .story-card .editimagebtns {
   position: absolute;
-  top: 213px;
-  right: 38px;
-  padding: 5px 8px;
+  font-size: 13px;
+  top: 233px;
+  right: 58px;
+  padding: 2px 5px;
   border-radius: 10px;
   min-width: 150px;
+}
+
+.editimagebtns.btn.blue-gradient-btn:hover {
+  color: white;
+}
+
+.card-text h6 {
+  color: #b32e2e;
+  font-size: 15px;
 }
  
 .profile-manage .nav-tabs {margin: 0 0 30px;border-bottom: 1px solid rgba(255, 255, 255, 0.1);}

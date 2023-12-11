@@ -158,9 +158,11 @@ function Listing({ type }) {
                             <div className="card">
                                 <Link to={`${slugify(item.uuid)}`} >
                                     <img src={item.image_url || storys} alt="N/A" />
-                                    <div className="editimagebtns btn blue-gradient-btn"> {item.scheduled_at ? "Published" : "null"}</div>
+                                    {item.scheduled_at ? (
+    <div className="editimagebtns btn blue-gradient-btn">  Published</div>
+) : null}
                                     <div className="card-body">
-                                        <p className="card-text">{item.scheduled_at || "N/A"} </p>
+                                        <p className="card-text">{item.scheduled_at || <h6>Not Published</h6>} </p>
                                         <h5 className="card-title" style={divStyle}
                                             dangerouslySetInnerHTML={{ __html: item.title }}
                                         ></h5>

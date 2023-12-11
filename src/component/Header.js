@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContextProvider";
 import Heading from "./Heading";
+import { toast } from 'react-hot-toast';
 
 function Header() {
 
@@ -16,6 +17,7 @@ function Header() {
         localStorage.removeItem('token')
         setLoginUser(localStorage.getItem('loginUser'))
         navigate('/')
+        toast.success("Logout Successfully ")
     }
 
 

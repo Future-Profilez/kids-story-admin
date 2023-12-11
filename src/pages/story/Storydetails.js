@@ -50,6 +50,9 @@ function Storydetails() {
         }
     };
 
+
+
+  
     const id = content.id;
     const [Regs, setRegs] = useState("");
     const handleInputs = (e) => {
@@ -58,6 +61,27 @@ function Storydetails() {
         setRegs((prevState) => ({ ...prevState, [name]: value }));
         console.table(Regs);
     };
+
+    const months = [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+    ];
+
+    var dt = new Date(Regs.schedule_at);
+    console.log("dt",dt)
+    const updated = months[dt.getMonth()] +"-" +  dt.getDate()  +"-" +dt.getFullYear() ; // 2023-12-11
+   console.log("updated",updated)
+   
     async function handleForms(e) {
         e.preventDefault();
         const currentDate = new Date().toISOString().split('T')[0];
@@ -206,7 +230,7 @@ function Storydetails() {
                             </svg>
                         </span> */}
                         <input type="date" placeholder="Year/Month/Date" className="input_field  form-control" name="schedule_at"
-                            id="password_field" value={Regs.schedule_at} onChange={handleInputs} />
+                            id="password_field" value={Regs.scheduled_at} onChange={handleInputs} />
                     </div>
                     {content.scheduled_at ? (
  <div className="text-center">

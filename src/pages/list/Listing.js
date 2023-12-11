@@ -6,7 +6,7 @@ import Story from "../../Apis/Story";
 import Loading from "../../component/Loading";
 import Nodata from "../../component/Nodata";
 import slugify from "react-slugify";
-function Listing({type}) {
+function Listing({ type }) {
     const inputref = useRef(null);
     const [loading, setLoading] = useState(false);
     const [searchQuery, setSearchQuery] = useState(inputref.current);
@@ -22,9 +22,9 @@ function Listing({type}) {
     let searchvalue = "";
     const handlesearch = (e) => {
         searchvalue = e.target.value;
-        if(searchvalue && searchvalue.length > 3){
+        if (searchvalue && searchvalue.length > 3) {
             setSearchQuery(searchvalue);
-        }else {
+        } else {
             setSearchQuery('');
         }
     };
@@ -41,7 +41,7 @@ function Listing({type}) {
         const query = `${selectSort ? `&sortBy=${selectSort}` : ''
             }${selectedGenre ? `&genre_name=${selectedGenre}` : ''
             }${searchQuery ? `&search=${searchQuery}` : ''
-        }`;
+            }`;
         const main = new Story();
         const response = main.StoryCard(type, query, pg);
         response
@@ -58,7 +58,7 @@ function Listing({type}) {
                     setPage(res.data.current_page);
                     if (res.data.current_page === res.data.last_page) {
                         setHasMore(false);
-                    }else {
+                    } else {
                         setHasMore(true);
                     }
                 } else {
@@ -75,12 +75,12 @@ function Listing({type}) {
     };
 
     useEffect(() => {
-        if(!loading){
+        if (!loading) {
             fetching(1);
         }
     }, [type, selectSort, selectedGenre, searchQuery]);
 
-   
+
     const loadMore = () => {
         if (!loading && hasmore) {
             setLoading(true);
@@ -108,7 +108,7 @@ function Listing({type}) {
         <div className="filter-search">
             <div className="search">
                 <input type="search" placeholder="search"
-                      ref={inputref}
+                    ref={inputref}
                     onChange={handlesearch}
                 />
                 <button>
@@ -157,8 +157,8 @@ function Listing({type}) {
                         <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
                             <div className="card">
                                 <Link to={`${slugify(item.uuid)}`} >
-                                <img src={item.image_url || storys } alt="N/A"/>
-                                <div className="editimagebtns btn blue-gradient-btn"> {item.scheduled_at? "Published" :"null"}</div>
+                                    <img src={item.image_url || storys} alt="N/A" />
+                                    <div className="editimagebtns btn blue-gradient-btn"> {item.scheduled_at ? "Published" : "null"}</div>
                                     <div className="card-body">
                                         <p className="card-text">{item.scheduled_at || "N/A"} </p>
                                         <h5 className="card-title" style={divStyle}
@@ -184,7 +184,7 @@ function Listing({type}) {
                 ) : !loading ? <Nodata /> : ''
                 }
                 {loading ? <Loading /> : ''}
-                { page<1 && !loading && hasmore && (
+                {page < 1 && !loading && hasmore && (
                     <div className="loader-btn" onClick={loadMore}>
                         <Link className="btn blue-gradient-btn">Load More</Link>
                     </div>

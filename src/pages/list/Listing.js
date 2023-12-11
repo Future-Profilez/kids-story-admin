@@ -162,7 +162,7 @@ function Listing({ type }) {
     <div className="editimagebtns btn blue-gradient-btn">  Published</div>
 ) : null}
                                     <div className="card-body">
-                                        <p className="card-text">{item.scheduled_at || <h6>Not Published</h6>} </p>
+                                        <p className="card-text">{item.scheduled_at || <h6>Not Published yet.</h6>} </p>
                                         <h5 className="card-title" style={divStyle}
                                             dangerouslySetInnerHTML={{ __html: item.title }}
                                         ></h5>

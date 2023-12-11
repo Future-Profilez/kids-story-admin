@@ -15,16 +15,11 @@ import PrivateRouter from "./Router/PrivateRouter";
 import Login from "./component/Login";
 import UserContextProvider from "./context/UserContextProvider";
 import Storydetails from "./pages/story/Storydetails";
-import { Toaster } from 'react-hot-toast';
 
 function App() {
 
   return (
     <div id="body-pd" className="App">
-      <Toaster
-        position="top-center"
-        reverseOrder={false}
-      />
       <UserContextProvider>
         <Router>
           <Routes>

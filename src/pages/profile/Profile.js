@@ -159,7 +159,7 @@ function Profile() {
                                     </Tabs>
                                 </div>
                                 <Toaster
-                                    position="top-center"
+                                    position="top-right"
                                     reverseOrder={false}
                                 />
                             </div>

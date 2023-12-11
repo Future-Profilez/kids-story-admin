@@ -100,7 +100,7 @@ function Storydetails() {
         try {
             const response = await main.storyreshedule(uuid, Regs);
             console.log("responseee", response)
-            if (response.status===true) {
+            if (response.data.status===true) {
                 setTimeout(() => {
                     toast.success(response.data.message);
                 }, 1000);
@@ -110,8 +110,6 @@ function Storydetails() {
                 setTimeout(() => {
                     toast.error(response.data.message);
                 }, 1000);
-                handleCloseContinue();
-                navigate('/card')
             }
         } catch (error) {
             console.log("Error:", error);
@@ -127,7 +125,7 @@ function Storydetails() {
                         <Heading />
                         {loading ? (
                             <div>
-                                <div className="story-title"><h6> Title :- {content?.title}</h6></div>
+                                <div className="story-title"><h6> {content?.title}</h6></div>
                                 <div className="reschedule-story">
                                     <div className="row">
                                         <div className="col-md-6 col-lg-4">
@@ -135,15 +133,12 @@ function Storydetails() {
                                         </div>
                                         <div className="col-md-6 col-lg-8">
                                             <div className="heading d-flex justify-content-between">
-
                                                 <div className="heading-graph">
-                                                    <h6><span> {content?.genre_name} </span> </h6>
-                                                    <p>{content?.title}</p>
+                                                    <h6  ><span> {content?.genre_name} </span> </h6>
+                                                    <p className="mb-0" >{content?.title}</p>
                                                 </div>
-
                                             </div>
-                                            <div className="add-line">
-                                            </div>
+                                           
                                             <div className="description">
                                                 <p>
                                                     {content?.story_description}

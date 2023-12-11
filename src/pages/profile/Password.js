@@ -50,10 +50,7 @@ function Password() {
 
     return (
         <>
-          <Toaster
-                position="top-center"
-                reverseOrder={false}
-            />
+          
             <div className="update-field">
                 <div className="row">
                     <div className="col-md-12">
@@ -141,6 +138,11 @@ function Password() {
                         </span>
                     </button>
                 </div>
+
+                <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
             </div>
 
         </>

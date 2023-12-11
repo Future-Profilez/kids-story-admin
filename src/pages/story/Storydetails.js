@@ -84,10 +84,15 @@ function Storydetails() {
 
     async function handleForms(e) {
         e.preventDefault();
+       
         const currentDate = new Date().toISOString().split('T')[0];
         if (currentDate === Regs.schedule_at) {
             toast.error("You can not schedule story today.Please select a upcoming date. ");
 
+        }
+
+         if (!Regs.schedule_at) {
+            toast.error("Please select a date.");
         }
 
         console.log("Submitting data:", Regs);
@@ -95,9 +100,9 @@ function Storydetails() {
         try {
             const response = await main.storyreshedule(uuid, Regs);
             console.log("responseee", response)
-            if (response) {
+            if (response.status===true) {
                 setTimeout(() => {
-                    toast.error(response.data.message);
+                    toast.success(response.data.message);
                 }, 1000);
                 handleCloseContinue();
                 navigate('/card')
@@ -221,12 +226,10 @@ function Storydetails() {
                             <p>Schedule date: {content.scheduled_at}</p>
                         ) : (<></>
                         )}
-
-
                     </div>
                     <div className="date-field-story" >
 
-                        <input type="date" min={(new Date()).toISOString().split('T')[0]} placeholder="Year/Month/Date" className="input_field  form-control" name="schedule_at"
+                        <input type="date"  min={(new Date()).toISOString().split('T')[0]} placeholder="Year/Month/Date" className="input_field  form-control" name="schedule_at"
                             id="password_field" value={Regs.scheduled_at} onChange={handleInputs} />
                     </div>
                     {content.scheduled_at ? (

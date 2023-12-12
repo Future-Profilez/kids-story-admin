@@ -6,6 +6,7 @@ import Story from "../../Apis/Story";
 import Loading from "../../component/Loading";
 import Nodata from "../../component/Nodata";
 import slugify from "react-slugify";
+import { toast } from 'react-hot-toast';
 function Listing({ type }) {
     const inputref = useRef(null);
     const [loading, setLoading] = useState(false);
@@ -62,7 +63,7 @@ function Listing({ type }) {
                         setHasMore(true);
                     }
                 } else {
-                    console.error("Data is not an array:", res.data);
+                    toast.error("Data is not an array:", res.data);
                     setContent([]);
                 }
                 setLoading(false);

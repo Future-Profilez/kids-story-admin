@@ -60,7 +60,7 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
             toast.error("Please schedule the story first to generate the image.");
         }
         setIsLoading(true);
-        const bearerToken = "vk-OUQ80jbSAfzZTeuT3hrC8yiZt0ehuflzr444hybuoD0Ff";
+        const bearerToken = imagekey;
         const url = 'https://api.vyro.ai/v1/imagine/api/generations';
         const formData = new FormData();
         formData.append('model_version', '1');

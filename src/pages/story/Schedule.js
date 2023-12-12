@@ -6,7 +6,6 @@ import toast from "react-hot-toast";
 import { useSelector } from "react-redux";
 
 function Schedule({record,getStoryUID }) {
-    const navigate = useNavigate();
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);

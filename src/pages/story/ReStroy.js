@@ -9,7 +9,6 @@ import { toast } from 'react-hot-toast';
 function ReStory({ shows, handleCloses }) {
 
   const [users] = useSelector((state) => state.users.users);
-  console.log("iuser", users)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userTitle, setUserTitle] = useState("");
@@ -27,7 +26,6 @@ function ReStory({ shows, handleCloses }) {
     chaptersdata = users;
   }
 
-  console.log("chaptersdatareee", chaptersdata)
 
   let extractdata = [];
   if (chaptersdata) {

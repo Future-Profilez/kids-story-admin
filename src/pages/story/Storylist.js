@@ -21,7 +21,6 @@ function Storylist() {
     const users = useSelector(state => state.users.users);
 
 
-    console.log("users", users.at(-1));
 
     let chaptersdata = [];
     if (users.length > 0) {
@@ -36,9 +35,6 @@ function Storylist() {
     } else {
         extractdata = chaptersdata.data;
     }
-
-    console.log("extractdata", extractdata);
-    console.log("chaptersdata", chaptersdata);
 
    
     const [shows, setShows] = useState(false);
@@ -91,6 +87,7 @@ function Storylist() {
             setLoading(false);
         }
     }
+
     return (
         <>
             <AuthLayout>

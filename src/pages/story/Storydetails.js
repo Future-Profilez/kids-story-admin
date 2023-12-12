@@ -108,6 +108,8 @@ const[loadings,setLoadings]=useState(false)
                     toast.error(response.data.message);
                 }, 1000);
                 handleCloseContinue();
+                navigate('/card')
+
             }
         } catch (error) {
             setLoadings(false);

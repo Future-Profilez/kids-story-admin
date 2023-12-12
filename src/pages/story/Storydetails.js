@@ -10,6 +10,7 @@ import Heading from "../../component/Heading";
 import ImagePrompt from "./ImagePrompt";
 import Loading from "../../component/Loading";
 function Storydetails() {
+
     const { uuid } = useParams();
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
@@ -49,10 +50,6 @@ function Storydetails() {
             })
         }
     };
-
-
-
-
     const id = content.id;
     const [Regs, setRegs] = useState("");
     const handleInputs = (e) => {
@@ -61,7 +58,6 @@ function Storydetails() {
         setRegs((prevState) => ({ ...prevState, [name]: value }));
         console.table(Regs);
     };
-
     const months = [
         "01",
         "02",
@@ -76,25 +72,26 @@ function Storydetails() {
         "11",
         "12",
     ];
-
+const[loadings,setLoadings]=useState(false)
     var dt = new Date(Regs.schedule_at);
     console.log("dt", dt)
     const updated = months[dt.getMonth()] + "-" + dt.getDate() + "-" + dt.getFullYear(); // 2023-12-11
     console.log("updated", updated)
-
     async function handleForms(e) {
         e.preventDefault();
-       
+        if(loadings){
+            return false;
+        }
+        setLoadings(true);
         const currentDate = new Date().toISOString().split('T')[0];
         if (currentDate === Regs.schedule_at) {
             toast.error("You can not schedule story today.Please select a upcoming date. ");
-
+            setLoadings(false);
         }
-
          if (!Regs.schedule_at) {
             toast.error("Please select a date.");
+            setLoadings(false);
         }
-
         console.log("Submitting data:", Regs);
         const main = new Story();
         try {
@@ -110,8 +107,10 @@ function Storydetails() {
                 setTimeout(() => {
                     toast.error(response.data.message);
                 }, 1000);
+                handleCloseContinue();
             }
         } catch (error) {
+            setLoadings(false);
             console.log("Error:", error);
         }
     }
@@ -228,18 +227,15 @@ function Storydetails() {
                             id="password_field" value={Regs.scheduled_at} onChange={handleInputs} />
                     </div>
                     {content.scheduled_at ? (
-                        <div className="text-center">
+                        <div className="text-center" disabled={loadings}>
                             <div className="btn blue-gradient-btn" onClick={handleForms}  >
-                                <span>
-                                    Re-Schedule
-                                </span>
+                            <span>{loadings ? "Wait..":"Re_Schedule"}</span>
+                               
                             </div>
                         </div>
-                    ) : (<div className="text-center">
+                    ) : (<div className="text-center" disabled={loadings} >
                         <div className="btn blue-gradient-btn" onClick={handleForms}  >
-                            <span>
-                                Publish
-                            </span>
+                        <span>{loadings ? "Wait..":"Publish"}</span>
                         </div>
                     </div>)}
 

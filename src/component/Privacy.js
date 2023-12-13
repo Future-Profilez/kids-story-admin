@@ -1,8 +1,12 @@
 import React from 'react'
+import Heading from './Heading'
 
 export default function Privacy() {
   return (
     <div>
+         <div className="content-wrapper">
+                <div className="content"></div>
+                <Heading/>
       <div class="privacy-sec">
         <div class="privacy-head">
             <div class="container">
@@ -10,7 +14,6 @@ export default function Privacy() {
             </div>
         </div>
         <div class="container">
-            <h2>Privacy Policy</h2>
             <p>Last updated: December 13, 2023</p>
             <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when
             You use the Service and tells You about Your privacy rights and how the law protects You.</p>
@@ -206,6 +209,8 @@ export default function Privacy() {
         </div>
     </div>
     </div>
-  )
+    </div>
+
+)
 }
 

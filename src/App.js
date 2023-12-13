@@ -15,6 +15,7 @@ import PrivateRouter from "./Router/PrivateRouter";
 import Login from "./component/Login";
 import UserContextProvider from "./context/UserContextProvider";
 import Storydetails from "./pages/story/Storydetails";
+import Privacy from "./component/Privacy";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/term" element={<Privacy />} />
             <Route path="/home" element={
               <PrivateRouter>
                 <Homepage />

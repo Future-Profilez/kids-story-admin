@@ -9,8 +9,9 @@ function Chart() {
   const [Contnet, setContent] = useState([])
   useEffect(() => {
     const main = new Story();
-    const response = main.Static();
+    const response = main.getdeialssubs();
     response.then((res) => {
+      console.log("res",res);
       setContent(res.data)
     }).catch((error) => {
       console.log("erorr", error)

@@ -25,7 +25,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/term" element={<Privacy />} />
+            <Route path="/terms" element={<Privacy />} />
             <Route path="/home" element={
               <PrivateRouter>
                 <Homepage />

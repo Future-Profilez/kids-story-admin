@@ -62,6 +62,10 @@ class Story extends Component {
     async getchart(){
         return Api.get("/get-data-bymonth")
     }
+
+    async forget(data){
+        return Api.post("/forgot-password-admin",data)
+    }
     render() {
         return (
             <div>

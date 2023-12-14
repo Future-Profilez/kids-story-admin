@@ -2,8 +2,32 @@ import React, { useContext, useState } from "react";
 import { Image } from "react-bootstrap";
 import image from "../image/login.png";
 import "../style/login.css";
+import Story from "../Apis/Story";
+import { toast } from 'react-hot-toast';
 
 function Forget() {
+
+    const [password, setPassword] = useState({
+        forgetemail: ""
+    })
+
+    const handleInputs = (e) => {
+        const value = e.target.value;
+        const name = e.target.name;
+        setPassword((prevState) => ({ ...prevState, [name]: value }));
+    };
+
+    async function handleForms(e) {
+        e.preventDefault();
+        const main = new Story();
+        const response = main.forget();
+        console.log("response", response);
+        response.then((res) => {
+            console.log("res", res)
+        }).catch((error) => { console.log("erorr", error) })
+
+    }
+
 
     return (
         <>
@@ -29,23 +53,23 @@ function Forget() {
                             </label>
                             <input
                                 placeholder="Email"
-                                name="email"
-                                onChange=""
-                                value=""
-                                type="email"
+                                name="forgetemail"
+                                onChange={handleInputs}
+                                value={password.forgetemail}
+                                type="text"
                                 className="input_field form-control"
                                 id="email_field"
                             />
                         </div>
                         <div className="text-center">
-                            <button 
-                                className="btn blue-gradient-btn" >
-                                <span>Submit</span>
+                            <button
+                                className="btn blue-gradient-btn" onClick={handleForms}>
+                                <span >Submit</span>
                             </button>
                         </div>
                     </div>
                 </div>
-            </div> 
+            </div>
         </>
     );
 }

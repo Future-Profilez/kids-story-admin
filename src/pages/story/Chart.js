@@ -5,8 +5,11 @@ import Chart from 'chart.js/auto'; // Import Chart from chart.js/auto
 
 function ChartComponent() {
   const chartRef = useRef(null);
+
   const chartInstance = useRef(null);
+
   const [content, setContent] = useState([]);
+  
 
   useEffect(() => {
     const main = new Story();

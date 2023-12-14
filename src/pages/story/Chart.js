@@ -12,6 +12,7 @@ function ChartComponent() {
     const main = new Story();
     const response = main.getchart();
     response.then((res) => {
+      console.log("res",res)
       if (res.data.status === true) {
         setContent(res.data.data);
         toast.success(res.data.message);

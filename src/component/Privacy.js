@@ -204,7 +204,7 @@ export default function Privacy() {
         </div>
         <div class="privacy-footer">
             <div class="container">
-                <p>Generated using Free Privacy Policy Generator</p>
+                {/* <p>Generated using Free Privacy Policy Generator</p> */}
             </div>
         </div>
     </div>

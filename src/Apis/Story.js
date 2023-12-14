@@ -59,7 +59,7 @@ class Story extends Component {
         return Api.get("/admin-logout")
     }
 
-    async getdeialssubs(){
+    async getchart(){
         return Api.get("/get-data-bymonth")
     }
     render() {

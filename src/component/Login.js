@@ -38,7 +38,6 @@ function Login() {
         const main =  new Story();
         try {
             const response = await main.Login(Regs);
-            console.log("response",response)
             if (response?.data?.status===true) {
                  setLoginUser(response?.data);
                 localStorage.setItem("token", response?.data?.token);

@@ -31,10 +31,8 @@ function Profile() {
                 name: userdata.name,
                 email: userdata.email,
             });
-            toast.success(res?.data?.message)
         }).catch((error) => {
             console.log("error", error)
-            toast.error("dfdsjhsdfhjk")
         })
     }, [])
     const handleInputs = (e) => {
@@ -43,7 +41,6 @@ function Profile() {
         setRegs((prevState) => ({ ...prevState, [name]: value }));
     };
 
-    console.log("content", content)
     const [loading, setLoading] = useState(false);
 
     function handleForms(e) {

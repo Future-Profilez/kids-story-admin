@@ -44,7 +44,7 @@ function Login() {
                 setTimeout(() => {
                     toast.success(response.data.message);
                     navigate("/home");
-                }, 1000);
+                }, 2000);
             } else {
                 toast.error("invalid email/password");
             }

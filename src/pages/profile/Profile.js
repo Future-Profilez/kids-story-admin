@@ -52,7 +52,9 @@ function Profile() {
         const main = new Story();
         const response = main.Profile(Regs)
         response.then((res) => {
-            toast.success(res.data.message);
+            setTimeout(() => {
+                toast.success(res.data.message);
+            }, 2000);
             if (res.data) {
                 setRegs(res.data.data);
             } else {

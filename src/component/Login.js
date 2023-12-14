@@ -21,7 +21,7 @@ function Login() {
         const name = e.target.name;
         setRegs((prevState) => ({ ...prevState, [name]: value }));
     };
-    
+
     const [showPassword, setShowPassword] = useState(false);
     const togglePasswordVisibility = () => {
         setShowPassword(!showPassword);
@@ -29,21 +29,21 @@ function Login() {
 
     const [loading, setLoading] = useState(false);
 
-   async function handleForms(e) {
+    async function handleForms(e) {
         e.preventDefault();
-        if(loading){
+        if (loading) {
             return false;
         }
         setLoading(true);
-        const main =  new Story();
+        const main = new Story();
         try {
             const response = await main.Login(Regs);
-            if (response?.data?.status===true) {
-                 setLoginUser(response?.data);
+            if (response?.data?.status === true) {
+                setLoginUser(response?.data);
                 localStorage.setItem("token", response?.data?.token);
+                navigate("/home");
                 setTimeout(() => {
                     toast.success(response.data.message);
-                    navigate("/home");
                 }, 2000);
             } else {
                 toast.error("invalid email/password");
@@ -121,7 +121,7 @@ function Login() {
                             <button disabled={loading}
                                 onClick={handleForms}
                                 className="btn blue-gradient-btn" >
-                                <span>{loading ? "Wait..":"Login"}</span>
+                                <span>{loading ? "Wait.." : "Login"}</span>
                             </button>
                         </div>
                     </div>

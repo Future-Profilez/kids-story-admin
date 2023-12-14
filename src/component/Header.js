@@ -54,7 +54,7 @@ function Header() {
                 <nav className="nav">
 
                 <div className="menu">
-                        <h3>General</h3>
+                        <h3>Menu</h3>
                         <ul>
                             {loginUser ? (<>
 

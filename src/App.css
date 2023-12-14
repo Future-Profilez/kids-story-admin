@@ -123,6 +123,7 @@ a {
   font-weight: 400;
   line-height: normal;
   margin: 0 0 26px;
+  text-transform: uppercase;
 }
 
 .menu ul {
@@ -609,6 +610,9 @@ input:-webkit-autofill:focus {
     transform: rotate(360deg);
   }
 }
+
+.forgetpassword { margin-bottom: 30px; text-align: right; } 
+.forgetpassword a { color: #8856DD; font-family: Poppins; font-size: 15px; font-style: normal; font-weight: 500; line-height: 15px; text-transform: capitalize; }
 
 @media screen and (min-width: 1200px) {
   div#body-pd {

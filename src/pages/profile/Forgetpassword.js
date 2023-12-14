@@ -4,7 +4,7 @@ export default function Forgetpassword() {
 
   return (
     <div>
-      
+      dsfdsfd
     
     </div>
   )

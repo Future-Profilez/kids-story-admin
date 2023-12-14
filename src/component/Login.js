@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Image } from "react-bootstrap";
 import image from "../image/login.png";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../style/login.css";
 import { Toaster, toast } from 'react-hot-toast';
 import Story from "../Apis/Story";
@@ -116,6 +116,9 @@ function Login() {
                                     )}
                                 </div>
                             </div>
+                        </div>
+                        <div className="forgetpassword">
+                        <Link to="/Forget">Forget Password ?</Link>
                         </div>
                         <div className="text-center">
                             <button disabled={loading}

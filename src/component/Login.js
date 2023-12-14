@@ -38,21 +38,20 @@ function Login() {
         const main =  new Story();
         try {
             const response = await main.Login(Regs);
-            console.log("response",response)
             if (response?.data?.status===true) {
                  setLoginUser(response?.data);
                 localStorage.setItem("token", response?.data?.token);
                 setTimeout(() => {
                     toast.success(response.data.message);
                     navigate("/home");
-                }, 1000);
+                }, 2000);
             } else {
-                console.log("error")
-                toast.error(response.data.message);
+                toast.error("invalid email/password");
             }
             setLoading(false);
         } catch (error) {
             console.log("error", error);
+            toast.error("invalid Email/password");
             setLoading(false);
         }
     }
@@ -120,7 +119,6 @@ function Login() {
                         </div>
                         <div className="text-center">
                             <button disabled={loading}
-                                title="Sign In"
                                 onClick={handleForms}
                                 className="btn blue-gradient-btn" >
                                 <span>{loading ? "Wait..":"Login"}</span>

@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { adduser } from "../../Redux/UserSlice";
 import toast from 'react-hot-toast';
-
 function StoryModal({ show, handleClose }) {
     const dispatch = useDispatch();
     const [currentStep, setCurrentStep] = useState(1);
@@ -29,7 +28,6 @@ function StoryModal({ show, handleClose }) {
             } else {
                 setShowSuccess(false);
             }
-
         }
     };
     useEffect(() => {
@@ -46,10 +44,9 @@ function StoryModal({ show, handleClose }) {
     };
     const navigate = useNavigate()
 
-    const [card, setCard] = useState(null)
-    let storyres = null;
+    const [card, setCard] = useState(null);
 
-    function genrateAiStory() {
+    async function genrateAiStory() {
         try {
             if (userTitle && age && gender && genre) {
                 setLoading(true);
@@ -60,7 +57,7 @@ function StoryModal({ show, handleClose }) {
                     gender: gender,
                     genre: genre,
                     name: Name,
-                    minimum_character_length: "500 words",
+                    minimum_character_length: "50 words",
                     description: "Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data in one variable 'data' where inside 'data', there should be 'title','name','age', 'gender', 'genre', and 'chapters'. 'chapters' should be an array containing objects for each chapter with the properties: chapternumber, title, content, and imageprompt. Provide the response in JSON format",
                 };
                 console.log("promptData", promptData);
@@ -83,38 +80,33 @@ function StoryModal({ show, handleClose }) {
                         console.log("storyResponse", storyResponse);
                         try {
                             const jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
+                            let Parstory;
                             if (jsonMatch && jsonMatch.length > 0) {
-                                const jsonData = JSON.parse(jsonMatch[0]);
-                                const dataField = jsonData.data;
-                                const Parstory = JSON.parse(storyResponse);
-                                console.log("parstory", Parstory);
-                                storyres = Parstory;
-                                const datastory = dispatch(adduser(storyres));
-                                console.log("datastory", datastory);
-                                const data = setCard(storyres);
-                                console.log("data", data);
-                                setTimeout(() => {
-                                    navigate('/list');
-                                }, 1000);
-                                console.log(dataField);
+                                Parstory = JSON.parse(jsonMatch[0]);
                             } else {
-                                const Parstory = JSON.parse(storyResponse);
-                                storyres = Parstory;
-                                const datastory = dispatch(adduser(storyres));
-                                console.log("datastory1", datastory);
-                                const data = setCard(storyres);
-                                console.log("data1", data);
-                                navigate('/list');
+                                toast.error("Failed to generate a story.Please try with diffrent prompt.")
+                                return false;
                             }
+                            console.log("parstory", Parstory);
+                            const datastory = dispatch(adduser(Parstory));
+                            console.log("datastory", datastory);
+                            const data = setCard(Parstory);
+                            console.log("setCard", data);
+                            setTimeout(() => {
+                                if (Parstory && Parstory.title) {
+                                    navigate('/list');
+                                }
+                            }, 1000);
+                            setLoading(false);
                         } catch (error) {
                             console.log("Error parsing JSON:", error);
                         }
                         setLoading(false);
                     })
                     .catch((error) => {
-                        console.log("error", error);
+                        toast.error("error", error);
+                        console.log("error", "Some went wrong !!");
                         setLoading(false);
-                        toast.error("error",error);
                     });
             }
         } catch (error) {
@@ -130,8 +122,15 @@ function StoryModal({ show, handleClose }) {
     useEffect(() => {
         setLoading(false);
     }, [userTitle, age, gender, genre]);
+
     useEffect(() => {
     }, [card]);
+
+    const handleBack = () => {
+        if (currentStep > 1) {
+            setCurrentStep(currentStep - 1);
+        }
+    };
     return (
         <>
             <>
@@ -139,12 +138,22 @@ function StoryModal({ show, handleClose }) {
                     <div className={`step${currentStep}`}>
                         <Modal.Header closeButton >
                             <Modal.Title>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none">
-                                    <g opacity="0.5">
-                                        <path d="M18 31H21V25H27V31H30V22L24 17.5L18 22V31ZM16 33V21L24 15L32 21V33H25V27H23V33H16Z" fill="white" />
-                                        <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="white" />
-                                    </g>
-                                </svg>
+
+                                {currentStep === 1 ? (
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" >
+                                        <g opacity="0.5">
+                                            <path d="M18 31H21V25H27V31H30V22L24 17.5L18 22V31ZM16 33V21L24 15L32 21V33H25V27H23V33H16Z" fill="white" />
+                                            <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="white" />
+                                        </g>
+                                    </svg>
+                                ) : (
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" onClick={handleBack}>
+                                        <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="#898D9E" />
+                                        <path d="M19.825 25L25.425 30.6L24 32L16 24L24 16L25.425 17.4L19.825 23H32V25H19.825Z" fill="#898D9E" />
+                                    </svg>
+                                )}
+
+
                                 <h2>StoryScape!</h2>
                             </Modal.Title>
                         </Modal.Header>

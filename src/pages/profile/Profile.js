@@ -7,67 +7,61 @@ import { useEffect, useState } from "react";
 import Password from "./Password"
 import Story from "../../Apis/Story";
 import { Toaster, toast } from 'react-hot-toast';
-
-
-
 function Profile() {
+    const [keys, setkeys] = useState("profile");
+    const handleTabClick = (keys) => {
+        setkeys(keys);
+    };
+    const [content, setcontent] = useState([])
+
     const initialRegs = {
         phone_no: "",
         name: "",
         email: "",
     };
-
-
     const [Regs, setRegs] = useState(initialRegs);
-
-    const [content, setcontent] = useState([])
-
     useEffect(() => {
         const main = new Story();
         const response = main.getdetilas();
         response.then((res) => {
-            setcontent(res.data.data)
+            setcontent(res?.data?.data)
+            const userdata = res.data.data
             setRegs({
-                phone_no: res.data.data.phone_no,
-                name: res.data.data.name,
-                email: res.data.data.email,
+                phone_no: userdata.phone_no,
+                name: userdata.name,
+                email: userdata.email,
             });
         }).catch((error) => {
             console.log("error", error)
         })
     }, [])
-
     const handleInputs = (e) => {
         const value = e.target.value;
         const name = e.target.name;
         setRegs((prevState) => ({ ...prevState, [name]: value }));
     };
 
-    const [keys, setkeys] = useState("profile");
-
-    const handleTabClick = (keys) => {
-        setkeys(keys);
-    };
-
     const [loading, setLoading] = useState(false);
 
     function handleForms(e) {
         e.preventDefault();
-        if(loading){
+        if (loading) {
             return false;
         }
         setLoading(true);
         const main = new Story();
-        main.Profile(Regs)
-            .then((res) => {
-                if (res && res?.status === true) {
-                    toast.success(res.message);
-                    setRegs(initialRegs);
-                } else {
-                    toast.error(res.message);
-                }
-                setLoading(false)
-            })
+        const response = main.Profile(Regs)
+        response.then((res) => {
+            setTimeout(() => {
+                toast.success(res.data.message);
+            }, 2000);
+            if (res.data) {
+                setRegs(res.data.data);
+            } else {
+                toast.error(res.data.message);
+            }
+            setLoading(false)
+        })
             .catch((error) => {
                 console.log("error", error);
                 setLoading(false)
@@ -76,12 +70,7 @@ function Profile() {
     }
     return (
         <>
-
             <AuthLayout>
-            <Toaster
-                position="top-center"
-                reverseOrder={false}
-            />
                 <div className="content-wrapper">
                     <div className="content">
                         <div className="row">
@@ -92,7 +81,7 @@ function Profile() {
                                 </div>
                                 <div className="profile-manage">
                                     <Tabs
-                                        defaultActiveKey="home"
+                                        defaultActiveKey="profile"
                                         transition={false}
                                         activeKey={keys}
                                         onSelect={handleTabClick}
@@ -155,12 +144,11 @@ function Profile() {
                                                 <div className="text-center">
                                                     <button className="btn blue-gradient-btn" onClick={handleForms}>
                                                         <span>
-                                                        <span>{loading ? "Wait..":"Submit"}</span>
+                                                            <span>{loading ? "Wait.." : "Submit"}</span>
                                                         </span>
                                                     </button>
                                                 </div>
                                             </div>
-
 
                                         </Tab>
                                         <Tab eventKey="password" title="Password">
@@ -169,6 +157,10 @@ function Profile() {
 
                                     </Tabs>
                                 </div>
+                                <Toaster
+                                    position="top-right"
+                                    reverseOrder={false}
+                                />
                             </div>
                         </div>
                     </div>

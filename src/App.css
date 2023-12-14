@@ -361,12 +361,13 @@ div#reschedule-popup .modal-content {
 .reschedule-story .row div[class*="col"]:last-child {
   width: 66%;
 }
-
 .reschedule-story img {
   object-fit: cover;
   max-width: 100%;
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
 }
-
 .closebtn {
   position: absolute;
   right: 20px;
@@ -384,7 +385,7 @@ div#reschedule-popup .modal-content {
   border-radius: 40px;
   background: rgba(0, 5, 24, 0.7);
   margin: 0 0 20px;
-  padding: 5px 20px;
+  padding: 5px 10px;
 }
 
 .heading-graph h6 span {

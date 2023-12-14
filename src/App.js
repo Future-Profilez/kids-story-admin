@@ -15,6 +15,8 @@ import PrivateRouter from "./Router/PrivateRouter";
 import Login from "./component/Login";
 import UserContextProvider from "./context/UserContextProvider";
 import Storydetails from "./pages/story/Storydetails";
+import Privacy from "./component/Privacy";
+import Forgetpassword from "./pages/profile/Forgetpassword";
 
 function App() {
 
@@ -24,6 +26,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Login />} />
+            <Route path="/terms" element={<Privacy />} />
             <Route path="/home" element={
               <PrivateRouter>
                 <Homepage />
@@ -35,6 +38,7 @@ function App() {
               </PrivateRouter>
             }
             />
+            <Route path ="/forgetpassword" element={<Forgetpassword/>}/>
             <Route
               path="/card/:uuid"
               element={<Storydetails />}
@@ -63,8 +67,8 @@ function App() {
                 <Static />
               </PrivateRouter>
             } />
-           
-            
+
+
           </Routes>
         </Router>
       </UserContextProvider>

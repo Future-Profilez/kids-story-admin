@@ -30,7 +30,7 @@ function Homepage() {
 
                     <StoryModal show={show} handleClose={handleClose} />
                     <Toaster
-                        position="top-center"
+                        position="top-right"
                         reverseOrder={false}
                     />
                 </div>

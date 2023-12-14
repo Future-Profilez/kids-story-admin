@@ -1,4 +1,3 @@
-
 import { useEffect, useRef, useState } from "react";
 import storys from "../../image/login.png"
 import { Link } from "react-router-dom";
@@ -6,19 +5,14 @@ import Story from "../../Apis/Story";
 import Loading from "../../component/Loading";
 import Nodata from "../../component/Nodata";
 import slugify from "react-slugify";
-
-
-function Listing({type}) {
-
+import { toast } from 'react-hot-toast';
+function Listing({ type }) {
     const inputref = useRef(null);
     const [loading, setLoading] = useState(false);
     const [searchQuery, setSearchQuery] = useState(inputref.current);
     const [content, setContent] = useState([]);
     const [selectSort, setSelectSort] = useState("");
     const [selectedGenre, setSelectedGenre] = useState("");
-   
-
-   
     const handlesort = (e) => {
         setSelectSort(e.target.value);
     };
@@ -28,21 +22,17 @@ function Listing({type}) {
     let searchvalue = "";
     const handlesearch = (e) => {
         searchvalue = e.target.value;
-        if(searchvalue && searchvalue.length > 3){
+        if (searchvalue && searchvalue.length > 3) {
             setSearchQuery(searchvalue);
-        }else {
+        } else {
             setSearchQuery('');
-
         }
     };
     useEffect(() => {
         setSearchQuery(searchvalue);
     }, [searchvalue]);
-
-
     const [page, setPage] = useState(1);
     const [hasmore, setHasMore] = useState(true);
-
     const fetching = (pg) => {
         if (loading) {
             return;
@@ -51,10 +41,9 @@ function Listing({type}) {
         const query = `${selectSort ? `&sortBy=${selectSort}` : ''
             }${selectedGenre ? `&genre_name=${selectedGenre}` : ''
             }${searchQuery ? `&search=${searchQuery}` : ''
-        }`;
+            }`;
         const main = new Story();
         const response = main.StoryCard(type, query, pg);
-
         response
             .then((res) => {
                 if (Array.isArray(res?.data?.data)) {
@@ -69,11 +58,11 @@ function Listing({type}) {
                     setPage(res.data.current_page);
                     if (res.data.current_page === res.data.last_page) {
                         setHasMore(false);
-                    }else {
+                    } else {
                         setHasMore(true);
                     }
                 } else {
-                    console.error("Data is not an array:", res.data);
+                    toast.error("Data is not an array:", res.data);
                     setContent([]);
                 }
                 setLoading(false);
@@ -86,12 +75,12 @@ function Listing({type}) {
     };
 
     useEffect(() => {
-        if(!loading){
+        if (!loading) {
             fetching(1);
         }
     }, [type, selectSort, selectedGenre, searchQuery]);
 
-   
+
     const loadMore = () => {
         if (!loading && hasmore) {
             setLoading(true);
@@ -115,12 +104,11 @@ function Listing({type}) {
         WebkitLineClamp: 2,
         WebkitBoxOrient: 'vertical',
     };
-
     return (<>
         <div className="filter-search">
             <div className="search">
                 <input type="search" placeholder="search"
-                      ref={inputref}
+                    ref={inputref}
                     onChange={handlesearch}
                 />
                 <button>
@@ -129,7 +117,7 @@ function Listing({type}) {
             </div>
             <div className="dropdwon-filter">
                 <div className="story-sort">
-                    <h1>SortBy: </h1>
+                    <h1>SortBy :</h1>
                     <select className="select"
                         value={selectSort} onChange={handlesort}
                     >
@@ -145,7 +133,7 @@ function Listing({type}) {
                     </select>
                 </div>
                 <div className="story-sort">
-                    <h1>Category: </h1>
+                    <h1>Category :</h1>
                     <select className="select" value={selectedGenre}
                         onChange={handlegenre}>
                         <option value="">
@@ -163,14 +151,18 @@ function Listing({type}) {
         </div>
         <div className="story-card">
             <div className="row">
+
                 {content && content.length > 0 ? (
                     content.map((item, index) => (
                         <div className="col-sm-6 col-md-4 col-lg-3" key={index}>
                             <div className="card">
                                 <Link to={`${slugify(item.uuid)}`} >
-                                <img src={item.image_url || storys } alt="N/A"/>
+                                    <img src={item.image_url || storys} alt="N/A" />
+                                    {item.scheduled_at ? (
+    <div className="editimagebtns btn blue-gradient-btn">  Published</div>
+) : null}
                                     <div className="card-body">
-                                        <p className="card-text">{item.scheduled_at} </p>
+                                        <p className="card-text">{item.scheduled_at || <h6>Not Published yet.</h6>} </p>
                                         <h5 className="card-title" style={divStyle}
                                             dangerouslySetInnerHTML={{ __html: item.title }}
                                         ></h5>
@@ -186,13 +178,15 @@ function Listing({type}) {
                                         </div>
                                     </div>
                                 </Link>
+
+
                             </div>
                         </div>
                     ))
                 ) : !loading ? <Nodata /> : ''
                 }
                 {loading ? <Loading /> : ''}
-                { page<1 && !loading && hasmore && (
+                {page < 1 && !loading && hasmore && (
                     <div className="loader-btn" onClick={loadMore}>
                         <Link className="btn blue-gradient-btn">Load More</Link>
                     </div>

@@ -36,10 +36,14 @@ function Password() {
             const response = await main.Password(Regs);
             if (response.data.status === true) {
                 setRegs(initialRegs);
-                toast.success(response.data.message);
+                setTimeout(() => {
+                    toast.success(response.data.message);
+                }, 2000);
                 navigate("/")
             }else{
-                toast.error(response.data.message)
+                setTimeout(() => {
+                    toast.error(response.data.message)
+                }, 2000);
             }
         } catch (error) {
             console.log("error", error);
@@ -50,10 +54,7 @@ function Password() {
 
     return (
         <>
-          <Toaster
-                position="top-center"
-                reverseOrder={false}
-            />
+          
             <div className="update-field">
                 <div className="row">
                     <div className="col-md-12">
@@ -141,6 +142,11 @@ function Password() {
                         </span>
                     </button>
                 </div>
+
+                <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
             </div>
 
         </>

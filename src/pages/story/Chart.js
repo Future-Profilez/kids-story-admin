@@ -40,14 +40,14 @@ function ChartComponent() {
     if (content.length > 0) {
       const chartCanvas = chartRef.current.getContext("2d");
   
-      const months = content.map(item => item.month); // Extracting months from content data
-      const totalUsersData = content.map(item => item.total_users); // Extracting total_users data
-      const subscribedUsersData = content.map(item => item.subscribed_users); // Extracting subscribed_users data
+      const months = content.map(item => item.month); 
+      const totalUsersData = content.map(item => item.total_users); 
+      const subscribedUsersData = content.map(item => item.subscribed_users); 
   
       chartInstance.current = new Chart(chartCanvas, {
         type: "line",
         data: {
-          labels: [jan,feb], // Using the extracted months as labels
+          labels: months,
           datasets: [
             {
               label: 'User',

@@ -66,6 +66,15 @@ class Story extends Component {
     async forget(data){
         return Api.post("/forgot-password-admin",data)
     }
+
+    async forgetopt(data){
+        return Api.post("/verify-reset-password-otp",data)
+    }
+
+    async forgetpass(data){
+        return Api.post("/reset-password",data)
+    }
+    
     render() {
         return (
             <div>

@@ -18,6 +18,7 @@ import Storydetails from "./pages/story/Storydetails";
 import Privacy from "./component/Privacy";
 import Forgetpassword from "./pages/profile/Forgetpassword";
 import Forget from "./component/Forget";
+import Otp from "./component/Otp";
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/Forget" element={<Forget />} />
+            <Route path="/otp" element={<Otp/>} />
             <Route path="/terms" element={<Privacy />} />
             <Route path="/home" element={
               <PrivateRouter>

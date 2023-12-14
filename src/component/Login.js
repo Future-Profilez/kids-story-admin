@@ -131,7 +131,7 @@ function Login() {
                 </div>
             </div>
             <Toaster
-                position="top-center"
+                position="top-right"
                 reverseOrder={false}
             />
         </>

@@ -48,6 +48,10 @@ function Forget() {
             setLoading(false);
         }).catch((error) => {
             console.log("error", error)
+            setLoading(false);
+            toast.error("Something went wrong !!");
+
+
         })
     };
     //opt
@@ -72,6 +76,8 @@ function Forget() {
             setLoading(false);
         }).catch((error) => {
             console.log("error", error)
+            setLoading(false);
+            toast.error("Something went wrong !!");
         })
 
 
@@ -113,6 +119,9 @@ function Forget() {
             setLoading(false);
         }).catch((error) => {
             console.log("eroir", error)
+            toast.error("Something went wrong !!");
+            setLoading(false);
+
         })
     };
 

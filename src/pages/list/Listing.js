@@ -159,8 +159,8 @@ function Listing({ type }) {
                                 <Link to={`${slugify(item.uuid)}`} >
                                     <img src={item.image_url || storys} alt="N/A" />
                                     {item.scheduled_at ? (
-    <div className="editimagebtns btn blue-gradient-btn">  Published</div>
-) : null}
+                                        <div className="editimagebtns btn blue-gradient-btn">  Published</div>
+                                    ) : null}
                                     <div className="card-body">
                                         <p className="card-text">{item.scheduled_at || <h6>Not Published yet.</h6>} </p>
                                         <h5 className="card-title" style={divStyle}
@@ -198,6 +198,7 @@ function Listing({ type }) {
                 )}
             </div>
         </div>
+        
 
     </>);
 }

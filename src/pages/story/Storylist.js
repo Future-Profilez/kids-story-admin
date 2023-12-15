@@ -21,9 +21,6 @@ function Storylist() {
     const users = useSelector(state => state.users.users);
 
 
-    // let chaptersdata = users.length > 0 ? users[users.length - 1] : (users[0] || {});
-
-    // let extractdata = chaptersdata.data || chaptersdata;
 
     let chaptersdata = [];
     if (users.length > 0) {
@@ -56,7 +53,11 @@ function Storylist() {
         "stories": extractdata.chapters,
     });
 
-   
+    const handleInputs = (e) => {
+        const value = e.target.value;
+        const name = e.target.name;
+        setRegs((prevState) => ({ ...prevState, [name]: value }));
+    };
 
     useEffect(() => {
         console.table(Regs);

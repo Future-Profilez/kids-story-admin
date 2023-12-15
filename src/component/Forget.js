@@ -163,7 +163,7 @@ function Forget() {
                                             Confirm_Pasword
                                         </label>
                                         <input
-                                            placeholder="Confirm_Pasword"
+                                            placeholder="Password"
                                             name="confirpass"
                                             onChange={handleInput}
                                             value={forgetpass.confirpass}

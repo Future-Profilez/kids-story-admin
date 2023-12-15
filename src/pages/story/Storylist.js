@@ -21,20 +21,23 @@ function Storylist() {
     const users = useSelector(state => state.users.users);
 
 
+    let chaptersdata = users.length > 0 ? users[users.length - 1] : (users[0] || {});
 
-    let chaptersdata = [];
-    if (users.length > 0) {
-        chaptersdata = users.at(-1);
-    } else {
-        chaptersdata = users[0];
-    }
+    let extractdata = chaptersdata.data || chaptersdata;
+    
+    // let chaptersdata = [];
+    // if (users.length > 0) {
+    //     chaptersdata = users.at(-1);
+    // } else {
+    //     chaptersdata = users[0];
+    // }
 
-    let extractdata = [];
-    if (chaptersdata) {
-        extractdata = chaptersdata;
-    } else {
-        extractdata = chaptersdata.data;
-    }
+    // let extractdata = [];
+    // if (chaptersdata) {
+    //     extractdata = chaptersdata;
+    // } else {
+    //     extractdata = chaptersdata.data;
+    // }
 
    
     const [shows, setShows] = useState(false);
@@ -44,9 +47,6 @@ function Storylist() {
     const handleFinal = () => {
         navigate('/card');
     }
-
-
-
     const [Regs, setRegs] = useState({
         "age": extractdata.age,
         "title": extractdata.title,
@@ -56,12 +56,7 @@ function Storylist() {
         "stories": extractdata.chapters,
     });
 
-
-    const handleInputs = (e) => {
-        const value = e.target.value;
-        const name = e.target.name;
-        setRegs((prevState) => ({ ...prevState, [name]: value }));
-    };
+   
 
     useEffect(() => {
         console.table(Regs);

@@ -21,23 +21,23 @@ function Storylist() {
     const users = useSelector(state => state.users.users);
 
 
-    let chaptersdata = users.length > 0 ? users[users.length - 1] : (users[0] || {});
+    // let chaptersdata = users.length > 0 ? users[users.length - 1] : (users[0] || {});
 
-    let extractdata = chaptersdata.data || chaptersdata;
-    
-    // let chaptersdata = [];
-    // if (users.length > 0) {
-    //     chaptersdata = users.at(-1);
-    // } else {
-    //     chaptersdata = users[0];
-    // }
+    // let extractdata = chaptersdata.data || chaptersdata;
 
-    // let extractdata = [];
-    // if (chaptersdata) {
-    //     extractdata = chaptersdata;
-    // } else {
-    //     extractdata = chaptersdata.data;
-    // }
+    let chaptersdata = [];
+    if (users.length > 0) {
+        chaptersdata = users.at(-1);
+    } else {
+        chaptersdata = users[0];
+    }
+
+    let extractdata = [];
+    if (chaptersdata) {
+        extractdata = chaptersdata;
+    } else {
+        extractdata = chaptersdata.data;
+    }
 
    
     const [shows, setShows] = useState(false);

@@ -118,7 +118,7 @@ function Login() {
                             </div>
                         </div>
                         <div className="forgetpassword">
-                        <Link to="/Forget">Forget Password ?</Link>
+                        <Link to="/forget">Forget Password ?</Link>
                         </div>
                         <div className="text-center">
                             <button disabled={loading}

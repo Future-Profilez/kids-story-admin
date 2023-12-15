@@ -28,7 +28,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<Login />} />
-            <Route path="/Forget" element={<Forget />} />
+            <Route path="/forget" element={<Forget />} />
             <Route path="/otp" element={<Otp/>} />
             <Route path="/terms" element={<Privacy />} />
             <Route path="/home" element={

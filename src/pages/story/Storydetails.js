@@ -107,13 +107,16 @@ const[loadings,setLoadings]=useState(false)
                 setTimeout(() => {
                     toast.error(response.data.message);
                 }, 1000);
+                
                 handleCloseContinue();
                 navigate('/card')
 
             }
+            console.log("response.dayta",response.data)
         } catch (error) {
             setLoadings(false);
             console.log("Error:", error);
+            toast.error("You can only schedule for a date and time after today.")
         }
     }
     const [showImagePromptModal, setShowImagePromptModal] = useState(false);

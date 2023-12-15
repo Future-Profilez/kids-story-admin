@@ -1,6 +1,5 @@
 import { Modal } from "react-bootstrap";
 import Story from "../../Apis/Story"
-import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { useSelector } from "react-redux";

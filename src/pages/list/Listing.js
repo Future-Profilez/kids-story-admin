@@ -62,7 +62,6 @@ function Listing({ type }) {
                         setHasMore(true);
                     }
                 } else {
-                    toast.error("Data is not an array:", res.data);
                     setContent([]);
                 }
                 setLoading(false);
@@ -198,7 +197,7 @@ function Listing({ type }) {
                 )}
             </div>
         </div>
-        
+
 
     </>);
 }

@@ -106,12 +106,12 @@ const[loadings,setLoadings]=useState(false)
             } else {
                 setTimeout(() => {
                     toast.error(response.data.message);
-                }, 1000);
-                
-                handleCloseContinue();
-                navigate('/card')
+            setLoadings(false);
 
+                }, 1000);
             }
+            setLoadings(false);
+
             console.log("response.dayta",response.data)
         } catch (error) {
             setLoadings(false);

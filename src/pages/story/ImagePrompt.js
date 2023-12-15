@@ -60,7 +60,7 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
             toast.error("Please schedule the story first to generate the image.");
         }
         setIsLoading(true);
-        const bearerToken = imagekey;
+        const bearerToken = "vk-DKivaqXpG7rBGsevaMF8HJlFZBj90h0YCzy6x53Q3cvcb";
         const url = 'https://api.vyro.ai/v1/imagine/api/generations';
         const formData = new FormData();
         formData.append('model_version', '1');
@@ -92,6 +92,7 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
         } catch (error) {
             console.error('Error:', error);
             setIsLoading(false);
+            toast.error("Image Ai Key Is Expire")
 
         }
     };

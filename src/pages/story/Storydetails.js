@@ -84,10 +84,10 @@ const[loadings,setLoadings]=useState(false)
         }
         setLoadings(true);
         const currentDate = new Date().toISOString().split('T')[0];
-        if (currentDate === Regs.schedule_at) {
-            toast.error("You can not schedule story today.Please select a upcoming date. ");
-            setLoadings(false);
-        }
+        // if (currentDate === Regs.schedule_at) {
+        //     toast.error("You can not schedule story today.Please select a upcoming date. ");
+        //     setLoadings(false);
+        // }
          if (!Regs.schedule_at) {
             toast.error("Please select a date.");
             setLoadings(false);
@@ -234,7 +234,7 @@ const[loadings,setLoadings]=useState(false)
                     {content.scheduled_at ? (
                         <div className="text-center" disabled={loadings}>
                             <div className="btn blue-gradient-btn" onClick={handleForms}  >
-                            <span>{loadings ? "Wait..":"Re_Schedule"}</span>
+                            <span>{loadings ? "Wait..":"ReSchedule"}</span>
                                
                             </div>
                         </div>

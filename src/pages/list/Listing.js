@@ -111,13 +111,13 @@ function Listing({ type }) {
     return (<>
         <div className="filter-search">
             <div className="search">
-                <input type="search" placeholder="search"
+                <input type="search" placeholder="Search"
                     ref={inputref}
                     onChange={handlesearch}
                 />
-                <button>
+                {/* <button>
                     Search
-                </button>
+                </button> */}
             </div>
             <div className="dropdwon-filter">
                 <div className="story-sort">

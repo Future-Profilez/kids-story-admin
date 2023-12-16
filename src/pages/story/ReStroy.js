@@ -84,7 +84,13 @@ function ReStory({ shows, handleCloses }) {
             const storyResponse = res.data.choices[0].message.content;
             console.log("storyResponse", storyResponse);
             try {
-              const jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
+              let jsonMatch;
+              if (storyResponse && storyResponse.data) {
+                jsonMatch = storyResponse.data.match(/\{(.|\n)*\}/);
+              } else {
+                jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
+              }
+              console.log("jsonMatch", jsonMatch)
               let Parstory;
               if (jsonMatch && jsonMatch.length > 0) {
                 Parstory = JSON.parse(jsonMatch[0]);
@@ -101,11 +107,11 @@ function ReStory({ shows, handleCloses }) {
                 if (Parstory && Parstory.title) {
                   navigate('/list');
                 }
-
               }, 1000);
               handleCloses();
               setLoading(false);
             } catch (error) {
+              toast.error("please provide valid prompt ")
               console.log("Error parsing JSON:", error);
             }
             setLoading(false);

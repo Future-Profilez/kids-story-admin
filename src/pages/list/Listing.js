@@ -190,7 +190,7 @@ function Listing({ type }) {
                 ) : !loading ? <Nodata /> : ''
                 }
                 {loading ? <Loading /> : ''}
-                {hasmore && !loading && (
+                {content && content.length > 0 && hasmore && !loading && (
                     <div className="loader-btn" onClick={loadMore}>
                         <Link className="btn blue-gradient-btn">Load More</Link>
                     </div>

@@ -78,16 +78,6 @@ function Listing({ type }) {
             });
     };
 
-
-
-
-
-
-    // useEffect(() => {
-    //     console.log('Page changed. Fetching data...');
-    //     fetching(page);
-    // }, [page]);
-
     useEffect(() => {
         if (!loading) {
             fetching(1);
@@ -207,7 +197,7 @@ function Listing({ type }) {
                 )}
 
 
-                {!loading & !hasmore && content.length < 0 && (
+                {!loading && !hasmore && content.length < 0 && (
                     <div className="loader-btn" >
                         <button className="btn blue-gradient-btn">No More Data !!</button>
                     </div>

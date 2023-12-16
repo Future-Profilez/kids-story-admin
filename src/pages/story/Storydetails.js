@@ -45,6 +45,10 @@ function Storydetails() {
                 res
             ) => {
                 navigate('/card')
+                setTimeout(() => {
+                    
+                    toast.success(res.data.message)
+                }, 2000);
             }).catch((error) => {
                 console.log("error", error)
             })

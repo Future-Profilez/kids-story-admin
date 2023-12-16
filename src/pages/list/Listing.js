@@ -132,7 +132,7 @@ function Listing({ type }) {
                             Newest to oldest
                         </option>
                         <option value="asc" className="custom-option">
-                            Oldest
+                            Oldest to Newest 
                         </option>
                     </select>
                 </div>

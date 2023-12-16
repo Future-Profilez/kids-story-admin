@@ -47,7 +47,8 @@ function ChartComponent() {
       chartInstance.current = new Chart(chartCanvas, {
         type: "line",
         data: {
-          labels: months,
+          labels: "months",
+          data:months,
           datasets: [
             {
               label: 'User',

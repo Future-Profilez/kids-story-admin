@@ -5,7 +5,6 @@ import Story from "../../Apis/Story";
 import Loading from "../../component/Loading";
 import Nodata from "../../component/Nodata";
 import slugify from "react-slugify";
-import { toast } from 'react-hot-toast';
 function Listing({ type }) {
     const inputref = useRef(null);
     const [loading, setLoading] = useState(false);
@@ -19,7 +18,9 @@ function Listing({ type }) {
     const handlegenre = (e) => {
         setSelectedGenre(e.target.value);
     };
+
     let searchvalue = "";
+
     const handlesearch = (e) => {
         searchvalue = e.target.value;
         if (searchvalue && searchvalue.length > 3) {
@@ -28,11 +29,15 @@ function Listing({ type }) {
             setSearchQuery('');
         }
     };
+
     useEffect(() => {
         setSearchQuery(searchvalue);
     }, [searchvalue]);
+
     const [page, setPage] = useState(1);
+
     const [hasmore, setHasMore] = useState(true);
+
     const fetching = (pg) => {
         if (loading) {
             return;
@@ -72,6 +77,16 @@ function Listing({ type }) {
                 console.error("Error status:", error);
             });
     };
+
+
+
+
+
+
+    // useEffect(() => {
+    //     console.log('Page changed. Fetching data...');
+    //     fetching(page);
+    // }, [page]);
 
     useEffect(() => {
         if (!loading) {
@@ -185,16 +200,19 @@ function Listing({ type }) {
                 ) : !loading ? <Nodata /> : ''
                 }
                 {loading ? <Loading /> : ''}
-                {page < 1 && !loading && hasmore && (
+                {hasmore && !loading && (
                     <div className="loader-btn" onClick={loadMore}>
                         <Link className="btn blue-gradient-btn">Load More</Link>
                     </div>
                 )}
-                {page > 1 && !loading & !hasmore && (
+
+
+                {!loading & !hasmore && content.length < 0 && (
                     <div className="loader-btn" >
                         <button className="btn blue-gradient-btn">No More Data !!</button>
                     </div>
                 )}
+
             </div>
         </div>
 

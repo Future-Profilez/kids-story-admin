@@ -898,3 +898,37 @@ input:-webkit-autofill:focus {
     margin-inline-end: 44px;
   }
 }
+
+ .contact-img {
+  align-items: center;
+  background: #8c55d9;
+  display: inline-flex;
+  height: 64px;
+  justify-content: center;
+  left: 8px;
+  position: relative;
+  top: 8px;
+  width: 64px;
+}
+.contact-line p {
+  color: #fff;
+  font-family: Oswald;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%;
+  margin: 0;
+}
+.contact-line {
+  margin: 20px;
+  padding-right: 15px;
+  gap: 33px;
+  background: #060d25;
+  display: inline-block;
+  flex-wrap: wrap;
+  min-height: 80px;
+  padding-left: 102px;
+  position: relative;
+  transition: .5s ease;
+}
+

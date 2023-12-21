@@ -17,6 +17,7 @@ import UserContextProvider from "./context/UserContextProvider";
 import Storydetails from "./pages/story/Storydetails";
 import Privacy from "./component/Privacy";
 import Forget from "./component/Forget";
+import Contact from "./contact/Contact";
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/forget" element={<Forget />} />
             <Route path="/terms" element={<Privacy />} />
+            <Route path ='/contact' element={<Contact/>}/>
             <Route path="/home" element={
               <PrivateRouter>
                 <Homepage />

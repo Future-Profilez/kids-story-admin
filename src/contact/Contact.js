@@ -45,10 +45,25 @@ function Contact() {
                                                 />
                                             </div>
                                         </div>
-
                                         <div className="col-md-6">
                                             <label className="input_label" htmlFor="password_field">
-                                                Meaasge
+                                                Subject
+                                            </label>
+                                            <div className="password-label">
+                                                <input
+                                                    placeholder=""
+                                                    name="Subject"
+                                                   
+                                                    type="Subject"
+                                                    className="input_field password"
+                                                    id="password_field"
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div className="col-md-12">
+                                            <label className="input_label" htmlFor="password_field">
+                                                Mesage 
                                             </label>
                                             <div className="password-label">
                                                 <textarea

@@ -90,7 +90,7 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
             } else {
                 console.error('Error in image converting:', response);
                 if(response.status === 402){
-                    toast.error("Image Ai Key Is Expire")
+                    toast.error("Not enough tokens.")
                 }else{
                     toast.error("something wrong in vyro  ai  ")
                 }

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import storys from "../../image/login.png"
+import storys from "../../image/Image.png"
 import { Link } from "react-router-dom";
 import Story from "../../Apis/Story";
 import Loading from "../../component/Loading";

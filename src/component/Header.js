@@ -2,15 +2,12 @@ import {  useNavigate  } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContextProvider";
-
-import { toast } from 'react-hot-toast';
+import { toast, Toaster } from 'react-hot-toast';
 
 function Header() {
 
     const { loginUser, setLoginUser,  } = useContext(UserContext);
     const [isClicked, setIsClicked] = useState(false);
-
-
     const navigate = useNavigate();
     function handlelogout() {
         localStorage.removeItem('loginUser')
@@ -31,7 +28,12 @@ function Header() {
     const headerClass = isClicked ? "header data-add" : "header";
    
     return (
-        <>
+        <> 
+                
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
             <header className={headerClass} id="header">
              <div className="header-data"> 
              <h2>

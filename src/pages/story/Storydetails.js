@@ -32,7 +32,6 @@ function Storydetails() {
         }
     };
 
-    console.log("contr", content)
 
     useEffect(() => {
         fetchStoryDetails();
@@ -46,7 +45,7 @@ function Storydetails() {
             ) => {
                 navigate('/card')
                 setTimeout(() => {
-                    
+
                     toast.success(res.data.message)
                 }, 2000);
             }).catch((error) => {
@@ -76,14 +75,12 @@ function Storydetails() {
         "11",
         "12",
     ];
-const[loadings,setLoadings]=useState(false)
+    const [loadings, setLoadings] = useState(false)
     var dt = new Date(Regs.schedule_at);
-    console.log("dt", dt)
     const updated = months[dt.getMonth()] + "-" + dt.getDate() + "-" + dt.getFullYear(); // 2023-12-11
-    console.log("updated", updated)
     async function handleForms(e) {
         e.preventDefault();
-        if(loadings){
+        if (loadings) {
             return false;
         }
         setLoadings(true);
@@ -92,7 +89,7 @@ const[loadings,setLoadings]=useState(false)
         //     toast.error("You can not schedule story today.Please select a upcoming date. ");
         //     setLoadings(false);
         // }
-         if (!Regs.schedule_at) {
+        if (!Regs.schedule_at) {
             toast.error("Please select a date.");
             setLoadings(false);
         }
@@ -101,7 +98,7 @@ const[loadings,setLoadings]=useState(false)
         try {
             const response = await main.storyreshedule(uuid, Regs);
             console.log("responseee", response)
-            if (response.data.status===true) {
+            if (response.data.status === true) {
                 setTimeout(() => {
                     toast.success(response.data.message);
                 }, 1000);
@@ -110,13 +107,13 @@ const[loadings,setLoadings]=useState(false)
             } else {
                 setTimeout(() => {
                     toast.error(response.data.message);
-            setLoadings(false);
+                    setLoadings(false);
 
                 }, 1000);
             }
             setLoadings(false);
 
-            console.log("response.dayta",response.data)
+            console.log("response.dayta", response.data)
         } catch (error) {
             setLoadings(false);
             console.log("Error:", error);
@@ -146,7 +143,7 @@ const[loadings,setLoadings]=useState(false)
                                                     <p className="mb-0" >{content?.title}</p>
                                                 </div>
                                             </div>
-                                           
+
                                             <div className="description">
                                                 <p>
                                                     {content?.story_description}
@@ -220,10 +217,7 @@ const[loadings,setLoadings]=useState(false)
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Toaster
-                        position="top-center"
-                        reverseOrder={false}
-                    />
+
                     <div class="body-popup-title"><h3>When do you want to publish this story?</h3>
                         {content.scheduled_at ? (
                             <p>Schedule date: {content.scheduled_at}</p>
@@ -232,19 +226,19 @@ const[loadings,setLoadings]=useState(false)
                     </div>
                     <div className="date-field-story" >
 
-                        <input type="date"  min={(new Date()).toISOString().split('T')[0]} placeholder="Year/Month/Date" className="input_field  form-control" name="schedule_at"
+                        <input type="date" min={(new Date()).toISOString().split('T')[0]} placeholder="Year/Month/Date" className="input_field  form-control" name="schedule_at"
                             id="password_field" value={Regs.scheduled_at} onChange={handleInputs} />
                     </div>
                     {content.scheduled_at ? (
                         <div className="text-center" disabled={loadings}>
                             <div className="btn blue-gradient-btn" onClick={handleForms}  >
-                            <span>{loadings ? "Wait..":"ReSchedule"}</span>
-                               
+                                <span>{loadings ? "Wait.." : "ReSchedule"}</span>
+
                             </div>
                         </div>
                     ) : (<div className="text-center" disabled={loadings} >
                         <div className="btn blue-gradient-btn" onClick={handleForms}  >
-                        <span>{loadings ? "Wait..":"Publish"}</span>
+                            <span>{loadings ? "Wait.." : "Publish"}</span>
                         </div>
                     </div>)}
 

@@ -227,7 +227,7 @@ function Forget() {
                     </div>
                 </div>
             </div>
-            <Toaster position="top-center" reverseOrder={false} />
+            
         </>
     );
 }

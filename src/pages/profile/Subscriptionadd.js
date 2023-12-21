@@ -29,7 +29,7 @@ function Subscriptionadd({ show, handleClose, onSubscriptionAdded }) {
     try {
         const main = new Story();
         const response = await main.Subscription(Regs);
-        toast.success(response.data.message);
+        // toast.success(response.data.message);
         if (onSubscriptionAdded) {
             onSubscriptionAdded(response.data.data); 
         }

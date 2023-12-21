@@ -42,9 +42,8 @@ function Login() {
                 setLoginUser(response?.data);
                 localStorage.setItem("token", response?.data?.token);
                 navigate("/home");
-                setTimeout(() => {
+              
                     toast.success(response.data.message);
-                }, 2000);
             } else {
                 toast.error("invalid email/password");
             }
@@ -58,6 +57,10 @@ function Login() {
 
     return (
         <>
+        <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
 
             <style jsx>
                 {`div#body-pd { padding: 0;}`}
@@ -130,10 +133,7 @@ function Login() {
                     </div>
                 </div>
             </div>
-            <Toaster
-                position="top-right"
-                reverseOrder={false}
-            />
+            
         </>
     );
 }

@@ -14,10 +14,7 @@ function Storycard() {
     return (
 
         <AuthLayout>
-            <Toaster
-                position="top-center"
-                reverseOrder={false}
-            />
+           
             <div className="content-wrapper">
                 <div className="content">
                     <div className="row">

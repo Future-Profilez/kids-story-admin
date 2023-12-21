@@ -13,9 +13,7 @@ function ChartComponent() {
         const response = await main.getchart();
         if (response.data.status === true) {
           setContent(response.data.data); 
-          toast.success(response.data.message);
         } else {
-          toast.error(response.data.message);
         }
       } catch (error) {
         console.log("error", error);
@@ -72,9 +70,9 @@ function ChartComponent() {
           scales: {
             y: {
               beginAtZero: false,
-              min: 1, // Start y-axis from 100
-              max: 50, // End y-axis at 1000
-              stepSize: 10 // Set y-axis increment to 100
+              min: 1, 
+              max: 100, 
+              stepSize: 10 
             }
           }
         }

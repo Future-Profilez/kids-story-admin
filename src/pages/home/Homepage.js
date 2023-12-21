@@ -29,10 +29,7 @@ function Homepage() {
                     </div>
 
                     <StoryModal show={show} handleClose={handleClose} />
-                    <Toaster
-                        position="top-right"
-                        reverseOrder={false}
-                    />
+                     
                 </div>
             </AuthLayout>
         </>

@@ -54,17 +54,20 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
         setModalShow(false);
     }
 
+
+    const [generated, setGenerated] = useState(false);
     const imagekey = process.env.REACT_APP_IMAGE;
     const fetchData = async () => {
         if (!uid) {
             toast.error("Please schedule the story first to generate the image.");
         }
         setIsLoading(true);
-        const bearerToken = "vk-DKivaqXpG7rBGsevaMF8HJlFZBj90h0YCzy6x53Q3cvcb";
+       
+        const bearerToken = "vk-MZQLNyUAnT9JOaYxJEuF20u5dY6GFykF3G6M822D2VB8jZPy";
         const url = 'https://api.vyro.ai/v1/imagine/api/generations';
         const formData = new FormData();
         formData.append('model_version', '1');
-        formData.append('prompt', `${prompt} also modify image prompt`);
+        formData.append('prompt', `${prompt}.`);
         formData.append('style_id', '30');
         try {
             const response = await fetch(url, {
@@ -77,7 +80,7 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
                 const imageUrl = URL.createObjectURL(blob);
                 setUpdatedImage(imageUrl);
                 setIsLoading(false);
-                setIsClicked(true);
+                setGenerated(true);
                 setShowPrompt(false);
                 const reader = new FileReader();
                 reader.onload = () => {
@@ -86,7 +89,12 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
                 };
                 reader.readAsDataURL(blob);
             } else {
-                console.error('Error in image converting:', response.status);
+                console.error('Error in image converting:', response);
+                if(response.status === 402){
+                    toast.error("Image Ai Key Is Expire")
+                }else{
+                    toast.error("something wrong in vyro  ai  ")
+                }
             }
             setIsLoading(false);
         } catch (error) {
@@ -98,9 +106,8 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
     };
 
     const handleRegenerate = () => {
-        setIsLoading(true);
+        setGenerated(false);
         setShowPrompt(true);
-        fetchData();
     };
 
     return (
@@ -143,7 +150,8 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
                             <img ref={imageRef} src={recordimage} alt="story" />
                         </div>
                         :
-                        isClicked ?
+                        <>
+                        {/* {isClicked ?
                             <div className="promtEdit w-100" >
                                 <div className="thumbnail-generating w-100">
                                     <img src={updatedImage} alt="story" />
@@ -175,7 +183,40 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
                                         </button>
                                     </div>
                                 </div>
-                            )
+                            )} */}
+                            {generated ? 
+                            <>
+                                <div className="promtEdit w-100" >
+                                    <div className="thumbnail-generating w-100">
+                                        <img src={updatedImage} alt="story" />
+                                    </div>
+                                    <div className="btn-list">
+                                        <button className="btn blue-gradient-btn" onClick={handleRegenerate}>
+                                            <span>Regenerate</span>
+                                        </button>
+                                        <button className="btn blue-gradient-btn  mt-2" onClick={usethis} >{uploading ? "Uploading..." : "Use This Image"}</button>
+                                    </div>
+                                </div>
+                            </>
+                            : <div className="promtEdit w-100">
+                                <div className="date-field-story">
+                                    <input
+                                        type="text"
+                                        placeholder="Image Prompt"
+                                        name="data"
+                                        value={prompt}
+                                        onChange={(e) => setPrompt(e.target.value)}
+                                        className="input_field form-control"
+                                        id="password_field"
+                                    />
+                                </div>
+                                <div className="text-center">
+                                    <button className="btn blue-gradient-btn" onClick={fetchData}>
+                                        Generate
+                                    </button>
+                                </div>
+                            </div>}
+                        </>
                     }
                 </Modal.Body>
             </Modal>

@@ -16,9 +16,7 @@ import Login from "./component/Login";
 import UserContextProvider from "./context/UserContextProvider";
 import Storydetails from "./pages/story/Storydetails";
 import Privacy from "./component/Privacy";
-import Forgetpassword from "./pages/profile/Forgetpassword";
 import Forget from "./component/Forget";
-import Otp from "./component/Otp";
 
 function App() {
 
@@ -29,7 +27,6 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/forget" element={<Forget />} />
-            <Route path="/otp" element={<Otp/>} />
             <Route path="/terms" element={<Privacy />} />
             <Route path="/home" element={
               <PrivateRouter>
@@ -42,7 +39,6 @@ function App() {
               </PrivateRouter>
             }
             />
-            <Route path ="/forgetpassword" element={<Forgetpassword/>}/>
             <Route
               path="/card/:uuid"
               element={<Storydetails />}

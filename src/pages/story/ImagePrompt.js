@@ -1,6 +1,6 @@
 import { Modal } from "react-bootstrap";
 import "../../style/model.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import recordimage from "../../image/story-thubnail.png";
 import Story from "../../Apis/Story";
 import toast from "react-hot-toast";
@@ -23,9 +23,7 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
 
     async function addImage(base64) {
         setUploading(true);
-
         const main = new Story();
-
         try {
             const resp = await main.saveimage({
                 "story_uuid": uid,
@@ -53,13 +51,28 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
         setexisted(updatedImage);
         setModalShow(false);
     }
-
-
+const imagekey =process.env.REACT_APP_IMAGE;
     const [generated, setGenerated] = useState(false);
-    const imagekey = process.env.REACT_APP_IMAGE;
+    // const [imagekey, setImagekey] = useState();
+    // useEffect(()=>{
+    //     const main = new Story();
+    //     const response = main.getdetilas();
+    //     response.then((res) => {
+    //         setImagekey(res.data.image_api_key);
+    //     }).catch((error) => {
+    //         console.log("error", error)
+    //     });
+    // },[]);
+
+
     const fetchData = async () => {
+        if (!imagekey) {
+            toast.error("Please update you Vyro image api key.");
+            return false;
+        }
         if (!uid) {
             toast.error("Please schedule the story first to generate the image.");
+            return false;
         }
         setIsLoading(true);
         const bearerToken =imagekey ;

@@ -932,3 +932,9 @@ input:-webkit-autofill:focus {
   transition: .5s ease;
 }
 
+
+.btn-sm {
+  font-size: 15px;
+  height: auto !important;
+  padding: 10px !important;
+}

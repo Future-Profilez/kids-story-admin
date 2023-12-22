@@ -60,7 +60,6 @@ function StoryModal({ show, handleClose }) {
                     minimum_character_length: "50 words",
                     description: "Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data in one variable 'data' where inside 'data', there should be 'title','name','age', 'gender', 'genre', and 'chapters'. 'chapters' should be an array containing objects for each chapter with the properties: chapternumber(number field), title, content, and imageprompt. Provide the response in JSON format",
                 };
-                console.log("promptData", promptData);
                 const requestData = {
                     model: 'gpt-4',
                     messages: [

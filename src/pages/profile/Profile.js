@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Password from "./Password"
 import Story from "../../Apis/Story";
 import { Toaster, toast } from 'react-hot-toast';
+import ApiKeys from "./ApiKeys";
 function Profile() {
     const [keys, setkeys] = useState("profile");
     const handleTabClick = (keys) => {
@@ -157,6 +158,9 @@ function Profile() {
                                         </Tab>
                                         <Tab eventKey="password" title="Password">
                                             <Password />
+                                        </Tab>
+                                        <Tab eventKey="Keys" title="API Keys">
+                                             <ApiKeys />
                                         </Tab>
 
                                     </Tabs>

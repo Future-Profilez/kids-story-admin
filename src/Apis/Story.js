@@ -55,6 +55,13 @@ class Story extends Component {
     async getdetilas(){
         return Api.get("/get-detail")
     }
+
+
+    async fet_key(){
+        return Api.get("//")
+    }
+
+
     async StoryLogout() {
         return Api.get("/admin-logout")
     }
@@ -74,6 +81,11 @@ class Story extends Component {
     async forgetpass(data){
         return Api.post("/reset-password",data)
     }
+
+    async update_ai_keys(data, type){
+        return Api.post(`/update-key`, data)
+    }
+
     
     render() {
         return (

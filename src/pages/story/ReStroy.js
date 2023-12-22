@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import Ai from "../../Apis/Ai";
 import { adduser } from "../../Redux/UserSlice";
 import { toast } from 'react-hot-toast';
+import Story from "../../Apis/Story";
 
 function ReStory({ shows, handleCloses }) {
 
@@ -35,6 +36,16 @@ function ReStory({ shows, handleCloses }) {
   }
 
 
+  const [imagekey, setImagekey] = useState(process.env.REACT_APP_KEY);
+    useEffect(()=>{
+        const main = new Story();
+        const response = main.getdetilas();
+        response.then((res) => {
+            setImagekey(res.data.image_api_key);
+        }).catch((error) => {
+            console.log("error", error)
+        });
+    },[]);
 
   useEffect(() => {
 

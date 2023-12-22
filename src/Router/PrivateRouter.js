@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Story from '../Apis/Story';
 import { toast } from 'react-hot-toast';
 import { useLocation } from 'react-router-dom';
+
 export default function PrivateRoute(props) {
 
   const navigate = useNavigate();

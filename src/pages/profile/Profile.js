@@ -159,9 +159,9 @@ function Profile() {
                                         <Tab eventKey="password" title="Password">
                                             <Password />
                                         </Tab>
-                                        <Tab eventKey="Keys" title="API Keys">
+                                        {/* <Tab eventKey="Keys" title="API Keys">
                                              <ApiKeys />
-                                        </Tab>
+                                        </Tab> */}
 
                                     </Tabs>
                                 </div>

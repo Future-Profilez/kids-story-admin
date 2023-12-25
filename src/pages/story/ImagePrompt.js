@@ -4,19 +4,15 @@ import { useState, useRef, useEffect } from "react";
 import recordimage from "../../image/story-thubnail.png";
 import Story from "../../Apis/Story";
 import toast from "react-hot-toast";
-
-
 function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter, showImagePromptModal }) {
     const [prompt, setPrompt] = useState(imageprompt);
     const [modalShow, setModalShow] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
-    const [isClicked, setIsClicked] = useState(false);
     const [imageBase64, setImageBase64] = useState('');
     const imageRef = useRef(null);
     const [updatedImage, setUpdatedImage] = useState(recordimage);
     const [finalImage, setFinalImage] = useState(recordimage);
     const [uploading, setUploading] = useState(false);
-
     const [showPrompt, setShowPrompt] = useState(false);
 
     const [existed, setexisted] = useState(image_url);
@@ -51,22 +47,28 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
         setexisted(updatedImage);
         setModalShow(false);
     }
-const imagekey =process.env.REACT_APP_IMAGE;
     const [generated, setGenerated] = useState(false);
-    // const [imagekey, setImagekey] = useState();
-    // useEffect(()=>{
-    //     const main = new Story();
-    //     const response = main.getdetilas();
-    //     response.then((res) => {
-    //         setImagekey(res.data.image_api_key);
-    //     }).catch((error) => {
-    //         console.log("error", error)
-    //     });
-    // },[]);
+    const [imageKey, setImageKey] = useState([process.env.REACT_APP_IMAGE]);
+    useEffect(() => {
+            const main = new Story();
+            const response = main.fetchKey();
+            response.then((res) => {
+                if (res.data.status === true) {
+                    res.data.data.forEach(item => {
+                        if (item.type === "api-key") {
+                            setImageKey(item.key);
+                        }
+                    });
+                }
+            }).catch((error) => {
+                console.log("error", error);
+            });
+    }, [imageKey]); 
+    
 
 
     const fetchData = async () => {
-        if (!imagekey) {
+        if (!imageKey) {
             toast.error("Please update you Vyro image api key.");
             return false;
         }
@@ -75,7 +77,7 @@ const imagekey =process.env.REACT_APP_IMAGE;
             return false;
         }
         setIsLoading(true);
-        const bearerToken =imagekey ;
+        const bearerToken = imageKey;
         const url = 'https://api.vyro.ai/v1/imagine/api/generations';
         const formData = new FormData();
         formData.append('model_version', '1');
@@ -102,9 +104,9 @@ const imagekey =process.env.REACT_APP_IMAGE;
                 reader.readAsDataURL(blob);
             } else {
                 console.error('Error in image converting:', response);
-                if(response.status === 402){
+                if (response.status === 402) {
                     toast.error("Not enough tokens.")
-                }else{
+                } else {
                     toast.error("something wrong in vyro  ai  ")
                 }
             }
@@ -163,21 +165,21 @@ const imagekey =process.env.REACT_APP_IMAGE;
                         </div>
                         :
                         <>
-                        {/* {isClicked ?
-                            <div className="promtEdit w-100" >
-                                <div className="thumbnail-generating w-100">
-                                    <img src={updatedImage} alt="story" />
-                                </div>
-                                <div className="btn-list">
-                                    <button className="btn blue-gradient-btn" onClick={handleRegenerate}>
-                                        <span>Regenerate</span>
-                                    </button>
-                                    <button className="btn blue-gradient-btn  mt-2" onClick={usethis} >{uploading ? "Uploading..." : "Use This Image"}</button>
-                                </div>
-                            </div>
-                            :
-                            !showPrompt && (
-                                <div className="promtEdit w-100">
+                            {generated ?
+                                <>
+                                    <div className="promtEdit w-100" >
+                                        <div className="thumbnail-generating w-100">
+                                            <img src={updatedImage} alt="story" />
+                                        </div>
+                                        <div className="btn-list">
+                                            <button className="btn blue-gradient-btn" onClick={handleRegenerate}>
+                                                <span>Regenerate</span>
+                                            </button>
+                                            <button className="btn blue-gradient-btn  mt-2" onClick={usethis} >{uploading ? "Uploading..." : "Use This Image"}</button>
+                                        </div>
+                                    </div>
+                                </>
+                                : <div className="promtEdit w-100">
                                     <div className="date-field-story">
                                         <input
                                             type="text"
@@ -194,40 +196,7 @@ const imagekey =process.env.REACT_APP_IMAGE;
                                             Generate
                                         </button>
                                     </div>
-                                </div>
-                            )} */}
-                            {generated ? 
-                            <>
-                                <div className="promtEdit w-100" >
-                                    <div className="thumbnail-generating w-100">
-                                        <img src={updatedImage} alt="story" />
-                                    </div>
-                                    <div className="btn-list">
-                                        <button className="btn blue-gradient-btn" onClick={handleRegenerate}>
-                                            <span>Regenerate</span>
-                                        </button>
-                                        <button className="btn blue-gradient-btn  mt-2" onClick={usethis} >{uploading ? "Uploading..." : "Use This Image"}</button>
-                                    </div>
-                                </div>
-                            </>
-                            : <div className="promtEdit w-100">
-                                <div className="date-field-story">
-                                    <input
-                                        type="text"
-                                        placeholder="Image Prompt"
-                                        name="data"
-                                        value={prompt}
-                                        onChange={(e) => setPrompt(e.target.value)}
-                                        className="input_field form-control"
-                                        id="password_field"
-                                    />
-                                </div>
-                                <div className="text-center">
-                                    <button className="btn blue-gradient-btn" onClick={fetchData}>
-                                        Generate
-                                    </button>
-                                </div>
-                            </div>}
+                                </div>}
                         </>
                     }
                 </Modal.Body>

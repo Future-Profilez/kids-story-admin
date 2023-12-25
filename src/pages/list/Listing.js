@@ -84,7 +84,6 @@ function Listing({ type }) {
         }
     }, [type, selectSort, selectedGenre, searchQuery]);
 
-
     const loadMore = () => {
         if (!loading && hasmore) {
             setLoading(true);

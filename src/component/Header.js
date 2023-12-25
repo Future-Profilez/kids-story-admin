@@ -6,18 +6,16 @@ import { toast, Toaster } from 'react-hot-toast';
 
 function Header() {
 
-    const { loginUser, setLoginUser,  } = useContext(UserContext);
+    const { loginUser, setLoginUser} = useContext(UserContext);
     const [isClicked, setIsClicked] = useState(false);
+
     const navigate = useNavigate();
     function handlelogout() {
         localStorage.removeItem('loginUser')
         localStorage.removeItem('token')
         setLoginUser(localStorage.getItem('loginUser'))
         navigate('/')
-        setTimeout(() => {
-            
             toast.success("Logout Successfully ")
-        }, 2000);
     }
 
 

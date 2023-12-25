@@ -7,9 +7,10 @@ export default function UserContextProvider({children}) {
     
     const [loginUser, setLoginUser] = useState();
 
-    
+    const[key,setkeys]=useState();
 
     const[List,setList] = useState('');
+
     useEffect(() => {
         localStorage.setItem('name', name);
     }, [name]);
@@ -22,7 +23,7 @@ export default function UserContextProvider({children}) {
     const [generatedStory, setGerenratedStory] = useState();
 
     return <UserContext.Provider value={{ generatedStory, setGerenratedStory,
-        loginUser, setLoginUser,List, setList, name, setName }} >
+        loginUser, setLoginUser,List, setList, name, setName,key,setkeys}} >
             {children}
         </UserContext.Provider>
 }

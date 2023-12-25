@@ -57,8 +57,8 @@ class Story extends Component {
     }
 
 
-    async fet_key(){
-        return Api.get("//")
+    async fetchKey(){
+        return Api.get("/fetch-api-key")
     }
 
 
@@ -82,7 +82,7 @@ class Story extends Component {
         return Api.post("/reset-password",data)
     }
 
-    async update_ai_keys(data, type){
+    async update_ai_keys(data){
         return Api.post(`/update-key`, data)
     }
 

@@ -42,8 +42,7 @@ function Login() {
                 setLoginUser(response?.data);
                 localStorage.setItem("token", response?.data?.token);
                 navigate("/home");
-              
-                    toast.success(response.data.message);
+                toast.success(response.data.message);
             } else {
                 toast.error("invalid email/password");
             }
@@ -57,7 +56,7 @@ function Login() {
 
     return (
         <>
-        <Toaster
+            <Toaster
                 position="top-right"
                 reverseOrder={false}
             />
@@ -121,7 +120,7 @@ function Login() {
                             </div>
                         </div>
                         <div className="forgetpassword">
-                        <Link to="/forget">Forget Password ?</Link>
+                            <Link to="/forget">Forget Password ?</Link>
                         </div>
                         <div className="text-center">
                             <button disabled={loading}
@@ -133,7 +132,7 @@ function Login() {
                     </div>
                 </div>
             </div>
-            
+
         </>
     );
 }

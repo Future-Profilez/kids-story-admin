@@ -70,7 +70,6 @@ function App() {
               </PrivateRouter>
             } />
 
-
           </Routes>
         </Router>
       </UserContextProvider>

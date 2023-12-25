@@ -19,6 +19,7 @@ function StoryModal({ show, handleClose }) {
     const [gender, setGender] = useState('');
     const [genre, setGenre] = useState('');
     const [loading, setLoading] = useState(false)
+    
     const handleOptionSelect = (nextStep, user) => {
         if (nextStep >= 1 && nextStep <= 4) {
             setCurrentStep(nextStep);

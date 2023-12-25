@@ -18,7 +18,6 @@ import Storydetails from "./pages/story/Storydetails";
 import Privacy from "./component/Privacy";
 import Forget from "./component/Forget";
 import Contact from "./contact/Contact";
-import Aikey from "./Apis/Aikey";
 
 function App() {
 
@@ -30,7 +29,7 @@ function App() {
             <Route path="/" element={<Login />} />
             <Route path="/forget" element={<Forget />} />
             <Route path="/terms" element={<Privacy />} />
-            <Route path ='/contact' element={<Contact/>}/>
+            <Route path='/contact' element={<Contact />} />
             <Route path="/home" element={
               <PrivateRouter>
                 <Homepage />
@@ -71,9 +70,6 @@ function App() {
               </PrivateRouter>
             } />
 
-<Route path="/ai" element={
-           <Aikey/>
-            } />
           </Routes>
         </Router>
       </UserContextProvider>

@@ -6,8 +6,6 @@ import "../style/login.css";
 import { Toaster, toast } from 'react-hot-toast';
 import Story from "../Apis/Story";
 import { UserContext } from "../context/UserContextProvider";
-
-
 function Login() {
     const navigate = useNavigate();
     const { setLoginUser } = useContext(UserContext);
@@ -132,7 +130,6 @@ function Login() {
                     </div>
                 </div>
             </div>
-
         </>
     );
 }

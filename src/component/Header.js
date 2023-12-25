@@ -13,6 +13,7 @@ function Header() {
     function handlelogout() {
         localStorage.removeItem('loginUser')
         localStorage.removeItem('token')
+        localStorage.removeItem('open-api-key')
         setLoginUser(localStorage.getItem('loginUser'))
         navigate('/')
             toast.success("Logout Successfully ")

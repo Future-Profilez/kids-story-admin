@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import StoryModal from "./StoryModal";
 import AuthLayout from "../../component/AuthLayout";
+import OpenAIKey from "../../component/OpenAIKey";
 
 function Homepage() {
     const [show, setShow] = useState(false);
@@ -9,6 +10,7 @@ function Homepage() {
     const handleShow = () => setShow(true);
     return (
         <>
+            <OpenAIKey />
             <AuthLayout>
                 <div className="content-wrapper">
                     <div className="content content-center generat-story">

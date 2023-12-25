@@ -19,7 +19,7 @@ export default function ApiKeys() {
     };
 
     const [loading, setLoading] = useState(false);
-
+    const [updateLatestKeys, setupdateLatestKeys] = useState();
     function updateKeys(key, type) {
         if (loading) { return false;}
         setLoading(true);
@@ -34,6 +34,7 @@ export default function ApiKeys() {
             } else {
                 toast.error(res.data.message);
             }
+            setupdateLatestKeys(new Date())
             setLoading(false)
         }).catch((error) => {
             console.log("error", error);
@@ -42,26 +43,23 @@ export default function ApiKeys() {
         });
     }
 
-
     const [Openkey, setOpenkey] = useState([]);
     useEffect(() => {
         const main = new Story();
         const response = main.fetchKey();
         response.then((res) => {
-            console.log("res",res)
             if (res.data.status === true) {
-              setOpenkey(res.data.data);
-              setData({
-                open_api_key: res.data.openKey.key,
-                image_api_key: res.data.apiKey.key,
-            });
-                }
+                setOpenkey(res.data.data);
+                setData({
+                    open_api_key: res.data.openKey.key,
+                    image_api_key: res.data.apiKey.key,
+                });
+                localStorage.setItem('open-api-key', res.data && res.data.openKey && res.data.openKey.key)
+            }
         }).catch((error) => {
             console.log("error", error);
         });
-    }, [Openkey]);
-
-    console.log("Openkey",Openkey)
+    }, [Openkey, updateLatestKeys]);
     
   return (
     <>
@@ -80,7 +78,9 @@ export default function ApiKeys() {
                             id="open-api"
                         />
                     </div>
-                        <button className="btn btn-sm blue-gradient-btn ms-0 mt-3" onClick={()=>updateKeys(data.open_api_key, 'open-key')} >Update OpenApi Key</button>
+                        <button className="btn btn-sm blue-gradient-btn ms-0 mt-3"disabled={loading} onClick={()=>updateKeys(data.open_api_key, 'open-key')} >
+                        <span>{loading ? "Wait.." : "OpenApi Key"}</span>
+                            </button>
                 </div>
 
                 <div className="col-md-12 mt-4">
@@ -90,14 +90,16 @@ export default function ApiKeys() {
                             placeholder="Vyro Api Key"
                             name="image_api_key"
                             onChange={handleInputs}
-                            // value={Openkey.key}
                          value={data.image_api_key}
                             type="text"
                             className="input_field password"
                             id="vyro"
                         />
                     </div>
-                        <button className="btn btn-sm blue-gradient-btn ms-0 mt-3" onClick={()=>updateKeys(data.image_api_key, 'api-key')}>VyroAI Key</button>
+                        <button
+                     disabled={loading} className="btn btn-sm blue-gradient-btn ms-0 mt-3" onClick={()=>updateKeys(data.image_api_key, 'api-key')}>
+                          <span>{loading ? "Wait.." : "VyroAI Key"}</span>
+                        </button>
                 </div>
             </div>
             

@@ -12,7 +12,7 @@ export default function PrivateRoute(props) {
   const {pathname} = useLocation();
   
     useEffect(() => {
-        const notIncluded = ["/terms","/contact"];
+        const notIncluded = ["/terms","/contact","/ai"];
         if(notIncluded.includes(pathname)){
             
         }else {

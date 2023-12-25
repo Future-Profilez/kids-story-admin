@@ -18,6 +18,7 @@ import Storydetails from "./pages/story/Storydetails";
 import Privacy from "./component/Privacy";
 import Forget from "./component/Forget";
 import Contact from "./contact/Contact";
+import Aikey from "./Apis/Aikey";
 
 function App() {
 
@@ -70,6 +71,9 @@ function App() {
               </PrivateRouter>
             } />
 
+<Route path="/ai" element={
+           <Aikey/>
+            } />
           </Routes>
         </Router>
       </UserContextProvider>

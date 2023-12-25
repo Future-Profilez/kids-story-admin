@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Story from '../../Apis/Story';
 import { toast } from 'react-hot-toast';
 
@@ -42,26 +42,27 @@ export default function ApiKeys() {
         });
     }
 
-    // function updateKeys(e) {
-    //     e.preventDefault();
-    //     if (loading) { return false;}
-    //     setLoading(true);
-    //     const main = new Story();
-    //     const response = main.openai(data)
-    //     response.then((res) => {
-    //         if (res.data.status) {
-    //             // setData(res.data.data);
-    //             toast.success(res.data.message);
-    //         } else {
-    //             toast.error(res.data.message);
-    //         }
-    //         setLoading(false)
-    //     }).catch((error) => {
-    //         console.log("error", error);
-    //         setLoading(false)
-    //         toast.error("Failed to update API KEYS.");
-    //     });
-    // }
+
+    const [Openkey, setOpenkey] = useState([]);
+    useEffect(() => {
+        const main = new Story();
+        const response = main.fetchKey();
+        response.then((res) => {
+            console.log("res",res)
+            if (res.data.status === true) {
+              setOpenkey(res.data.data);
+              setData({
+                open_api_key: res.data.openKey.key,
+                image_api_key: res.data.apiKey.key,
+            });
+                }
+        }).catch((error) => {
+            console.log("error", error);
+        });
+    }, [Openkey]);
+
+    console.log("Openkey",Openkey)
+    
   return (
     <>
       <div className="update-field">
@@ -89,7 +90,8 @@ export default function ApiKeys() {
                             placeholder="Vyro Api Key"
                             name="image_api_key"
                             onChange={handleInputs}
-                            value={data.image_api_key}
+                            // value={Openkey.key}
+                         value={data.image_api_key}
                             type="text"
                             className="input_field password"
                             id="vyro"

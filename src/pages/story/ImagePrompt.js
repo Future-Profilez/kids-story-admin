@@ -47,25 +47,27 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
         setexisted(updatedImage);
         setModalShow(false);
     }
-    const [generated, setGenerated] = useState(false);
-    const [imageKey, setImageKey] = useState([process.env.REACT_APP_IMAGE]);
-    useEffect(() => {
-            const main = new Story();
-            const response = main.fetchKey();
-            response.then((res) => {
-                if (res.data.status === true) {
-                    res.data.data.forEach(item => {
-                        if (item.type === "api-key") {
-                            setImageKey(item.key);
-                        }
-                    });
-                }
-            }).catch((error) => {
-                console.log("error", error);
-            });
-    }, [imageKey]); 
     
+    const [generated, setGenerated] = useState(false);
 
+    const [imageKey, setImageKey] = useState([]);
+
+    useEffect(() => {
+        console.log('API called');
+        const main = new Story();
+        const response = main.fetchKey();
+        response.then((res) => {
+            if (res.data.status === true) {
+                if (res.data.status === true) {
+                    setImageKey(res?.data?.apiKey?.key);
+                }
+            }
+        }).catch((error) => {
+            console.log("error", error);
+        });
+    }, []);
+
+    console.log("imageKey", imageKey)
 
     const fetchData = async () => {
         if (!imageKey) {

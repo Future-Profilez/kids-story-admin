@@ -1,5 +1,6 @@
 {
   "name": "kids-story-admin",
+  "homepage": "https://taletreats.com",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

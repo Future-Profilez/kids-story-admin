@@ -37,15 +37,15 @@ function ChartComponent() {
   
     if (content.length > 0) {
       const chartCanvas = chartRef.current.getContext("2d");
-  
-      const months = content.map(item => item.month_name); 
+      const combinedLabels = content.map(item => `${item.month_name} ${item.year}`);
       const totalUsersData = content.map(item => item.total_users); 
       const subscribedUsersData = content.map(item => item.subscribed_users); 
   
       chartInstance.current = new Chart(chartCanvas, {
         type: "line",
         data: {
-          labels: months,
+          labels: combinedLabels ,
+
           datasets: [
             {
               label: 'User',

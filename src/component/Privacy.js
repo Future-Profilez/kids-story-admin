@@ -10,7 +10,7 @@ export default function Privacy() {
                 <div class="privacy-sec">
                     <div class="privacy-head">
                         <div class="container">
-                            <h1>Tale Treats Mobile Application - Privacy Policy</h1>
+                            <h1> Privacy Policy</h1>
                         </div>
                     </div>
                     <div class="container">

@@ -3,7 +3,7 @@ function Heading() {
 
         <>
             <div className="story">
-                <h2> StoryScape!</h2>
+                <h2> Tale Treats</h2>
                 <div className="top-line"></div>
             </div>
 

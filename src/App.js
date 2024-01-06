@@ -31,6 +31,7 @@ function App() {
             <Route path="/terms" element={<Term />} />
 
             <Route path="/policy" element={<Privacy />} />
+            
             <Route path='/contact' element={<Contact />} />
             <Route path="/home" element={
               <PrivateRouter>

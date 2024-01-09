@@ -30,7 +30,8 @@ function App() {
             <Route path="/forget" element={<Forget />} />
             <Route path="/terms" element={<Term />} />
 
-            <Route path="/privacy" element={<Privacy />} />
+            <Route path="/policy" element={<Privacy />} />
+            
             <Route path='/contact' element={<Contact />} />
             <Route path="/home" element={
               <PrivateRouter>

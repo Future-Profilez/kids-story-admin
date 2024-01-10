@@ -938,3 +938,11 @@ input:-webkit-autofill:focus {
   height: auto !important;
   padding: 10px !important;
 }
+
+.thubnail p {
+  text-align: center;
+  padding: 10px;
+}
+.btn-list > .btn {
+  margin: 10px auto;
+}

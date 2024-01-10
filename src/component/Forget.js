@@ -3,7 +3,7 @@ import { Image } from "react-bootstrap";
 import image from "../image/login.png";
 import "../style/login.css";
 import Story from "../Apis/Story";
-import { toast, Toaster } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 function Forget() {

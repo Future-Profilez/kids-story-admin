@@ -19,7 +19,7 @@ function StoryModal({ show, handleClose }) {
     const [gender, setGender] = useState('');
     const [genre, setGenre] = useState('');
     const [loading, setLoading] = useState(false)
-    
+
     const handleOptionSelect = (nextStep, user) => {
         if (nextStep >= 1 && nextStep <= 4) {
             setCurrentStep(nextStep);
@@ -46,7 +46,20 @@ function StoryModal({ show, handleClose }) {
     const navigate = useNavigate()
 
     const [card, setCard] = useState(null);
+//     console.log("aidata", aidata)
+//     const storyResponse = aidata?.storyResponse;
 
+//     console.log("storyResponse", storyResponse)
+//     let Parstory;
+
+//     if (storyResponse) {
+//         Parstory = storyResponse
+//     } 
+//         if (storyResponse.data) {
+//             Parstory = storyResponse.data
+//         }
+    
+// console.log("Parstory",Parstory)
     async function genrateAiStory() {
         try {
             if (userTitle && age && gender && genre) {
@@ -85,7 +98,7 @@ function StoryModal({ show, handleClose }) {
                             }else {
                                 jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
                             }
-                            console.log("jsonMatch",jsonMatch)
+                            console.log("jsonMatch", jsonMatch)
                             let Parstory;
                             if (jsonMatch && jsonMatch.length > 0) {
                                 Parstory = JSON.parse(jsonMatch[0]);
@@ -94,12 +107,10 @@ function StoryModal({ show, handleClose }) {
                                 return false;
                             }
                             console.log("parstory", Parstory);
-
-                            if(Parstory && Parstory){
-                                Parstory = Parstory 
-                            }else{
-                                Parstory = Parstory.data
-                            } 
+                            if (Parstory.data) {
+                               Parstory = Parstory.data
+                             }
+                            console.log("parstory1", Parstory);
                             const datastory = dispatch(adduser(Parstory));
                             console.log("datastory", datastory);
                             const data = setCard(Parstory);
@@ -109,7 +120,6 @@ function StoryModal({ show, handleClose }) {
                                     navigate('/list');
                                 }
                             }, 1000);
-                            console.log("Parstory latest", Parstory)
                             setLoading(false);
                         } catch (error) {
                             toast.error("please provide valid prompt ")

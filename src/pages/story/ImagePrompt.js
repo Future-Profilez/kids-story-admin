@@ -67,7 +67,6 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
         });
     }, []);
 
-    console.log("imageKey", imageKey)
 
     const fetchData = async () => {
         if (!imageKey) {

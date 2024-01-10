@@ -7,7 +7,6 @@ export default function OpenAIKey() {
         const main = new Story();
         const response = main.fetchKey();
         response.then((res) => {
-            console.log("res",res)
             if (res.data.status && res.data.openKey) {
                 localStorage.setItem('open-api-key', res.data.openKey.key)
             }

@@ -94,6 +94,12 @@ function StoryModal({ show, handleClose }) {
                                 return false;
                             }
                             console.log("parstory", Parstory);
+
+                            if(Parstory && Parstory){
+                                Parstory = Parstory 
+                            }else{
+                                Parstory = Parstory.data
+                            } 
                             const datastory = dispatch(adduser(Parstory));
                             console.log("datastory", datastory);
                             const data = setCard(Parstory);
@@ -103,6 +109,7 @@ function StoryModal({ show, handleClose }) {
                                     navigate('/list');
                                 }
                             }, 1000);
+                            console.log("Parstory latest", Parstory)
                             setLoading(false);
                         } catch (error) {
                             toast.error("please provide valid prompt ")

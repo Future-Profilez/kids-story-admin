@@ -12,14 +12,12 @@ function Storycard() {
         setSelectedOption(option);
         localStorage.setItem('selectedTab', option);
     };
-    useEffect(() => {
-        return () => 
-        localStorage.removeItem('selectedTab');
-    }, []);
+    // useEffect(() => {
+    //     return () => 
+    //     localStorage.removeItem('selectedTab');
+    // }, []);
     return (
-
         <AuthLayout>
-           
             <div className="content-wrapper">
                 <div className="content">
                     <div className="row">

@@ -10,7 +10,6 @@ import UserIcon  from "../../image/total-user.png";
 import subscribersIcon  from "../../image/subscribers-icon.png";
 
 function Static() {
-
     const [Contnet, setContent] = useState([])
     useEffect(() => {
         const main = new Story();

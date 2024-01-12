@@ -46,18 +46,12 @@ function Profile() {
             console.log("error", error)
         })
     }, [])
-
-
     const handleInputs = (e) => {
         const value = e.target.value;
         const name = e.target.name;
         setRegs((prevState) => ({ ...prevState, [name]: value }));
     };
-
-
     const [loading, setLoading] = useState(false);
-
-
     function handleForms(e) {
         e.preventDefault();
         if (loading) {

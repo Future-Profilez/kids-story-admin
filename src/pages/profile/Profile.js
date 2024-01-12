@@ -6,17 +6,25 @@ import Tabs from 'react-bootstrap/Tabs';
 import { useEffect, useState } from "react";
 import Password from "./Password"
 import Story from "../../Apis/Story";
-import { Toaster, toast } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import ApiKeys from "./ApiKeys";
 function Profile() {
     const profiletab = localStorage.getItem("profileTab")
     const [keys, setkeys] = useState(profiletab || "profile");
+    console.log("profiletab",profiletab)
     const handleTabClick = (keys) => {
         setkeys(keys);
-        localStorage && localStorage.setItem("profileTab" || keys)
+        localStorage.setItem("profileTab" , keys)
     };
-    const [content, setcontent] = useState([])
 
+    // useEffect(() => {
+    //     return () => 
+    //     localStorage.removeItem('profileTab');
+    // }, []);
+
+  
+  
+    const [content, setcontent] = useState([])
     const initialRegs = {
         phone_no: "",
         name: "",

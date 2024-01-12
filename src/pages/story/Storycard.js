@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Listing from "../list/Listing";
-import { Toaster } from 'react-hot-toast';
 function Storycard() {
     const storedTab = localStorage.getItem('selectedTab');
     const [selectedOption, setSelectedOption] = useState(storedTab ||"boy");

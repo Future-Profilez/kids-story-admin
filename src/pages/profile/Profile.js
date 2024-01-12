@@ -9,9 +9,11 @@ import Story from "../../Apis/Story";
 import { Toaster, toast } from 'react-hot-toast';
 import ApiKeys from "./ApiKeys";
 function Profile() {
-    const [keys, setkeys] = useState("profile");
+    const profiletab = localStorage.getItem("profileTab")
+    const [keys, setkeys] = useState(profiletab || "profile");
     const handleTabClick = (keys) => {
         setkeys(keys);
+        localStorage && localStorage.setItem("profileTab" || keys)
     };
     const [content, setcontent] = useState([])
 
@@ -46,7 +48,7 @@ function Profile() {
 
 
     const [loading, setLoading] = useState(false);
-    
+
 
     function handleForms(e) {
         e.preventDefault();
@@ -128,7 +130,6 @@ function Profile() {
                                                             />
                                                         </div>
                                                     </div>
-
                                                     <div className="col-md-6">
                                                         <label className="input_label" htmlFor="password_field">
                                                             Phone
@@ -154,18 +155,15 @@ function Profile() {
                                                     </button>
                                                 </div>
                                             </div>
-
                                         </Tab>
                                         <Tab eventKey="password" title="Password">
                                             <Password />
                                         </Tab>
                                         <Tab eventKey="Keys" title="API Keys">
-                                             <ApiKeys />
+                                            <ApiKeys />
                                         </Tab>
-
                                     </Tabs>
                                 </div>
-                               
                             </div>
                         </div>
                     </div>

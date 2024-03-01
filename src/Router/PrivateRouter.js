@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import Story from '../Apis/Story';
 import { toast } from 'react-hot-toast';
 import { useLocation } from 'react-router-dom';
-
-
 export default function PrivateRoute(props) {
 
   const navigate = useNavigate();
@@ -26,7 +24,9 @@ export default function PrivateRoute(props) {
             }
           }).catch((error) => {
             console.log("error", error);
-            toast.error("Please log in first.");
+            setTimeout(()=>{
+              toast.error("Please log in first.");
+            },1000);
             navigate('/');
           });
       };

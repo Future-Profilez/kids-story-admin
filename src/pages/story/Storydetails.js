@@ -32,10 +32,11 @@ function Storydetails() {
         }
     };
 
-
     useEffect(() => {
         fetchStoryDetails();
-    }, [uuid]);
+    }, [uuid])
+
+
     const fetchStoryDelete = () => {
         if (uuid) {
             const main = new Story();
@@ -77,7 +78,6 @@ function Storydetails() {
     ];
     const [loadings, setLoadings] = useState(false)
     var dt = new Date(Regs.schedule_at);
-    const updated = months[dt.getMonth()] + "-" + dt.getDate() + "-" + dt.getFullYear(); // 2023-12-11
     async function handleForms(e) {
         e.preventDefault();
         if (loadings) {
@@ -129,7 +129,7 @@ function Storydetails() {
                     <div className="content ">
                         <Heading />
                         {loading ? (
-                            <div>
+                            <>
                                 <div className="story-title"><h6> {content?.title}</h6></div>
                                 <div className="reschedule-story">
                                     <div className="row">
@@ -199,11 +199,8 @@ function Storydetails() {
                                         ))}
                                     </div>
                                 </div>
-                            </div>
-
-
+                            </>
                         ) : (<Loading />)}
-
                     </div>
                 </div>
             </AuthLayout>

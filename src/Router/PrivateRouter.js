@@ -11,40 +11,26 @@ export default function PrivateRoute(props) {
   const [content, setContent] = useState([]);
   const {pathname} = useLocation();
   
-    useEffect(() => {
-        const notIncluded = ["/terms","/contact","/ai","/privacy"];
-        if(notIncluded.includes(pathname)){
-            
-        }else {
-            const auth = localStorage.getItem('authenticated');
-            if (!auth) {
+  useEffect(() => {
+    const notIncluded = ["/terms","/contact","/ai","/privacy"];
+    if(notIncluded.includes(pathname)){
+    } else {
+        const auth = localStorage.getItem('authenticated');
+        const main = new Story();
+        const response = main.Subscriptionlist();
+        response.then((res) => {
+            if (res.data.status) {
+              setContent(res.data.data);
             } else {
-              setContent(true);
+              toast.error(res.data.message);
             }
-        }
-    }, []);
-  
-
-    const fetchData = () => {
-      const main = new Story();
-      const response = main.Subscriptionlist();
-      response
-        .then((res) => {
-          if (res.data.status) {
-            setContent(res.data.data);
-          } else {
-            toast.error(res.data.message);
-          }
-        })
-        .catch((error) => {
-          console.log("error", error);
-          toast.error("Please log in first.");
-          navigate('/');
-        });
-    };
-    
-  useMemo(() => {
-    fetchData();
+          }).catch((error) => {
+            console.log("error", error);
+            toast.error("Please log in first.");
+            navigate('/');
+          });
+      };
   }, []);
+
   return <>{props.children}</>;
 }

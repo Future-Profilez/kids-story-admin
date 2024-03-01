@@ -33,6 +33,7 @@ function App() {
             <Route path="/policy" element={<Privacy />} />
             
             <Route path='/contact' element={<Contact />} />
+
             <Route path="/home" element={
               <PrivateRouter>
                 <Homepage />
@@ -44,14 +45,10 @@ function App() {
               </PrivateRouter>
             }
             />
-            <Route
-              path="/card/:uuid"
-              element={<Storydetails />}
-            ></Route>
-            <Route path="/list" element={
-              <Storylist />
-
-            } />
+            <Route path="/card/:uuid" element={ <PrivateRouter><Storydetails /></PrivateRouter>} ></Route>
+            
+            <Route path="/list" element={<PrivateRouter><Storylist /></PrivateRouter>} />
+            
             <Route path="/profile" element={
               <PrivateRouter>
                 <Profile />

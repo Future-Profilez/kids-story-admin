@@ -130,7 +130,6 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
     const onImageError = () => { 
      setexisted(recordimage)
     }
-
     return (
         <>
             {custom ?

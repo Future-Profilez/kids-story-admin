@@ -125,11 +125,17 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt, uid, chapter
         setShowPrompt(true);
     };
 
+
+    const [showing, setShowing] = useState(existed);
+    const onImageError = () => { 
+     setexisted(recordimage)
+    }
+
     return (
         <>
             {custom ?
                 <div>
-                    <img src={existed} alt="N/A" />
+                    <img onError={onImageError} src={showing} alt="N/A" />
                     <div className={customclass} onClick={() => setModalShow(true)}>{custom}</div>
                 </div>
                 : <div onClick={() => setModalShow(true)}>

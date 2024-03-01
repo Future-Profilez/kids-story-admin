@@ -22,7 +22,7 @@ export default function PrivateRoute(props) {
             if (res.data.status) {
               setContent(res.data.data);
             } else {
-              toast.error(res.data.message);
+              // toast.error(res.data.message);
             }
           }).catch((error) => {
             console.log("error", error);
@@ -32,5 +32,5 @@ export default function PrivateRoute(props) {
       };
   }, []);
 
-  return <>{props.children}</>;
+  return <>udyfsuidyfisydfiysidfyisdyfsidfui{props.children}</>;
 }

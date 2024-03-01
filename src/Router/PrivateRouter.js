@@ -32,5 +32,5 @@ export default function PrivateRoute(props) {
       };
   }, []);
 
-  return <>udyfsuidyfisydfiysidfyisdyfsidfui{props.children}</>;
+  return <>{props.children}</>;
 }

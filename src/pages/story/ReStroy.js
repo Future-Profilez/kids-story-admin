@@ -21,7 +21,7 @@ function ReStory({ shows, handleCloses }) {
   const [loading, setLoading] = useState(false);
 
   let chaptersdata = [];
-  if (users.length > 0) {
+  if (users && users.length > 0) {
     chaptersdata = users.at(-1);
   } else {
     chaptersdata = users;
@@ -32,7 +32,7 @@ function ReStory({ shows, handleCloses }) {
   if (chaptersdata) {
     extractdata = chaptersdata;
   } else {
-    extractdata = chaptersdata.data;
+    extractdata = chaptersdata && chaptersdata.data;
   }
 
 
@@ -49,12 +49,12 @@ function ReStory({ shows, handleCloses }) {
 
   useEffect(() => {
 
-    setUserTitle(extractdata.title);
-    setCard(extractdata.card);
-    setAge(extractdata.age);
-    setGender(extractdata.gender);
-    setGenre(extractdata.genre);
-    setName(extractdata.name);
+    setUserTitle(extractdata &&  extractdata.title);
+    setCard(extractdata &&  extractdata.card);
+    setAge(extractdata &&  extractdata.age);
+    setGender(extractdata &&  extractdata.gender);
+    setGenre(extractdata &&  extractdata.genre);
+    setName(extractdata &&  extractdata.name);
   }, []);
 
 

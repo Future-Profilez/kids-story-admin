@@ -65,8 +65,8 @@ function StoryModal({ show, handleClose }) {
             if (userTitle && age && gender && genre) {
                 setLoading(true);
                 const promptData = {
-                    message: "Generate a children's story with the following parameters",
-                    title: userTitle,
+                    message: `Generate a children's story of this prompt "${userTitle}" with the following parameters`,
+                    title: "Title should be releted to story content.",
                     age: age,
                     gender: gender,
                     genre: genre,

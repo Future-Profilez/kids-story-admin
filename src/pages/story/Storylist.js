@@ -33,7 +33,7 @@ function Storylist() {
     if (chaptersdata) {
         extractdata = chaptersdata;
     } else {
-        extractdata = chaptersdata.data;
+        extractdata = chaptersdata && chaptersdata.data;
     }
 
    
@@ -45,13 +45,15 @@ function Storylist() {
         navigate('/card');
     }
     const [Regs, setRegs] = useState({
-        "age": extractdata.age,
-        "title": extractdata.title,
-        "gender": extractdata.gender,
-        "genre": extractdata.genre,
-        "name": extractdata.name,
-        "stories": extractdata.chapters,
+        "age": extractdata && extractdata.age,
+        "title": extractdata && extractdata.title,
+        "gender": extractdata && extractdata.gender,
+        "genre": extractdata && extractdata.genre,
+        "name": extractdata && extractdata.name,
+        "stories": extractdata && extractdata.chapters,
     });
+
+    console.log("Regs", Regs)
 
     const handleInputs = (e) => {
         const value = e.target.value;

@@ -7,15 +7,12 @@ import { adduser } from "../../Redux/UserSlice";
 import { toast } from 'react-hot-toast';
 import Story from "../../Apis/Story";
 
-function ReStory({ shows, handleCloses ,prompt }) {
-  const record =  localStorage && localStorage.getItem("userTitle")
-  console.log("record",record)
+function ReStory({ shows, handleCloses, prompt }) {
   const [users] = useSelector((state) => state.users.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userTitle, setUserTitle] = useState("");
-    localStorage && localStorage.setItem("userTitle",userTitle)
-
+  localStorage && localStorage.setItem("userTitle", userTitle)
   const [card, setCard] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
@@ -34,30 +31,31 @@ function ReStory({ shows, handleCloses ,prompt }) {
   let extractdata = [];
   if (chaptersdata) {
     extractdata = chaptersdata;
+    console.log("extractdata", extractdata)
   } else {
     extractdata = chaptersdata && chaptersdata.data;
   }
 
 
   const [imagekey, setImagekey] = useState(process.env.REACT_APP_KEY);
-    useEffect(()=>{
-        const main = new Story();
-        const response = main.getdetilas();
-        response.then((res) => {
-            setImagekey(res.data.image_api_key);
-        }).catch((error) => {
-            console.log("error", error)
-        });
-    },[]);
+  useEffect(() => {
+    const main = new Story();
+    const response = main.getdetilas();
+    response.then((res) => {
+      setImagekey(res.data.image_api_key);
+    }).catch((error) => {
+      console.log("error", error)
+    });
+  }, []);
 
   useEffect(() => {
 
-    setUserTitle(record);
-    setCard(extractdata &&  extractdata.card);
-    setAge(extractdata &&  extractdata.age);
-    setGender(extractdata &&  extractdata.gender);
-    setGenre(extractdata &&  extractdata.genre);
-    setName(extractdata &&  extractdata.name);
+    setUserTitle(extractdata && extractdata.title);
+    setCard(extractdata && extractdata.card);
+    setAge(extractdata && extractdata.age);
+    setGender(extractdata && extractdata.gender);
+    setGenre(extractdata && extractdata.genre);
+    setName(extractdata && extractdata.name);
   }, []);
 
 
@@ -100,17 +98,13 @@ function ReStory({ shows, handleCloses ,prompt }) {
             console.log("storyResponse", storyResponse);
             try {
               let jsonMatch;
-              let Parstory;
-
               if (storyResponse && storyResponse.data) {
                 jsonMatch = storyResponse.data.match(/\{(.|\n)*\}/);
               } else {
                 jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
               }
               console.log("jsonMatch", jsonMatch)
-              if (Parstory.data) {
-                Parstory = Parstory.data
-            }
+              let Parstory;
               if (jsonMatch && jsonMatch.length > 0) {
                 Parstory = JSON.parse(jsonMatch[0]);
               } else {
@@ -118,16 +112,19 @@ function ReStory({ shows, handleCloses ,prompt }) {
                 return false;
               }
               console.log("parstory", Parstory);
-              const datastory = dispatch(adduser(Parstory));
-              console.log("datastory", datastory);
-              const data = setCard(Parstory);
-              console.log("setCard", data);
+              if (Parstory.data) {
+                Parstory = Parstory.data
+              }
+              dispatch(adduser(Parstory));
+              setCard(Parstory);
               setTimeout(() => {
                 if (Parstory && Parstory.title) {
+                  // navigate("/list");
+                  handleCloses();
                   navigate(`/list/?prompt=${userTitle.replace(/ /g, '_')}`);
+
                 }
               }, 1000);
-              handleCloses();
               setLoading(false);
             } catch (error) {
               toast.error("please provide valid prompt ")

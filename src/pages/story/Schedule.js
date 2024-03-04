@@ -86,8 +86,8 @@ function Schedule({record,getStoryUID }) {
                 <Modal.Body>
                     <div class="body-popup-title"><h3>When do you want to publish this story?</h3></div>
                     <div className="date-field-story" >
-                        <input type="date" placeholder="Year/Month/Date" className="input_field  form-control" name="schedule_at"
-                            id="password_field" value={Regs.schedule_at} onChange={handleInputs} />
+                    <input type="date" placeholder="Year/Month/Date" className="input_field form-control" name="schedule_at" id="password_field" value={Regs.schedule_at} onChange={handleInputs} min={new Date().toISOString().split('T')[0]} />
+
                     </div>
                     <div className="text-center">
                         <div className="btn blue-gradient-btn" onClick={handleForms} >

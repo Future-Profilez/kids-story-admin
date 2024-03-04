@@ -15,16 +15,17 @@ function StoryModal({ show, handleClose }) {
     const [selectedUser, setSelectedUser] = useState('');
     const [Name, setName] = useState("")
     const [userTitle, setUserTitle] = useState('');
+    localStorage && localStorage.setItem("userTitle",userTitle)
     const [age, setAge] = useState('');
     const [gender, setGender] = useState('');
     const [genre, setGenre] = useState('');
     const [loading, setLoading] = useState(false)
-
+    const [characterLength, setcharacterLength] = useState('short');
     const handleOptionSelect = (nextStep, user) => {
-        if (nextStep >= 1 && nextStep <= 4) {
+        if (nextStep >= 1 && nextStep <= 5) {
             setCurrentStep(nextStep);
             setSelectedUser(user);
-            if (nextStep === 4) {
+            if (nextStep === 5) {
                 setShowSuccess(true);
             } else {
                 setShowSuccess(false);
@@ -38,40 +39,31 @@ function StoryModal({ show, handleClose }) {
             setName("DummyGirl");
         }
     }, [gender]);
-
+console.log("userTitle",userTitle)
     const handleAgeChange = (age) => {
         setAge(age);
         handleOptionSelect(3);
     };
     const navigate = useNavigate()
-
     const [card, setCard] = useState(null);
-//     console.log("aidata", aidata)
-//     const storyResponse = aidata?.storyResponse;
 
-//     console.log("storyResponse", storyResponse)
-//     let Parstory;
-
-//     if (storyResponse) {
-//         Parstory = storyResponse
-//     } 
-//         if (storyResponse.data) {
-//             Parstory = storyResponse.data
-//         }
-    
-// console.log("Parstory",Parstory)
     async function genrateAiStory() {
         try {
+            let selected_characterLength = 
+            characterLength === "large" ? "800 to 1000 words" 
+            : characterLength === "medium" ? "600 to 800 words" :
+            "300 to 400 words" ;
+
             if (userTitle && age && gender && genre) {
                 setLoading(true);
                 const promptData = {
                     message: `Generate a children's story of this prompt "${userTitle}" with the following parameters`,
-                    title: "Title should be releted to story content.",
+                    title: "Title should be related to story content.",
                     age: age,
                     gender: gender,
                     genre: genre,
                     name: Name,
-                    minimum_character_length: "50 words",
+                    minimum_character_length: selected_characterLength,
                     description: "Please provide the content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data in one variable 'data' where inside 'data', there should be 'title','name','age', 'gender', 'genre', and 'chapters'. 'chapters' should be an array containing objects for each chapter with the properties: chapternumber(number field), title, content, and imageprompt. Provide the response in JSON format",
                 };
                 const requestData = {
@@ -93,9 +85,9 @@ function StoryModal({ show, handleClose }) {
                         console.log("storyResponse", storyResponse);
                         try {
                             let jsonMatch;
-                            if(storyResponse && storyResponse.data){
+                            if (storyResponse && storyResponse.data) {
                                 jsonMatch = storyResponse.data.match(/\{(.|\n)*\}/);
-                            }else {
+                            } else {
                                 jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
                             }
                             console.log("jsonMatch", jsonMatch)
@@ -108,8 +100,8 @@ function StoryModal({ show, handleClose }) {
                             }
                             console.log("parstory", Parstory);
                             if (Parstory.data) {
-                               Parstory = Parstory.data
-                             }
+                                Parstory = Parstory.data
+                            }
                             console.log("parstory1", Parstory);
                             const datastory = dispatch(adduser(Parstory));
                             console.log("datastory", datastory);
@@ -117,7 +109,9 @@ function StoryModal({ show, handleClose }) {
                             console.log("setCard", data);
                             setTimeout(() => {
                                 if (Parstory && Parstory.title) {
-                                    navigate('/list');
+                                   // navigate("/list");
+                                   navigate(`/list/?prompt=${userTitle.replace(/ /g, '_')}`);
+
                                 }
                             }, 1000);
                             setLoading(false);
@@ -211,7 +205,7 @@ function StoryModal({ show, handleClose }) {
                                             <div style={{ width: 25 + '%' }}></div>
                                         </div>
 
-                                        <span>Step 1 of 4</span>
+                                        <span>Step 1 of 5</span>
                                     </div>
                                 </div>
                             )}
@@ -238,7 +232,7 @@ function StoryModal({ show, handleClose }) {
                                         <div className="progress-bar">
                                             <div style={{ width: 50 + '%' }}></div>
                                         </div>
-                                        <span>Step 2 of 4</span>
+                                        <span>Step 2 of 5</span>
                                     </div>
                                 </div>
                             )}
@@ -264,11 +258,47 @@ function StoryModal({ show, handleClose }) {
                                         <div className="progress-bar">
                                             <div style={{ width: 75 + '%' }}></div>
                                         </div>
-                                        <span>Step 3 of 4</span>
+                                        <span>Step 3 of 5</span>
                                     </div>
                                 </div>
                             )}
                             {currentStep === 4 && (
+                                <div className="story-step-form" id="step3">
+                                    <div className="body-popup-title">
+                                        <h3>Select Word Length</h3>
+                                    </div>
+                                    <div className="button-list-form">
+                                        <ul>
+                                            <li>
+                                                <div className="button-block" onClick={() => handleOptionSelect(5, "short")}>
+                                                    <input onChange={(e)=>setcharacterLength(e.target.value)} type="radio" value="short" name="wordLength" />
+                                                    <button>Short (300 - 400 words)</button>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div className="button-block" onClick={() => handleOptionSelect(5, "medium")}>
+                                                    <input onChange={(e)=>setcharacterLength(e.target.value)} type="radio" value="medium" name="wordLength" />
+                                                    <button>Medium (600 - 800 words)</button>
+                                                </div>
+                                            </li>
+                                            <li>
+                                                <div className="button-block" onClick={() => handleOptionSelect(5, "large")}>
+                                                    <input onChange={(e)=>setcharacterLength(e.target.value)} type="radio" value="large" name="wordLength" />
+                                                    <button>Large (800 - 1000 words)</button>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div className="progresbar-block">
+                                        <div className="progress-bar">
+                                            <div style={{ width: 85 + '%' }}></div>
+                                        </div>
+                                        <span>Step 4 of 5</span>
+                                    </div>
+                                </div>
+                            )}
+
+                            {currentStep === 5 && (
                                 loading ? (
                                     showSuccess && (
                                         <div className="succes" id="successpopup" >

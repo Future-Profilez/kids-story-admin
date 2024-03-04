@@ -7,12 +7,15 @@ import { adduser } from "../../Redux/UserSlice";
 import { toast } from 'react-hot-toast';
 import Story from "../../Apis/Story";
 
-function ReStory({ shows, handleCloses }) {
-
+function ReStory({ shows, handleCloses ,prompt }) {
+  const record =  localStorage && localStorage.getItem("userTitle")
+  console.log("record",record)
   const [users] = useSelector((state) => state.users.users);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userTitle, setUserTitle] = useState("");
+    localStorage && localStorage.setItem("userTitle",userTitle)
+
   const [card, setCard] = useState("");
   const [age, setAge] = useState("");
   const [gender, setGender] = useState("");
@@ -49,7 +52,7 @@ function ReStory({ shows, handleCloses }) {
 
   useEffect(() => {
 
-    setUserTitle(extractdata &&  extractdata.title);
+    setUserTitle(record);
     setCard(extractdata &&  extractdata.card);
     setAge(extractdata &&  extractdata.age);
     setGender(extractdata &&  extractdata.gender);
@@ -72,6 +75,7 @@ function ReStory({ shows, handleCloses }) {
           gender: gender,
           genre: genre,
           name: name,
+
           description:
             "Please provide content for five chapters, including subtitles, content, and an image prompt. Ensure that the fifth chapter always has a moral of the story. Store the data in one variable 'data' where inside 'data', there should be 'title', 'name', 'age', 'gender', 'genre', and 'chapters'. 'chapters' should be an array containing objects for each chapter with the properties: chapternumber, title, content, and imageprompt. Provide the response in JSON format.",
         };
@@ -96,13 +100,17 @@ function ReStory({ shows, handleCloses }) {
             console.log("storyResponse", storyResponse);
             try {
               let jsonMatch;
+              let Parstory;
+
               if (storyResponse && storyResponse.data) {
                 jsonMatch = storyResponse.data.match(/\{(.|\n)*\}/);
               } else {
                 jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
               }
               console.log("jsonMatch", jsonMatch)
-              let Parstory;
+              if (Parstory.data) {
+                Parstory = Parstory.data
+            }
               if (jsonMatch && jsonMatch.length > 0) {
                 Parstory = JSON.parse(jsonMatch[0]);
               } else {
@@ -116,7 +124,7 @@ function ReStory({ shows, handleCloses }) {
               console.log("setCard", data);
               setTimeout(() => {
                 if (Parstory && Parstory.title) {
-                  navigate('/list');
+                  navigate(`/list/?prompt=${userTitle.replace(/ /g, '_')}`);
                 }
               }, 1000);
               handleCloses();

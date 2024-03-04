@@ -31,12 +31,9 @@ function Storydetails() {
             })
         }
     };
-
     useEffect(() => {
         fetchStoryDetails();
     }, [uuid])
-
-
     const fetchStoryDelete = () => {
         if (uuid) {
             const main = new Story();
@@ -62,33 +59,13 @@ function Storydetails() {
         setRegs((prevState) => ({ ...prevState, [name]: value }));
         console.table(Regs);
     };
-    const months = [
-        "01",
-        "02",
-        "03",
-        "04",
-        "05",
-        "06",
-        "07",
-        "08",
-        "09",
-        "10",
-        "11",
-        "12",
-    ];
     const [loadings, setLoadings] = useState(false)
-    var dt = new Date(Regs.schedule_at);
     async function handleForms(e) {
         e.preventDefault();
         if (loadings) {
             return false;
         }
         setLoadings(true);
-        const currentDate = new Date().toISOString().split('T')[0];
-        // if (currentDate === Regs.schedule_at) {
-        //     toast.error("You can not schedule story today.Please select a upcoming date. ");
-        //     setLoadings(false);
-        // }
         if (!Regs.schedule_at) {
             toast.error("Please select a date.");
             setLoadings(false);
@@ -182,9 +159,11 @@ function Storydetails() {
                                             <div className="story-list" key={index}>
                                                 <h2 className="mt-4 pt-3 mb-3" > {item?.title}</h2>
                                                 <div className="chapterImg w-100 position-relative mt-2 mb-3" >
-                                                    <ImagePrompt image_url={item.image_url || inmagerecoird} customclass="editimagebtn btn blue-gradient-btn"
+                                                    <ImagePrompt 
+                                                        image_url={item.image_url || inmagerecoird} 
+                                                        customclass="editimagebtn btn blue-gradient-btn"
                                                         custom={<>
-                                                            <div className="editImage" >Edit Image</div>
+                                                            <div className="editImage">Edit Image</div>
                                                         </>}
                                                         imageUrl={item?.imageUrl || inmagerecoird}
                                                         uid={id}
@@ -223,8 +202,17 @@ function Storydetails() {
                     </div>
                     <div className="date-field-story" >
 
-                        <input type="date" min={(new Date()).toISOString().split('T')[0]} placeholder="Year/Month/Date" className="input_field  form-control" name="schedule_at"
-                            id="password_field" value={Regs.scheduled_at} onChange={handleInputs} />
+                        <input
+                            type="Date"
+                            // min={(new Date()).toISOString().split('T')[0]} 
+                            placeholder="Year/Month/Date"
+                            className="input_field form-control"
+                            name="schedule_at"
+                            id="password_field"
+                            value={Regs.scheduled_at}
+                            onChange={handleInputs}
+                        />
+
                     </div>
                     {content.scheduled_at ? (
                         <div className="text-center" disabled={loadings}>
@@ -238,7 +226,6 @@ function Storydetails() {
                             <span>{loadings ? "Wait.." : "Publish"}</span>
                         </div>
                     </div>)}
-
                 </Modal.Body>
             </Modal>
         </>

@@ -47,7 +47,10 @@ function App() {
             />
             <Route path="/card/:uuid" element={ <PrivateRouter><Storydetails /></PrivateRouter>} ></Route>
             
-            <Route path="/list" element={<PrivateRouter><Storylist /></PrivateRouter>} />
+           <Route
+           path="/list"
+           element={<PrivateRouter><Storylist /></PrivateRouter>}
+       />
             
             <Route path="/profile" element={
               <PrivateRouter>

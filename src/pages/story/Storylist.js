@@ -8,19 +8,21 @@ import ReStory from "./ReStroy";
 import ImagePrompt from "./ImagePrompt";
 import Story from "../../Apis/Story";
 import { toast } from 'react-hot-toast';
+import { useParams } from "react-router-dom";
 
 function Storylist() {
+    const { prompt } = useParams();
 
+  console.log("Prompt value:", prompt);
     const [storyUID, setStoryUID] = useState(null);
 
     const getStoryUID = (uid) => {
         setStoryUID(uid);
-        console.log("uid", uid);
     }
     const navigate = useNavigate();
     const users = useSelector(state => state.users.users);
 
-
+    console.log("users", users)
 
     let chaptersdata = [];
     if (users.length > 0) {
@@ -36,7 +38,7 @@ function Storylist() {
         extractdata = chaptersdata && chaptersdata.data;
     }
 
-   
+
     const [shows, setShows] = useState(false);
     const handleCloses = () => setShows(false);
     const handleShows = () => setShows(true);
@@ -53,17 +55,12 @@ function Storylist() {
         "stories": extractdata && extractdata.chapters,
     });
 
-    console.log("Regs", Regs)
-
     const handleInputs = (e) => {
         const value = e.target.value;
         const name = e.target.name;
         setRegs((prevState) => ({ ...prevState, [name]: value }));
     };
 
-    useEffect(() => {
-        console.table(Regs);
-    }, [Regs]);
 
     const [loading, setLoading] = useState(false)
     async function handleForms(e) {
@@ -125,8 +122,8 @@ function Storylist() {
                             </div>
                         </div>
                     </div>
-                    <ReStory shows={shows} handleCloses={handleCloses} />
-                  
+                    <ReStory shows={shows} handleCloses={handleCloses}  prompt={prompt} />
+
                 </div>
             </AuthLayout>
         </>

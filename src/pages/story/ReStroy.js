@@ -9,6 +9,7 @@ import Story from "../../Apis/Story";
 
 function ReStory({ shows, handleCloses, prompt }) {
   const [users] = useSelector((state) => state.users.users);
+  console.log("restoryyt",users)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userTitle, setUserTitle] = useState("");
@@ -20,12 +21,18 @@ function ReStory({ shows, handleCloses, prompt }) {
   const [name, setName] = useState("");
   const [loading, setLoading] = useState(false);
 
+
   let chaptersdata = [];
-  if (users && users.length > 0) {
-    chaptersdata = users.at(-1);
+  if (users.length > 0) {
+      chaptersdata = users.at(-1);
   } else {
-    chaptersdata = users;
+      chaptersdata = users[0];
   }
+
+
+
+  
+  console.log("The Adventures of DummyBoy: Treasure Hunt in Toy Land",chaptersdata)
 
 
   let extractdata = [];
@@ -112,7 +119,7 @@ function ReStory({ shows, handleCloses, prompt }) {
                 return false;
               }
               console.log("parstory", Parstory);
-              if (Parstory.data) {
+              if (Parstory) {
                 Parstory = Parstory.data
               }
               dispatch(adduser(Parstory));

@@ -25,7 +25,7 @@ function Storylist() {
     console.log("users", users)
 
     let chaptersdata = [];
-    if (users.length > 0) {
+    if (users.length < 0) {
         chaptersdata = users.at(-1);
     } else {
         chaptersdata = users[0];
@@ -97,7 +97,7 @@ function Storylist() {
                                         <h2> Chapter {item.chapternumber} :- {item.title} </h2>
                                         <p>{item.content}</p>
                                         {storyUID ? <> <div className="thubnail" >
-                                            <ImagePrompt uid={storyUID} chapter={item && item.chapternumber} imageprompt={item.imageprompt} />
+                                            <ImagePrompt uid={storyUID} chapter={item && item.chapternumber} imageprompt={item.imageprompt}  />
                                         </div></> : <div className="thubnail" >
                                             <p>Please save the story then after show imagePrompt </p></div>}
                                     </div>

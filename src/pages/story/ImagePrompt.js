@@ -8,6 +8,8 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt,
     uid, chapter, showImagePromptModal }) {
 
     const [prompt, setPrompt] = useState(imageprompt);
+    const [newGeneratedImage, setNewGeneratedImage] = useState(null);
+    console.log("imageprompt",imageprompt)
     const [modalShow, setModalShow] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [imageBase64, setImageBase64] = useState('');
@@ -90,6 +92,7 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt,
                 setGenerated(true);
                 setShowPrompt(false);
                 setNewgenerated(imageUrl);
+                setNewGeneratedImage(imageUrl);
                 const reader = new FileReader();
                 reader.onload = () => {
                     const base64data = reader.result;
@@ -119,6 +122,10 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt,
     };
 
     const [showing, setShowing] = useState(image_url);
+
+    console.log("showing",showing);
+    console.log()
+
     return (
         <>
         {custom ?
@@ -127,8 +134,8 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt,
                 <div className={customclass} onClick={() => setModalShow(true)}>{custom}</div>
             </div>
             : <div onClick={() => setModalShow(true)}>
-                <img src={updatedImage || showing} alt="story" />
-            </div>
+                <img src={ showing || recordimage } alt="story" />
+            </div> 
         }
 
         <Modal centered show={modalShow} onHide={() => setModalShow(false)} id="generat-story" className="image-generate modal-dialog-image">

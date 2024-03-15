@@ -6,10 +6,23 @@ import Ai from "../../Apis/Ai";
 import { adduser } from "../../Redux/UserSlice";
 import { toast } from 'react-hot-toast';
 import Story from "../../Apis/Story";
+import { useParams } from 'react-router-dom'
 
-function ReStory({ shows, handleCloses, prompt }) {
+function ReStory({ shows, handleCloses,  }) {
+  const [prompt, setPrompt] = useState('');
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const promptParam = urlParams.get('prompt');
+    if (promptParam) {
+      setPrompt(promptParam.replace(/_/g, ' '));
+    }
+  }, []);
+
+  console.log("prompt",prompt)
+
   const [users] = useSelector((state) => state.users.users);
-  console.log("restoryyt",users)
+  // console.log("restoryyt",users)
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userTitle, setUserTitle] = useState("");
@@ -26,19 +39,19 @@ function ReStory({ shows, handleCloses, prompt }) {
   if (users.length > 0) {
       chaptersdata = users.at(-1);
   } else {
-      chaptersdata = users[0];
+      chaptersdata = users;
   }
 
 
 
   
-  console.log("The Adventures of DummyBoy: Treasure Hunt in Toy Land",chaptersdata)
+  // console.log("The Adventures of DummyBoy: Treasure Hunt in Toy Land",chaptersdata)
 
 
   let extractdata = [];
   if (chaptersdata) {
     extractdata = chaptersdata;
-    console.log("extractdata", extractdata)
+    // console.log("extractdata", extractdata)
   } else {
     extractdata = chaptersdata && chaptersdata.data;
   }
@@ -57,7 +70,7 @@ function ReStory({ shows, handleCloses, prompt }) {
 
   useEffect(() => {
 
-    setUserTitle(extractdata && extractdata.title);
+    setUserTitle(prompt);
     setCard(extractdata && extractdata.card);
     setAge(extractdata && extractdata.age);
     setGender(extractdata && extractdata.gender);

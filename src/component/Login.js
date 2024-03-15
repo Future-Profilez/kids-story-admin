@@ -39,7 +39,7 @@ function Login() {
             if (response?.data?.status === true) {
                 setLoginUser(response?.data);
                 localStorage.setItem("token", response?.data?.token);
-                navigate("/home");
+                navigate("/ai");
                 toast.success(response.data.message);
             } else {
                 toast.error("invalid email/password");

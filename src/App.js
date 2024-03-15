@@ -34,7 +34,7 @@ function App() {
             
             <Route path='/contact' element={<Contact />} />
 
-            <Route path="/home" element={
+            <Route path="/ai" element={
               <PrivateRouter>
                 <Homepage />
               </PrivateRouter>

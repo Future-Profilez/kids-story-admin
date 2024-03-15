@@ -126,9 +126,8 @@ function ReStory({ shows, handleCloses, prompt }) {
               setCard(Parstory);
               setTimeout(() => {
                 if (Parstory && Parstory.title) {
-                  // navigate("/list");
                   handleCloses();
-                  navigate(`/list/?prompt=${userTitle.replace(/ /g, '_')}`);
+                  navigate(`/ai-story-generator/?prompt=${userTitle.replace(/ /g, '_')}`);
 
                 }
               }, 1000);

@@ -16,7 +16,7 @@ function Homepage() {
                     <div className="content content-center generat-story">
                         <div className="generate-block">
                             <div>
-                                <h2>StoryScape!  </h2>
+                                <h2>Tale Treats !</h2>
                                 <h1>Create a Magical Bedtime Story for Kids</h1>
                                 <Link to="#" className="btn blue-gradient-btn" onClick={handleShow}>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="11" height="12" viewBox="0 0 11 12" fill="none">

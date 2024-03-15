@@ -44,7 +44,7 @@ function Storylist() {
     const handleShows = () => setShows(true);
 
     const handleFinal = () => {
-        navigate('/card');
+        navigate('/ai-story');
     }
     const [Regs, setRegs] = useState({
         "age": extractdata && extractdata.age,

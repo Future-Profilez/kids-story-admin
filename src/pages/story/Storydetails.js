@@ -41,7 +41,7 @@ function Storydetails() {
             response.then((
                 res
             ) => {
-                navigate('/card')
+                navigate('/ai-story')
                 setTimeout(() => {
 
                     toast.success(res.data.message)
@@ -80,7 +80,7 @@ function Storydetails() {
                     toast.success(response.data.message);
                 }, 1000);
                 handleCloseContinue();
-                navigate('/card')
+                navigate('/ai-story')
             } else {
                 setTimeout(() => {
                     toast.error(response.data.message);

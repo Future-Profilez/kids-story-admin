@@ -39,16 +39,16 @@ function App() {
                 <Homepage />
               </PrivateRouter>
             } />
-            <Route path="/card" element={
+            <Route path="/ai-story" element={
               <PrivateRouter>
                 <Storycard />
               </PrivateRouter>
             }
             />
-            <Route path="/card/:uuid" element={ <PrivateRouter><Storydetails /></PrivateRouter>} ></Route>
+            <Route path="/ai-story/:uuid" element={ <PrivateRouter><Storydetails /></PrivateRouter>} ></Route>
             
            <Route
-           path="/list"
+           path="/ai-story-generator"
            element={<PrivateRouter><Storylist /></PrivateRouter>}
        />
             

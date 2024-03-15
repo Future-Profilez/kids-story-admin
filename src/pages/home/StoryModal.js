@@ -109,8 +109,7 @@ console.log("userTitle",userTitle)
                             console.log("setCard", data);
                             setTimeout(() => {
                                 if (Parstory && Parstory.title) {
-                                   // navigate("/list");
-                                   navigate(`/list/?prompt=${userTitle.replace(/ /g, '_')}`);
+                                   navigate(`/ai-story-generator/?prompt=${userTitle.replace(/ /g, '_')}`);
 
                                 }
                             }, 1000);
@@ -172,7 +171,7 @@ console.log("userTitle",userTitle)
                                 )}
 
 
-                                <h2>StoryScape!</h2>
+                                <h2>Tale Treats !</h2>
                             </Modal.Title>
                         </Modal.Header>
                         <Modal.Body>

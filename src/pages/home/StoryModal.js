@@ -39,7 +39,7 @@ function StoryModal({ show, handleClose }) {
             setName("DummyGirl");
         }
     }, [gender]);
-console.log("userTitle",userTitle)
+// console.log("userTitle",userTitle)
     const handleAgeChange = (age) => {
         setAge(age);
         handleOptionSelect(3);
@@ -82,7 +82,7 @@ console.log("userTitle",userTitle)
                 Ai.post("/completions", requestData)
                     .then((res) => {
                         const storyResponse = res.data.choices[0].message.content;
-                        console.log("storyResponse", storyResponse);
+                        // console.log("storyResponse", storyResponse);
                         try {
                             let jsonMatch;
                             if (storyResponse && storyResponse.data) {
@@ -90,7 +90,7 @@ console.log("userTitle",userTitle)
                             } else {
                                 jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
                             }
-                            console.log("jsonMatch", jsonMatch)
+                            // console.log("jsonMatch", jsonMatch)
                             let Parstory;
                             if (jsonMatch && jsonMatch.length > 0) {
                                 Parstory = JSON.parse(jsonMatch[0]);
@@ -98,15 +98,15 @@ console.log("userTitle",userTitle)
                                 toast.error("Failed to generate a story.Please try with diffrent prompt.")
                                 return false;
                             }
-                            console.log("parstory", Parstory);
+                            // console.log("parstory", Parstory);
                             if (Parstory.data) {
                                 Parstory = Parstory.data
                             }
-                            console.log("parstory1", Parstory);
+                            // console.log("parstory1", Parstory);
                             const datastory = dispatch(adduser(Parstory));
-                            console.log("datastory", datastory);
+                            // console.log("datastory", datastory);
                             const data = setCard(Parstory);
-                            console.log("setCard", data);
+                            // console.log("setCard", data);
                             setTimeout(() => {
                                 if (Parstory && Parstory.title) {
                                    navigate(`/ai-story-generator/?prompt=${userTitle.replace(/ /g, '_')}`);

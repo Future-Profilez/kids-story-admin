@@ -13,7 +13,7 @@ import { useParams } from "react-router-dom";
 function Storylist() {
     const { prompt } = useParams();
 
-  console.log("Prompt value:", prompt);
+//   console.log("Prompt value:", prompt);
     const [storyUID, setStoryUID] = useState(null);
 
     const getStoryUID = (uid) => {
@@ -22,7 +22,7 @@ function Storylist() {
     const navigate = useNavigate();
     const users = useSelector(state => state.users.users);
 
-    console.log("users", users)
+    // console.log("users", users)
 
     let chaptersdata = [];
     if (users.length < 0) {

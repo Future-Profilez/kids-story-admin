@@ -24,7 +24,7 @@ function ChartComponent() {
   useEffect(() => {
     fetchData();
   }, []);
-  console.log("content",content)
+  // console.log("content",content)
 
   // const months =content.month
   // console.log("monrth")

@@ -9,7 +9,7 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt,
 
     const [prompt, setPrompt] = useState(imageprompt);
     const [newGeneratedImage, setNewGeneratedImage] = useState(null);
-    console.log("imageprompt",imageprompt)
+    // console.log("imageprompt",imageprompt)
     const [modalShow, setModalShow] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [imageBase64, setImageBase64] = useState('');
@@ -123,8 +123,7 @@ function ImagePrompt({ image_url, customclass, custom, imageprompt,
 
     const [showing, setShowing] = useState(image_url);
 
-    console.log("showing",showing);
-    console.log()
+    // console.log("showing",showing);
 
     return (
         <>

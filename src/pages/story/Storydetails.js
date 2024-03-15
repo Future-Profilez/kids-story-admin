@@ -70,11 +70,11 @@ function Storydetails() {
             toast.error("Please select a date.");
             setLoadings(false);
         }
-        console.log("Submitting data:", Regs);
+        // console.log("Submitting data:", Regs);
         const main = new Story();
         try {
             const response = await main.storyreshedule(uuid, Regs);
-            console.log("responseee", response)
+            // console.log("responseee", response)
             if (response.data.status === true) {
                 setTimeout(() => {
                     toast.success(response.data.message);

@@ -10,7 +10,7 @@ export default function ApiKeys() {
         image_api_key: "",
     });
 
-    console.log("data",data)
+    // console.log("data",data)
     const handleInputs = (e) => {
         const value = e.target.value;
         const name = e.target.name;

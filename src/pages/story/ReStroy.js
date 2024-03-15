@@ -115,7 +115,7 @@ function ReStory({ shows, handleCloses,  }) {
         Ai.post("/completions", requestData)
           .then((res) => {
             const storyResponse = res.data.choices[0].message.content;
-            console.log("storyResponse", storyResponse);
+            // console.log("storyResponse", storyResponse);
             try {
               let jsonMatch;
               if (storyResponse && storyResponse.data) {
@@ -123,7 +123,7 @@ function ReStory({ shows, handleCloses,  }) {
               } else {
                 jsonMatch = storyResponse.match(/\{(.|\n)*\}/);
               }
-              console.log("jsonMatch", jsonMatch)
+              // console.log("jsonMatch", jsonMatch)
               let Parstory;
               if (jsonMatch && jsonMatch.length > 0) {
                 Parstory = JSON.parse(jsonMatch[0]);
@@ -131,7 +131,7 @@ function ReStory({ shows, handleCloses,  }) {
                 toast.error("Failed to generate a story.Please try with diffrent prompt.")
                 return false;
               }
-              console.log("parstory", Parstory);
+              // console.log("parstory", Parstory);
               if (Parstory) {
                 Parstory = Parstory.data
               }

@@ -11,7 +11,7 @@ import ApiKeys from "./ApiKeys";
 function Profile() {
     const profiletab = localStorage.getItem("profileTab")
     const [keys, setkeys] = useState(profiletab || "profile");
-    console.log("profiletab",profiletab)
+    // console.log("profiletab",profiletab)
     const handleTabClick = (keys) => {
         setkeys(keys);
         localStorage.setItem("profileTab" , keys)

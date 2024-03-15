@@ -17,7 +17,7 @@ function Schedule({record,getStoryUID }) {
     } else {
       chaptersdata = users[0];
     }
-    console.log("chaptersdata",chaptersdata)
+    // console.log("chaptersdata",chaptersdata)
 
   
     let extractdata =[];
@@ -27,7 +27,7 @@ function Schedule({record,getStoryUID }) {
       extractdata = chaptersdata.data;
   }
 
-  console.log("extractdata",extractdata)
+//   console.log("extractdata",extractdata)
     const [Regs, setRegs] = useState({
         "age": extractdata.age,
         "title":extractdata.title,

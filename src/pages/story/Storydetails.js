@@ -189,7 +189,7 @@ function Storydetails() {
 
                 <Modal.Header closeButton>
                     <Modal.Title>
-                        <h2>StoryScape!</h2>
+                        <h2>TaleTreats!</h2>
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>

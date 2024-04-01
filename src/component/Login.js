@@ -68,7 +68,7 @@ function Login() {
                     <Image src={image} className="img-fluid" alt="Responsive image" />
                 </div>
                 <div className="login-form">
-                    <h1>StoryScape!</h1>
+                    <h1>TaleTreats!</h1>
                     <div className="form_middle">
 
                         <div className="title_container">

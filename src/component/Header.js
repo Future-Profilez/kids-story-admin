@@ -36,7 +36,7 @@ function Header() {
             <header className={headerClass} id="header">
              <div className="header-data"> 
              <h2>
-             StoryScape!
+             TaleTreats!
              </h2>
             </div>
                 <div className="header_toggle"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" onClick={handledata} className="w-6 h-6">

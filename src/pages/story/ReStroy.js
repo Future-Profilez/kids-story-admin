@@ -186,7 +186,7 @@ function ReStory({ shows, handleCloses,  }) {
               <rect x="0.5" y="0.5" width="47" height="47" rx="23.5" stroke="white" />
             </g>
           </svg>
-          <h2>StoryScape!</h2>
+          <h2>TaleTreats!</h2>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>

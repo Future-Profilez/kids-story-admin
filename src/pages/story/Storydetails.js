@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Story from "../../Apis/Story";
 import inmagerecoird from "../../image/Image.png"
 import { useParams } from "react-router-dom";
-import { toast, Toaster } from 'react-hot-toast';
+import { toast } from 'react-hot-toast';
 import AuthLayout from "../../component/AuthLayout";
 import Heading from "../../component/Heading";
 import ImagePrompt from "./ImagePrompt";
@@ -58,7 +58,7 @@ function Storydetails() {
 
     const [Regs, setRegs] = useState("");
 
-    console.log("Regs", Regs)
+    // console.log("Regs", Regs)
     const handleInputs = (e) => {
         const value = e.target.value;
         const name = e.target.name;
@@ -76,14 +76,14 @@ function Storydetails() {
         if (!Regs.schedule_at) {
             toast.error("Please select a date.");
             setLoadings(false);
-            return; 
+            return;
         }
-        const scheduledDateTime = `${Regs.schedule_at}T15:00:00`; 
-        console.log("Submitting data:", scheduledDateTime);
+        const scheduledDateTime = `${Regs.schedule_at} T15:00:00`;
+        // console.log("Submitting data:", scheduledDateTime);
         const main = new Story();
         try {
             const response = await main.storyreshedule(uuid, { schedule_at: scheduledDateTime }); // Sending updated object with date and time
-            console.log("responseee", response);
+            // console.log("responseee", response);
             if (response.data.status === true) {
                 setTimeout(() => {
                     toast.success(response.data.message);
@@ -97,14 +97,14 @@ function Storydetails() {
                 }, 1000);
             }
             setLoadings(false);
-            console.log("response.data", response.data);
+            // console.log("response.data", response.data);
         } catch (error) {
             setLoadings(false);
             console.log("Error:", error);
             toast.error("You can only schedule for a date and time after today.");
         }
     }
-    
+
     const [showImagePromptModal, setShowImagePromptModal] = useState(false);
 
     return (
@@ -209,27 +209,19 @@ function Storydetails() {
                         )}
                     </div>
                     <div className="date-field-story" >
-
-
-                    <input
-    type="Date"
-    className="input_field form-control"
-    name="schedule_at"
-    id="password_field"
-    value={Regs.schedule_at || ''}
-    onChange={handleInputs}
-/>
-
-
-
-
-
+                        <input
+                            type="Date"
+                            className="input_field form-control"
+                            name="schedule_at"
+                            id="password_field"
+                            value={Regs.schedule_at || ''}
+                            onChange={handleInputs}
+                        />
                     </div>
                     {content.scheduled_at ? (
                         <div className="text-center" disabled={loadings}>
                             <div className="btn blue-gradient-btn" onClick={handleForms}  >
                                 <span>{loadings ? "Wait.." : "ReSchedule"}</span>
-
                             </div>
                         </div>
                     ) : (<div className="text-center" disabled={loadings} >

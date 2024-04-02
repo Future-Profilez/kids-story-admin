@@ -194,7 +194,12 @@ function Storydetails() {
 
 
             <Modal show={showContinue} onHide={handleCloseContinue} id="generat-story">
-
+                <div className="closebtn" onClick={handleCloseContinue}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                        <circle cx="21" cy="21" r="21" fill="#0B1024" />
+                        <path d="M15.4 28L14 26.6L19.6 21L14 15.4L15.4 14L21 19.6L26.6 14L28 15.4L22.4 21L28 26.6L26.6 28L21 22.4L15.4 28Z" fill="white" />
+                    </svg>
+                </div>
                 <Modal.Header closeButton>
                     <Modal.Title>
                         <h2>TaleTreats!</h2>

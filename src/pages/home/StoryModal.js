@@ -15,7 +15,7 @@ function StoryModal({ show, handleClose }) {
     const [selectedUser, setSelectedUser] = useState('');
     const [Name, setName] = useState("")
     const [userTitle, setUserTitle] = useState('');
-    localStorage && localStorage.setItem("userTitle",userTitle)
+    localStorage && localStorage.setItem("userTitle", userTitle)
     const [age, setAge] = useState('');
     const [gender, setGender] = useState('');
     const [genre, setGenre] = useState('');
@@ -39,7 +39,7 @@ function StoryModal({ show, handleClose }) {
             setName("DummyGirl");
         }
     }, [gender]);
-// console.log("userTitle",userTitle)
+    // console.log("userTitle",userTitle)
     const handleAgeChange = (age) => {
         setAge(age);
         handleOptionSelect(3);
@@ -49,10 +49,10 @@ function StoryModal({ show, handleClose }) {
 
     async function genrateAiStory() {
         try {
-            let selected_characterLength = 
-            characterLength === "large" ? "800 to 1000 words" 
-            : characterLength === "medium" ? "600 to 800 words" :
-            "300 to 400 words" ;
+            let selected_characterLength =
+                characterLength === "large" ? "800 to 1000 words"
+                    : characterLength === "medium" ? "600 to 800 words" :
+                        "300 to 400 words";
 
             if (userTitle && age && gender && genre) {
                 setLoading(true);
@@ -109,7 +109,7 @@ function StoryModal({ show, handleClose }) {
                             // console.log("setCard", data);
                             setTimeout(() => {
                                 if (Parstory && Parstory.title) {
-                                   navigate(`/ai-story-generator/?prompt=${userTitle.replace(/ /g, '_')}`);
+                                    navigate(`/ai-story-generator/?prompt=${userTitle.replace(/ /g, '_')}`);
 
                                 }
                             }, 1000);
@@ -154,8 +154,13 @@ function StoryModal({ show, handleClose }) {
                 <Modal centered show={show} onHide={handleClose} id="generat-story">
                     <div className={`step${currentStep}`}>
                         <Modal.Header closeButton >
+                            {/* <div className="closebtn" onClick={handleClose}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="42" height="42" viewBox="0 0 42 42" fill="none">
+                                    <circle cx="21" cy="21" r="21" fill="#0B1024" />
+                                    <path d="M15.4 28L14 26.6L19.6 21L14 15.4L15.4 14L21 19.6L26.6 14L28 15.4L22.4 21L28 26.6L26.6 28L21 22.4L15.4 28Z" fill="white" />
+                                </svg>
+                            </div> */}
                             <Modal.Title>
-
                                 {currentStep === 1 ? (
                                     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none" >
                                         <g opacity="0.5">
@@ -270,19 +275,19 @@ function StoryModal({ show, handleClose }) {
                                         <ul>
                                             <li>
                                                 <div className="button-block" onClick={() => handleOptionSelect(5, "short")}>
-                                                    <input onChange={(e)=>setcharacterLength(e.target.value)} type="radio" value="short" name="wordLength" />
+                                                    <input onChange={(e) => setcharacterLength(e.target.value)} type="radio" value="short" name="wordLength" />
                                                     <button>Short (300 - 400 words)</button>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div className="button-block" onClick={() => handleOptionSelect(5, "medium")}>
-                                                    <input onChange={(e)=>setcharacterLength(e.target.value)} type="radio" value="medium" name="wordLength" />
+                                                    <input onChange={(e) => setcharacterLength(e.target.value)} type="radio" value="medium" name="wordLength" />
                                                     <button>Medium (600 - 800 words)</button>
                                                 </div>
                                             </li>
                                             <li>
                                                 <div className="button-block" onClick={() => handleOptionSelect(5, "large")}>
-                                                    <input onChange={(e)=>setcharacterLength(e.target.value)} type="radio" value="large" name="wordLength" />
+                                                    <input onChange={(e) => setcharacterLength(e.target.value)} type="radio" value="large" name="wordLength" />
                                                     <button>Large (800 - 1000 words)</button>
                                                 </div>
                                             </li>

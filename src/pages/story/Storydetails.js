@@ -78,7 +78,7 @@ function Storydetails() {
             setLoadings(false);
             return;
         }
-        const scheduledDateTime = `${Regs.schedule_at} T15:00:00`;
+        const scheduledDateTime = `${Regs.schedule_at}  15:00:00`;
         // console.log("Submitting data:", scheduledDateTime);
         const main = new Story();
         try {

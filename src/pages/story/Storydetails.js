@@ -17,7 +17,10 @@ function Storydetails() {
     const [showContinue, setShowContinue] = useState(false);
     const handleCloseContinue = () => setShowContinue(false);
     const handleShowContinue = () => setShowContinue(true);
+
     const [content, setContent] = useState({})
+
+
     const fetchStoryDetails = () => {
         if (uuid) {
             const main = new Story();
@@ -52,14 +55,18 @@ function Storydetails() {
         }
     };
     const id = content.id;
+
     const [Regs, setRegs] = useState("");
+
+    console.log("Regs", Regs)
     const handleInputs = (e) => {
         const value = e.target.value;
         const name = e.target.name;
         setRegs((prevState) => ({ ...prevState, [name]: value }));
         console.table(Regs);
     };
-    const [loadings, setLoadings] = useState(false)
+    const [loadings, setLoadings] = useState(false);
+
     async function handleForms(e) {
         e.preventDefault();
         if (loadings) {
@@ -69,34 +76,35 @@ function Storydetails() {
         if (!Regs.schedule_at) {
             toast.error("Please select a date.");
             setLoadings(false);
+            return; 
         }
-        // console.log("Submitting data:", Regs);
+        const scheduledDateTime = `${Regs.schedule_at}T15:00:00`; 
+        console.log("Submitting data:", scheduledDateTime);
         const main = new Story();
         try {
-            const response = await main.storyreshedule(uuid, Regs);
-            // console.log("responseee", response)
+            const response = await main.storyreshedule(uuid, { schedule_at: scheduledDateTime }); // Sending updated object with date and time
+            console.log("responseee", response);
             if (response.data.status === true) {
                 setTimeout(() => {
                     toast.success(response.data.message);
                 }, 1000);
                 handleCloseContinue();
-                navigate('/ai-story')
+                navigate('/ai-story');
             } else {
                 setTimeout(() => {
                     toast.error(response.data.message);
                     setLoadings(false);
-
                 }, 1000);
             }
             setLoadings(false);
-
-            console.log("response.dayta", response.data)
+            console.log("response.data", response.data);
         } catch (error) {
             setLoadings(false);
             console.log("Error:", error);
-            toast.error("You can only schedule for a date and time after today.")
+            toast.error("You can only schedule for a date and time after today.");
         }
     }
+    
     const [showImagePromptModal, setShowImagePromptModal] = useState(false);
 
     return (
@@ -159,8 +167,8 @@ function Storydetails() {
                                             <div className="story-list" key={index}>
                                                 <h2 className="mt-4 pt-3 mb-3" > {item?.title}</h2>
                                                 <div className="chapterImg w-100 position-relative mt-2 mb-3" >
-                                                    <ImagePrompt 
-                                                        image_url={item.image_url || inmagerecoird} 
+                                                    <ImagePrompt
+                                                        image_url={item.image_url || inmagerecoird}
                                                         customclass="editimagebtn btn blue-gradient-btn"
                                                         custom={<>
                                                             <div className="editImage">Edit Image</div>
@@ -202,16 +210,19 @@ function Storydetails() {
                     </div>
                     <div className="date-field-story" >
 
-                        <input
-                            type="Date"
-                            // min={(new Date()).toISOString().split('T')[0]} 
-                            placeholder="Year/Month/Date"
-                            className="input_field form-control"
-                            name="schedule_at"
-                            id="password_field"
-                            value={Regs.scheduled_at}
-                            onChange={handleInputs}
-                        />
+
+                    <input
+    type="Date"
+    className="input_field form-control"
+    name="schedule_at"
+    id="password_field"
+    value={Regs.schedule_at || ''}
+    onChange={handleInputs}
+/>
+
+
+
+
 
                     </div>
                     {content.scheduled_at ? (

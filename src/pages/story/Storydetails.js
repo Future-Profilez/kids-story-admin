@@ -226,7 +226,7 @@ function Storydetails() {
                     {content.scheduled_at ? (
                         <div className="text-center" disabled={loadings}>
                             <div className="btn blue-gradient-btn" onClick={handleForms}  >
-                                <span>{loadings ? "Wait.." : "ReSchedule"}</span>
+                                <span>{loadings ? "Wait.." : "Reschedule"}</span>
                             </div>
                         </div>
                     ) : (<div className="text-center" disabled={loadings} >

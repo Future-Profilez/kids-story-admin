@@ -229,6 +229,7 @@ function Storydetails() {
                                 <span>{loadings ? "Wait.." : "Reschedule"}</span>
                             </div>
                         </div>
+                        
                     ) : (<div className="text-center" disabled={loadings} >
                         <div className="btn blue-gradient-btn" onClick={handleForms}  >
                             <span>{loadings ? "Wait.." : "Publish"}</span>

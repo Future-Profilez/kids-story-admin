@@ -7,7 +7,9 @@ import toast from "react-hot-toast";
 function ImagePrompt({ image_url, customclass, custom, imageprompt, 
     uid, chapter, showImagePromptModal }) {
 
+
     const [prompt, setPrompt] = useState(imageprompt);
+    console.log("prompt",prompt)
     const [newGeneratedImage, setNewGeneratedImage] = useState(null);
     // console.log("imageprompt",imageprompt)
     const [modalShow, setModalShow] = useState(false);
